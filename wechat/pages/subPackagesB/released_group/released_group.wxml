@@ -1,0 +1,76 @@
+<!--pages/subPackagesB/released_group/released_group.wxml-->
+<view class="main_box">
+  <!-- 顶部 -->
+  <view class="top_box bg_fff">
+    <view class="flex">
+      <view>
+        <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item">
+        <view class="name">名称</view>
+        <view>
+          <image class="img1" src="/images/home/tel.png"></image>
+          <text class="tit">15</text>
+          <image class="img1" src="/images/home/tel.png"></image>
+          <text class="tit">15</text>
+        </view>
+      </view>
+      <view class="item tr">
+        <image class="img2" src="/images/home/tel.png"></image>
+        <image class="img2" src="/images/home/wechat.png"></image>
+        <image class="img2" src="/images/home/friends.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class="cont_box">
+    <view class="bg_fff view_b">
+      <view class="top">
+        <view class="tit1">秭归伦晚团购</view>
+        <view class="flex">
+          <view class="item tit2">03-22 14:15 发布</view>
+          <view class="tit2"> 03-12 14:55 截止</view>
+        </view>
+        <!-- 产品详情 -->
+        <view>
+          <view class="tit3">这是文字部分</view>
+          <!-- 轮播 -->
+          <view>
+            <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
+              <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+                <swiper-item>
+                  <image src="/images/home/banner.png"></image>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+        <view class="shop_b">配送方式：商家配送</view>
+      </view>
+      <!-- 商品 -->
+      <view class="bot">
+        <view class="flex">
+          <view>
+            <image class="head_img" src="/images/home/banner.png"></image>
+          </view>
+          <view class="item">
+            <view class="flex">
+              <view class="item omit1">精品伦晚</view>
+              <view class="item tr">已售33</view>
+            </view>
+            <view>5斤/箱</view>
+            <view class="flex">
+              <view class="item">
+                <text>￥18.00</text>
+                <text>库存10</text>
+              </view>
+              <view class="item tr">
+                <shop-num code="111236266"></shop-num>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

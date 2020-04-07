@@ -1,0 +1,78 @@
+/* component/uploadImg/uploadImg.wxss */
+
+.flex {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+}
+
+.flex>.item {
+  box-flex: 1;
+  -webkit-box-flex: 1;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.tr {
+  text-align: right;
+}
+
+.upload_box {
+  background: #fff;
+}
+
+.title .txt_l {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: rgba(51, 51, 51, 1);
+}
+
+.title .txt_r {
+  font-size: 28rpx;
+  color: rgba(131, 131, 139, 1);
+}
+
+.uploader_list {
+  flex-wrap: wrap;
+  padding: 40rpx 0 0;
+}
+
+.uploader_item {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  width: 168rpx;
+  height: 168rpx;
+}
+
+.uploader_item_icon {
+  position: absolute;
+  top: -20rpx;
+  right: -20rpx;
+  z-index: 9999;
+}
+
+.uploader_item image {
+  width: 100%;
+  height: 100%;
+  border: 1px dashed #83838b;
+}
+
+.uploader {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px dashed #83838b;
+  width: 168rpx;
+  height: 168rpx;
+}
+
+.uploader>text {
+  font-size: 150rpx;
+  color: #e9e9e9;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  top: 44%;
+  left: 50%;
+}

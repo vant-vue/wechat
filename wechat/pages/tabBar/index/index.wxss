@@ -1,0 +1,5 @@
+/* pages/tabBar/index/index.wxss */
+/*轮播*/
+@import "./index_carousel_template/index_carousel_template.wxss";
+/*接龙*/
+@import "./index_solitaire_template/index_solitaire_template.wxss";

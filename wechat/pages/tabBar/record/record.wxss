@@ -1,0 +1,53 @@
+/* pages/tabBar/record/record.wxss */
+.title{
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color:#999;
+  padding: 20rpx 30rpx;
+}
+.title.active{
+  border-bottom: 4px solid #009900;
+  color:#009900;
+  font-weight: bold;
+}
+.list{
+  padding:20rpx;
+  margin-top:2rpx;
+}
+.flex{
+  align-items: center;
+}
+.tit1{
+  font-size: 28rpx;
+  color:#333333;
+}
+.tit2{
+  font-size: 24rpx;
+  color:#999999;
+}
+.group{
+  font-size: 24rpx;
+  color:#009900;
+  padding:4rpx 10rpx;
+  border-radius: 60rpx;
+  border:1rpx solid #009900;
+}
+.chipped{
+  font-size: 24rpx;
+  color:#FF9900;
+  padding:4rpx 10rpx;
+  border-radius: 60rpx;
+  border:1rpx solid #FF9900;
+}
+.bot_box{
+  padding-top:30rpx;
+}
+.bot_box .span_a{
+  margin-left: 30rpx;
+}
+.bot_box .span_a image{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}

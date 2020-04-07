@@ -1,0 +1,24 @@
+/* pages/subPackagesA/editDetails/editDetails.wxss */
+
+.bg {
+  background: #fff;
+}
+
+.box {
+  padding: 16rpx 20rpx;
+  margin-top: 2rpx;
+}
+
+.title {
+  margin-top: 2rpx;
+  padding: 20rpx 20rpx;
+}
+
+.tit {
+  font-size: 26rpx;
+  color: #999;
+}
+
+textarea {
+  width: 100%;
+}

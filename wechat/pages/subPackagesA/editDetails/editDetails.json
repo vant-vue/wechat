@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑详情",
+  "usingComponents": {
+    "upload-img": "/component/uploadImg/uploadImg"
+  }
+}

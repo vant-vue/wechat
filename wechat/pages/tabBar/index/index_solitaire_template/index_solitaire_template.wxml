@@ -1,0 +1,28 @@
+<template name="index_solitaire_template">
+  <view class="solitaire pr">
+    <view class="flex">
+      <view class="item">
+        <view class="flex box" bindtap="jump" data-page="group">
+          <view>
+            <image src="/images/home/shop.png"></image>
+          </view>
+          <view class="item">
+            <view class="tit1">+团购接龙</view>
+            <view class="tit2">社区团购 卖货收款</view>
+          </view>
+        </view>
+      </view>
+      <view class="item">
+        <view class="flex box" bindtap="jump" data-page="chipped">
+          <view>
+            <image src="/images/home/shop.png"></image>
+          </view>
+          <view class="item">
+            <view class="tit1">+合买接龙</view>
+            <view class="tit2">代销者发起合买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

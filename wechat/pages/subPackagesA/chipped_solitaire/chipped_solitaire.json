@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发布接龙",
+  "usingComponents": {
+    "upload-img": "/component/uploadImg/uploadImg"
+  }
+}

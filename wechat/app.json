@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/tabBar/index/index",
+    "pages/tabBar/record/record",
+    "pages/tabBar/center/center"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#83838B",
+    "selectedColor": "#F54949",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/tabBar/index/index",
+        "iconPath": "images/footer/home.png",
+        "selectedIconPath": "images/footer/home.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabBar/record/record",
+        "iconPath": "images/footer/home.png",
+        "selectedIconPath": "images/footer/home.png",
+        "text": "记录"
+      },
+      {
+        "pagePath": "pages/tabBar/center/center",
+        "iconPath": "images/footer/home.png",
+        "selectedIconPath": "images/footer/home.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "subPackages": [
+    {
+      "root": "pages/subPackagesA",
+      "pages": [
+        "login/login",
+        "group_buying_solitaire/group_buying_solitaire",
+        "chipped_solitaire/chipped_solitaire",
+        "editDetails/editDetails",
+        "logistics_mode/logistics_mode"
+      ]
+    },
+    {
+      "root": "pages/subPackagesB",
+      "pages": [
+        "released_group/released_group"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/tabBar/index/index": {
+      "network": "all",
+      "packages": [
+        "pages/subPackagesA"
+      ]
+    },
+    "pages/tabBar/record/record": {
+      "network": "all",
+      "packages": [
+        "pages/subPackagesB"
+      ]
+    }
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

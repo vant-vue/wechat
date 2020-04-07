@@ -1,0 +1,17 @@
+<!--component/shopNum/shopNum.wxml-->
+<view class="count_box">
+    <view class="count_group">
+        <view class="count_btn" data-tar="minus" bind:tap="tapBtn">
+            <image src="/assets/imgs/icon/icon-minus.png" hidden="{{count<=min}}"></image>
+            <image src="/assets/imgs/icon/icon-minus-disabled.png" hidden="{{count>min}}"></image>
+        </view>
+        <view class="count_input">
+            <input value="{{count}}" bind:blur="blurHandle" bindinput="inputHandle"></input>
+        </view>
+        <view class="count_btn" data-tar="plus" bind:tap="tapBtn">
+            <image src="/assets/imgs/icon/icon-plus.png" hidden="{{count>=max}}"></image>
+            <image src="/assets/imgs/icon/icon-plus-disabled.png" hidden="{{count<max}}"></image>
+        </view>
+    </view>
+    <view wx:if='{{errorMsg}}' class="errorMsg">{{errorMsg}}</view> 
+</view>

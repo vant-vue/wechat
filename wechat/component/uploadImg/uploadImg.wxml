@@ -1,0 +1,24 @@
+<!--component/uploadImg/uploadImg.wxml-->
+<view class='upload_box'>
+  <view class="flex title">
+    <!-- <view class="item txt_l">相关截图（选填）</view> -->
+    <view class="item txt_r tr">{{uploaderList.length}}/{{defaultNum}}</view>
+  </view>
+  <!-- 根据已选择的图片临时路径数组展示图片-->
+  <view class="uploader_list flex">
+    <view style="padding: 0 40rpx 40rpx 0;" wx:for="{{uploaderList}}" wx:key="{{index}}">
+      <view class='uploader_item'>
+        <!-- 删除-->
+        <icon class='uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20" color="red" />
+        <!-- 图片-->
+        <image bindtap='showImg' data-index="{{index}}" src='{{item}}'></image>
+      </view>
+    </view>
+    <!-- 上传按钮+框 -->
+    <view style="padding: 0 40rpx 40rpx 0;">
+      <view class='uploader' bindtap='upload' wx:if="{{showUpload}}">
+        <text>+</text>
+      </view>
+    </view>
+  </view>
+</view>

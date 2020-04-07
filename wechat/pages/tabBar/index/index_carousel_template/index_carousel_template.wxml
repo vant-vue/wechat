@@ -1,0 +1,16 @@
+<template name="index_carousel_template">
+  <view class="banner pr">
+    <swiper autoplay circular class="banner_inner" bindchange="change_index" interval="3000" duration="500">
+      <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+        <swiper-item>
+          <image src="/images/home/banner.png"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- <view class="index">
+      <block wx:for="{{banner_list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+        <text class="{{index == banner_index ? 'current' : ''}}"></text>
+      </block>
+    </view> -->
+  </view>
+</template>

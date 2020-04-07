@@ -1,0 +1,89 @@
+/* pages/subPackagesB/released_group/released_group.wxss */
+.main_box{
+  padding-bottom:200rpx;
+}
+.top_box {
+  padding: 20rpx;
+}
+
+.top_box .head_img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.top_box .img1 {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+
+.top_box .img2 {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+}
+
+.top_box .flex {
+  align-items: center;
+}
+
+.top_box .name {
+  font-size: 28rpx;
+  color: #333;
+  padding-bottom: 20rpx;
+}
+
+.top_box .tit {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 10rpx;
+  margin-right: 30rpx;
+}
+
+/* 内容 */
+.cont_box{
+  padding: 20rpx;
+}
+.cont_box .view_b{
+  border-radius: 10rpx;
+}
+.cont_box .top{
+  padding:20rpx 20rpx 0;
+  border-bottom:1px solid #F2F2F2;
+}
+.banner swiper, .banner image ,.banner_inner image{
+  display: block;
+  width: 100vw;
+  height: 300rpx;
+}
+.cont_box .tit1{
+  font-size: 28rpx;
+  color:#333333;
+  padding-bottom: 16rpx;
+}
+.cont_box .tit2{
+  font-size: 24rpx;
+  color:#999999;
+}
+.cont_box .tit3{
+  font-size: 26rpx;
+  color:#333333;
+  padding: 16rpx 0;
+}
+.cont_box .shop_b{
+  background: #F2F2F2;
+  padding:20rpx 20rpx;
+  margin:20rpx 0;
+  border-radius: 10rpx;
+  color:#333333;
+}
+.cont_box .bot{
+  padding: 20rpx;
+}
+.cont_box .head_img{
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}

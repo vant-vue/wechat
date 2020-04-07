@@ -1,0 +1,89 @@
+/* pages/subPackagesA/group_buying_solitaire/group_buying_solitaire.wxss */
+
+.bg {
+  background: #fff;
+}
+
+.red {
+  color: #f00;
+}
+
+.box {
+  padding: 16rpx 20rpx;
+  margin-top: 2rpx;
+}
+
+.box2 {
+  padding: 20rpx 20rpx;
+  margin-top: 2rpx;
+}
+
+.flex {
+  align-items: center;
+}
+
+.main_box .left {
+  padding-right: 20rpx;
+}
+
+.left_width {
+  width: 100rpx;
+}
+
+.tit {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.tit2 {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.tit3 {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.tit4 {
+  font-size: 26rpx;
+  color: #06f;
+}
+
+.tit5 {
+  font-size: 26rpx;
+  color: #090;
+}
+
+.tit6 {
+  font-size: 26rpx;
+  color: #090;
+}
+
+.shop_box {
+  margin-top: 20rpx;
+}
+
+.add {
+  color: #06f;
+  padding: 10rpx 0;
+}
+
+.delete {
+  color: #f00;
+  padding: 10rpx 0;
+}
+
+.cb {
+  transform: scale(0.8, 0.8);
+}
+
+.btn {
+  padding: 40rpx;
+}
+
+.btn>button {
+  border-radius: 60rpx;
+  color: #fff;
+  background: #090;
+}

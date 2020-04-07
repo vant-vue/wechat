@@ -1,0 +1,28 @@
+/*轮播图*/
+
+.banner swiper, .banner image ,.banner_inner image{
+  display: block;
+  width: 100vw;
+  height: 300rpx;
+}
+
+.banner .index {
+  position: absolute;
+  left: 50%;
+  bottom: 8%;
+  transform: translate(-50%, 50%);
+}
+
+.banner .index text {
+  width: 15rpx;
+  height: 15rpx;
+  border-radius: 50%;
+  background: #eee;
+  margin-left: 12rpx;
+}
+
+.banner .index .current {
+  width: 50rpx;
+  border-radius: 60rpx;
+  /* background: #fd3336; */
+}
