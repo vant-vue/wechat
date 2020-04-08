@@ -83,7 +83,105 @@
   padding: 20rpx;
 }
 .cont_box .head_img{
-  width: 120rpx;
-  height: 120rpx;
+  width: 160rpx;
+  height: 160rpx;
   margin-right: 20rpx;
+}
+.cont_box .bot .flex{
+  align-items: center;
+}
+.cont_box .bot .txt1{
+  font-size:28rpx;
+  color: #333333;
+}
+.cont_box .bot .txt2{
+  font-size:24rpx;
+  color: #009900;
+}
+.cont_box .bot .txt3{
+  font-size:24rpx;
+  color: #999999;
+  padding-top:20rpx;
+}
+.cont_box .bot .txt4{
+  font-size:28rpx;
+  color: #FF9900;
+  margin-right: 20rpx;
+}
+.cont_box .bot .txt5{
+  font-size:28rpx;
+  color: #999999;
+}
+.denominated{
+  padding:0 20rpx 20rpx;
+  text-align: right;
+}
+.denominated .tit1{
+  font-size: 28rpx;
+}
+.denominated .tit2{
+  font-size: 28rpx;
+  color:#ff0000;
+}
+.btn_box{
+  padding:0 20rpx;
+}
+.btn_box button{
+  border-radius: 60rpx;
+}
+.btn_box .close_btn{
+  color: #fff;
+  background: #CCCCCC;
+}
+.btn_box .active_btn{
+  color: #fff;
+  background: #009900;
+}
+/* 接龙列表 */
+.list_box{
+  padding: 20rpx;
+  margin:20rpx;
+  border-radius: 10rpx;
+}
+.list_box .title{
+  font-size: 28rpx;
+  padding-bottom: 20rpx;
+}
+.list{
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #F2F2F2;
+}
+.list:last-child{
+  border: none;
+  padding-bottom: 0;
+}
+.list .tit{
+  font-size: 28rpx;
+  padding: 20rpx;
+}
+.list .head_img{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.list .flex{
+  align-items: center;
+}
+.list .tit1{
+  font-size: 28rpx;
+}
+.list .tit2{
+  font-size: 24rpx;
+  color: #999999;
+}
+.list .tit3{
+  font-size: 24rpx;
+  color: #ff0000;
+}
+.list .flex.mb_20{
+  padding-bottom: 20rpx;
+}
+.list .flex.mb_20:last-child{
+  padding-bottom: 0rpx;
 }

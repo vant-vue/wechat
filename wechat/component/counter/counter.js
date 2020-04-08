@@ -1,4 +1,4 @@
-// component/shopNum/shopNum.js
+// component/counter/counter.js
 Component({
   properties: {
     code: {

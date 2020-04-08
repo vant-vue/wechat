@@ -55,22 +55,103 @@
           </view>
           <view class="item">
             <view class="flex">
-              <view class="item omit1">精品伦晚</view>
-              <view class="item tr">已售33</view>
+              <view class="item omit1 txt1">精品伦晚</view>
+              <view class="item tr txt2">已售33</view>
             </view>
-            <view>5斤/箱</view>
+            <view class="txt3">5斤/箱</view>
             <view class="flex">
               <view class="item">
-                <text>￥18.00</text>
-                <text>库存10</text>
+                <text class="txt4">￥18.00</text>
+                <text class="txt5">库存10</text>
               </view>
-              <view class="item tr">
-                <shop-num code="111236266"></shop-num>
+              <view class="">
+                <shop-num code="111236266" max="10"></shop-num>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="bot">
+        <view class="flex">
+          <view>
+            <image class="head_img" src="/images/home/banner.png"></image>
+          </view>
+          <view class="item">
+            <view class="flex">
+              <view class="item omit1 txt1">精品伦晚</view>
+              <view class="item tr txt2">已售33</view>
+            </view>
+            <view class="txt3">5斤/箱</view>
+            <view class="flex">
+              <view class="item">
+                <text class="txt4">￥18.00</text>
+                <text class="txt5">库存10</text>
+              </view>
+              <view class="">
+                <shop-num code="111236266" max="10"></shop-num>
               </view>
             </view>
           </view>
         </view>
       </view>
     </view>
+  </view>
+  <view class="denominated">
+    <text class="tit1">总共 2 件 合计</text>
+    <text class="tit2"> ￥36.00</text>
+  </view>
+  <view class="btn_box">
+     <!-- <button class="close_btn" type="primary" style="width:100%">请选择商品</button> -->
+     <button class="active_btn" type="primary" style="width:100%">参与接龙</button>
+  </view>
+  <!-- 接龙列表 -->
+  <view class="list_box bg_fff">
+    <view class="title">接龙列表</view>
+    <view class="flex list">
+      <view class="tit">1</view>
+      <view>
+           <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item">
+        <view class="flex mb_20">
+          <view class="item tit1">名字</view>
+          <view class="item tr tit2">03-22 14:15 </view>
+        </view>
+        <view class="flex mb_20">
+          <view class="item omit1 tit2">精品伦晚 +1</view>
+          <view class="item tr  tit3">申请取消</view>
+        </view>
+      </view>
+    </view>
+    <view class="flex list">
+      <view class="tit">1</view>
+      <view>
+           <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item">
+        <view class="flex mb_20">
+          <view class="item tit1">名字</view>
+          <view class="item tr tit2">03-22 14:15 </view>
+        </view>
+        <view class="flex mb_20">
+          <view class="item omit1 tit2">精品伦晚 +1</view>
+          <view class="item tr  tit3">申请取消</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 客服 -->
+  <!-- 底部按钮 -->
+  <view class="footer" wx:if="{{false}}">
+    <view class="item">
+      <image src="/images/home/banner.png"></image>
+      <view>订单管理</view>
+    </view>
+    <view class="item">
+      <image src="/images/home/banner.png"></image>
+      <view>接龙设置</view>
+    </view>
+    <view class="item"></view>
+    <view class="item"></view>
   </view>
 </view>

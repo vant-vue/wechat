@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "团购-我发布的",
   "usingComponents": {
-    "shop-num": "/component/shopNum/shopNum"
+    "shop-num": "/component/counter/counter"
   }
 }

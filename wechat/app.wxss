@@ -43,6 +43,7 @@ text,view{ font-size: 26rpx; font-family: Microsoft YaHei; color: #010102;}
 .mt15{ margin-top: 15rpx;}
 .mt20{ margin-top: 20rpx;}
 .mb10{ margin-bottom: 10rpx;}
+.mb20{ margin-bottom: 20rpx;}
 .mb15{ margin-bottom: 15rpx;}
 .ml10{ margin-left: 10rpx;}
 .mr10{ margin-right: 10rpx;}

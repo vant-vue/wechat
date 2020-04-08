@@ -1,0 +1,15 @@
+<!--component/counter/counter.wxml-->
+<view class="count_box">
+  <view class="count_group">
+    <view class="count_btn {{count<=min?'disableded':''}}" data-tar="minus" bind:tap="tapBtn">
+      -
+    </view>
+    <view class="count_input">
+      <input value="{{count}}" bind:blur="blurHandle" bindinput="inputHandle" disabled="true"></input>
+    </view>
+    <view class="count_btn {{count>=max?'disableded':''}}" data-tar="plus" bind:tap="tapBtn">
+      +
+    </view>
+  </view>
+  <view wx:if='{{errorMsg}}' class="errorMsg">{{errorMsg}}</view>
+</view>
