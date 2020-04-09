@@ -1,0 +1,33 @@
+/* component/service/service.wxss */
+
+.flex {
+  display: box;
+  display: -webkit-box;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+
+.flex>.item {
+  box-flex: 1;
+  -webkit-box-flex: 1;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.service_box {
+  align-items: center;
+  padding:20rpx;
+}
+
+.service_box .img_c {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.title {
+  margin-left: 20rpx;
+  color:#666666;
+  font-size: 28rpx;
+}

@@ -1,0 +1,14 @@
+<!--component/transmit /transmit.wxml-->
+<!-- 弹窗 -->
+<view class="popup {{show_popup?'show':''}}" catchtouchmove="true">
+  <view class='main'>
+    <view class='content'>
+      <image class="success" src="/images/home/success.png"></image>
+      <slot></slot>
+      <button>转发到群聊</button>
+    </view>
+    <view class='close'>
+      <image class="close" src="/images/home/close.png"></image>
+    </view>
+  </view>
+</view>

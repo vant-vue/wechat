@@ -185,3 +185,24 @@
 .list .flex.mb_20:last-child{
   padding-bottom: 0rpx;
 }
+/* 底部 */
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+.footer image{
+  width:50rpx;
+  height: 50rpx;
+}
+.retransmission{
+  width: 240rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #009900;
+  font-size: 30rpx;
+  color: #fff;
+}

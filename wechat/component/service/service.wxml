@@ -1,0 +1,5 @@
+<!--component/service/service.wxml-->
+<view class="service_box flex">
+  <image class="img_c" src="/images/home/service.png"></image>
+  <text class="title">联系客服</text>
+</view>
