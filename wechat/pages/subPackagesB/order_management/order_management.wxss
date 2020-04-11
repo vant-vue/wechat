@@ -1,0 +1,258 @@
+/* pages/subPackagesB/order_management/order_management.wxss */
+
+page {
+  padding-bottom: 150rpx;
+}
+
+.top_box {
+  background: #06f;
+  padding: 20rpx;
+}
+
+.top_box image {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+
+.top_box .tit1 {
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.top_box .tit2 {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+  padding: 20rpx 0;
+}
+
+.top_box .tit3 {
+  font-size: 28rpx;
+  color: #fff;
+  margin-left: 20rpx;
+}
+
+.top_box  .t_box {
+  text-align: right;
+}
+
+.mid_box {
+  margin: 20rpx 0;
+}
+
+.mid_box .title {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx 30rpx;
+}
+
+.mid_box .title.active {
+  border-bottom: 2px solid #090;
+  color: #090;
+  font-weight: bold;
+}
+
+.search_box {
+  border-top: 2rpx solid #f2f2f2;
+  padding: 20rpx 0;
+}
+
+.search_box {
+  align-items: center;
+}
+
+.search_box image {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+.search_box .right_box {
+  position: relative;
+  padding: 0 30rpx;
+}
+
+.search_box .right_box .sea {
+  background: #f2f2f2;
+  border-radius: 60rpx;
+  padding: 15rpx;
+}
+
+.search_box .searchcion {
+  position: absolute;
+  top: 20rpx;
+  left: 100rpx;
+}
+
+.search_box .input_z {
+  padding-left: 100rpx;
+  width: 300rpx;
+}
+
+.search_box text {
+  color: #999;
+}
+
+/* 商品 */
+
+.list_box {
+  padding: 20rpx;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.list_box .flex {
+  align-items: center;
+}
+
+.list_box .head_img {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.list_box .cb {
+  transform: scale(0.8, 0.8);
+}
+
+.list_box .it_1 {
+  padding-right: 20rpx;
+}
+
+.list_box .it_2 {
+  font-size: 28rpx;
+}
+
+.list_box .it_3 text {
+  font-size: 26rpx;
+  color: #fff;
+  padding: 0 16rpx;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+}
+
+.list_box .it_3 text.wait {
+  background: #090;
+}
+
+.list_box .it_3 text.success {
+  background: #f90;
+}
+
+.list_box .it_3 text.close {
+  background: #ccc;
+}
+
+.list_box .top {
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.list_box .apply {
+  padding: 20rpx;
+  background: #f2f2f2;
+  border-radius: 10rpx;
+}
+
+.list_box .ft_f0 {
+  color: #f00;
+}
+
+.list_box .ft_6f {
+  color: #06f;
+}
+
+.list_box .shop {
+  padding-top: 20rpx;
+  align-items: center;
+}
+
+.list_box .shop .t1 {
+  color: #999;
+  margin-right: 20rpx;
+}
+
+.list_box .shop_cout {
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.list_box .detail_box .flex {
+  align-items: center;
+}
+
+.list_box .detail_box image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.list_box .detail_box .lx {
+  padding: 20rpx 0;
+}
+
+.list_box .detail_box .tit1 {
+  color: #999;
+}
+
+.list_box .btn_box {
+  padding: 20rpx 0;
+}
+
+.list_box .btn_box .btn1 {
+  background: #f2f2f2;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  color: #090;
+}
+
+.list_box .btn_box .btn2 {
+  width: 50%;
+  margin-left: 20rpx;
+  background: #090;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  color: #fff;
+}
+
+.list_box .order_box .tit1, .list_box .order_box .tit2 {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 底部 */
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  text-align: center;
+}
+
+.footer .cb {
+  transform: scale(0.8, 0.8);
+}
+
+.retransmission {
+  width: 240rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #090;
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.footer .tit1 {
+  color: #999;
+}
+
+.footer .tit2 {
+  font-size: 30rpx;
+  color: #090;
+}

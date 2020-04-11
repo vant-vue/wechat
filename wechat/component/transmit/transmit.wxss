@@ -51,7 +51,7 @@
 .popup .content .success {
   width: 100rpx;
   height: 100rpx;
-  margin: 40rpx;
+  margin: 40rpx 40rpx 20rpx;
 }
 
 .close {

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "订单管理",
+  "navigationBarBackgroundColor": "#0066FF",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "service": "/component/service/service",
+    "actionSheetFilter": "/component/actionSheetFilter/actionSheetFilter",
+    "actionSheetRemark": "/component/actionSheetRemark/actionSheetRemark"
+  }
+}

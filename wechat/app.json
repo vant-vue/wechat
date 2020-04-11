@@ -50,7 +50,9 @@
     {
       "root": "pages/subPackagesB",
       "pages": [
-        "released_group/released_group"
+        "released_group/released_group",
+        "order_management/order_management",
+        "order_details/order_details"
       ]
     }
   ],

@@ -1,0 +1,32 @@
+<!--pages/subPackagesB/order_details/order_details.wxml-->
+<!-- 状态 -->
+<view>
+  <view class="tc wait">待处理</view>
+  <!-- <view class="tc success">已完成</view>
+<view class="tc cancel">已取消</view> -->
+</view>
+<!-- 状态按钮 -->
+<view class="status_box">
+  <view class="flex">
+    <view class="item">
+      <view class="btn">联系买家</view>
+    </view>
+    <view class="item">
+      <view class="btn">修改备注</view>
+    </view>
+    <view class="item" wx:if="{{true}}">
+      <view class="btn yet">已发货/取货</view>
+    </view>
+    <view class="item" wx:if="{{true}}">
+      <view class="btn can">取消订单</view>
+    </view>
+  </view>
+</view>
+<!-- 买家申请取消 -->
+<view class="apply_box flex bg_fff">
+  <view class="item f00">买家申请取消</view>
+  <view class="item f06 tr">同意</view>
+</view>
+<view class="apply_box flex bg_fff">
+  <view class="item ccc">备注：无货啊</view>
+</view>

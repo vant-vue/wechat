@@ -4,10 +4,14 @@ Component({
    * 组件的属性列表
    */
   behaviors: [],
-  option:{
-    multipleSlots:true
+  option: {
+    multipleSlots: true
   },
   properties: {
+    show_popup: {
+      type: Boolean,
+      value: false
+    }
   },
 
   /**
@@ -15,13 +19,20 @@ Component({
    */
   data: {
     popup: '', //打开弹窗类型
-    show_popup: true,
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-
-  }
+    close() {
+      this.setData({
+        show_popup: false
+      })
+    }
+  },
+  onShareAppMessage: function(e) {
+    console.log(e)
+    // return custom share data when user share.
+  },
 })

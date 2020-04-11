@@ -1,0 +1,59 @@
+/* pages/subPackagesB/order_details/order_details.wxss */
+
+.wait {
+  color: #fff;
+  background: #090;
+}
+
+.success {
+  color: #fff;
+  background: #f90;
+}
+
+.cancel {
+  color: #fff;
+  background: #ccc;
+}
+
+.status_box {
+}
+
+.status_box .flex {
+  align-items: center;
+  text-align: center;
+}
+
+.status_box .flex .btn {
+  border: 1rpx solid #090;
+  margin: 15rpx;
+  padding: 20rpx 0;
+  color: #090;
+  border-radius: 10rpx;
+}
+
+.status_box .flex .btn.yet {
+  color: #fff;
+  background: #090;
+}
+
+.status_box .flex .btn.can {
+  color: #f00;
+  border: 1rpx solid #f00;
+}
+
+.apply_box {
+  margin: 0 20rpx 20rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+
+.f00 {
+  color: #f00;
+}
+
+.f06 {
+  color: #06f;
+}
+.ccc {
+  color: #999999;
+}

@@ -206,3 +206,10 @@
   font-size: 30rpx;
   color: #fff;
 }
+.p_content1{
+  font-size: 28rpx;
+}
+.p_content2{
+  font-size: 28rpx;
+  padding: 20rpx 0;
+}

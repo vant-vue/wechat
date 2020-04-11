@@ -6,7 +6,7 @@
   padding: 20rpx 30rpx;
 }
 .title.active{
-  border-bottom: 4px solid #009900;
+  border-bottom: 2px solid #009900;
   color:#009900;
   font-weight: bold;
 }

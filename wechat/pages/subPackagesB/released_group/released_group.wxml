@@ -153,13 +153,13 @@
       <image src="/images/home/banner.png"></image>
       <view class="tit">接龙设置</view>
     </view>
-    <view class="retransmission">转发</view>
+    <view class="retransmission" bindtap="show_popup_fun">转发</view>
   </view>
   <!-- 转发成功弹出层 -->
-  <transmit>
+  <transmit show_popup="{{show_popup}}">
     <view slot="after">
-    1111111
-      <view>发布成功</view>
+      <view class="p_content1">发布成功</view>
+      <view class="p_content2">快发给群友开始接龙吧~</view>
     </view>
   </transmit>
 </view>

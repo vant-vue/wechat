@@ -1,0 +1,73 @@
+<!--component/actionSheetFilter/actionSheetFilter.wxml-->
+<view class='dialog_bg' wx:if="{{show}}" bindtap="cancel"  catchtouchmove="false"></view>
+<view class="popup follow-up {{show?'show':''}}">
+  <view class="title">筛选订单</view>
+  <view class="list_box">
+    <!-- 时间筛选 -->
+    <view>
+      <view class="tit">时间筛选</view>
+      <view class="flex box">
+        <view class="item">
+          <text class="active">全部</text>
+        </view>
+        <view class="item">
+          <text>今日</text>
+        </view>
+        <view class="item">
+          <text>昨日</text>
+        </view>
+        <view class="item">
+          <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
+            <text>{{date?date:"选择日期"}}</text>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <!-- 商家备注 -->
+    <view>
+      <view class="tit">商家备注</view>
+      <view class="flex box">
+        <view class="item">
+          <text class="active">全部</text>
+        </view>
+        <view class="item">
+          <text>有备注</text>
+        </view>
+        <view class="item">
+          <text>无备注</text>
+        </view>
+        <view class="item">
+
+        </view>
+      </view>
+    </view>
+    <!-- 商家退款 -->
+    <view>
+      <view class="tit">商家退款</view>
+      <view class="flex box">
+        <view class="item">
+          <text class="active">全部</text>
+        </view>
+        <view class="item">
+          <text>有退款</text>
+        </view>
+        <view class="item">
+          <text>无退款</text>
+        </view>
+        <view class="item">
+
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="btn_box">
+    <view class="flex">
+      <view class="item">
+        <view class="close" bindtap="cancel">取消</view>
+      </view>
+      <view class="item">
+        <view class="ok">确定</view>
+      </view>
+    </view>
+  </view>
+</view>
