@@ -1,0 +1,88 @@
+<!--pages/subPackagesB/search/search.wxml-->
+<!-- 筛选 -->
+<view class="flex search_box bg_fff">
+  <view class="item right_box">
+    <view class="sea">
+      <icon class="searchcion" size='16' type='search'></icon>
+      <input class="input_z" placeholder="请输入接龙号、姓名、电话号码、备注等搜索" value="{{searchValue}}" />
+    </view>
+  </view>
+  <view>
+    <text class="search">搜索</text>
+  </view>
+</view>
+<view wx:if="{{true}}" class="tc re_x">共搜索到1条记录</view>
+<view wx:else class="tc re_x">未搜到</view>
+<view class="mid_box">
+  <!-- 商品list -->
+  <view class="list_box bg_fff" wx:for="{{[1,2]}}" wx:item="item" wx:key="item">
+    <view class="top flex">
+      <view class="it_1">
+        <text>1</text>
+      </view>
+      <view>
+        <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item">
+        <text class="it_2">名字</text>
+      </view>
+      <view class="it_3">
+        <text class="wait">待处理</text>
+        <text class="success">已完成</text>
+        <text class="close">已取消</text>
+      </view>
+      <view>
+        <text class='icon_right'></text>
+      </view>
+    </view>
+    <!-- 申请状态 -->
+    <view class="apply flex">
+      <view class="item ft_f0">买家申请取消</view>
+      <view class="item ft_6f tr">点击处理</view>
+    </view>
+    <!-- 商品信息 -->
+    <view>
+      <view class="shop flex">
+        <view class="item">精品伦晚</view>
+        <view class="t1">x1</view>
+        <view class="t2">￥18.00</view>
+      </view>
+      <view class="shop flex">
+        <view class="item">精品伦晚</view>
+        <view class="t1">x1</view>
+        <view class="t2">￥18.00</view>
+      </view>
+      <view class="shop_cout tr">
+        <text>总共 2 件 合计 </text>
+        <text class="ft_f0">￥36.00</text>
+      </view>
+    </view>
+    <!-- 联系人信息 -->
+    <view class="detail_box">
+      <view class="flex lx">
+        <view class="item tit1">联系人信息</view>
+        <view class="item tr">
+          <image src="/images/record/book.png"></image>
+        </view>
+      </view>
+      <view class="mb20">姓名，15001515511，湖北省武汉市东西湖区航天华 宇对对对2150
+      </view>
+    </view>
+    <!-- 按钮 -->
+    <view class="btn_box flex">
+      <view class="item" bindtap="remark_fun">
+        <view class="btn1 tc">写备注</view>
+      </view>
+      <view class="btn2 tc" bindtap="already_fun">已发货/已取货</view>
+    </view>
+    <!-- 订单号 -->
+    <view class="order_box flex">
+      <view class="item tit1">订单编号: 20023211511515</view>
+      <view class="tit2">03-25 12:15:15</view>
+    </view>
+  </view>
+  <!-- 筛选弹窗 -->
+  <actionSheetFilter show="{{isFilter}}"></actionSheetFilter>
+  <!-- 备注弹窗 -->
+  <actionSheetRemark show="{{isRemark}}"></actionSheetRemark>
+</view>

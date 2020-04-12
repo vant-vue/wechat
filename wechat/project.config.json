@@ -44,7 +44,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 21,
 			"list": [
 				{
 					"id": -1,
@@ -99,6 +99,105 @@
 					"id": -1,
 					"name": "订单详情",
 					"pathName": "pages/subPackagesB/order_details/order_details",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "数据统计",
+					"pathName": "pages/subPackagesB/data_statistics/data_statistics",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/subPackagesB/search/search",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "导出数据",
+					"pathName": "pages/subPackagesB/export_data/export_data",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "团购-我参与的",
+					"pathName": "pages/subPackagesB/participation_group/participation_group",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "参与接龙",
+					"pathName": "pages/subPackagesB/participation_solitaire/participation_solitaire",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "合买-我发布的",
+					"pathName": "pages/subPackagesB/my_chipped_released/my_chipped_released",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "合买-我参与的",
+					"pathName": "pages/subPackagesB/my_chipped_participation/my_chipped_participation",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "参与合买",
+					"pathName": "pages/subPackagesB/participation_chipped/participation_chipped",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/tabBar/center/center",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的余额",
+					"pathName": "pages/subPackagesC/my_balance/my_balance",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "收支明细",
+					"pathName": "pages/subPackagesC/income_detail/income_detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "提现",
+					"pathName": "pages/subPackagesC/withdraw_deposit/withdraw_deposit",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "已购买订单",
+					"pathName": "pages/subPackagesC/order_bought/order_bought",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的-订单详情",
+					"pathName": "pages/subPackagesC/order_details/order_details",
+					"query": "",
 					"scene": null
 				}
 			]

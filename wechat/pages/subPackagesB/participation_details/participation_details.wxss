@@ -1,0 +1,30 @@
+/* pages/subPackagesB/participation_details/participation_details.wxss */
+
+.banner swiper, .banner image, .banner_inner image {
+  display: block;
+  width: 100vw;
+  height: 300rpx;
+}
+
+.bg {
+  background: #fff;
+}
+
+.box {
+  padding: 16rpx 20rpx;
+  margin-top: 2rpx;
+}
+
+.title {
+  margin-top: 2rpx;
+  padding: 20rpx 20rpx;
+}
+
+.tit {
+  font-size: 26rpx;
+  color: #999;
+}
+
+textarea {
+  width: 100%;
+}

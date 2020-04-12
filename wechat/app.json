@@ -51,8 +51,27 @@
       "root": "pages/subPackagesB",
       "pages": [
         "released_group/released_group",
+        "participation_group/participation_group",
+        "participation_details/participation_details",
+        "participation_solitaire/participation_solitaire",
         "order_management/order_management",
-        "order_details/order_details"
+        "order_details/order_details",
+        "data_statistics/data_statistics",
+        "search/search",
+        "export_data/export_data",
+        "my_chipped_released/my_chipped_released",
+        "my_chipped_participation/my_chipped_participation",
+        "participation_chipped/participation_chipped"
+      ]
+    },
+    {
+      "root": "pages/subPackagesC",
+      "pages": [
+        "my_balance/my_balance",
+        "income_detail/income_detail",
+        "withdraw_deposit/withdraw_deposit",
+        "order_details/order_details",
+        "order_bought/order_bought"
       ]
     }
   ],
@@ -67,6 +86,12 @@
       "network": "all",
       "packages": [
         "pages/subPackagesB"
+      ]
+    },
+    "pages/tabBar/center/center": {
+      "network": "all",
+      "packages": [
+        "pages/subPackagesC"
       ]
     }
   },

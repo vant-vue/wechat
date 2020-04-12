@@ -1,0 +1,86 @@
+/* pages/subPackagesC/income_detail/income_detail.wxss */
+
+page {
+  padding-bottom: 200rpx;
+}
+
+.icon_bottom {
+  margin-left: 10rpx;
+  position: relative;
+  bottom: 8rpx;
+}
+
+.icon_bottom::before {
+  content: " ";
+  display: inline-block;
+  height: 16rpx;
+  width: 16rpx;
+  border-width: 0 4rpx 4rpx 0;
+  border-color: #090;
+  border-style: solid;
+  -webkit-transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+  transform: matrix(0.71, 0.71, -.71, 0.71, 0, 0);
+}
+
+.top_box {
+  padding: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.top_box .filter_img {
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+}
+
+.top_box .flex {
+  align-items: center;
+}
+
+.tit1 {
+  font-size: 30rpx;
+  color: #090;
+}
+
+.tit2 {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.tit3 {
+  font-size: 30rpx;
+  color: #999;
+}
+
+.tit4 {
+  font-size: 30rpx;
+}
+
+.tit5 {
+  font-size: 28rpx;
+  color: #090;
+}
+
+.f00 {
+  color: #f00;
+}
+
+.list_box {
+  background: #fff;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.list_box .flex {
+  align-items: center;
+  padding-bottom: 10rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 40rpx;
+}

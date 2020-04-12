@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "记录",
+  "usingComponents": {
+    "actionSheetFilter": "/component/actionSheetFilter/actionSheetFilter",
+    "actionSheetRemark": "/component/actionSheetRemark/actionSheetRemark"
+  }
+}

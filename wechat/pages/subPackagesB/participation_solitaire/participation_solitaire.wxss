@@ -1,0 +1,70 @@
+/* pages/subPackagesB/participation_solitaire/participation_solitaire.wxss */
+page{
+  padding-bottom: 200rpx;
+}
+.f00{
+  color:#f00;
+}
+.shop_box {
+  padding: 20rpx 20rpx 0;
+}
+
+.shop_box .tit1 {
+  width: 200rpx;
+  font-size: 28rpx;
+}
+
+.shop_box .tit2 {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.shop_box .flex {
+  align-items: center;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.t_box {
+  padding: 20rpx;
+  color: #999;
+}
+
+.s_box {
+  padding: 0 20rpx 0;
+}
+.s_box .flex {
+  align-items: center;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom:1rpx solid #f2f2f2; 
+}
+
+.s_box .t1 {
+  font-size: 30rpx;
+}
+
+.s_box .t2 {
+  color: #999;
+  margin-top: 10rpx;
+}
+.s_box .count{
+  padding: 20rpx 0;
+}
+.cb{
+  transform: scale(0.8, 0.8);
+}
+.footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.footer .btn{
+  padding: 30rpx;
+  text-align: center;
+  color:#fff;
+  font-size: 30rpx;
+  font-weight: bold;
+  background: #090;
+}

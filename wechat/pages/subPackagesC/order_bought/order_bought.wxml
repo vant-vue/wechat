@@ -1,0 +1,54 @@
+<!--pages/subPackagesC/order_bought/order_bought.wxml-->
+<view class="mid_box">
+  <view class="flex bg_fff tc">
+    <view class="item tc">
+      <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">全部</text>
+    </view>
+    <view class="item tc">
+      <text class="title {{tab==2?'active':''}}" bindtap="toggle" data-tab="2">进行中</text>
+    </view>
+    <view class="item tc">
+      <text class="title {{tab==3?'active':''}}" bindtap="toggle" data-tab="3">已完成</text>
+    </view>
+    <view class="item tc">
+      <text class="title {{tab==4?'active':''}}" bindtap="toggle" data-tab="4">已取消</text>
+    </view>
+  </view>
+  <!-- 商品list -->
+  <view class="list_box bg_fff" wx:for="{{[1,2]}}" wx:item="item" wx:key="item">
+    <!-- 商品信息 -->
+    <view class="flex top">
+      <view class="item tit1">秭归脐橙接龙</view>
+      <view class="tit2 wait">待处理</view>
+      <view class="tit2 success">已完成</view>
+      <view class="tit2 cancel">已取消</view>
+      <view class="">
+        <text class="icon_right"></text>
+      </view>
+    </view>
+    <view>
+      <view class="shop flex">
+        <view class="item">精品伦晚</view>
+        <view class="t1">x1</view>
+        <view class="t2">￥18.00</view>
+      </view>
+      <view class="shop flex">
+        <view class="item">精品伦晚</view>
+        <view class="t1">x1</view>
+        <view class="t2">￥18.00</view>
+      </view>
+      <view class="shop_cout tr flex">
+        <view class="t1">03-22 15:15:15</view>
+        <view class="item fb">
+          <text>总共 2 件 合计 </text>
+          <text class="f00">￥36.00</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 筛选弹窗 -->
+  <actionSheetFilter show="{{isFilter}}"></actionSheetFilter>
+</view>
+<view class="footer">
+  <service></service>
+</view>

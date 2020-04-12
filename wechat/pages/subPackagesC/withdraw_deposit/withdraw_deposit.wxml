@@ -1,0 +1,36 @@
+<!--pages/subPackagesC/withdraw_deposit/withdraw_deposit.wxml-->
+<view class="top_box bg_fff">
+  <view class="flex">
+    <view class="it">
+      <text>收款人</text>
+      <text class="f00">*</text>
+    </view>
+    <view class="item">
+      <input placeholder="请输入绑定微信支付的实名"></input>
+    </view>
+  </view>
+  <view class="flex">
+    <view class="it">
+      <text>提现金额</text>
+      <text class="f00">*</text>
+    </view>
+    <view class="item">
+      <input placeholder="0.00"></input>
+    </view>
+    <view class="f06">全部提现</view>
+  </view>
+</view>
+<view class="btn_box">
+  <button class="btn1">提现</button>
+  <button class="btn2">取消</button>
+</view>
+<view class="b_box">
+  <view>· 每次提现金额需≥1元，每日最多提现3次，每日限额2万元</view>
+  <view>
+    <text>· 如有问题请 </text>
+    <text class="f06">联系客服</text>
+  </view>
+</view>
+<view class="footer">
+  <service></service>
+</view>

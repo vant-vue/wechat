@@ -1,4 +1,4 @@
-// pages/subPackagesB/order_details/order_details.js
+// pages/subPackagesC/order_details/order_details.js
 Page({
 
   /**

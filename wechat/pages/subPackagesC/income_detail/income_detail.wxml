@@ -1,0 +1,31 @@
+<!--pages/subPackagesC/income_detail/income_detail.wxml-->
+<view class="top_box">
+  <view class="flex">
+    <view class="item">
+      <view>
+        <text class="tit1">2020年03月</text>
+        <text class="icon_bottom"></text>
+      </view>
+      <view class="tit2 mt20">支出99.06元 收入1000.25元</view>
+    </view>
+    <view>
+      <image class="filter_img" src="/images/record/filtrate.png"></image>
+      <text class="tit3">筛选</text>
+    </view>
+  </view>
+</view>
+<view class="list_box" wx:for="{{[1,2,3]}}">
+  <view class="flex">
+    <view class="item tit4">收款-秭归脐橙接龙</view>
+    <view class="tit5 f00">+10.00</view>
+  </view>
+  <view class="flex">
+    <view class="item tit2">2019-03-22 14:15:11</view>
+    <view class="tit2">余额：￥10.00</view>
+  </view>
+</view>
+<view class="footer">
+  <service></service>
+</view>
+<!-- 筛选 -->
+<actionSheetFilterOrder show="true"></actionSheetFilterOrder>

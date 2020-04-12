@@ -1,4 +1,4 @@
-/* pages/subPackagesB/released_group/released_group.wxss */
+/* pages/subPackagesB/participation_group/participation_group.wxss */
 
 .main_box {
   padding-bottom: 200rpx;
@@ -247,18 +247,22 @@
   align-items: center;
   text-align: center;
 }
+.footer .item{
+  padding: 40rpx 0;
+}
+.footer .line{
+  border-left: 1rpx solid #f2f2f2;
+}
 
 .footer image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
 }
 
 .retransmission {
-  width: 240rpx;
-  height: 120rpx;
-  line-height: 120rpx;
   background: #090;
-  font-size: 30rpx;
   color: #fff;
 }
 
@@ -269,4 +273,18 @@
 .p_content2 {
   font-size: 28rpx;
   padding: 20rpx 0;
+}
+.p_list{
+  background: #f2f2f2;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+.p_list .flex{
+  align-items: center;
+}
+.p_list .head_img{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin: 0 20rpx;
 }

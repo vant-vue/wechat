@@ -1,0 +1,76 @@
+/* pages/subPackagesC/order_bought/order_bought.wxss */
+
+.f00 {
+  color: #f00;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 40rpx;
+}
+
+.mid_box .title {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #999;
+  padding: 20rpx 30rpx;
+}
+
+.mid_box .title.active {
+  border-bottom: 2px solid #090;
+  color: #090;
+  font-weight: bold;
+}
+
+.list_box {
+  padding: 20rpx;
+  margin: 20rpx;
+  border-radius: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.list_box .flex {
+  align-items: center;
+}
+
+.list_box .top {
+  border-bottom: 1rpx solid #f2f2f2;
+  padding-bottom: 20rpx;
+}
+
+.list_box .tit1 {
+  font-size: 30rpx;
+}
+
+.list_box .tit2 {
+  font-size: 28rpx;
+  margin-right: 20rpx;
+  padding: 3rpx 15rpx;
+  color: #fff;
+  border-radius: 60rpx;
+}
+
+.list_box .tit2.wait {
+  background: #090;
+}
+
+.list_box .tit2.success {
+  background: #f90;
+}
+
+.list_box .tit2.cancel {
+  background: #ccc;
+}
+
+.list_box .shop {
+  margin: 20rpx 0;
+}
+
+.list_box  .t1 {
+  font-size: 28rpx;
+  color: #ccc;
+  margin-right: 20rpx;
+}

@@ -1,0 +1,109 @@
+/* pages/subPackagesC/order_details/order_details.wxss */
+
+.wait {
+  color: #fff;
+  background: #090;
+}
+
+.success {
+  color: #fff;
+  background: #f90;
+}
+
+.cancel {
+  color: #fff;
+  background: #ccc;
+}
+
+.apply_box {
+  margin: 20rpx 20rpx 20rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+}
+
+.fr_090 {
+  float: right;
+  color: #090;
+}
+
+.f00 {
+  color: #f00;
+}
+
+.f06 {
+  color: #06f;
+}
+
+.ccc {
+  color: #999;
+}
+
+.details_box {
+  margin: 20rpx;
+  border-radius: 10rpx;
+}
+
+.details_box .title {
+  padding: 20rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+}
+
+.details_box .title text {
+  border-left: 10rpx solid #000;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+}
+
+.details_box .content {
+  padding: 20rpx;
+}
+
+.details_box .li {
+  align-items: center;
+  padding-bottom: 20rpx;
+}
+
+.details_box .li .tit {
+  color: #999;
+  margin: 0 40rpx;
+}
+
+.details_box .head_img {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.details_box .name {
+  margin-left: 30rpx;
+  font-size: 28rpx;
+}
+
+.details_box .book_img {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.details_box .refund {
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.details_box .refund_btn {
+  padding: 20rpx 30rpx;
+  background: #090;
+  border-radius: 10rpx;
+  color: #fff;
+  margin-left: 20rpx;
+}
+
+.details_box .money {
+  text-align: center;
+  background: #f2f2f2;
+  border-radius: 10rpx;
+  padding: 20rpx 0;
+}
+
+.details_box .tit_t {
+  color: #999;
+}

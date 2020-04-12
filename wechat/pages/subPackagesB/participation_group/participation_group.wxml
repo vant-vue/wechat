@@ -1,4 +1,4 @@
-<!--pages/subPackagesB/released_group/released_group.wxml-->
+<!--pages/subPackagesB/participation_group/participation_group.wxml-->
 <view class="main_box">
   <!-- 顶部 -->
   <view class="top_box bg_fff">
@@ -157,20 +157,33 @@
   <!-- 底部按钮 -->
   <view class="footer flex bg_fff">
     <view class="item">
-      <image src="/images/home/banner.png"></image>
-      <view class="tit">订单管理</view>
+      <image src="/images/record/add.png"></image>
+      <text class="tit">发个接龙</text>
     </view>
-    <view class="item" bindtap="solitaire_fun">
-      <image src="/images/home/banner.png"></image>
-      <view class="tit">接龙设置</view>
+    <view class="item line">
+      <image src="/images/record/book.png"></image>
+      <text class="tit"> 复制接龙</text>
     </view>
-    <view class="retransmission" bindtap="show_popup_fun">转发</view>
+    <view class="item retransmission" bindtap="show_popup_fun">
+      <image src="/images/record/book.png"></image>
+      <text class="tit">转发接龙</text>
+    </view>
   </view>
   <!-- 转发成功弹出层 -->
   <transmit show_popup="{{show_popup}}">
     <view slot="after">
-      <view class="p_content1">发布成功</view>
-      <view class="p_content2">快发给群友开始接龙吧~</view>
+      <view class="p_content1">接龙成功</view>
+      <view class="p_list">
+        <view class="flex">
+          <view>1</view>
+          <view>
+            <image class="head_img" src="/images/home/banner.png"></image>
+          </view>
+          <view class="item tl">名字</view>
+          <view>精品伦晚 +1</view>
+        </view>
+      </view>
+      <view class="p_content2">转发到群聊！告诉团长你已经接龙成功啦~~</view>
     </view>
   </transmit>
 </view>

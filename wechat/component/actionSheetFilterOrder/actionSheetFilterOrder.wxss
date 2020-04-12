@@ -1,0 +1,102 @@
+/* component/actionSheetFilterOrder/actionSheetFilterOrder.wxss */
+.flex {
+  display: box;
+  display: -webkit-box;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+
+.flex>.item {
+  box-flex: 1;
+  -webkit-box-flex: 1;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.dialog_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.6;
+  overflow: hidden;
+  color: #fff;
+  z-index: 99;
+}
+
+.popup {
+  position: fixed;
+  width: 100%;
+  background: #fff;
+  box-shadow: 3rpx 3rpx 15rpx 0px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+  bottom: -650rpx;
+  transition: 0.5s;
+}
+
+.popup.show {
+  bottom: 0;
+}
+
+.title {
+  text-align: center;
+  padding: 20rpx 20rpx 0;
+  font-size: 30rpx;
+}
+
+.list_box {
+  padding: 20rpx;
+}
+
+.tit {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.box {
+  padding: 20rpx 0;
+}
+
+.flex .item text {
+  width: 160rpx;
+  padding: 10rpx 0;
+  text-align: center;
+  color: #fff;
+  background: #ccc;
+  border-radius: 10rpx;
+  border: 1rpx solid #ccc;
+}
+
+.flex .item text.active {
+  border: 1rpx solid #090;
+  color: #090;
+  background: #fff;
+}
+
+.btn_box {
+  padding: 20rpx;
+}
+
+.close {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  border: 1rpx solid #090;
+  text-align: center;
+  color: #090;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}
+
+.ok {
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  border: 1rpx solid #090;
+  text-align: center;
+  color: #fff;
+  background: #090;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+}

@@ -1,1 +1,37 @@
 /* pages/tabBar/center/center.wxss */
+
+.top_box {
+  background: #fc0;
+}
+
+.top_box .head_img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.top_box .name {
+  font-size: 30rpx;
+  font-weight: bold;
+  padding: 30rpx;
+}
+
+.list_box {
+  margin: 20rpx 0;
+  background: #fff;
+}
+.list_box .flex{
+  align-items: center;
+  padding: 26rpx;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+.list_box .title {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.list_box .val {
+  font-size: 28rpx;
+  color: #999;
+  margin-right: 20rpx;
+}

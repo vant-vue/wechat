@@ -1,2 +1,39 @@
 <!--pages/tabBar/center/center.wxml-->
-<text>pages/tabBar/center/center.wxml</text>
+<view class="top_box tc">
+  <image class="head_img" src="/images/home/banner.png"></image>
+  <view class="name">名字</view>
+</view>
+<view class="list_box">
+  <view class="flex">
+    <view class="item title">账户余额</view>
+    <view class="val">0.00</view>
+    <view>
+      <text class='icon_right'></text>
+    </view>
+  </view>
+</view>
+<view class="list_box">
+  <view class="flex">
+    <view class="item title">已购买的订单</view>
+    <view class="val"></view>
+    <view>
+      <text class='icon_right'></text>
+    </view>
+  </view>
+</view>
+<view class="list_box">
+  <view class="flex">
+    <view class="item title">常见问题</view>
+    <view class="val"></view>
+    <view>
+      <text class='icon_right'></text>
+    </view>
+  </view>
+  <view class="flex">
+    <view class="item title">推荐给朋友</view>
+    <view class="val"></view>
+    <view>
+      <text class='icon_right'></text>
+    </view>
+  </view>
+</view>

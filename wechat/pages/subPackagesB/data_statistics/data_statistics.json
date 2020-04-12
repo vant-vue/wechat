@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "数据统计",
+  "navigationBarBackgroundColor": "#0066FF",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "service": "/component/service/service"
+  }
+}

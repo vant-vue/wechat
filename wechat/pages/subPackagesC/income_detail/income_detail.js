@@ -1,4 +1,4 @@
-// pages/subPackagesB/order_details/order_details.js
+// pages/subPackagesC/income_detail/income_detail.js
 Page({
 
   /**
@@ -14,34 +14,7 @@ Page({
   onLoad: function (options) {
 
   },
-  // 取消订单
-  refund_fun() {
-    wx.showModal({
-      title: '提示',
-      content: '确认退款给客户吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  // 取消订单
-  cancel_fun() {
-    wx.showModal({
-      title: '提示',
-      content: '确定取消客户的订单吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

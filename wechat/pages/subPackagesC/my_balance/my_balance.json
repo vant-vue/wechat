@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "订单详情",
+  "navigationBarTitleText": "我的余额",
   "usingComponents": {
     "service": "/component/service/service"
   }

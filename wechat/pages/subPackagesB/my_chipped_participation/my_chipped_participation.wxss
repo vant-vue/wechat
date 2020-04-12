@@ -1,7 +1,7 @@
-/* pages/subPackagesB/released_group/released_group.wxss */
+/* pages/subPackagesB/my_chipped_participation/my_chipped_participation.wxss */
 
 .main_box {
-  padding-bottom: 200rpx;
+  padding-bottom: 100rpx;
 }
 
 .top_box {
@@ -269,4 +269,25 @@
 .p_content2 {
   font-size: 28rpx;
   padding: 20rpx 0;
+}
+
+.zf_box{
+  margin:20rpx 20rpx 0;
+  align-items: center;
+}
+.zf_box .h_img{
+  width: 30rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.zf_box .tc{
+  background: #090;
+  border-radius: 10rpx;
+  margin: 0 20rpx;
+  padding:20rpx 0;
+}
+.zf_box .tc text{
+  
+  color:#fff;
 }

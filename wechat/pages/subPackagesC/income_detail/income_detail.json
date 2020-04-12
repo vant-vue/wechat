@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "收支明细",
+  "usingComponents": {
+    "service": "/component/service/service",
+    "actionSheetFilterOrder": "/component/actionSheetFilterOrder/actionSheetFilterOrder"
+  }
+}

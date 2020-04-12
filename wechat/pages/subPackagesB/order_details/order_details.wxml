@@ -18,7 +18,7 @@
       <view class="btn yet">已发货/取货</view>
     </view>
     <view class="item" wx:if="{{true}}">
-      <view class="btn can">取消订单</view>
+      <view class="btn can" bindtap="cancel_fun">取消订单</view>
     </view>
   </view>
 </view>
@@ -30,3 +30,70 @@
 <view class="apply_box flex bg_fff">
   <view class="item ccc">备注：无货啊</view>
 </view>
+<!-- 已购商品 -->
+<view class="details_box bg_fff">
+  <view class="title">
+    <text>已购商品</text>
+  </view>
+  <view class="content">
+    <view class="flex li">
+      <view class="item">精品伦晚 </view>
+      <view class="tit">x1</view>
+      <view class="">￥18.00</view>
+    </view>
+    <view class="flex li">
+      <view class="item">精品伦晚 </view>
+      <view class="tit">x1</view>
+      <view class="">￥18.00</view>
+    </view>
+    <view class="tr">
+      <text class="fb">总共 2 件 合计 </text>
+      <text class="fb f00"> ￥36.00</text>
+    </view>
+  </view>
+</view>
+<!-- 买家信息 -->
+<view class="details_box bg_fff">
+  <view class="title">
+    <text>买家信息</text>
+  </view>
+  <view class="content">
+    <view class="flex li">
+      <view class="">
+        <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item name">名字</view>
+      <view>
+        <image class="book_img" src="/images/record/book.png"></image>
+      </view>
+    </view>
+    <view>姓名，15001515511，湖北省武汉市东西湖区航天华 宇对对对2150</view>
+  </view>
+</view>
+<!-- 订单信息 -->
+<view class="details_box bg_fff">
+  <view class="title">
+    <text>订单信息</text>
+  </view>
+  <view class="content">
+    <view class="mb20">订单编号：20023211511515</view>
+    <view>下单时间：03-25 12:15:15</view>
+  </view>
+</view>
+<!-- 商家退款 -->
+<view class="details_box bg_fff">
+  <view class="title">
+    <text>商家退款</text>
+  </view>
+  <view class="content">
+    <view class="mb20">买家已支付 ￥100.00</view>
+    <view class="flex refund">
+      <view class="item">
+        <view class="money ccc">可退款金额 100.00</view>
+      </view>
+      <view class="refund_btn" bindtap="refund_fun">退款</view>
+    </view>
+    <view class="mb20 ccc">全额退款不收手续费</view>
+  </view>
+</view>
+<service></service>

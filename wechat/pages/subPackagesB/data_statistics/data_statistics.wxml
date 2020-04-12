@@ -1,0 +1,49 @@
+<!--pages/subPackagesB/data_statistics/data_statistics.wxml-->
+<view class="top_box">
+  <view class="flex">
+    <view class="item tit1">总金额（元）</view>
+    <view class="item tit1">总订单（笔）</view>
+  </view>
+  <view class="flex">
+    <view class="item tit2">2550.65</view>
+    <view class="item tit2">150</view>
+  </view>
+ <view class="flex">
+    <view class="item tit3">查看次数  10</view>
+    <view class="item tit3">转发次数  10</view>
+  </view>
+  <view class="flex">
+    <view class="item tit3">完成订单  10</view>
+    <view class="item tit3">取消订单  10</view>
+  </view>
+  <view class="flex">
+    <view class="item tit3">退款订单  10</view>
+    <view class="item tit3">退款金额  10</view>
+  </view>
+</view>
+<!-- 列表 -->
+<view class="details_box bg_fff">
+  <view class="title">
+    <text>浏览数据</text>
+  </view>
+  <view class="content">
+    <view class="flex" wx:for="{{[1,2]}}" wx:item="item" wx:index="index" wx:key="item">
+      <view class="tit1">{{index+1}}</view>
+      <view>
+        <image class="head_img" src="/images/home/banner.png"></image>
+      </view>
+      <view class="item">
+        <view class="tit2">杨靖</view>
+        <view class="tit3">访问11次</view>
+      </view>
+      <view>
+        <text class="status">已接龙</text>
+        <text class="status2">未参与</text>
+      </view>
+    </view>
+  </view>
+  <view class="content tc ccc">无人浏览</view>
+</view>
+<view class="footer">
+<service></service>
+</view>

@@ -1,47 +1,31 @@
-// pages/subPackagesB/order_details/order_details.js
+// pages/subPackagesC/order_bought/order_bought.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    tab: 1,
+    isFilter: false,//筛选条件
   },
-
+  toggle(e) {
+    let tab = e.currentTarget.dataset.tab;
+    this.setData({
+      'tab': tab
+    })
+  },
+  filter_fun() {
+    this.setData({
+      isFilter: true
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
 
   },
-  // 取消订单
-  refund_fun() {
-    wx.showModal({
-      title: '提示',
-      content: '确认退款给客户吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
-  // 取消订单
-  cancel_fun() {
-    wx.showModal({
-      title: '提示',
-      content: '确定取消客户的订单吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

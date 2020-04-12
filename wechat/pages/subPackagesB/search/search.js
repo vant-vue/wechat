@@ -1,11 +1,12 @@
-// pages/subPackagesB/order_details/order_details.js
+// pages/subPackagesB/search/search.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    isFilter: false,//筛选条件
+    isRemark: false,//备注条件
   },
 
   /**
@@ -14,25 +15,21 @@ Page({
   onLoad: function (options) {
 
   },
-  // 取消订单
-  refund_fun() {
-    wx.showModal({
-      title: '提示',
-      content: '确认退款给客户吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
+  filter_fun() {
+    this.setData({
+      isFilter: true
     })
   },
-  // 取消订单
-  cancel_fun() {
+  remark_fun() {
+    this.setData({
+      isRemark: true
+    })
+  },
+  // 确定取货
+  already_fun() {
     wx.showModal({
       title: '提示',
-      content: '确定取消客户的订单吗？',
+      content: '确认订单已发货/取货吗？',
       success(res) {
         if (res.confirm) {
           console.log('用户点击确定')

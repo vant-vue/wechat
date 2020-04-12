@@ -1,0 +1,16 @@
+<!--pages/subPackagesB/export_data/export_data.wxml-->
+<view class="export_box">
+  <view class="title">表格下载地址</view>
+  <textarea class="text" placeholder="无货退款" value="www.longanlot.com" />
+  <button class="btn">复制</button>
+  <view class="tit">
+    <view>如何下载表格？</view>
+    <view>1、点击上方复制按钮；</view>
+    <view>2、将复制的网址发送到电脑；</view>
+    <view>3、使用浏览器打开网址并下载；</view>
+    <view>4、如果数据有变化，可刷新网页重新下载</view>
+  </view>
+</view>
+<view class="footer">
+  <service></service>
+</view>

@@ -1,0 +1,20 @@
+<!--pages/subPackagesB/participation_details/participation_details.wxml-->
+<view>
+  <view class="bg title">测试</view>
+  <view class="bg box">
+    <!-- <textarea placeholder="请输入商品简介" value="测试" /> -->
+    <view>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</view>
+  </view>
+  <!-- 图片 -->
+  <view class="bg box">
+    <view>
+      <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
+        <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+          <swiper-item>
+            <image src="/images/home/banner.png"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+</view>

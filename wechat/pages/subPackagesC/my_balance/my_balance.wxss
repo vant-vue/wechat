@@ -1,0 +1,51 @@
+/* pages/subPackagesC/my_balance/my_balance.wxss */
+.f06{
+  color: #06f;
+}
+.top_box {
+  padding: 20rpx;
+}
+
+.top_box .tit1 {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.top_box .tit2 {
+  font-size: 28rpx;
+  color: #06f;
+}
+
+.top_box .tit3 {
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.top_box .tit4 {
+  font-size: 28rpx;
+}
+
+.top_box .tit5 {
+  margin-top: 10rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+.btn{
+  margin: 40rpx;
+  border-radius: 60rpx;
+  background: #090;
+  color:#fff;
+}
+.b_box{
+  padding: 20rpx;
+}
+.b_box view{
+  margin-bottom: 20rpx;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 40rpx;
+}
