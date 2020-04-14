@@ -1,0 +1,66 @@
+var filter = {
+  //将分转化为元
+  money: function (num) {
+    if (typeof num == "undefined") return '--';
+    num = parseFloat(num/100).toFixed(2);
+    return num;
+  },
+  getIponeEncryption: function(iponeNumber) {
+    if (iponeNumber) {
+      return iponeNumber.slice(0, 3) + " **** " + iponeNumber.slice(-4);
+    } else {
+      return "";
+    }
+  },
+  getDate: function(date) { //日期格式
+    return date.slice(0, 4) + "/" + date.slice(4, 6) + "/" + date.slice(6, 8)
+  },
+  getDateTwo: function(date) { //日期格式
+    return date.slice(0, 4) + "年" + date.slice(4, 6) + "月" + date.slice(6, 8) + "日 " + date.slice(8, 10) + ":" + date.slice(10, 12)
+  },
+  getDateThree: function(date) { //日期格式
+    return date.slice(4, 6) + "月" + date.slice(6, 8) + "日 " + date.slice(8, 10) + ":" + date.slice(10, 12)
+  },
+  getYear: function(date) { //日期格式年
+    return date.slice(0, 4)
+  },
+  getDateDay: function(date) { //日期格式月
+    return date.slice(5, 10)
+  },
+  getDateHours: function(date) { //日期格式时
+    return date.slice(11, 19)
+  },
+  formatTime: function(value, type) { //2020-02-27 00:00:00 /2020-02-27
+    if (!value) {
+      return '--';
+    }
+    var time = getDate(value);
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var date = time.getDate();
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var second = time.getSeconds();
+    month = month < 10 ? "0" + month : month;
+    date = date < 10 ? "0" + date : date;
+    hour = hour < 10 ? "0" + hour : hour;
+    minute = minute < 10 ? "0" + minute : minute;
+    second = second < 10 ? "0" + second : second;
+    if (type == 1) {
+      return year + "-" + month + "-" + date;
+    } else {
+      return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
+    }
+  }
+}
+module.exports = {
+  money: filter.money, //金额（1,000.00）
+  getIponeEncryption: filter.getIponeEncryption, //手机号****显示
+  getDate: filter.getDate, //日期格式
+  getDateTwo: filter.getDateTwo, //日期格式
+  getDateThree: filter.getDateThree, //日期格式
+  getYear: filter.getYear, ///日期格式年
+  getDateDay: filter.getDateDay, ///日期格式月
+  getDateHours: filter.getDateHours, ///日期格式时
+  formatTime: filter.formatTime, //2020-02-27 00:00:00
+};

@@ -18,11 +18,16 @@ const assetInfo = (params) => postAction("/solitaire/solitaire/api", params, {
 const dealRecord = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "dealRecord"
 });
+// 月度收支总额 （monthBudget）
+const monthBudget = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "monthBudget"
+});
 
 export default {
   getSessionKey,
   wxLogin,
   userInfo,
   assetInfo,
-  dealRecord
+  dealRecord,
+  monthBudget
 }

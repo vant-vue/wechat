@@ -1,25 +1,31 @@
 // pages/subPackagesC/income_detail/income_detail.js
 const app = getApp();
+const util = require('../../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    list: [],
     isFilter: false,
-    date:'',
-    param:{
-      "pageNo": 1,  //页数
+    date: '',
+    param: {
+      "pageNo": 1, //页数
       "pageSize": 10, //单页记录数
-      "type": "1,2",  //交易类型 多选 可空  1收款 2充值 3退款 4退款手续费 5消费 6提现 7退款给参与接龙的 8平台手续费
-      "yearMonthStr": "2020-03" //月份参数  不可空
-    }
+      "type": "", //交易类型 多选 可空  1收款 2充值 3退款 4退款手续费 5消费 6提现 7退款给参与接龙的 8平台手续费
+      "yearMonthStr": util.formatTime(new Date(), 'month') //月份参数  不可空
+    },
+    last: false,
+    "sy": 0, //收入    
+    "zc": 0 //支出
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.monthBudget();
     this.dealRecord();
   },
   filter_fun() {
@@ -27,25 +33,69 @@ Page({
       isFilter: true
     })
   },
+  ok(e) {
+    this.setData({
+      list: [],
+      'param.pageNo': 1
+    })
+    this.data.param.type = e.detail.join(',');
+    this.dealRecord();
+  },
   // 交易明细（dealRecord）
   dealRecord() {
     let params = {
       param: this.data.param
     }
+    wx.showLoading({
+      title: '加载中',
+    })
     app.$API.dealRecord(params).then(res => {
-      console.log(res);
       if (res.code == 200) {
         this.setData({
-          
+          list: this.data.list.concat(res.args.dealRecord)
         })
+        if (res.args.dealRecord.length < 10) {
+          this.data.last = true;
+        } else {
+          this.data.last = false;
+        }
       }
+      wx.hideLoading()
+    }).catch(err => {
+      wx.hideLoading()
     })
   },
-  bindDateChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  // 月度收支总额 （monthBudget）
+  monthBudget() {
+    let params = {
+      param: {
+        yearMonthStr: this.data.param.yearMonthStr
+      }
+    }
+    app.$API.monthBudget(params).then(res => {
+      if (res.code == 200) {
+        this.setData({
+          sy: res.args.sy,
+          zc: res.args.zc
+        })
+      }
+    }).catch(err => {})
+  },
+  bindDateChange: function(e) {
     this.setData({
-      date: e.detail.value
+      'list': [],
+      'param.pageNo': 1,
+      'param.yearMonthStr': e.detail.value
     })
+    this.monthBudget();
+    this.dealRecord();
+  },
+  // 滚动加载
+  scrollBottom: function(e) {
+    if (!this.data.last) {
+      this.data.param.pageNo += 1;
+      this.dealRecord();
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

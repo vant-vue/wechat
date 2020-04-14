@@ -29,7 +29,6 @@ App({
   // 获取sessionKey
   getSessionKey(params) {
     this.$API.getSessionKey(params).then(res => {
-      console.log(res, 'res');
       if (res.code == "200") {
         this.globalData.openId = res.args.openId;
         this.globalData.sessionKey = res.args.sessionKey;

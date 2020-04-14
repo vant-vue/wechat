@@ -1,9 +1,5 @@
 /* pages/subPackagesC/income_detail/income_detail.wxss */
 
-page {
-  padding-bottom: 200rpx;
-}
-
 .icon_bottom {
   margin-left: 10rpx;
   position: relative;
@@ -64,6 +60,11 @@ page {
 
 .f00 {
   color: #f00;
+}
+
+.f090 {
+  font-size: 28rpx;
+  color: #090;
 }
 
 .list_box {

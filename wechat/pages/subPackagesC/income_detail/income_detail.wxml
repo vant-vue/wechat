@@ -1,34 +1,41 @@
 <!--pages/subPackagesC/income_detail/income_detail.wxml-->
-<view class="top_box">
-  <view class="flex">
-    <view class="item">
-      <view>
-      <picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
-            <text>{{date?date:"选择日期"}}</text>
+<wxs src="../../../utils/filter.wxs" module="filter" />
+<scroll-view class="main-wrap" scroll-y='{{true}}' bindscrolltolower='scrollBottom'>
+  <view class="top_box">
+    <view class="flex">
+      <view class="item">
+        <view>
+          <picker mode="date" value="{{param.yearMonthStr}}" fields="month" bindchange="bindDateChange">
+            <!-- <text>{{date?date:"选择日期"}}</text> -->
+            <text class="tit1">{{param.yearMonthStr}}</text>
+            <text class="icon_bottom"></text>
           </picker>
-        <text class="tit1">2020年03月</text>
-        <text class="icon_bottom"></text>
+        </view>
+        <view class="tit2 mt20">支出{{filter.money(sy)}}元 收入{{filter.money(zc)}}元</view>
       </view>
-      <view class="tit2 mt20">支出99.06元 收入1000.25元</view>
+      <view bindtap="filter_fun">
+        <image class="filter_img" src="/images/record/filtrate.png"></image>
+        <text class="tit3">筛选</text>
+      </view>
     </view>
-    <view bindtap="filter_fun">
-      <image class="filter_img" src="/images/record/filtrate.png"></image>
-      <text class="tit3">筛选</text>
+  </view>
+  <view style="padding-bottom:20rpx;">
+    <view class="list_box" wx:for="{{list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="flex">
+        <view class="item tit4">{{item.source}}</view>
+        <view class="tit5 f00" wx:if="{{item.type == (101 || 102 || 103 || 104)}}">+{{filter.money(item.payMoney)}}</view>
+        <view class="tit5 f090" wx:elif="{{item.type == (201 || 202 || 203 || 204)}}">-{{filter.money(item.payMoney)}}</view>
+      </view>
+      <view class="flex">
+        <view class="item tit2">{{item.insertTime}}</view>
+        <view class="tit2">余额：￥{{filter.money(item.payAfter)}}</view>
+      </view>
     </view>
   </view>
-</view>
-<view class="list_box" wx:for="{{[1,2,3]}}">
-  <view class="flex">
-    <view class="item tit4">收款-秭归脐橙接龙</view>
-    <view class="tit5 f00">+10.00</view>
-  </view>
-  <view class="flex">
-    <view class="item tit2">2019-03-22 14:15:11</view>
-    <view class="tit2">余额：￥10.00</view>
-  </view>
-</view>
-<view class="footer">
+  <view wx:if="{{list.length==0}}" class="tc c_999">~无数据~</view>
+  <!-- <view class="footer">
   <service></service>
-</view>
+</view> -->
+</scroll-view>
 <!-- 筛选 -->
-<actionSheetFilterOrder show="{{isFilter}}"></actionSheetFilterOrder>
+<actionSheetFilterOrder show="{{isFilter}}" bind:ok="ok"></actionSheetFilterOrder>

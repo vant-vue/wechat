@@ -4,54 +4,165 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    list: {
-      type: Object,
-      value: {}
-    },
     show: {
       type: Boolean,
       value: false
-    },
-    //弹窗类型（一个页面多次引用此组件区别）
-    type: {
-      type: String,
-      value: ''
     }
   },
   /**
    * 组件的初始数据（私有数据，可用于模板渲染）
    */
   data: {
-    noData: false,
-    date: ""
+    list: [{
+        title: '收入',
+        item: [{
+            name: "收款",
+            value: '1',
+            checked: false
+          },
+          {
+            name: "充值",
+            value: '2',
+            checked: false
+          },
+          {
+            name: "退款",
+            value: '3',
+            checked: false
+          },
+          {
+            name: "手续费",
+            value: '4',
+            checked: false
+          },
+
+        ]
+      },
+      {
+        title: '支出',
+        item: [{
+            name: "消费",
+            value: '5',
+            checked: false
+          },
+          {
+            name: "提现",
+            value: '6',
+            checked: false
+          },
+          {
+            name: "退款",
+            value: '7',
+            checked: false
+          },
+          {
+            name: "手续费",
+            value: '8',
+            checked: false
+          }
+        ]
+      }
+    ],
+    type: [],
+
   },
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
-    attached: function () { },
-    moved: function () { },
-    detached: function () { },
+    attached: function() {},
+    moved: function() {},
+    detached: function() {},
   },
   /**
    * 生命周期函数，可以为函数，或一个在methods段中定义的方法名
    */
-  attached: function () { }, // 此处attached的声明会被lifetimes字段中的声明覆盖
-  ready: function () {
-    if (Object.keys(this.data.list).length == 0) {
-      this.data.noData = true;
-    }
+  attached: function() {}, // 此处attached的声明会被lifetimes字段中的声明覆盖
+  ready: function() {
+
   },
   /**
    * 组件的方法列表
    */
   methods: {
-    bindDateChange: function (e) {
-      console.log('picker发送选择改变，携带值为', e.detail.value)
+    ok() {
+      let type = [];
+      this.data.list.forEach((item, index) => {
+        item.item.forEach((i, v) => {
+          if (i.checked) {
+            type.push(i.value);
+          }
+        })
+      })
+      this.triggerEvent('ok', type);
+      this.cancel();
+    },
+    click(e) {
+      console.log(e.currentTarget.dataset);
+      let checked = e.currentTarget.dataset.checked;
+      let index = e.currentTarget.dataset.index;
+      let index2 = e.currentTarget.dataset.index2;
+      let value = e.currentTarget.dataset.value;
+      let name_checked = `list[${index}].item[${index2}].checked`;
       this.setData({
-        date: e.detail.value
+        [name_checked]: !checked
       })
     },
+    // 清空
+    empty() {
+      this.setData({
+        list: [{
+            title: '收入',
+            item: [{
+                name: "收款",
+                value: '1',
+                checked: false
+              },
+              {
+                name: "充值",
+                value: '2',
+                checked: false
+              },
+              {
+                name: "退款",
+                value: '3',
+                checked: false
+              },
+              {
+                name: "手续费",
+                value: '4',
+                checked: false
+              },
+
+            ]
+          },
+          {
+            title: '支出',
+            item: [{
+                name: "消费",
+                value: '5',
+                checked: false
+              },
+              {
+                name: "提现",
+                value: '6',
+                checked: false
+              },
+              {
+                name: "退款",
+                value: '7',
+                checked: false
+              },
+              {
+                name: "手续费",
+                value: '8',
+                checked: false
+              }
+            ]
+          }
+        ]
+      });
+    },
     // 取消
-    cancel: function () {
+    cancel: function() {
       this.setData({
         show: !this.data.show
       });
