@@ -33,20 +33,15 @@ Page({
       })
     }
   },
+  bindGetUserInfo(e){
+    console.log(e);
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let params = {
-      a: 1,
-      b: 2
-    };
-    app.$API.testApi(params).then(res => {
-      console.log(res, 'res');
-    }).catch(err => {
-      console.log(err, 'err');
-    });
+   
   },
 
   /**

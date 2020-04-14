@@ -7,3 +7,5 @@
   <template is="index_carousel_template" data="{{banner_list,banner_index,imageUrl}}" />
   <template is="index_solitaire_template" data="{{banner_list,banner_index,imageUrl}}" />
 </block>
+
+<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>

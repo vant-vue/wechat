@@ -2,25 +2,25 @@
 <view class="top_box bg_fff">
   <view class="flex">
     <view class="item tit1">我的余额</view>
-    <view class="tit2">收支明细</view>
+    <view class="tit2" bindtap="jump" data-page="income_detail">收支明细</view>
   </view>
-  <view class="tit3 mb20 mt20">￥1562.66</view>
+  <view class="tit3 mb20 mt20">￥{{cashAmount}}</view>
   <view class="flex tc">
     <view class="item">
       <view class="tit4">可提现</view>
-      <view class="tit5">1562.66</view>
+      <view class="tit5">{{cashAmount}}</view>
     </view>
     <view class="item">
       <view class="tit4">待结算</view>
-      <view class="tit5">0.00</view>
+      <view class="tit5">{{waitMoney}}</view>
     </view>
     <view class="item">
       <view class="tit4">提现中</view>
-      <view class="tit5">1000.00</view>
+      <view class="tit5">{{outMoney}}</view>
     </view>
   </view>
 </view>
-<button class="btn">提现</button>
+<button class="btn" bindtap="jump" data-page="withdraw_deposit">提现</button>
 <view class="b_box">
   <view>· 每次提现金额需≥1元，每日最多提现3次，每日限额2万元</view>
   <view>

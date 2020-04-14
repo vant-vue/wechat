@@ -1,18 +1,22 @@
 <!--pages/tabBar/center/center.wxml-->
 <view class="top_box tc">
-  <image class="head_img" src="/images/home/banner.png"></image>
-  <view class="name">名字</view>
+  <view class="head_img">
+    <open-data type="userAvatarUrl"></open-data>
+  </view>
+  <view class="name">
+    <open-data type="userNickName"></open-data>
+  </view>
 </view>
 <view class="list_box">
-  <view class="flex">
+  <view class="flex" bindtap="jump" data-page="my_balance">
     <view class="item title">账户余额</view>
-    <view class="val">0.00</view>
+    <view class="val">{{cashAmount}}</view>
     <view>
       <text class='icon_right'></text>
     </view>
   </view>
 </view>
-<view class="list_box">
+<view class="list_box"  bindtap="jump" data-page="order_bought">
   <view class="flex">
     <view class="item title">已购买的订单</view>
     <view class="val"></view>

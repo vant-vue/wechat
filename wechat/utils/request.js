@@ -12,9 +12,9 @@ const request = ((options) => {
       options.header = {};
     }
     // token
-    let token = wx.getStorageSync('token');
+    let token = wx.getStorageSync('token') || "";
     if (token) {
-      options.header['token'] = token;
+      options.header['Authorization'] = token;
     }
     // method
     if (options.method === undefined || options.method === null) {
@@ -29,6 +29,9 @@ const request = ((options) => {
           try {
             //调用自定义的success
             successCallback(res.data);
+            if (res.data.code == "200" && res.data.args.token) {
+              wx.setStorageSync('token', res.data.args.token)
+            }
           } catch (e) {
             console.error('出错了，' + e + ',接口返回数据:' + res.data);
           }
@@ -52,6 +55,6 @@ const request = ((options) => {
       }
     }
   }
-  wx.request((options))
+  wx.request(options)
 })
 export default request;
