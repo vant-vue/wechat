@@ -13,6 +13,17 @@ Page({
       'tab': tab
     })
   },
+  // 滚动加载
+  scrollBottom: function (e) {
+    console.log(e);
+    // if (!this.data.last) {
+    //   this.setData({
+    //     'show_loading': true,
+    //     'pageData.page': this.data.pageData.page + 1
+    //   })
+    //   this.get_news_list();
+    // }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
