@@ -14,7 +14,7 @@ Page({
     })
   },
   // 滚动加载
-  scrollBottom: function (e) {
+  scrollBottom: function(e) {
     console.log(e);
     // if (!this.data.last) {
     //   this.setData({

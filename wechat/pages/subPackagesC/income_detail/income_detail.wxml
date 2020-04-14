@@ -3,12 +3,15 @@
   <view class="flex">
     <view class="item">
       <view>
+      <picker mode="date" value="{{date}}" fields="month" bindchange="bindDateChange">
+            <text>{{date?date:"选择日期"}}</text>
+          </picker>
         <text class="tit1">2020年03月</text>
         <text class="icon_bottom"></text>
       </view>
       <view class="tit2 mt20">支出99.06元 收入1000.25元</view>
     </view>
-    <view>
+    <view bindtap="filter_fun">
       <image class="filter_img" src="/images/record/filtrate.png"></image>
       <text class="tit3">筛选</text>
     </view>
@@ -28,4 +31,4 @@
   <service></service>
 </view>
 <!-- 筛选 -->
-<actionSheetFilterOrder show="true"></actionSheetFilterOrder>
+<actionSheetFilterOrder show="{{isFilter}}"></actionSheetFilterOrder>
