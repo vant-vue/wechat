@@ -1,50 +1,57 @@
 <!--pages/tabBar/record/record.wxml-->
-<view class="record_box">
-  <view class="flex bg_fff tc">
-    <view class="item tc">
-      <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">我发布的</text>
+<scroll-view class="main-wrap" scroll-y='{{true}}' bindscrolltolower='scrollBottom'>
+  <view class="record_box">
+    <view class="flex bg_fff tc">
+      <view class="item tc">
+        <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">我发布的</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==2?'active':''}}" bindtap="toggle" data-tab="2">我参与的</text>
+      </view>
     </view>
-    <view class="item tc">
-      <text class="title {{tab==2?'active':''}}" bindtap="toggle" data-tab="2">我参与的</text>
+    <!-- 列表 -->
+    <view class="list bg_fff mt20" wx:for="{{[1,2,3,4,5,6,7,8]}}" wx:item="item" wx:index="index" wx:key="index">
+      <view class="flex">
+        <view class="item omit1 tit1">秭归伦晚团购</view>
+        <view class="item tr">
+          <text class="group">团购</text>
+        </view>
+      </view>
+      <view class="flex bot_box">
+        <view class="item tit2">杨靖 03-22 14:15</view>
+        <view class="span_a">
+          <image src="/images/home/shop.png"></image>
+          <text class="tit2">15</text>
+        </view>
+        <view class="span_a">
+          <image src="/images/home/shop.png"></image>
+          <text class="tit2">15</text>
+        </view>
+      </view>
     </view>
+    <view class="list bg_fff mt20">
+      <view class="flex">
+        <view class="item omit1 tit1">秭归伦晚团购秭归伦晚团购秭归伦晚团购秭归伦晚团购</view>
+        <view class="item tr">
+          <text class="chipped">合买</text>
+        </view>
+      </view>
+      <view class="flex bot_box">
+        <view class="item tit2">杨靖 03-22 14:15</view>
+        <view class="span_a">
+          <image src="/images/home/shop.png"></image>
+          <text class="tit2">15</text>
+        </view>
+        <view class="span_a">
+          <image src="/images/home/shop.png"></image>
+          <text class="tit2">15</text>
+        </view>
+      </view>
+    </view>
+
   </view>
-  <!-- 列表 -->
-  <view class="list bg_fff mt20">
-    <view class="flex">
-      <view class="item omit1 tit1">秭归伦晚团购</view>
-      <view class="item tr">
-        <text class="group">团购</text>
-      </view>
-    </view>
-    <view class="flex bot_box">
-      <view class="item tit2">杨靖 03-22 14:15</view>
-      <view class="span_a">
-        <image src="/images/home/shop.png"></image>
-        <text class="tit2">15</text>
-      </view>
-      <view class="span_a">
-        <image src="/images/home/shop.png"></image>
-        <text class="tit2">15</text>
-      </view>
-    </view>
+  <view class='loading_box' wx:if='{{true}}'>
+    <image src='/images/common/loading.png'></image>
+    <text>加载中</text>
   </view>
-  <view class="list bg_fff mt20">
-    <view class="flex">
-      <view class="item omit1 tit1">秭归伦晚团购秭归伦晚团购秭归伦晚团购秭归伦晚团购</view>
-      <view class="item tr">
-        <text class="chipped">合买</text>
-      </view>
-    </view>
-    <view class="flex bot_box">
-      <view class="item tit2">杨靖 03-22 14:15</view>
-      <view class="span_a">
-        <image src="/images/home/shop.png"></image>
-        <text class="tit2">15</text>
-      </view>
-      <view class="span_a">
-        <image src="/images/home/shop.png"></image>
-        <text class="tit2">15</text>
-      </view>
-    </view>
-  </view>
-</view>
+</scroll-view>
