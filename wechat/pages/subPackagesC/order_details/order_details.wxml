@@ -1,4 +1,5 @@
 <!--pages/subPackagesC/order_details/order_details.wxml-->
+<wxs src="../../../utils/filter.wxs" module="filter" />
 <!-- 状态 -->
 <view>
   <view class="tc wait">待处理</view>
@@ -30,17 +31,17 @@
   <view class="title">
     <text>已购商品</text>
   </view>
-  <view class="content">
+  <view class="content" wx:for="{{goodsList}}" wx:for-item="item" wx:key="indexs" wx:for-index="indexs">
     <view class="flex li">
+      <view class="item">{{item.goodsName}} </view>
+      <view class="tit">x{{item.buyCount}}</view>
+      <view class="">￥{{filter.money(item.money)}}</view>
+    </view>
+    <!-- <view class="flex li">
       <view class="item">精品伦晚 </view>
       <view class="tit">x1</view>
       <view class="">￥18.00</view>
-    </view>
-    <view class="flex li">
-      <view class="item">精品伦晚 </view>
-      <view class="tit">x1</view>
-      <view class="">￥18.00</view>
-    </view>
+    </view> -->
     <view class="tr">
       <text class="fb">总共 2 件 合计 </text>
       <text class="fb f00"> ￥36.00</text>

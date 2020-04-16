@@ -21,8 +21,8 @@
   </view>
 </view>
 <view class="btn_box">
-  <button class="btn1">提现</button>
-  <button class="btn2">取消</button>
+  <button class="btn1" style="width: 90%;">提现</button>
+  <button class="btn2" style="width: 90%;">取消</button>
 </view>
 <view class="b_box">
   <view>· 每次提现金额需≥1元，每日最多提现3次，每日限额2万元</view>

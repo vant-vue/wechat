@@ -22,6 +22,14 @@ const dealRecord = (params) => postAction("/solitaire/solitaire/api", params, {
 const monthBudget = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "monthBudget"
 });
+// 我购买的订单  （myOrder）
+const myOrder = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "myOrder"
+});
+// 我购买的订单详情  （orderDetail）
+const orderDetail = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "orderDetail"
+});
 
 export default {
   getSessionKey,
@@ -29,5 +37,7 @@ export default {
   userInfo,
   assetInfo,
   dealRecord,
-  monthBudget
+  monthBudget,
+  myOrder,
+  orderDetail,
 }

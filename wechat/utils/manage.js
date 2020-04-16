@@ -11,6 +11,13 @@ export function postAction(url, parameter, paramsMethod) {
       method: 'post',
       data: parameter,
       success: function(res) {
+        // if(res.code != 200){
+        //   wx.showToast({
+        //     title: res.msg,
+        //     icon: 'none',
+        //     duration: 3000
+        //   })
+        // }
         resolve(res);
       },
       fail: function(err) {

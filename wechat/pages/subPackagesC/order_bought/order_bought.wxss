@@ -1,5 +1,20 @@
 /* pages/subPackagesC/order_bought/order_bought.wxss */
-
+/* 滚动 */
+.main-wrap {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  height: 100vh;
+  box-sizing: border-box;
+  margin-top:80rpx;
+}
+.f_box{
+  position: fixed;
+  width: 100%;
+  top:0;
+  left: 0;
+}
 .f00 {
   color: #f00;
 }
