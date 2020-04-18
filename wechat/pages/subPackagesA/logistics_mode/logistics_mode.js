@@ -8,7 +8,7 @@ Page({
     index: 0,
     array: ['没有物流', '快递发货', '提货点自提'],
     objectArray: [{
-        id: 0,
+        id: 3,
         name: '没有物流'
       },
       {
@@ -19,19 +19,90 @@ Page({
         id: 2,
         name: '提货点自提'
       }
-    ]
+    ],
+    modeList: [],
+    getgetAddress: '' ////当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+  },
+  // 新增商品
+  add_mode() {
+    this.setData({
+      "modeList": this.data.modeList.concat({
+        mode: ''
+      })
+    })
+  },
+  // 删除商品
+  del_mode(e) {
+    let list = JSON.parse(JSON.stringify(this.data.modeList));
+    list.pop();
+    this.setData({
+      "modeList": list
+    })
+  },
+  //监听input 商品
+  listenerInput(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    let index = e.currentTarget.dataset.index;
+    let str = `modeList[${index}].${row}`;
+    this.setData({
+      [str]: value
+    });
+  },
+  //监听input 普通输入框
+  listenerInputSimple(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    this.setData({
+      [row]: value
+    });
   },
   bindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+      mode_list: [],
+      getAddress: ''
     });
+  },
+  submit() {
+    // console.log(this.data.objectArray[this.data.index]);
+    // console.log(this.data.modeList);
+    // console.log(this.data.getAddress);
+    if (this.data.objectArray[this.data.index].id == 2 && !this.data.getAddress) {
+      wx.showToast({
+        title: '请填写地址',
+        icon: "none"
+      })
+      return
+    }
+    let pages = getCurrentPages();
+    let prevPage = pages[pages.length - 2];
+    prevPage.setData({
+      "params.logisticsType": this.data.objectArray[this.data.index].id,
+      "params.logisticsTypeName": this.data.objectArray[this.data.index].name,
+      "params.getAddress": this.data.getAddress ? this.data.getAddress : '',
+      "params.mode": this.data.modeList.map(item => {
+        return item.mode
+      }).join(",")
+    });
+    wx.navigateBack();
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(options);
+    let mode = options.mode.split(',');
+    if (options.mode) {
+      // this.setData({
+      //   modeList: mode.map(item => {
+      //     return {
+      //       mode: item
+      //     }
+      //   }),
+      //   index: options.type ? options.type : 0
+      // });
+    }
   },
 
   /**
@@ -59,7 +130,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    this.submit();
   },
 
   /**

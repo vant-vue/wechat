@@ -3,27 +3,29 @@
   <!-- 标题 -->
   <view class="flex bg box">
     <view class="left">
-      <text class="tit">请输入合买标题</text>
+      <text class="tit">标题</text>
       <text class="red">*</text>
     </view>
     <view class="item">
-      <input type="text"></input>
+      <input type="text" bindinput='listenerInputSimple' data-row="params.title" placeholder='请输入合买标题' maxlength="50" value='{{params.title}}'></input>
     </view>
   </view>
   <!-- 图片 -->
   <view class="bg box">
-    <view class="tit2">请输入本次合买介绍并添加实票照片</view>
+    <!-- <view class="tit2">请输入本次合买介绍并添加实票照片</view> -->
+    <textarea maxlength="1000" bindinput='listenerInputSimple' data-row="params.summary" value='{{params.summary}}' class="textareatext" placeholder="请输入本次合买介绍并添加实票照片" />
     <upload-img bind:upload="get_img_list"></upload-img>
   </view>
   <!-- 合买金额 -->
-  <view class="shop_box">
+  <view class="shop_box" wx:for="{{goodsList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
     <view class="flex bg box">
       <view class="left left_width">
         <text class="tit3">合买金额</text>
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="text" placeholder="0.00"></input>
+        <!-- <input type="text" placeholder="0.00"></input> -->
+        <input type="number" bindinput='listenerInput' data-row="togoMoney" data-index="{{index}}" value="{{item.togoMoney}}" placeholder="0.00"></input>
       </view>
     </view>
     <view class="flex bg box">
@@ -32,7 +34,8 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="text" placeholder="0.00"></input>
+        <!-- <input type="text" placeholder="0.00"></input> -->
+        <input type="number" bindinput='listenerInput' data-row="stock" data-index="{{index}}" value="{{item.stock}}" placeholder="0.00"></input>
       </view>
     </view>
     <view class="flex bg box">
@@ -41,7 +44,8 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="text" placeholder="0.00"></input>
+        <!-- <input type="text" placeholder="0.00"></input> -->
+        <input type="number" bindinput='listenerInput' data-row="price" data-index="{{index}}" value="{{item.price}}" placeholder="0.00"></input>
       </view>
     </view>
   </view>
@@ -60,7 +64,7 @@
         <text class="tit3">物流</text>
       </view>
       <view class="item tr">
-        <text class="tit2 mr20">请选择</text>
+        <text class="tit2 mr20">{{params.logisticsTypeName?params.logisticsTypeName:"请选择"}}</text>
       </view>
       <view>
         <text class='icon_right'></text>
@@ -71,9 +75,7 @@
         <text class="tit3">开始时间</text>
       </view>
       <view class="item tr">
-        <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
-          <text class="tit2 mr20">当前选择: {{date?date:'--'}}</text>
-        </picker>
+        <pickerYMDHM bind:bindChangeTime="start_time_fun" defaultTime="{{params.startTime}}" placeholder="请选择开始时间"></pickerYMDHM>
       </view>
       <view>
         <text class='icon_right'></text>
@@ -84,9 +86,10 @@
         <text class="tit3">结束时间</text>
       </view>
       <view class="item tr">
-        <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
+        <!-- <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
           <text class="tit2 mr20">当前选择: {{date?date:'--'}}</text>
-        </picker>
+        </picker> -->
+        <pickerYMDHM bind:bindChangeTime="end_time_fun" defaultTime="{{params.endTime}}" placeholder="请选择结束时间"></pickerYMDHM>
       </view>
       <view>
         <text class='icon_right'></text>
@@ -101,12 +104,12 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="text" placeholder="请输入客服电话"></input>
+        <input type="number" bindinput='listenerInputSimple' data-row="params.callPhone" data-index="{{index}}" maxlength="20" placeholder="请输入客服电话"></input>
       </view>
     </view>
   </view>
   <!-- 按钮 -->
   <view class="btn">
-    <button type="primary" style="width:100%">发布</button>
+    <button type="primary" style="width:100%" bindtap="submit">发布</button>
   </view>
 </view>

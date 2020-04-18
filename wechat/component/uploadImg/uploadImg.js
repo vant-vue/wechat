@@ -6,8 +6,12 @@ Component({
   properties: {
     defaultNum: { // 属性名
       type: Number,
-      value: 4
+      value: 1
     },
+    imgList: {
+      type: Array,
+      value: []
+    }
   },
 
   /**
@@ -65,13 +69,34 @@ Component({
               showUpload: false
             })
           }
-          console.log(res);
           that.setData({
             uploaderList: uploaderList,
             uploaderNum: uploaderList.length,
           })
           that.triggerEvent('upload', that.data.uploaderList);
         }
+      })
+    }
+  },
+  lifetimes: {
+    attached: function() {
+      // 在组件实例进入页面节点树时执行
+    },
+    detached: function() {
+      // 在组件实例被从页面节点树移除时执行
+    },
+  },
+  // 以下是旧式的定义方式，可以保持对 <2.2.3 版本基础库的兼容
+  attached: function() {
+    // 在组件实例进入页面节点树时执行
+  },
+  detached: function() {
+    // 在组件实例被从页面节点树移除时执行
+  },
+  observers: {
+    'imgList': function (imgList) {
+      this.setData({
+        uploaderList: this.data.imgList
       })
     }
   }

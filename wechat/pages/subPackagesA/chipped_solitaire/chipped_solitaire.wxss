@@ -1,4 +1,10 @@
 /* pages/subPackagesA/chipped_solitaire/chipped_solitaire.wxss */
+
+.textareatext {
+  width: 100%;
+  height: 200rpx;
+}
+
 .bg {
   background: #fff;
 }
