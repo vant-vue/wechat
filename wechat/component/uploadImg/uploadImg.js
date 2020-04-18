@@ -65,6 +65,7 @@ Component({
               showUpload: false
             })
           }
+          console.log(res);
           that.setData({
             uploaderList: uploaderList,
             uploaderNum: uploaderList.length,

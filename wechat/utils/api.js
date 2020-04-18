@@ -6,6 +6,8 @@ import {
 const getSessionKey = (params) => postActionUrlencoded("/wx/wxLogin/getSessionKey", params, {});
 // 微信登录
 const wxLogin = (params) => postActionUrlencoded("/wx/wxLogin/login", params, {});
+// 文件上传(批量上传)
+const uploadImg = (params) => postAction("/solitaire/uploadFiles/uploadImg", params, {});
 // 用户信息
 const userInfo = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "userInfo"
@@ -30,14 +32,20 @@ const myOrder = (params) => postAction("/solitaire/solitaire/api", params, {
 const orderDetail = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "orderDetail"
 });
+// 发布接龙/复制后保存 （insertPubSolitaire）
+const insertPubSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "insertPubSolitaire"
+});
 
 export default {
   getSessionKey,
   wxLogin,
+  uploadImg,
   userInfo,
   assetInfo,
   dealRecord,
   monthBudget,
   myOrder,
   orderDetail,
+  insertPubSolitaire
 }
