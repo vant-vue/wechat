@@ -134,23 +134,24 @@ Page({
       str = "请填写标题"
     }
     let goodsList = this.data.goodsList.map(item => {
-      if (!valid.check_required(item.goodsName)) {
-        str = "请填写商品名称"
-      }
       if (!valid.check_positive(item.price)) {
-        str = "请填写正确商品价格"
+        str = "请填写单份金额"
       }
-      if (!valid.check_required(item.goodsImg)) {
-        str = "请上传商品图片"
+      if (!valid.check_positive(item.stock)) {
+        str = "请填写可售份数"
+      }
+      if (!valid.check_positive(item.togoMoney)) {
+        str = "请填写合买金额"
       }
       item.price = item.price * 100;
+      item.togoMoney = item.togoMoney * 100;
       return item;
     });
     if (!valid.check_mobile(this.data.params.callPhone)) {
       str = "请输入正确的电话"
     }
     if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
-      str = "请输入大于的库存"
+      str = "请输入大于0的库存"
     }
     if (!valid.check_required(this.data.params.logisticsType)) {
       str = "请选择物流"
@@ -180,12 +181,18 @@ Page({
           "mode": this.data.params.mode
         }
       }
-      console.log(params);
+      // console.log(params);
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
-        wx.switchTab({
-          url: '/pages/tabBar/index/index'
-        })
+        wx.showToast({
+          title: '发布成功'
+        });
+        let setTime;
+        setTime = setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/tabBar/index/index'
+          })
+        }, 2000)
       }).catch(err => {
         wx.hideLoading()
       })

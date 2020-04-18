@@ -14,7 +14,7 @@
   <view class="bg box">
     <!-- <view class="tit2">请输入本次合买介绍并添加实票照片</view> -->
     <textarea maxlength="1000" bindinput='listenerInputSimple' data-row="params.summary" value='{{params.summary}}' class="textareatext" placeholder="请输入本次合买介绍并添加实票照片" />
-    <upload-img bind:upload="get_img_list"></upload-img>
+    <upload-img bind:upload="get_img_list" defaultNum="9"></upload-img>
   </view>
   <!-- 合买金额 -->
   <view class="shop_box" wx:for="{{goodsList}}" wx:for-item="item" wx:key="index" wx:for-index="index">

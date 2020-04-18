@@ -79,7 +79,7 @@ Page({
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
       "params.logisticsType": this.data.objectArray[this.data.index].id,
-      "params.logisticsTypeName": this.data.objectArray[this.data.index].name,
+      "params.logisticsTypeName": this.data.objectArray[this.data.index].name, 
       "params.getAddress": this.data.getAddress ? this.data.getAddress : '',
       "params.mode": this.data.modeList.map(item => {
         return item.mode

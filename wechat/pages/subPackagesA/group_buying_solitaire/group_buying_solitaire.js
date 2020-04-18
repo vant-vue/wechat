@@ -156,7 +156,7 @@ Page({
       str = "请输入正确的电话"
     }
     if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
-      str = "请输入大于的库存"
+      str = "请输入大于0的库存"
     }
     if (!valid.check_required(this.data.params.logisticsType)) {
       str = "请选择物流"
@@ -189,9 +189,15 @@ Page({
       console.log(params);
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
-        wx.switchTab({
-          url: '/pages/tabBar/index/index'
-        })
+        wx.showToast({
+          title: '发布成功'
+        });
+        let setTime;
+        setTime = setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/tabBar/index/index'
+          })
+        }, 2000)
       }).catch(err => {
         wx.hideLoading()
       })
