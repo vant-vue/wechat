@@ -36,6 +36,42 @@ const orderDetail = (params) => postAction("/solitaire/solitaire/api", params, {
 const insertPubSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "insertPubSolitaire"
 });
+// 我发布的/我参与的  （mySolitaire）
+const mySolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "mySolitaire"
+});
+// 接龙列表  （solitaireList）
+const solitaireList = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "solitaireList"
+});
+// 我的发布记录  （myPubList）
+const myPubList = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "myPubList"
+});
+// 我的参与记录  （myJoinList）
+const myJoinList = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "myJoinList"
+});
+// 订单管理列表  （orderManagerList）
+const orderManagerList = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "orderManagerList"
+});
+// 数据统计  （statistics）
+const statistics = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "statistics"
+});
+// 修改订单备注  （editRemark）
+const editRemark = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "editRemark"
+});
+// 接龙浏览列表  （visitList）
+const visitList = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "visitList"
+});
+// 商品详情  （goodsDetail）
+const goodsDetail = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "goodsDetail"
+});
 
 export default {
   getSessionKey,
@@ -47,5 +83,14 @@ export default {
   monthBudget,
   myOrder,
   orderDetail,
-  insertPubSolitaire
+  insertPubSolitaire,
+  mySolitaire,
+  solitaireList,
+  myPubList,
+  myJoinList,
+  orderManagerList,
+  statistics,
+  editRemark,
+  visitList,
+  goodsDetail
 }

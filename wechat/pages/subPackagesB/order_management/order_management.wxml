@@ -1,147 +1,212 @@
 <!--pages/subPackagesB/order_management/order_management.wxml-->
-<view class="top_box">
-  <view class="flex">
-    <view class="item tit1">总金额（元）</view>
-    <view class="item tit1">总订单（笔）</view>
-  </view>
-  <view class="flex">
-    <view class="item tit2">2550.65</view>
-    <view class="item tit2">150</view>
-  </view>
-  <view class="flex t_box ">
-    <view class="item tr">
-      <image src="/images/record/book.png"></image>
-      <text class="tit3">详细数据</text>
+<wxs src="../../../utils/filter.wxs" module="filter" />
+<scroll-view class="main-wrap" scroll-y='{{true}}' bindscrolltolower='scrollBottom'>
+  <view class="top_box">
+    <view class="flex">
+      <view class="item tit1">总金额（元）</view>
+      <view class="item tit1">总订单（笔）</view>
     </view>
-  </view>
-</view>
-<!-- 查找订单 -->
-<view class="mid_box">
-  <view class="flex bg_fff tc">
-    <view class="item tc">
-      <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">全部</text>
+    <view class="flex">
+      <view class="item tit2">{{filter.money(statistics.totalMoney)}}</view>
+      <view class="item tit2">{{statistics.buyTimes}}</view>
     </view>
-    <view class="item tc">
-      <text class="title {{tab==2?'active':''}}" bindtap="toggle" data-tab="2">进行中</text>
-    </view>
-    <view class="item tc">
-      <text class="title {{tab==3?'active':''}}" bindtap="toggle" data-tab="3">已完成</text>
-    </view>
-    <view class="item tc">
-      <text class="title {{tab==4?'active':''}}" bindtap="toggle" data-tab="4">已取消</text>
+    <view class="flex t_box" bindtap="jump" data-page="data_statistics">
+      <view class="item tr">
+        <image src="/images/record/book.png"></image>
+        <text class="tit3">详细数据</text>
+      </view>
     </view>
   </view>
-  <!-- 筛选 -->
-  <view class="flex search_box bg_fff">
-    <view class="right_box">
-      <view class="sea">
-        <icon class="searchcion" size='16' type='search'></icon>
-        <input class="input_z" disabled="true" placeholder="查找订单" value="{{searchValue}}" />
+  <!-- 查找订单 -->
+  <view class="mid_box">
+    <view class="flex bg_fff tc">
+      <view class="item tc">
+        <text class="title {{tab=='all'?'active':''}}" bindtap="toggle" data-tab="all">全部</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==0?'active':''}}" bindtap="toggle" data-tab="0">进行中</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">已完成</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==-1?'active':''}}" bindtap="toggle" data-tab="-1">已取消</text>
       </view>
     </view>
-    <view class="item">
-      <image src="/images/record/right.png"></image>
-      <text>导出</text>
-    </view>
-    <view class="item">
-      <view wx:if="{{!isBatch}}" bindtap="batch_toggle">
-        <image src="/images/record/batch.png"></image>
-        <text>批量</text>
-      </view>
-      <view wx:else bindtap="batch_toggle">
-        <image src="/images/record/batched.png"></image>
-        <text style="color:#009900">完成</text>
-      </view>
-    </view>
-    <view class="item" bindtap="filter_fun">
-      <image src="/images/record/filtrate.png"></image>
-      <text>筛选</text>
-    </view>
-  </view>
-  <!-- 商品list -->
-  <view class="list_box bg_fff" wx:for="{{[1,2]}}" wx:item="item" wx:key="item">
-    <view class="top flex">
-      <view wx:if="{{isBatch}}">
-        <checkbox class="cb"></checkbox>
-      </view>
-      <view class="it_1">
-        <text>1</text>
-      </view>
-      <view>
-        <image class="head_img" src="/images/home/banner.png"></image>
-      </view>
-      <view class="item">
-        <text class="it_2">名字</text>
-      </view>
-      <view class="it_3">
-        <text class="wait">待处理</text>
-        <text class="success">已完成</text>
-        <text class="close">已取消</text>
-      </view>
-      <view>
-        <text class='icon_right'></text>
-      </view>
-    </view>
-    <!-- 申请状态 -->
-    <view class="apply flex">
-      <view class="item ft_f0">买家申请取消</view>
-      <view class="item ft_6f tr">点击处理</view>
-    </view>
-    <!-- 商品信息 -->
-    <view>
-      <view class="shop flex">
-        <view class="item">精品伦晚</view>
-        <view class="t1">x1</view>
-        <view class="t2">￥18.00</view>
-      </view>
-      <view class="shop flex">
-        <view class="item">精品伦晚</view>
-        <view class="t1">x1</view>
-        <view class="t2">￥18.00</view>
-      </view>
-      <view class="shop_cout tr">
-        <text>总共 2 件 合计 </text>
-        <text class="ft_f0">￥36.00</text>
-      </view>
-    </view>
-    <!-- 联系人信息 -->
-    <view class="detail_box">
-      <view class="flex lx">
-        <view class="item tit1">联系人信息</view>
-        <view class="item tr">
-          <image src="/images/record/book.png"></image>
+    <!-- 筛选 -->
+    <view class="flex search_box bg_fff">
+      <view class="right_box">
+        <view class="sea">
+          <icon class="searchcion" size='16' type='search'></icon>
+          <input class="input_z" disabled="true" placeholder="查找订单" value="{{searchValue}}" />
         </view>
       </view>
-      <view class="mb20">姓名，15001515511，湖北省武汉市东西湖区航天华 宇对对对2150
+      <view class="item">
+        <image src="/images/record/right.png"></image>
+        <text>导出</text>
+      </view>
+      <view class="item">
+        <view wx:if="{{!isBatch}}" bindtap="batch_toggle">
+          <image src="/images/record/batch.png"></image>
+          <text>批量</text>
+        </view>
+        <view wx:else bindtap="batch_toggle">
+          <image src="/images/record/batched.png"></image>
+          <text style="color:#009900">完成</text>
+        </view>
+      </view>
+      <view class="item" bindtap="filter_fun">
+        <image src="/images/record/filtrate.png"></image>
+        <text>筛选</text>
       </view>
     </view>
-    <!-- 按钮 -->
-    <view class="btn_box flex">
-      <view class="item" bindtap="remark_fun">
-        <view class="btn1 tc">写备注</view>
+    <!-- 商品list -->
+    <view class="list_box bg_fff" wx:for="{{orderManagerList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="top flex" bindtap="jump" data-page="order_details" data-goodsid="" data-solitaireid="">
+        <view wx:if="{{isBatch}}">
+          <checkbox class="cb"></checkbox>
+        </view>
+        <view class="it_1">
+          <text>1</text>
+        </view>
+        <view>
+          <image class="head_img" src="{{item.userInfo.headerImg}}"></image>
+        </view>
+        <view class="item">
+          <text class="it_2">{{item.userInfo.nickName}}</text>
+        </view>
+        <view class="it_3">
+          <text wx:if="{{item.status == 0}}" class="wait">待处理</text>
+          <text wx:elif="{{item.status == 1}}" class="success">已完成</text>
+          <text wx:elif="{{item.status == -1}}" class="close">已取消</text>
+        </view>
+        <view>
+          <text class='icon_right'></text>
+        </view>
       </view>
-      <view class="btn2 tc" bindtap="already_fun">已发货/已取货</view>
+      <!-- 申请状态 -->
+      <view class="apply flex" wx:if="{{item.isRemove ==1}}">
+        <view class="item ft_f0">买家申请取消</view>
+        <view class="item ft_6f tr">点击处理</view>
+      </view>
+      <!-- 商品信息 -->
+      <view>
+        <view class="shop flex" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
+          <view class="item">{{item2.goodsName}}</view>
+          <view class="t1">x{{item2.buyCount}}</view>
+          <view class="t2">￥{{item2.money}}</view>
+        </view>
+        <view class="shop_cout tr">
+          <text>总共 {{item.goodsCount}} 件 合计 </text>
+          <text class="ft_f0">￥{{item.payMoney}}</text>
+        </view>
+      </view>
+      <!-- 联系人信息 -->
+      <view class="detail_box" wx:if="{{item.logistics}}">
+        <view class="flex lx">
+          <view class="item tit1">联系人信息</view>
+          <view class="item tr">
+            <image src="/images/record/book.png" bindtap="copy" data-item="{{item}}"></image>
+          </view>
+        </view>
+        <view class="mb20">{{item.logistics.name}}，{{item.logistics.phone}}，{{item.logistics.provice?item.logistics.provice:''+item.logistics.city?item.logistics.city:''+item.logistics.area?item.logistics.area:''+item.logistics.address?item.logistics.address:''}}
+          <text wx:for="{{item.logistics.otherMode}}" wx:for-item="item3" wx:key="index3" wx:for-index="index3">{{item3}}:{{item.logistics[item3]}}</text>
+        </view>
+      </view>
+      <!-- 按钮 -->
+      <view class="btn_box flex">
+        <view class="item" bindtap="remark_fun" data-id="{{item.orderNo}}">
+          <view class="btn1 tc">写备注</view>
+        </view>
+        <view class="btn2 tc" bindtap="already_fun" data-id="{{item.orderNo}}">已发货/已取货</view>
+      </view>
+      <!-- 订单号 -->
+      <view class="order_box flex">
+        <view class="item tit1">订单编号: {{item.orderNo}}</view>
+        <view class="tit2">{{item.orderTime}}</view>
+      </view>
     </view>
-    <!-- 订单号 -->
-    <view class="order_box flex">
-      <view class="item tit1">订单编号: 20023211511515</view>
-      <view class="tit2">03-25 12:15:15</view>
+    <view wx:if="{{orderManagerList.length==0}}" class="tc c_999 mt20">~无数据~</view>
+    <!-- <view class="list_box bg_fff" wx:for="{{[1]}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="top flex">
+        <view wx:if="{{isBatch}}">
+          <checkbox class="cb"></checkbox>
+        </view>
+        <view class="it_1">
+          <text>1</text>
+        </view>
+        <view>
+          <image class="head_img" src="{{item.userInfo.headerImg}}"></image>
+        </view>
+        <view class="item">
+          <text class="it_2">{{item.userInfo.nickName}}</text>
+        </view>
+        <view class="it_3">
+          <text wx:if="{{item.status == 0}}" class="wait">待处理</text>
+          <text wx:elif="{{item.status == 1}}" class="success">已完成</text>
+          <text wx:elif="{{item.status == -1}}" class="close">已取消</text>
+        </view>
+        <view>
+          <text class='icon_right'></text>
+        </view>
+      </view>
+      <view class="apply flex">
+        <view class="item ft_f0">买家申请取消</view>
+        <view class="item ft_6f tr">点击处理</view>
+      </view>
+      <view>
+        <view class="shop flex">
+          <view class="item">精品伦晚</view>
+          <view class="t1">x1</view>
+          <view class="t2">￥18.00</view>
+        </view>
+        <view class="shop flex">
+          <view class="item">精品伦晚</view>
+          <view class="t1">x1</view>
+          <view class="t2">￥18.00</view>
+        </view>
+        <view class="shop_cout tr">
+          <text>总共 2 件 合计 </text>
+          <text class="ft_f0">￥36.00</text>
+        </view>
+      </view>
+      <view class="detail_box">
+        <view class="flex lx">
+          <view class="item tit1">联系人信息</view>
+          <view class="item tr">
+            <image src="/images/record/book.png" bindtap="copy"></image>
+          </view>
+        </view>
+        <view class="mb20">姓名，15001515511，湖北省武汉市东西湖区航天华 宇对对对2150
+        </view>
+      </view>
+      <view class="btn_box flex">
+        <view class="item" bindtap="remark_fun">
+          <view class="btn1 tc">写备注</view>
+        </view>
+        <view class="btn2 tc" bindtap="already_fun" wx:if="{{item.status == 0}}">已发货/已取货</view>
+      </view>
+      <view class="order_box flex">
+        <view class="item tit1">订单编号: 20023211511515</view>
+        <view class="tit2">03-25 12:15:15</view>
+      </view>
+    </view> -->
+
+    <service></service>
+    <!-- 底部批量 -->
+    <view wx:if="{{isBatch}}" class="footer flex bg_fff">
+      <view class="item">
+        <checkbox class="cb"></checkbox>
+        <text class="tit1">全选</text>
+      </view>
+      <view class="item">
+        <view class="tit2">批量写备注</view>
+      </view>
+      <view class="retransmission" bindtap="show_popup_fun">批量发货/取货</view>
     </view>
+    <!-- 筛选弹窗 -->
+    <actionSheetFilter show="{{isFilter}}" bind:ok="filter_ok"></actionSheetFilter>
+    <!-- 备注弹窗 -->
+    <actionSheetRemark show="{{isRemark}}" bind:ok="remark_ok" id="remark"></actionSheetRemark>
   </view>
-  <service></service>
-  <!-- 底部批量 -->
-  <view wx:if="{{isBatch}}" class="footer flex bg_fff">
-    <view class="item">
-      <checkbox class="cb"></checkbox>
-      <text class="tit1">全选</text>
-    </view>
-    <view class="item">
-      <view class="tit2">批量写备注</view>
-    </view>
-    <view class="retransmission" bindtap="show_popup_fun">批量发货/取货</view>
-  </view>
-  <!-- 筛选弹窗 -->
-  <actionSheetFilter show="{{isFilter}}"></actionSheetFilter>
-  <!-- 备注弹窗 -->
-  <actionSheetRemark show="{{isRemark}}"></actionSheetRemark>
-</view>
+</scroll-view>

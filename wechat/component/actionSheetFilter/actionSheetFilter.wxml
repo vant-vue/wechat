@@ -1,5 +1,5 @@
 <!--component/actionSheetFilter/actionSheetFilter.wxml-->
-<view class='dialog_bg' wx:if="{{show}}" bindtap="cancel"  catchtouchmove="false"></view>
+<view class='dialog_bg' wx:if="{{show}}" bindtap="close" catchtouchmove="false"></view>
 <view class="popup follow-up {{show?'show':''}}">
   <view class="title">筛选订单</view>
   <view class="list_box">
@@ -8,17 +8,17 @@
       <view class="tit">时间筛选</view>
       <view class="flex box">
         <view class="item">
-          <text class="active">全部</text>
+          <text bindtap="isOrderDate_fun" data-type="all" class="{{isOrderDate=='all'?'active':''}}">全部</text>
         </view>
         <view class="item">
-          <text>今日</text>
+          <text bindtap="isOrderDate_fun" data-type="1" class="{{isOrderDate==1?'active':''}}">今日</text>
         </view>
         <view class="item">
-          <text>昨日</text>
+          <text bindtap="isOrderDate_fun" data-type="2" class="{{isOrderDate==2?'active':''}}">昨日</text>
         </view>
         <view class="item">
           <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
-            <text>{{date?date:"选择日期"}}</text>
+            <text bindtap="isOrderDate_fun" data-type="3" class="{{isOrderDate==3?'active':''}}">{{date?date:"选择日期"}}</text>
           </picker>
         </view>
       </view>
@@ -28,13 +28,13 @@
       <view class="tit">商家备注</view>
       <view class="flex box">
         <view class="item">
-          <text class="active">全部</text>
+          <text bindtap="isHasRemark_fun" data-type="all" class="{{isHasRemark=='all'?'active':''}}">全部</text>
         </view>
         <view class="item">
-          <text>有备注</text>
+          <text bindtap="isHasRemark_fun" data-type="1" class="{{isHasRemark==1?'active':''}}">有备注</text>
         </view>
         <view class="item">
-          <text>无备注</text>
+          <text bindtap="isHasRemark_fun" data-type="0" class="{{isHasRemark==0?'active':''}}">无备注</text>
         </view>
         <view class="item">
 
@@ -46,13 +46,13 @@
       <view class="tit">商家退款</view>
       <view class="flex box">
         <view class="item">
-          <text class="active">全部</text>
+          <text bindtap="isRefundStatus_fun" data-type="all" class="{{isRefundStatus=='all'?'active':''}}">全部</text>
         </view>
         <view class="item">
-          <text>有退款</text>
+          <text bindtap="isRefundStatus_fun" data-type="1" class="{{isRefundStatus=='1'?'active':''}}">有退款</text>
         </view>
         <view class="item">
-          <text>无退款</text>
+          <text bindtap="isRefundStatus_fun" data-type="0" class="{{isRefundStatus=='0'?'active':''}}">无退款</text>
         </view>
         <view class="item">
 
@@ -66,7 +66,7 @@
         <view class="close" bindtap="cancel">取消</view>
       </view>
       <view class="item">
-        <view class="ok">确定</view>
+        <view class="ok" bindtap="ok">确定</view>
       </view>
     </view>
   </view>

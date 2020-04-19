@@ -1,18 +1,19 @@
 <!--pages/subPackagesB/released_group/released_group.wxml-->
+<wxs src="../../../utils/filter.wxs" module="filter" />
 <view class="main_box">
   <!-- 顶部 -->
   <view class="top_box bg_fff">
     <view class="flex">
       <view>
-        <image class="head_img" src="/images/home/banner.png"></image>
+        <image class="head_img" src="{{info.headerImg}}"></image>
       </view>
       <view class="item">
-        <view class="name">名称</view>
+        <view class="name">{{info.nickName}}</view>
         <view>
           <image class="img1" src="/images/home/tel.png"></image>
-          <text class="tit">15</text>
+          <text class="tit">{{info.viewTimes}}</text>
           <image class="img1" src="/images/home/tel.png"></image>
-          <text class="tit">15</text>
+          <text class="tit">{{info.forwardTimes}}</text>
         </view>
       </view>
       <view class="item tr">
@@ -26,20 +27,20 @@
   <view class="cont_box">
     <view class="bg_fff view_b">
       <view class="top">
-        <view class="tit1">秭归伦晚团购</view>
+        <view class="tit1">{{solitaire.title}}</view>
         <view class="flex">
-          <view class="item tit2">03-22 14:15 发布</view>
-          <view class="tit2"> 03-12 14:55 截止</view>
+          <view class="item tit2">{{solitaire.insertTime}} 发布</view>
+          <view class="tit2"> {{solitaire.endTime}} 截止</view>
         </view>
         <!-- 产品详情 -->
         <view>
-          <view class="tit3">这是文字部分</view>
+          <view class="tit3">{{solitaire.summary}}</view>
           <!-- 轮播 -->
-          <view>
+          <view wx:if="{{banner_list.length>0}}">
             <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
               <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
                 <swiper-item>
-                  <image src="/images/home/banner.png"></image>
+                  <image src="{{banner}}"></image>
                 </swiper-item>
               </block>
             </swiper>
@@ -47,42 +48,44 @@
         </view>
         <view class="shop_b">
           <view class="flex">
-            <view class="item">配送方式：提货点自提</view>
-            <view>
+            <view class="item" wx:if="{{logistics.logisticsType ==3 }}">配送方式：没有物流</view>
+            <view class="item" wx:elif="{{logistics.logisticsType ==1 }}">配送方式：快递发货</view>
+            <view class="item" wx:elif="{{logistics.logisticsType ==2 }}">配送方式：提货点自提</view>
+            <!-- <view>
               <image src="/images/record/book.png"></image>
-            </view>
+            </view> -->
           </view>
           <view class="tel">
-            <view>联系电话：15666656666</view>
-            <view>提货地址：武汉市东西湖区航天华宇2栋</view>
+            <view wx:if="{{logistics.phone}}">联系电话：{{logistics.phone}}</view>
+            <view wx:if="{{logistics.address}}">提货地址：{{logistics.address}}</view>
           </view>
         </view>
       </view>
       <!-- 商品 -->
-      <view class="bot">
+      <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
         <view class="flex">
           <view>
-            <image class="head_img" src="/images/home/banner.png"></image>
+            <image class="head_img" src="{{item.goodsImg}}"></image>
           </view>
           <view class="item">
             <view class="flex">
-              <view class="item omit1 txt1">精品伦晚</view>
-              <view class="item tr txt2">已售33</view>
+              <view class="item omit1 txt1">{{item.goodsName}}</view>
+              <view class="item tr txt2">已售{{item.sellTimes}}</view>
             </view>
-            <view class="txt3">5斤/箱</view>
+            <view class="txt3">{{item.specifications}}</view>
             <view class="flex">
               <view class="item">
-                <text class="txt4">￥18.00</text>
-                <text class="txt5">库存10</text>
+                <text class="txt4">￥{{filter.money(item.price)}}</text>
+                <text class="txt5">库存{{item.stock}}</text>
               </view>
               <view class="">
-                <shop-num code="111236266" max="10"></shop-num>
+                <shop-num code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
               </view>
             </view>
           </view>
         </view>
       </view>
-      <view class="bot">
+      <!-- <view class="bot">
         <view class="flex">
           <view>
             <image class="head_img" src="/images/home/banner.png"></image>
@@ -105,21 +108,37 @@
             </view>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="denominated">
-    <text class="tit1">总共 2 件 合计</text>
-    <text class="tit2"> ￥36.00</text>
+    <text class="tit1">总共 {{shop_num}} 件 合计</text>
+    <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
   </view>
   <view class="btn_box">
     <!-- <button class="close_btn" type="primary" style="width:100%">请选择商品</button> -->
     <button class="active_btn" type="primary" style="width:100%">参与接龙</button>
   </view>
   <!-- 接龙列表 -->
-  <view class="list_box bg_fff">
+  <view class="list_box bg_fff" wx:if="{{solitaireList.length>0}}">
     <view class="title">接龙列表</view>
-    <view class="flex list">
+    <view class="flex list" wx:for="{{solitaireList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="tit">{{index+1}}</view>
+      <view>
+        <image class="head_img" src="{{item.headerImg}}"></image>
+      </view>
+      <view class="item">
+        <view class="flex mb_20">
+          <view class="item tit1">{{item.nickName}}</view>
+          <view class="item tr tit2">{{item.orderTime}}</view>
+        </view>
+        <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
+          <view class="item omit1 tit2">{{item2.goodsName}}</view>
+          <view class="item tr  tit3">申请取消</view>
+        </view>
+      </view>
+    </view>
+    <!-- <view class="flex list">
       <view class="tit">1</view>
       <view>
         <image class="head_img" src="/images/home/banner.png"></image>
@@ -134,29 +153,15 @@
           <view class="item tr  tit3">申请取消</view>
         </view>
       </view>
-    </view>
-    <view class="flex list">
-      <view class="tit">1</view>
-      <view>
-        <image class="head_img" src="/images/home/banner.png"></image>
-      </view>
-      <view class="item">
-        <view class="flex mb_20">
-          <view class="item tit1">名字</view>
-          <view class="item tr tit2">03-22 14:15 </view>
-        </view>
-        <view class="flex mb_20">
-          <view class="item omit1 tit2">精品伦晚 +1</view>
-          <view class="item tr  tit3">申请取消</view>
-        </view>
-      </view>
-    </view>
+    </view> -->
   </view>
   <!-- 客服 -->
+  <view style="padding-top:20rpx;">
   <service></service>
+  </view>
   <!-- 底部按钮 -->
   <view class="footer flex bg_fff">
-    <view class="item">
+    <view class="item" bindtap="jump" data-page="order_management">
       <image src="/images/home/banner.png"></image>
       <view class="tit">订单管理</view>
     </view>

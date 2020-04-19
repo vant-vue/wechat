@@ -13,6 +13,7 @@ Page({
     pictureList: [],
     goodsList: [ //团购商品  团购接龙才有
       {
+        "sortId": 1, //排序
         "price": '', //商品价格  合买接龙的单份金额
         "stock": '', //商品库存 可空 空为不限   合买接龙的 合买份数
         "togoMoney": '', //合买金额  合买接龙存在合买金额
@@ -63,19 +64,19 @@ Page({
           formData: {
             dir: 'solitaire'
           },
-          success: function (res) {
+          success: function(res) {
             let result = JSON.parse(res.data);
             that.data.pictureList.push(result.args.path);
             if (that.data.pictureList.length == imgurl.length) {
               resolve(that.data.pictureList);
             }
           },
-          fail: function (res) {
+          fail: function(res) {
             wx.showModal({
               title: '错误提示',
               content: '上传图片失败',
               showCancel: false,
-              success: function (res) { }
+              success: function(res) {}
             });
             reject(res);
           }
@@ -133,7 +134,7 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
-    let goodsList = this.data.goodsList.map(item => {
+    this.data.goodsList.map(item => {
       if (!valid.check_positive(item.price)) {
         str = "请填写单份金额"
       }
@@ -143,9 +144,11 @@ Page({
       if (!valid.check_positive(item.togoMoney)) {
         str = "请填写合买金额"
       }
+      if (str) {
+        return;
+      }
       item.price = item.price * 100;
       item.togoMoney = item.togoMoney * 100;
-      return item;
     });
     if (!valid.check_mobile(this.data.params.callPhone)) {
       str = "请输入正确的电话"
@@ -174,10 +177,10 @@ Page({
           "startTime": this.data.params.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
           "endTime": this.data.params.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
           "logisticsType": this.data.params.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
-          "type": 1, //接龙类型   1，表示团购接龙  2，表示合买接龙
+          "type": this.data.params.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
           "getAddress": this.data.params.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
           "isCopy": this.data.params.isCopy, //是否允许复制  0表示不可复制  1表示可复制
-          "goodsList": goodsList,
+          "goodsList": this.data.goodsList,
           "mode": this.data.params.mode
         }
       }
@@ -190,7 +193,7 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           wx.switchTab({
-            url: '/pages/tabBar/index/index'
+            url: '/pages/tabBar/record/record'
           })
         }, 2000)
       }).catch(err => {
@@ -250,55 +253,55 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
 
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

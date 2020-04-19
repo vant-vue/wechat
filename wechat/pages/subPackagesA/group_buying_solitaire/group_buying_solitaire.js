@@ -34,7 +34,7 @@ Page({
       "type": 1, //接龙类型   1，表示团购接龙  2，表示合买接龙
       "logisticsType": '', //物流方式  1快递发货  2提货点自提  3没有物流
       "getAddress": "", //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
-      "isCopy": 0, //是否允许复制  0表示不可复制  1表示可复制
+      "isCopy": 1, //是否允许复制  0表示不可复制  1表示可复制
       'mode': "" //物流非必填字段 发布人自定义字段 逗号隔开  可空
     }
   },
@@ -139,7 +139,7 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
-    let goodsList = this.data.goodsList.map(item => {
+    this.data.goodsList.map(item => {
       if (!valid.check_required(item.goodsName)) {
         str = "请填写商品名称"
       }
@@ -149,8 +149,10 @@ Page({
       if (!valid.check_required(item.goodsImg)) {
         str = "请上传商品图片"
       }
+      if(str){
+        return;
+      }
       item.price = item.price * 100;
-      return item;
     });
     if (!valid.check_mobile(this.data.params.callPhone)) {
       str = "请输入正确的电话"
@@ -179,14 +181,15 @@ Page({
           "startTime": this.data.params.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
           "endTime": this.data.params.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
           "logisticsType": this.data.params.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
-          "type": 1, //接龙类型   1，表示团购接龙  2，表示合买接龙
+          "type": this.data.params.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
           "getAddress": this.data.params.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
           "isCopy": this.data.params.isCopy, //是否允许复制  0表示不可复制  1表示可复制
-          "goodsList": goodsList,
+          "goodsList": this.data.goodsList,
           "mode": this.data.params.mode
         }
       }
       console.log(params);
+      return;
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
         wx.showToast({
@@ -195,7 +198,7 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           wx.switchTab({
-            url: '/pages/tabBar/index/index'
+            url: '/pages/tabBar/record/record'
           })
         }, 2000)
       }).catch(err => {

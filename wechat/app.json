@@ -40,7 +40,6 @@
     {
       "root": "pages/subPackagesA",
       "pages": [
-        "login/login",
         "group_buying_solitaire/group_buying_solitaire",
         "chipped_solitaire/chipped_solitaire",
         "editDetails/editDetails",

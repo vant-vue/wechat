@@ -136,7 +136,7 @@
 
         <checkbox-group bindchange="onChange">
           <label>
-            <checkbox value="{{params.isCopy}}" class="cb" />
+            <checkbox value="{{params.isCopy}}" checked="true" class="cb" />
           </label>
         </checkbox-group>
       </view>

@@ -1,9 +1,9 @@
 <!--component/actionSheetRemark/actionSheetRemark.wxml-->
 <view class='dialog_bg' wx:if="{{show}}" bindtap="cancel" catchtouchmove="false"></view>
 <view class="popup follow-up {{show?'show':''}}">
-  <view class="title">修改备注</view>
+  <view class="title">备注</view>
   <view class="list_box">
-   <textarea class="text" placeholder="无货退款"/>
+    <textarea class="text" bindinput="listenerInputSimple" data-row="value" value="{{value}}" placeholder="请填写备注" />
   </view>
   <view class="btn_box">
     <view class="flex">
@@ -11,7 +11,7 @@
         <view class="close" bindtap="cancel">取消</view>
       </view>
       <view class="item">
-        <view class="ok">确定</view>
+        <view class="ok" bindtap="ok">确定</view>
       </view>
     </view>
   </view>

@@ -1,7 +1,7 @@
 /* pages/subPackagesB/order_management/order_management.wxss */
 
 page {
-  padding-bottom: 150rpx;
+  /* padding-bottom: 150rpx; */
 }
 
 .top_box {

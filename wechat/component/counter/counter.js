@@ -15,7 +15,7 @@ Component({
     },
     count: {
       type: Number,
-      value: 1
+      value: 0
     },
     errorMsg: {
       type: String,
@@ -31,7 +31,6 @@ Component({
         let _data = {};
         _data.count = count;
         if (this.data.code) _data.code = this.data.code;
-        console.log(_data);
         this.triggerEvent('callChangeCount', _data);
         this.setData({
           count: count
