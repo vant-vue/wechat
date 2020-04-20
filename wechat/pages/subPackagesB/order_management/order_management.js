@@ -22,7 +22,8 @@ Page({
     },
     orderManagerList: [],
     last: false,
-    statistics: {}
+    statistics: {},
+    isAll: false
   },
   toggle(e) {
     let tab = e.currentTarget.dataset.tab;
@@ -43,7 +44,7 @@ Page({
       isRemark: true
     });
     let remark = this.selectComponent('#remark');
-    remark.data.id = "";
+    remark.data.id = id;
   },
   // 复制
   copy(e) {
@@ -65,15 +66,46 @@ Page({
       }
     })
   },
+  // 修改状态
+  editStatus(id, status) {
+    let params = {
+      param: {
+        "orderIds": id, //订单ID集合
+        "solitaireId": this.data.param.solitaireId, //接龙ID
+        "status": status, //订单状态 -1取消 0进行中  1已完成
+      }
+    }
+    wx.showLoading({
+      title: '提交中',
+      mask: true
+    });
+
+    app.$API.editStatus(params).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: '修改成功'
+        });
+      } else {
+        wx.showToast({
+          title: '修改失败',
+          icon: 'none'
+        });
+      }
+      wx.hideLoading()
+    }).catch(() => {
+      wx.hideLoading()
+    })
+  },
   // 确定取货
   already_fun(e) {
+    let that = this;
     let id = e.currentTarget.dataset.id;
     wx.showModal({
       title: '提示',
       content: '确认订单已发货/取货吗？',
       success(res) {
         if (res.confirm) {
-          console.log('用户点击确定')
+          that.editStatus(id, 1);
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -135,8 +167,12 @@ Page({
     };
     wx.showLoading({
       title: '加载中',
+      mask: true
     });
     app.$API.orderManagerList(params).then(res => {
+      res.args.orderManagerList.forEach(item => {
+        item.checked = false;
+      })
       this.setData({
         orderManagerList: this.data.orderManagerList.concat(res.args.orderManagerList ? res.args.orderManagerList : [])
       });
@@ -145,10 +181,41 @@ Page({
       } else {
         this.data.last = false;
       }
+      console.log(this.data.orderManagerList);
       wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })
+  },
+  // 单选
+  one_checked(e) {
+    let index = e.currentTarget.dataset.index;
+    this.data.orderManagerList.forEach((item, i) => {
+      if (i == index) {
+        item.checked = !item.checked;
+      }
+    })
+    this.setData({
+      orderManagerList: this.data.orderManagerList
+    });
+  },
+  // 全选
+  all_checked(e) {
+    if (e.detail.value.length > 0) {
+      this.data.orderManagerList.forEach(item => {
+        item.checked = true;
+      })
+      this.setData({
+        orderManagerList: this.data.orderManagerList
+      });
+    } else {
+      this.data.orderManagerList.forEach(item => {
+        item.checked = false;
+      })
+      this.setData({
+        orderManagerList: this.data.orderManagerList
+      });
+    }
   },
   // 滚动加载
   scrollBottom: function(e) {
@@ -168,15 +235,98 @@ Page({
     }
     wx.showLoading({
       title: '提交中',
+      mask: true
     });
-    console.log(params);
     app.$API.editRemark(params).then(res => {
-      this.clear_filter();
-      this.get_list();
+      if (res.code == 200) {
+        this.clear_filter();
+        this.get_list();
+        wx.showToast({
+          title: '修改成功'
+        });
+      } else {
+        wx.showToast({
+          title: '修改失败',
+          icon:'none'
+        });
+      }
       wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })
+  },
+  // 批量修改备注
+  batch_remark() {
+    let idArr = [];
+    this.data.orderManagerList.forEach(item => {
+      if (item.checked) {
+        idArr.push(item.id);
+      }
+    });
+    if (idArr.length == 0) {
+      wx.showToast({
+        title: '请选择订单',
+        icon: 'none'
+      })
+      return
+    };
+    let id = idArr.join(',');
+    this.setData({
+      isRemark: true
+    });
+    let remark = this.selectComponent('#remark');
+    remark.data.id = id;
+  },
+  // 批量取货
+  batch_pick() {
+    let that = this;
+    let idArr = [];
+    this.data.orderManagerList.forEach(item => {
+      if (item.checked) {
+        idArr.push(item.id);
+      }
+    });
+    if (idArr.length == 0) {
+      wx.showToast({
+        title: '请选择订单',
+        icon: 'none'
+      })
+      return
+    };
+    let id = idArr.join(',');
+    wx.showModal({
+      title: '提示',
+      content: '确认订单批量已发货/取货吗？',
+      success(res) {
+        if (res.confirm) {
+          that.editStatus(id, 1);
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  // 批量修改备注
+  batch_remark() {
+    let idArr = [];
+    this.data.orderManagerList.forEach(item => {
+      if (item.checked) {
+        idArr.push(item.id);
+      }
+    });
+    if (idArr.length == 0) {
+      wx.showToast({
+        title: '请选择订单',
+        icon: 'none'
+      })
+      return
+    };
+    let id = idArr.join(',');
+    this.setData({
+      isRemark: true
+    });
+    let remark = this.selectComponent('#remark');
+    remark.data.id = id;
   },
   // 初始条件
   clear_filter() {
@@ -194,14 +344,14 @@ Page({
   //跳转
   jump(e) {
     let page = e.currentTarget.dataset.page;
-    let goodsid = e.currentTarget.dataset.goodsid;
+    let id = e.currentTarget.dataset.id;
     let url = '';
     switch (page) {
       case 'data_statistics':
         url = '/pages/subPackagesB/data_statistics/data_statistics?id=' + this.data.param.solitaireId;
         break;
       case 'order_details':
-        url = '/pages/subPackagesB/order_details/order_details?goodsid=' + goodsId + "&solitaireid=" + this.data.param.solitaireId;
+        url = '/pages/subPackagesB/order_details/order_details?id=' + id
         break;
     }
     if (url.match('tabBar')) {

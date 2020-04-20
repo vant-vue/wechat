@@ -50,6 +50,7 @@ Page({
       }
       wx.showLoading({
         title: '提交中',
+        mask: true
       })
       this.data.pictureList = [];
       let that = this;

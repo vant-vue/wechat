@@ -39,6 +39,7 @@ Page({
     }
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     app.$API.myOrder(params).then(res => {
       if (res.code == 200) {
@@ -70,7 +71,7 @@ Page({
     let url = '';
     switch (page) {
       case 'order_details':
-        url = '/pages/subPackagesC/order_details/order_details?id=' + id;
+        url = '/pages/subPackagesB/order_details/order_details?id=' + id;
         break;
     }
     if (url.match('tabBar')) {

@@ -29,6 +29,7 @@ Page({
     if (imgurl.length == 0) return;
     wx.showLoading({
       title: '上传中',
+      mask: true
     })
     return new Promise((resolve, reject) => {
       this.data.pictureList = [];

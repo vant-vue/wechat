@@ -62,12 +62,13 @@
     </view>
     <!-- 商品list -->
     <view class="list_box bg_fff" wx:for="{{orderManagerList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-      <view class="top flex" bindtap="jump" data-page="order_details" data-goodsid="" data-solitaireid="">
+    <!-- <view class="list_box bg_fff" wx:for="{{[1,2]}}" wx:for-item="item" wx:key="index" wx:for-index="index"> -->
+      <view class="top flex">
         <view wx:if="{{isBatch}}">
-          <checkbox class="cb"></checkbox>
+          <checkbox class="cb" bindtap="one_checked" data-index="{{index}}" checked="{{item.checked}}" />
         </view>
         <view class="it_1">
-          <text>1</text>
+          <text>{{index+1}}</text>
         </view>
         <view>
           <image class="head_img" src="{{item.userInfo.headerImg}}"></image>
@@ -75,13 +76,13 @@
         <view class="item">
           <text class="it_2">{{item.userInfo.nickName}}</text>
         </view>
-        <view class="it_3">
+        <view class="it_3" bindtap="jump" data-page="order_details" data-id="{{item.id}}">
           <text wx:if="{{item.status == 0}}" class="wait">待处理</text>
           <text wx:elif="{{item.status == 1}}" class="success">已完成</text>
           <text wx:elif="{{item.status == -1}}" class="close">已取消</text>
         </view>
         <view>
-          <text class='icon_right'></text>
+          <text class='icon_right' bindtap="jump" data-page="order_details" data-id="{{item.id}}"></text>
         </view>
       </view>
       <!-- 申请状态 -->
@@ -115,10 +116,10 @@
       </view>
       <!-- 按钮 -->
       <view class="btn_box flex">
-        <view class="item" bindtap="remark_fun" data-id="{{item.orderNo}}">
+        <view class="item" bindtap="remark_fun" data-id="{{item.id}}">
           <view class="btn1 tc">写备注</view>
         </view>
-        <view class="btn2 tc" bindtap="already_fun" data-id="{{item.orderNo}}">已发货/已取货</view>
+        <view wx:if="{{item.status == 0}}" class="btn2 tc" bindtap="already_fun" data-id="{{item.id}}">已发货/已取货</view>
       </view>
       <!-- 订单号 -->
       <view class="order_box flex">
@@ -196,13 +197,23 @@
     <!-- 底部批量 -->
     <view wx:if="{{isBatch}}" class="footer flex bg_fff">
       <view class="item">
-        <checkbox class="cb"></checkbox>
-        <text class="tit1">全选</text>
+        <!-- <checkbox class="cb"></checkbox>
+        <text class="tit1">全选</text> -->
+        <!-- <checkbox-group bindchange="all_checked">
+          <label class="checkbox" wx:for="{{allChecked}}">
+            <checkbox class="cb" value="{{item.name}}" checked="{{item.checked}}" />
+          </label>
+        </checkbox-group> -->
+        <checkbox-group bindchange="all_checked">
+          <label class="checkbox">
+            <checkbox class="cb" value="all" checked="{{isAll}}" />全选
+          </label>
+        </checkbox-group>
       </view>
       <view class="item">
-        <view class="tit2">批量写备注</view>
+        <view class="tit2" bindtap="batch_remark">批量写备注</view>
       </view>
-      <view class="retransmission" bindtap="show_popup_fun">批量发货/取货</view>
+      <view class="retransmission" bindtap="batch_pick">批量发货/取货</view>
     </view>
     <!-- 筛选弹窗 -->
     <actionSheetFilter show="{{isFilter}}" bind:ok="filter_ok"></actionSheetFilter>

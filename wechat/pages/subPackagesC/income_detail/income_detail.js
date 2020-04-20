@@ -48,6 +48,7 @@ Page({
     }
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     app.$API.dealRecord(params).then(res => {
       if (res.code == 200) {

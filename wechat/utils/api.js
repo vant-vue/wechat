@@ -72,6 +72,14 @@ const visitList = (params) => postAction("/solitaire/solitaire/api", params, {
 const goodsDetail = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "goodsDetail"
 });
+// 修改订单状态  （editStatus）
+const editStatus = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "editStatus"
+});
+// 微信退款（updateWxRefund）
+const updateWxRefund = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "updateWxRefund"
+});
 
 export default {
   getSessionKey,
@@ -92,5 +100,7 @@ export default {
   statistics,
   editRemark,
   visitList,
-  goodsDetail
+  goodsDetail,
+  editStatus,
+  updateWxRefund
 }
