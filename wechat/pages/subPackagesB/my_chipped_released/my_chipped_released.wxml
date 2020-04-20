@@ -9,9 +9,9 @@
       <view class="item">
         <view class="name">名称</view>
         <view>
-          <image class="img1" src="/images/home/tel.png"></image>
+          <image class="img1" src="/images/home/eye.png"></image>
           <text class="tit">15</text>
-          <image class="img1" src="/images/home/tel.png"></image>
+          <image class="img1" src="/images/home/deal.png"></image>
           <text class="tit">15</text>
         </view>
       </view>

@@ -10,9 +10,9 @@
       <view class="item">
         <view class="name">{{info.nickName}}</view>
         <view>
-          <image class="img1" src="/images/home/tel.png"></image>
+          <image class="img1" src="/images/home/eye.png"></image>
           <text class="tit">{{info.viewTimes}}</text>
-          <image class="img1" src="/images/home/tel.png"></image>
+          <image class="img1" src="/images/home/deal.png"></image>
           <text class="tit">{{info.forwardTimes}}</text>
         </view>
       </view>
@@ -162,11 +162,11 @@
   <!-- 底部按钮 -->
   <view class="footer flex bg_fff">
     <view class="item" bindtap="jump" data-page="order_management">
-      <image src="/images/home/banner.png"></image>
+      <image src="/images/home/order.png"></image>
       <view class="tit">订单管理</view>
     </view>
     <view class="item" bindtap="solitaire_fun">
-      <image src="/images/home/banner.png"></image>
+      <image src="/images/home/set.png"></image>
       <view class="tit">接龙设置</view>
     </view>
     <view class="retransmission" bindtap="show_popup_fun">转发</view>

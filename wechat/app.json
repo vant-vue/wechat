@@ -49,7 +49,7 @@
     {
       "root": "pages/subPackagesB",
       "pages": [
-        "released_group/released_group",
+        "released_group/released_group", 
         "participation_group/participation_group",
         "participation_details/participation_details",
         "participation_solitaire/participation_solitaire",
