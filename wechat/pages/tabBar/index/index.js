@@ -34,7 +34,14 @@ Page({
     }
   },
   bindGetUserInfo(e){
-    console.log(e);
+    wx.login({
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        app.getSessionKey({
+          code: res.code
+        });
+      }
+    })
   },
 
   /**
