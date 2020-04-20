@@ -9,7 +9,7 @@ export default {
   },
   check_mobile(input) //验证手机号码
   {
-    if ((/^1([138][0-9]|4[579]|5[0-3,5-9]|6[6]|7[0135678]|9[89])\d{8}$/.test(input))) {
+    if ((/^1[0-9]{10}$/.test(input)) || (/^([0-9]{3,4}-)?[0-9]{7,8}$/.test(input))) {
       return true;
     } else {
       return false;

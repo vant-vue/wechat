@@ -23,101 +23,152 @@
       </view>
     </view>
   </view>
-  <!-- 内容 -->
-  <view class="cont_box">
-    <view class="bg_fff view_b">
-      <view class="top">
-        <view class="tit1">{{solitaire.title}}</view>
-        <view class="flex">
-          <view class="item tit2">{{solitaire.insertTime}} 发布</view>
-          <view class="tit2"> {{solitaire.endTime}} 截止</view>
-        </view>
-        <!-- 产品详情 -->
-        <view>
-          <view class="tit3">{{solitaire.summary}}</view>
-          <!-- 轮播 -->
-          <view wx:if="{{banner_list.length>0}}">
-            <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
-              <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
-                <swiper-item>
-                  <image src="{{banner}}"></image>
-                </swiper-item>
-              </block>
-            </swiper>
-          </view>
-        </view>
-        <view class="shop_b">
+  <!-- 团购内容 -->
+  <view wx:if="{{solitaire.type == 1}}">
+    <view class="cont_box">
+      <view class="bg_fff view_b">
+        <view class="top">
+          <view class="tit1">{{solitaire.title}}</view>
           <view class="flex">
-            <view class="item" wx:if="{{logistics.logisticsType ==3 }}">配送方式：没有物流</view>
-            <view class="item" wx:elif="{{logistics.logisticsType ==1 }}">配送方式：快递发货</view>
-            <view class="item" wx:elif="{{logistics.logisticsType ==2 }}">配送方式：提货点自提</view>
-            <!-- <view>
+            <view class="item tit2">{{solitaire.insertTime}} 发布</view>
+            <view class="tit2"> {{solitaire.endTime}} 截止</view>
+          </view>
+          <!-- 产品详情 -->
+          <view>
+            <view class="tit3">{{solitaire.summary}}</view>
+            <!-- 轮播 -->
+            <view wx:if="{{banner_list.length>0}}">
+              <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
+                <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+                  <swiper-item>
+                    <image src="{{banner}}"></image>
+                  </swiper-item>
+                </block>
+              </swiper>
+            </view>
+          </view>
+          <view class="shop_b">
+            <view class="flex">
+              <view class="item" wx:if="{{logistics.logisticsType ==3 }}">配送方式：没有物流</view>
+              <view class="item" wx:elif="{{logistics.logisticsType ==1 }}">配送方式：快递发货</view>
+              <view class="item" wx:elif="{{logistics.logisticsType ==2 }}">配送方式：提货点自提</view>
+              <!-- <view>
               <image src="/images/record/book.png"></image>
             </view> -->
-          </view>
-          <view class="tel">
-            <view wx:if="{{logistics.phone}}">联系电话：{{logistics.phone}}</view>
-            <view wx:if="{{logistics.address}}">提货地址：{{logistics.address}}</view>
-          </view>
-        </view>
-      </view>
-      <!-- 商品 -->
-      <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
-        <view class="flex">
-          <view>
-            <image class="head_img" src="{{item.goodsImg}}"></image>
-          </view>
-          <view class="item">
-            <view class="flex">
-              <view class="item omit1 txt1">{{item.goodsName}}</view>
-              <view class="item tr txt2">已售{{item.sellTimes}}</view>
             </view>
-            <view class="txt3">{{item.specifications}}</view>
-            <view class="flex">
-              <view class="item">
-                <text class="txt4">￥{{filter.money(item.price)}}</text>
-                <text class="txt5">库存{{item.stock}}</text>
-              </view>
-              <view class="">
-                <shop-num code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
-              </view>
+            <view class="tel">
+              <view wx:if="{{logistics.phone}}">联系电话：{{logistics.phone}}</view>
+              <view wx:if="{{logistics.address}}">提货地址：{{logistics.address}}</view>
             </view>
           </view>
         </view>
-      </view>
-      <!-- <view class="bot">
-        <view class="flex">
-          <view>
-            <image class="head_img" src="/images/home/banner.png"></image>
-          </view>
-          <view class="item">
-            <view class="flex">
-              <view class="item omit1 txt1">精品伦晚</view>
-              <view class="item tr txt2">已售33</view>
+        <!-- 商品 -->
+        <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+          <view class="flex">
+            <view>
+              <image class="head_img" src="{{item.goodsImg}}"></image>
             </view>
-            <view class="txt3">5斤/箱</view>
-            <view class="flex">
-              <view class="item">
-                <text class="txt4">￥18.00</text>
-                <text class="txt5">库存10</text>
+            <view class="item">
+              <view class="flex">
+                <view class="item omit1 txt1">{{item.goodsName}}</view>
+                <view class="item tr txt2">已售{{item.sellTimes}}</view>
               </view>
-              <view class="">
-                <shop-num code="111236266" max="10" wx:if="{{false}}"></shop-num>
-                <text class="txt5">已结束</text>
+              <view class="txt3">{{item.specifications}}</view>
+              <view class="flex">
+                <view class="item">
+                  <text class="txt4">￥{{filter.money(item.price)}}</text>
+                  <text class="txt5">库存{{item.stock}}</text>
+                </view>
+                <view class="">
+                  <shop-num wx:if="{{item.stock>0}}" code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
+                  <text wx:else class="txt5">已结束</text>
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view> -->
+      </view>
+    </view>
+    <view class="denominated">
+      <text class="tit1">总共 {{shop_num}} 件 合计</text>
+      <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
+    </view>
+    <view class="btn_box">
+      <button wx:if="{{shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择商品</button>
+      <button wx:else bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与接龙</button>
     </view>
   </view>
-  <view class="denominated">
-    <text class="tit1">总共 {{shop_num}} 件 合计</text>
-    <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
-  </view>
-  <view class="btn_box">
-    <!-- <button class="close_btn" type="primary" style="width:100%">请选择商品</button> -->
-    <button class="active_btn" type="primary" style="width:100%">参与接龙</button>
+  <!-- 合买内容 -->
+  <view wx:elif="{{solitaire.type == 2}}">
+    <view class="cont_box">
+      <view class="bg_fff view_b">
+        <view class="top">
+          <view class="tit1">{{solitaire.title}}</view>
+          <view class="flex">
+            <view class="item tit2">{{solitaire.insertTime}} 发布</view>
+            <view class="tit2"> {{solitaire.endTime}} 截止</view>
+          </view>
+          <!-- 产品详情 -->
+          <view>
+            <view class="tit3">{{solitaire.summary}}</view>
+            <!-- 轮播 -->
+            <view>
+              <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
+                <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+                  <swiper-item>
+                    <image src="{{banner}}"></image>
+                  </swiper-item>
+                </block>
+              </swiper>
+            </view>
+            <view class="shop_b">
+              <view class="flex">
+                <view class="item" wx:if="{{logistics.logisticsType ==3 }}">配送方式：没有物流</view>
+                <view class="item" wx:elif="{{logistics.logisticsType ==1 }}">配送方式：快递发货</view>
+                <view class="item" wx:elif="{{logistics.logisticsType ==2 }}">配送方式：提货点自提</view>
+                <!-- <view>
+              <image src="/images/record/book.png"></image>
+            </view> -->
+              </view>
+              <view class="tel">
+                <view wx:if="{{logistics.phone}}">联系电话：{{logistics.phone}}</view>
+                <view wx:if="{{logistics.address}}">提货地址：{{logistics.address}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 商品 -->
+        <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+          <view class="flex">
+            <view class="item">
+              <view class="flex">
+                <view class="item omit1 txt1">合买金额{{filter.money(item.togoMoney)}}元</view>
+                <view class="item tr txt2">已售{{item.sellTimes}}</view>
+              </view>
+              <view class="txt3">共{{item.stock}}份</view>
+              <view class="flex">
+                <view class="item">
+                  <text class="txt4">￥{{filter.money(item.price)}}/份</text>
+                  <text class="txt5">剩余{{item.stock - item.sellTimes}}份</text>
+                </view>
+                <view class="">
+                  <shop-num wx:if="{{item.stock>0}}" code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
+                  <text wx:else class="txt5">已结束</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="denominated">
+      <text class="tit1">总共 {{shop_num}} 件 合计</text>
+      <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
+    </view>
+    <view class="btn_box">
+      <button wx:if="{{shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择份数</button>
+      <button wx:else class="active_btn" type="primary" style="width:100%">参与合买</button>
+    </view>
   </view>
   <!-- 接龙列表 -->
   <view class="list_box bg_fff" wx:if="{{solitaireList.length>0}}">
@@ -157,10 +208,10 @@
   </view>
   <!-- 客服 -->
   <view style="padding-top:20rpx;">
-  <service></service>
+    <service></service>
   </view>
   <!-- 底部按钮 -->
-  <view class="footer flex bg_fff">
+  <view class="footer flex bg_fff" wx:if="{{isMine}}">
     <view class="item" bindtap="jump" data-page="order_management">
       <image src="/images/home/order.png"></image>
       <view class="tit">订单管理</view>
@@ -170,6 +221,21 @@
       <view class="tit">接龙设置</view>
     </view>
     <view class="retransmission" bindtap="show_popup_fun">转发</view>
+  </view>
+  <!-- 底部按钮2 -->
+  <view class="footer2 flex bg_fff" wx:elif="{{!isMine}}">
+    <view class="item">
+      <image src="/images/record/add.png"></image>
+      <text class="tit">发个接龙</text>
+    </view>
+    <view class="item line">
+      <image src="/images/home/复制.png"></image>
+      <text class="tit"> 复制接龙</text>
+    </view>
+    <view class="item retransmission" bindtap="show_popup_fun">
+      <image src="/images/record/right.png"></image>
+      <text class="tit10">转发接龙</text>
+    </view>
   </view>
   <!-- 转发成功弹出层 -->
   <transmit show_popup="{{show_popup}}">

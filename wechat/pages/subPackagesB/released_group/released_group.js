@@ -10,32 +10,38 @@ Page({
     banner_list: [],
     show_popup: false,
     param: {
-      "pageNo": 1,  //页数
+      "pageNo": 1, //页数
       "pageSize": 10, //单页记录数
-      "solitaireId": '',  //接龙主键
+      "solitaireId": '', //接龙主键
     },
-    solitaireList:[],
+    solitaireList: [],
     solitaire: {},
     logistics: {},
     goodsList: [],
     info: {},
     isMine: '',
     shop_num: 0,
-    shop_price:0
+    shop_price: 0
   },
   // 计算
-  callChangeCount(e){
-    console.log(e.detail);
-    this.data.goodsList.forEach(item=>{
-      console.log(item);
-      if (e.detail.code = item.id){
-        this.setData({
-          shop_num: 0,
-          shop_price: 0
-        })
-        item.price = item.price
+  callChangeCount(e) {
+    let obj = JSON.parse(JSON.stringify(e.detail));
+    let all_num = 0,
+      all_price = 0;
+    this.data.goodsList.forEach(item => {
+      if (obj.code == item.id) {
+        item.num = obj.count;
+      }
+      if (item.num > 0) {
+        all_num += item.num;
+        all_price += item.num * item.price
       }
     });
+    this.setData({
+      shop_num: all_num,
+      shop_price: all_price,
+      goodsList: this.data.goodsList
+    })
   },
   // 获取详情
   get_details(id) {
@@ -51,7 +57,7 @@ Page({
         goodsList: res.args.goodsList,
         info: res.args.info,
         isMine: res.args.isMine,
-        banner_list: res.args.solitaire.img?res.args.solitaire.img.split(';'):[]
+        banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
       })
     })
   },
@@ -59,9 +65,9 @@ Page({
   get_list() {
     let params = {
       param: {
-        "pageNo": 1,  //页数
+        "pageNo": 1, //页数
         "pageSize": 10, //单页记录数
-        "solitaireId": this.data.param.solitaireId,  //接龙主键
+        "solitaireId": this.data.solitaireId, //接龙主键
       }
     }
     app.$API.solitaireList(params).then(res => {
@@ -140,6 +146,7 @@ Page({
   //跳转
   jump(e) {
     let page = e.currentTarget.dataset.page;
+    let list = e.currentTarget.dataset.list;
     let url = '';
     switch (page) {
       case 'order_management':
@@ -147,6 +154,9 @@ Page({
         break;
       case 'withdraw_deposit':
         url = '/pages/subPackagesC/withdraw_deposit/withdraw_deposit';
+        break;
+      case 'participation_solitaire':
+        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId;
         break;
     }
     if (url.match('tabBar')) {
@@ -159,7 +169,7 @@ Page({
       })
     }
   },
-  
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

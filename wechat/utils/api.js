@@ -80,6 +80,10 @@ const editStatus = (params) => postAction("/solitaire/solitaire/api", params, {
 const updateWxRefund = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "updateWxRefund"
 });
+// 微信支付  （wxPay）
+const wxPay = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "wxPay"
+});
 
 export default {
   getSessionKey,
@@ -102,5 +106,6 @@ export default {
   visitList,
   goodsDetail,
   editStatus,
-  updateWxRefund
+  updateWxRefund,
+  wxPay
 }

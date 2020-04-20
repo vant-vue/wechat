@@ -11,7 +11,7 @@
   <view class="record_box">
     <!-- 列表 -->
     <view class="list bg_fff mt20" wx:for="{{list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-      <view bindtap="jump" data-type="{{item.type}}" data-id="{{item.id}}">
+      <view bindtap="jump" data-page="released" data-id="{{item.solitaireId}}">
         <view class="flex">
           <view class="item omit1 tit1">{{item.title}}</view>
           <view class="item tr">
@@ -20,14 +20,14 @@
           </view>
         </view>
         <view class="flex bot_box">
-          <view class="item tit2">{{item.nick_name}} {{item.insert_time}}</view>
+          <view class="item tit2">{{item.nickName}} {{item.insertTime}}</view>
           <view class="span_a">
             <image src="/images/home/eye.png"></image>
-            <text class="tit2">{{item.view_times?item.view_times:0}}</text>
+            <text class="tit2">{{item.viewTimes?item.viewTimes:0}}</text>
           </view>
           <view class="span_a">
             <image src="/images/home/deal.png"></image>
-            <text class="tit2">{{item.forward_times?item.forward_times:0}}</text>
+            <text class="tit2">{{item.forwardTimes?item.forwardTimes:0}}</text>
           </view>
         </view>
       </view>

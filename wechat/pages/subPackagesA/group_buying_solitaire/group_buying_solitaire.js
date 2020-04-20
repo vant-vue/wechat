@@ -120,7 +120,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let str = `goodsList[${index}].${row}`;
     this.setData({
-      [str]: value
+      [str]: value.replace(/,/g, "")
     });
   },
   //监听input 普通输入框
@@ -128,7 +128,7 @@ Page({
     let value = e.detail.value || '';
     let row = e.currentTarget.dataset.row;
     this.setData({
-      [row]: value
+      [row]: value.replace(/,/g, "")
     });
   },
   check() {

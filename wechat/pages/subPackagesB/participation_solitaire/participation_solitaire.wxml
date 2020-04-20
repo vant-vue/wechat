@@ -1,6 +1,7 @@
 <!--pages/subPackagesB/participation_solitaire/participation_solitaire.wxml-->
+<wxs src="../../../utils/filter.wxs" module="filter" />
 <view class="shop_box bg_fff">
-  <view class="flex" bindtap="jump" data-page="logistics_mode">
+  <view class="flex" bindtap="get_wx_address" wx:if="{{logistics.logisticsType == 1}}">
     <view class="tit1">收货地址</view>
     <view class="item tr">
       <text class="tit2 mr20">请选择</text>
@@ -9,31 +10,33 @@
       <text class='icon_right'></text>
     </view>
   </view>
-  <view class="flex">
-    <view class="tit1">联系电话</view>
-    <view class="item">
-      <input placeholder="请输入联系电话"></input>
+  <view wx:else>
+    <view class="flex">
+      <view class="tit1">联系电话</view>
+      <view class="item">
+        <input bindinput='listenerInputSimple' data-row="telNumber" value="{{telNumber}}" placeholder="请输入联系电话"></input>
+      </view>
     </view>
-  </view>
-  <view class="flex">
-    <view class="tit1">其它填写项</view>
-    <view class="item">
-      <input placeholder="请输入"></input>
+    <view class="flex" wx:for="{{modeList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+      <view class="tit1">{{item.name}}</view>
+      <view class="item">
+        <input type="text" bindinput='listenerInput' data-row="value" data-index="{{index}}" value="{{item.value}}" placeholder="请输入"></input>
+      </view>
     </view>
   </view>
 </view>
 <view class="t_box">已选商品</view>
 <view class="s_box bg_fff">
-  <view class="flex" wx:for="{{[1,2]}}" wx:item="item" wx:key="item">
+  <view class="flex" wx:for="{{list}}" wx:for-item="item" wx:key="key" wx:for-index="index">
     <view class="item">
-      <view class="t1">精品伦晚</view>
-      <view class="t2">￥18.00/件</view>
+      <view class="t1">{{item.goodsName}}</view>
+      <view class="t2">￥{{filter.money(item.price)}}/{{item.specifications}}</view>
     </view>
-    <view class="t1">+2</view>
+    <view class="t1">+{{item.num}}</view>
   </view>
   <view class="tr fb count">
-    <text>总共 2 件 合计 </text>
-    <text class="f00"> ￥36.00</text>
+    <text>总共 {{shop_num}} 件 合计 </text>
+    <text class="f00"> ￥{{filter.money(shop_price)}}</text>
   </view>
 </view>
 <view class="t_box">隐私设置</view>
@@ -44,10 +47,10 @@
       <text class="tit1">匿名参与</text>
     </view>
     <view>
-      <checkbox class="cb"></checkbox>
+      <checkbox class="cb" bindtap="check_change" checked="{{isAnonymous}}"></checkbox>
     </view>
   </view>
 </view>
 <view class="footer">
-  <view class="btn">发布</view>
+  <view class="btn" bindtap="wxPay">支付</view>
 </view>

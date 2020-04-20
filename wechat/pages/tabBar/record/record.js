@@ -48,7 +48,7 @@ Page({
           list: this.data.list.concat(res.args.joinList)
         })
       }
-      if (res.args.pubList.length < 10 || res.args.joinList.length<10) {
+      if (res.args.pubList.length < 10 || res.args.joinList.length < 10) {
         this.data.last = true;
       } else {
         this.data.last = false;
@@ -68,30 +68,33 @@ Page({
   },
   //跳转
   jump(e) {
-    let page;
+    let page = e.currentTarget.dataset.page;
     let type = e.currentTarget.dataset.type;
     let id = e.currentTarget.dataset.id;
     let url = '';
-    if (this.data.tab == 1) {
-      page = "group"
-    } else if (this.data.tab == 2) {
-      page = "join"
-    }
+    // if (this.data.tab == 1) {
+    //   page = "group"
+    // } else if (this.data.tab == 2) {
+    //   page = "join"
+    // }
     switch (page) {
-      case 'group':
-        if (type == 1) {
-          url = '/pages/subPackagesB/released_group/released_group?id=' + id;
-        } else if (type == 2) {
-          url = '/pages/subPackagesB/my_chipped_released/my_chipped_released?id=' + id;
-        }
-        break;
-      case 'join':
-        if (type == 1) {
-          url = '/pages/subPackagesB/participation_group/participation_group?id=' + id;
-        } else if (type == 2) {
-          url = '/pages/subPackagesB/my_chipped_participation/my_chipped_participation?id=' + id;
-        }
-        break;
+      case 'released':
+        url = '/pages/subPackagesB/released_group/released_group?id=' + id;
+          break;
+        // case 'group':
+        //   if (type == 1) {
+        //     url = '/pages/subPackagesB/released_group/released_group?id=' + id;
+        //   } else if (type == 2) {
+        //     url = '/pages/subPackagesB/my_chipped_released/my_chipped_released?id=' + id;
+        //   }
+        //   break;
+        // case 'join':
+        //   if (type == 1) {
+        //     url = '/pages/subPackagesB/participation_group/participation_group?id=' + id;
+        //   } else if (type == 2) {
+        //     url = '/pages/subPackagesB/my_chipped_participation/my_chipped_participation?id=' + id;
+        //   }
+        //   break;
     }
     if (url.match('tabBar')) {
       wx.switchTab({
