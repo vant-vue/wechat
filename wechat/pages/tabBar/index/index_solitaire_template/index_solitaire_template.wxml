@@ -15,7 +15,7 @@
       <view class="item">
         <view class="flex box" bindtap="jump" data-page="chipped">
           <view>
-            <image src="/images/home/shop.png"></image>
+            <image src="/images/home/togo.png"></image>
           </view>
           <view class="item">
             <view class="tit1">+合买接龙</view>

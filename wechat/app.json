@@ -12,26 +12,26 @@
   },
   "tabBar": {
     "color": "#83838B",
-    "selectedColor": "#F54949",
+    "selectedColor": "#2BA245",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/tabBar/index/index",
         "iconPath": "images/footer/home.png",
-        "selectedIconPath": "images/footer/home.png",
+        "selectedIconPath": "images/footer/homeIcon.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/tabBar/record/record",
-        "iconPath": "images/footer/home.png",
-        "selectedIconPath": "images/footer/home.png",
+        "iconPath": "images/footer/record.png",
+        "selectedIconPath": "images/footer/recordIcon.png",
         "text": "记录"
       },
       {
         "pagePath": "pages/tabBar/center/center",
-        "iconPath": "images/footer/home.png",
-        "selectedIconPath": "images/footer/home.png",
+        "iconPath": "images/footer/mine.png",
+        "selectedIconPath": "images/footer/mineIcon.png",
         "text": "我的"
       }
     ]

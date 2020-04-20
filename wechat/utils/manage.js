@@ -5,6 +5,7 @@ export function postAction(url, parameter, paramsMethod) {
   if (paramsMethod) {
     parameter = Object.assign(parameter, paramsMethod);
   }
+
   return new Promise((resolve, reject) => {
     request({
       url: url,
