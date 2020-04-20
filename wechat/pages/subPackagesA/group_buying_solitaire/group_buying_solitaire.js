@@ -188,8 +188,6 @@ Page({
           "mode": this.data.params.mode
         }
       }
-      console.log(params);
-      return;
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
         wx.showToast({
