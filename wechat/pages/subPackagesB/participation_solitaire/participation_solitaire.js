@@ -25,7 +25,16 @@ Page({
     // console.log(JSON.parse(options.list));
     // console.log(JSON.parse(options.logistics));
     let logistics = JSON.parse(options.logistics);
-    let list = JSON.parse(options.list);
+    let list = JSON.parse(options.list).map(item=>{
+      return {
+        "goodsName": item.goodsName,
+        "goodsId": item.id,//商品ID
+        "buyCount": item.num,//购买数量
+        "money": item.price,//单类总金额 
+        "sortId": item.sortId,//排序   
+        "specifications": item.specifications//排序   
+      }
+    });
     let modeList = [];
     if (logistics.otherMode) {
       let arr = logistics.otherMode.split(',');

@@ -30,9 +30,9 @@
   <view class="flex" wx:for="{{list}}" wx:for-item="item" wx:key="key" wx:for-index="index">
     <view class="item">
       <view class="t1">{{item.goodsName}}</view>
-      <view class="t2">￥{{filter.money(item.price)}}/{{item.specifications}}</view>
+      <view class="t2">￥{{filter.money(item.money)}}/{{item.specifications}}</view>
     </view>
-    <view class="t1">+{{item.num}}</view>
+    <view class="t1">+{{item.buyCount}}</view>
   </view>
   <view class="tr fb count">
     <text>总共 {{shop_num}} 件 合计 </text>
