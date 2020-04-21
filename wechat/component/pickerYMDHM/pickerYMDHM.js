@@ -97,6 +97,12 @@ Component({
       });
     },
   },
+  observers: { //观察者：属性监听
+    //单个监听
+    'defaultTime' (defaultTime) {
+      this._onInit();
+    }
+  },
   // 以下是旧式的定义方式，可以保持对 <2.2.3 版本基础库的兼容
   attached() {
     // 在组件实例进入页面节点树时执行

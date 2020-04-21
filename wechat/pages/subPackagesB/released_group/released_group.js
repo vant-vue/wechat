@@ -100,11 +100,11 @@ Page({
           console.log(_this.data.solitaire.type);
           if (_this.data.solitaire.type == 1){
             wx.navigateTo({
-              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?id=" + _this.data.solitaireId
+              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
             })
           } else if (_this.data.solitaire.type == 2) {
             wx.navigateTo({
-              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?id" + _this.data.solitaireId
+              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
             })
           }
          

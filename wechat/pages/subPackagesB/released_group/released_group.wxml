@@ -81,7 +81,7 @@
                 </view>
                 <view class="">
                   <shop-num wx:if="{{item.stock>0}}" code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
-                  <text wx:if="{{item.stock==0}}" class="txt5">已结束</text>
+                  <text wx:elif="{{item.stock==0}}" class="txt5">已结束</text>
                   <text wx:else class="txt5">不限</text>
                 </view>
               </view>
@@ -154,7 +154,7 @@
                 </view>
                 <view class="">
                   <shop-num wx:if="{{item.stock>0}}" code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock}}"></shop-num>
-                  <text wx:if="{{item.stock==0}}" class="txt5">已结束</text>
+                  <text wx:elif="{{item.stock==0}}" class="txt5">已结束</text>
                   <text wx:else class="txt5">不限</text>
                 </view>
               </view>

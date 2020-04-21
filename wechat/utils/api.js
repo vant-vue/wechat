@@ -88,6 +88,10 @@ const wxPay = (params) => postAction("/solitaire/solitaire/api", params, {
 const selectSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "selectSolitaire"
 });
+// 修改接龙 （editSolitaire））
+const editSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "editSolitaire"
+});
 
 export default {
   getSessionKey,
@@ -112,5 +116,6 @@ export default {
   editStatus,
   updateWxRefund,
   wxPay,
-  selectSolitaire
+  selectSolitaire,
+  editSolitaire
 }

@@ -9,6 +9,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    is_edit: 0, //0-发布，1-编辑
+    solitaireId: '', //编辑复制用到
+    uploadList: [], //编辑复制用到
+    imgList: [],
     uploadList: [],
     pictureList: [],
     goodsList: [ //团购商品  团购接龙才有
@@ -29,7 +33,7 @@ Page({
       "type": 2, //接龙类型   1，表示团购接龙  2，表示合买接龙
       "logisticsType": '', //物流方式  1快递发货  2提货点自提  3没有物流
       "getAddress": "", //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
-      "isCopy": 0, //是否允许复制  0表示不可复制  1表示可复制
+      "isCopy": false, //是否允许复制  0表示不可复制  1表示可复制
       'mode': "" //物流非必填字段 发布人自定义字段 逗号隔开  可空
     }
   },
@@ -57,6 +61,14 @@ Page({
         header.Authorization = token;
       };
       for (let i = 0; i < imgurl.length; i++) {
+        if (imgurl[i].indexOf(config.download_path) > -1) {
+          console.log('进来了：', imgurl[i]);
+          that.data.pictureList.push(imgurl[i]);
+          if (that.data.pictureList.length == imgurl.length) {
+            resolve(that.data.pictureList);
+          }
+          continue;
+        }
         wx.uploadFile({
           url: config.api_url + "/solitaire/uploadFiles/uploadImg",
           filePath: imgurl[i],
@@ -180,7 +192,7 @@ Page({
           "logisticsType": this.data.params.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
           "type": this.data.params.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
           "getAddress": this.data.params.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
-          "isCopy": this.data.params.isCopy, //是否允许复制  0表示不可复制  1表示可复制
+          "isCopy": this.data.params.isCopy ? 1 : 0, //是否允许复制  0表示不可复制  1表示可复制
           "goodsList": this.data.goodsList,
           "mode": this.data.params.mode
         }
@@ -245,17 +257,148 @@ Page({
   },
   // check框
   onChange(e) {
-    if (e.detail.value.length > 0 && e.detail.value == 0) {
-      this.data.params.isCopy = 1;
-    } else {
-      this.data.params.isCopy = 0;
-    }
+    this.setData({
+      "params.isCopy": !this.data.params.isCopy
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(options);
+    if (options.id) {
+      this.data.solitaireId = options.id;
+      this.selectSolitaire();
+    }
+    if (options.is_edit) {
+      this.setData({
+        is_edit: options.is_edit
+      })
+    }
+  },
+  // 查询接龙-用于复制接龙或者编辑接龙  （selectSolitaire）
+  selectSolitaire() {
+    let params = {
+      param: {
+        solitaireId: this.data.solitaireId
+      }
+    }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    app.$API.selectSolitaire(params).then(res => {
+      console.log(res);
+      let solitaire = res.args.solitaire;
+      let goodsList = res.args.goodsList;
+      let logisticsMode = res.args.logisticsMode;
+      let logisticsTypeName = '';
+      if (solitaire.logisticsType == 1) {
+        logisticsTypeName = '快递发货';
+      } else if (solitaire.logisticsType == 2) {
+        logisticsTypeName = '提货点自提';
+      } else if (solitaire.logisticsType == 3) {
+        logisticsTypeName = '没有物流';
+      }
+      this.setData({
+        goodsList: goodsList,
+        imgList: solitaire.img ? solitaire.img.split(";") : [],
+        params: {
+          "title": solitaire.title,
+          "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍
+          "img": solitaire.img, //图片介绍 最多上传9张 每张分号隔开
+          "callPhone": solitaire.callPhone, //发布者联系电话 
+          "startTime": solitaire.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
+          "endTime": solitaire.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
+          "logisticsType": solitaire.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
+          "logisticsTypeName": logisticsTypeName, //物流名称
+          "type": solitaire.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
+          "getAddress": solitaire.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+          "isCopy": solitaire.isCopy, //是否允许复制  0表示不可复制  1表示可复制
+          "mode": logisticsMode,
+        }
+      });
+      console.log(this.data.params);
 
+
+      wx.hideLoading()
+    }).catch(err => {
+      wx.hideLoading()
+    })
+  },
+  // 编辑
+  edit() {
+    let str = '';
+    if (!valid.check_required(this.data.params.title)) {
+      str = "请填写标题"
+    }
+    this.data.goodsList.map(item => {
+      if (!valid.check_positive(item.price)) {
+        str = "请填写单份金额"
+      }
+      if (!valid.check_positive(item.stock)) {
+        str = "请填写可售份数"
+      }
+      if (!valid.check_positive(item.togoMoney)) {
+        str = "请填写合买金额"
+      }
+      if (str) {
+        return;
+      }
+      item.price = item.price * 100;
+      item.togoMoney = item.togoMoney * 100;
+    });
+    if (!valid.check_mobile(this.data.params.callPhone)) {
+      str = "请输入正确的电话"
+    }
+    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
+      str = "请输入大于0的库存"
+    }
+    if (!valid.check_required(this.data.params.logisticsType)) {
+      str = "请选择物流"
+    }
+    if (str) {
+      wx.showToast({
+        title: str,
+        icon: 'none'
+      })
+      return;
+    }
+
+    this.uploadImg(this.data.uploadList).then(res => {
+      let params = {
+        param: {
+          "solitaireId": this.data.solitaireId,
+          "title": this.data.params.title,
+          "summary": this.data.params.summary, //限制字数在1000字以内 接龙介绍
+          "img": res.join(";"), //图片介绍 最多上传9张 每张分号隔开
+          "callPhone": this.data.params.callPhone, //发布者联系电话 
+          "startTime": this.data.params.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
+          "endTime": this.data.params.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
+          "logisticsType": this.data.params.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
+          "type": this.data.params.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
+          "getAddress": this.data.params.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+          "isCopy": this.data.params.isCopy ? 1 : 0, //是否允许复制  0表示不可复制  1表示可复制
+          "goodsList": this.data.goodsList,
+          "mode": this.data.params.mode
+        }
+      }
+      // console.log(params);
+      // wx.hideLoading()
+      app.$API.editSolitaire(params).then(res => {
+        wx.showToast({
+          title: '修改成功'
+        });
+        let setTime;
+        setTime = setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/tabBar/record/record'
+          })
+        }, 2000)
+      }).catch(err => {
+        wx.hideLoading()
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

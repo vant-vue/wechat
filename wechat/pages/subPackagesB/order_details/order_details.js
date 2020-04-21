@@ -217,7 +217,7 @@ Page({
       })
       return;
     }
-    if (this.data.refundMoney > this.data.order.payMoney) {
+    if (this.data.refundMoney > this.data.order.payMoney / 100) {
       wx.showToast({
         title: '退款金额应小于支付金额',
         icon: 'none'
@@ -237,7 +237,7 @@ Page({
       content: '确认退款给客户吗？',
       success(res) {
         if (res.confirm) {
-          that.updateWxRefund(that.data.order.id, that.data.refundMoney);
+          that.updateWxRefund(that.data.order.id, that.data.refundMoney * 100);
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

@@ -14,7 +14,7 @@
   <view class="bg box">
     <!-- <view class="tit2">请输入本次合买介绍并添加实票照片</view> -->
     <textarea maxlength="1000" bindinput='listenerInputSimple' data-row="params.summary" value='{{params.summary}}' class="textareatext" placeholder="请输入本次合买介绍并添加实票照片" />
-    <upload-img bind:upload="get_img_list" defaultNum="9"></upload-img>
+    <upload-img bind:upload="get_img_list" defaultNum="9" imgList="{{imgList}}"></upload-img>
   </view>
   <!-- 合买金额 -->
   <view class="shop_box" wx:for="{{goodsList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
@@ -104,12 +104,13 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="number" bindinput='listenerInputSimple' data-row="params.callPhone" data-index="{{index}}" maxlength="20" placeholder="请输入客服电话"></input>
+        <input type="number" bindinput='listenerInputSimple' data-row="params.callPhone" value="{{params.callPhone}}" data-index="{{index}}" maxlength="20" placeholder="请输入客服电话"></input>
       </view>
     </view>
   </view>
   <!-- 按钮 -->
   <view class="btn">
-    <button type="primary" style="width:100%" bindtap="submit">发布</button>
+    <button wx:if="{{is_edit == 1}}" type="primary" style="width:100%" bindtap="edit">发布</button>
+    <button wx:if="{{is_edit == 0}}" type="primary" style="width:100%" bindtap="submit">发布</button>
   </view>
 </view>
