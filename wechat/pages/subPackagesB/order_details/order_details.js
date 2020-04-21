@@ -13,7 +13,8 @@ Page({
     logistics: {},
     userInfo: {},
     isMine: null,
-    callPhone: ''
+    callPhone: '',
+    refundMoney: null //退款金额
   },
 
   /**
@@ -56,6 +57,14 @@ Page({
     }).catch(err => {
       wx.hideLoading()
     })
+  },
+  //监听input 商品
+  listenerInput(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    this.setData({
+      [row]: value.replace(/,/g, "")
+    });
   },
   remark_fun(e) {
     let id = this.data.order.id;
@@ -110,23 +119,23 @@ Page({
   editStatus(id, status) {
     let params = {
       param: {
-        "orderIds": id,  //订单ID集合
+        "orderIds": id, //订单ID集合
         "solitaireId": this.data.order.solitaireId, //接龙ID
-        "status": status,//订单状态 -1取消 0进行中  1已完成
+        "status": status, //订单状态 -1取消 0进行中  1已完成
       }
     }
     wx.showLoading({
       title: '提交中',
-      mask:true
+      mask: true
     });
 
     app.$API.editStatus(params).then(res => {
-      if(res.code == 200){
+      if (res.code == 200) {
         this.get_details();
         wx.showToast({
           title: '修改成功'
         });
-      }else{
+      } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none'
@@ -169,12 +178,12 @@ Page({
     })
   },
   // 微信退款（updateWxRefund）
-  updateWxRefund(id,refundMoney){
+  updateWxRefund(id, refundMoney) {
     let params = {
       param: {
         "orderId": id, //退款订单ID
-        "solitaireId": this.data.order.solitaireId,//接龙ID
-        "refundMoney": refundMoney//退款金额 单位分  前端做最大不能超过（订单金额 - 已退款金额）的判定
+        "solitaireId": this.data.order.solitaireId, //接龙ID
+        "refundMoney": refundMoney //退款金额 单位分  前端做最大不能超过（订单金额 - 已退款金额）的判定
       }
     }
     wx.showLoading({
@@ -186,6 +195,7 @@ Page({
         wx.showToast({
           title: '退款成功'
         });
+        this.get_details();
       } else {
         wx.showToast({
           title: '退款失败',
@@ -199,14 +209,35 @@ Page({
   },
   // 退款popup
   refund_fun(e) {
-    let refundMoney = e.currentTarget.dataset.refundMoney;
+    console.log(this.data.refundMoney)
+    if (!this.data.refundMoney) {
+      wx.showToast({
+        title: '请输入退款金额',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.refundMoney > this.data.order.payMoney) {
+      wx.showToast({
+        title: '退款金额应小于支付金额',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.refundMoney < 0) {
+      wx.showToast({
+        title: '退款金额应大于0',
+        icon: 'none'
+      })
+      return;
+    }
     let that = this;
     wx.showModal({
       title: '提示',
       content: '确认退款给客户吗？',
       success(res) {
         if (res.confirm) {
-          that.updateWxRefund(that.data.order.id, refundMoney);
+          that.updateWxRefund(that.data.order.id, that.data.refundMoney);
         } else if (res.cancel) {
           console.log('用户点击取消')
         }

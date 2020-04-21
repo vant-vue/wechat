@@ -50,7 +50,7 @@
     </view> -->
     <view class="tr ">
       <text class="fb ">总共 {{order.goodsCount}} 件 合计 </text>
-      <text class="fb f00 "> ￥{{order.payMoney}}</text>
+      <text class="fb f00 "> ￥{{filter.money(order.payMoney)}}</text>
     </view>
   </view>
 </view>
@@ -83,17 +83,20 @@
   </view>
 </view>
 <!-- 商家退款 -->
-<view class="details_box bg_fff" wx:if="{{refundList.length>0}}">
+<view class="details_box bg_fff">
   <view class="title ">
     <text>商家退款</text>
   </view>
-  <view class="content" wx:for="{{refundList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-    <view class="mb20 ">买家已支付 ￥{{filter.money(order.payMoney-item.refundMoney)}}</view>
+  <view class="content">
+    <view class="mb20 ">买家已支付 ￥{{filter.money(order.payMoney)}}</view>
     <view class="flex refund">
       <view class="item ">
-        <view class="money ccc">可退款金额 {{filter.money(item.refundMoney)}}</view>
+        <!-- <view class="money ccc">可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}</view> -->
+        <view class="item">
+          <input type="digit" class="money"  bindinput='listenerInput' data-row="refundMoney" data-index="{{index}}" value="{{refundMoney}}" placeholder="可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}"></input>
+        </view>
       </view>
-      <view class="refund_btn" bindtap="refund_fun" data-money="{{item.refundMoney}}">退款</view>
+      <view class="refund_btn" bindtap="refund_fun">退款</view>
     </view>
     <view class="mb20 ccc">全额退款不收手续费</view>
   </view>
