@@ -119,7 +119,7 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="number" bindinput='listenerInputSimple' data-row="params.callPhone" data-index="{{index}}" maxlength="20" placeholder="请输入客服电话"></input>
+        <input type="number" bindinput='listenerInputSimple' data-row="params.callPhone" data-index="{{index}}" value="{{params.callPhone}}" maxlength="20" placeholder="请输入客服电话"></input>
       </view>
     </view>
   </view>
@@ -134,11 +134,11 @@
       </view>
       <view>
 
-        <checkbox-group bindchange="onChange">
-          <label>
-            <checkbox value="{{params.isCopy}}" checked="{{true}}" class="cb" />
-          </label>
-        </checkbox-group>
+        <!-- <checkbox-group>
+          <label> -->
+        <checkbox bindtap="onChange" checked="{{params.isCopy}}" class="cb" />
+        <!-- </label>
+        </checkbox-group> -->
       </view>
     </view>
   </view>

@@ -92,14 +92,22 @@ Page({
   },
   // 接龙设置
   solitaire_fun() {
+    let _this = this;
     wx.showActionSheet({
       itemList: ['编辑接龙内容', '暂停接龙', '恢复接龙', '删除接龙'],
       success(res) {
-        console.log(res.tapIndex)
         if (res.tapIndex == 0) {
-          wx.navigateTo({
-            url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire"
-          })
+          console.log(_this.data.solitaire.type);
+          if (_this.data.solitaire.type == 1){
+            wx.navigateTo({
+              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?id=" + _this.data.solitaireId
+            })
+          } else if (_this.data.solitaire.type == 2) {
+            wx.navigateTo({
+              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?id" + _this.data.solitaireId
+            })
+          }
+         
         } else if (res.tapIndex == 1) {
           wx.showModal({
             title: '提示',

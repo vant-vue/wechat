@@ -84,6 +84,10 @@ const updateWxRefund = (params) => postAction("/solitaire/solitaire/api", params
 const wxPay = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "wxPay"
 });
+// 查询接龙-用于复制接龙或者编辑接龙  （selectSolitaire）
+const selectSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "selectSolitaire"
+});
 
 export default {
   getSessionKey,
@@ -107,5 +111,6 @@ export default {
   goodsDetail,
   editStatus,
   updateWxRefund,
-  wxPay
+  wxPay,
+  selectSolitaire
 }
