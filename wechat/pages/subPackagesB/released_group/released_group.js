@@ -174,13 +174,24 @@ Page({
             })
           }
         } else if (res.tapIndex == 1) {
-          if (_this.data.solitaire.type == 1) {
+          if (_this.data.solitaire.type == 1 && _this.data.solitaire.isCopy == 1) {
             wx.navigateTo({
               url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
             })
-          } else if (_this.data.solitaire.type == 2) {
+          } else if (_this.data.solitaire.type == 2 && _this.data.solitaire.isCopy == 1) {
             wx.navigateTo({
               url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: '该接龙不允许复制',
+              success(res) {
+                if (res.confirm) {
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
             })
           }
         } else if (res.tapIndex == 2) {
@@ -210,19 +221,19 @@ Page({
             })
           }
         } else if (res.tapIndex == 3) { //删除接龙
-          if (_this.data.solitaireList.length > 0) {
-            wx.showModal({
-              title: '提示',
-              content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
-              success(res) {
-                if (res.confirm) {
-                  console.log('用户点击确定')
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          } else {
+          // if (_this.data.solitaireList.length > 0) {
+          //   wx.showModal({
+          //     title: '提示',
+          //     content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
+          //     success(res) {
+          //       if (res.confirm) {
+          //         console.log('用户点击确定')
+          //       } else if (res.cancel) {
+          //         console.log('用户点击取消')
+          //       }
+          //     }
+          //   })
+          // } else {
             wx.showModal({
               title: '提示',
               content: '确认删除接龙吗？',
@@ -234,7 +245,7 @@ Page({
                 }
               }
             })
-          }
+          // }
         }
       },
       fail(res) {
@@ -254,7 +265,7 @@ Page({
           let params = {
             param: {
               "solitaireId": _this.data.solitaireId, //接龙主键
-              "orderId": id,  //订单ID
+              "orderIds": id,  //订单ID
               "status": -1,//订单状态 -1取消 0进行中  1已完成
             }
           }
@@ -267,7 +278,7 @@ Page({
               wx.showToast({
                 title: '申请成功'
               })
-              this.get_list();
+              _this.get_list();
             } else {
               wx.showToast({
                 title: '申请失败',
