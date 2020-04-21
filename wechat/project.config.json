@@ -23,7 +23,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.4",
 	"appid": "wx3a885e78226605af",
-	"projectname": "百万接龙",
+	"projectname": "%E7%99%BE%E4%B8%87%E6%8E%A5%E9%BE%99",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -160,7 +160,7 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 15,
 					"name": "参与合买",
 					"pathName": "pages/subPackagesB/participation_chipped/participation_chipped",
 					"query": "",

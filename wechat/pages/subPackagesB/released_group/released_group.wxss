@@ -201,7 +201,7 @@
 
 .list .tit {
   font-size: 28rpx;
-  padding: 20rpx;
+  padding:32rpx 20rpx 20rpx;
 }
 
 .list .head_img {

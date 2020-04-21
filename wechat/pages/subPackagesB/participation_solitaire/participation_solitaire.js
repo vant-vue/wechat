@@ -14,7 +14,9 @@ Page({
     logistics: {},
     modeList: [],
     isAnonymous: false, //是否匿名
-    is_request: false
+    is_request: false,
+    title: '',
+    type: null
   },
 
   /**
@@ -51,7 +53,9 @@ Page({
       shop_num: options.shop_num,
       shop_price: options.shop_price,
       logistics: logistics,
-      modeList: modeList
+      modeList: modeList,
+      type: options.type,
+      title: options.title
     })
     // console.log(modeList);
   },
@@ -161,6 +165,14 @@ Page({
           paySign: res.args.paySign,
           success(res) {
             console.log(res, '支付成功');
+            if (res.errMsg == "requestPayment:ok") {
+              wx.showToast({
+                title: '支付成功',
+              })
+              let setTime = setTimeout(() => {
+                wx.navigateBack();
+              }, 2000)
+            }
           },
           fail(res) {
             console.log(res, '支付失败');

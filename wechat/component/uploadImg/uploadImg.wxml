@@ -6,7 +6,7 @@
   </view>
   <!-- 根据已选择的图片临时路径数组展示图片-->
   <view class="uploader_list flex">
-    <view style="padding: 0 40rpx 40rpx 0;" wx:for="{{uploaderList}}" wx:key="{{index}}">
+    <view style="padding: 0 40rpx 40rpx 0;" wx:for="{{uploaderList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
       <view class='uploader_item'>
         <!-- 删除-->
         <icon class='uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20" color="red" />

@@ -21,7 +21,8 @@ Page({
     info: {},
     isMine: '',
     shop_num: 0,
-    shop_price: 0
+    shop_price: 0,
+    userId:''
   },
   // 计算
   callChangeCount(e) {
@@ -72,7 +73,8 @@ Page({
     }
     app.$API.solitaireList(params).then(res => {
       this.setData({
-        solitaireList: res.args.solitaireList
+        solitaireList: res.args.solitaireList,
+        userId: res.args.userId
       })
     })
   },
@@ -81,8 +83,6 @@ Page({
    */
   onLoad: function(options) {
     this.data.solitaireId = options.id;
-    this.get_details(options.id);
-    this.get_list();
   },
   // 转发
   show_popup_fun() {
@@ -90,15 +90,81 @@ Page({
       show_popup: true
     })
   },
+  // 修改接龙状态-暂停 / 恢复 （updateSolitaireStatus）
+  updateSolitaireStatus(status) {
+    let params = {
+      param: {
+        "solitaireId": this.data.solitaireId, //接龙主键
+        "status": status, //修改接龙状态  -1表示暂停  0表示恢复  1接龙结束
+      }
+    }
+    wx.showLoading({
+      title: '修改中',
+      mask: true
+    })
+    app.$API.updateSolitaireStatus(params).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: '修改成功'
+        })
+        this.get_details(this.data.solitaireId);
+      } else {
+        wx.showToast({
+          title: '修改失败',
+          icon: 'none'
+        })
+      }
+      wx.hideLoading()
+    }).catch(() => {
+      wx.hideLoading()
+    })
+  },
+  // 修改接龙状态-暂停 / 恢复 （deleteSolitaire）
+  deleteSolitaire() {
+    let params = {
+      param: {
+        "solitaireId": this.data.solitaireId, //接龙主键
+      }
+    }
+    wx.showLoading({
+      title: '删除中',
+      mask: true
+    })
+    app.$API.deleteSolitaire(params).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: '删除成功'
+        })
+        let setTime = setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/tabBar/record/record'
+          })
+        }, 2000)
+      } else {
+        wx.showToast({
+          title: '删除失败',
+          icon: 'none'
+        })
+      }
+      wx.hideLoading()
+    }).catch(() => {
+      wx.hideLoading()
+    })
+  },
   // 接龙设置
   solitaire_fun() {
     let _this = this;
+    let itemList = [];
+    if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
+      itemList = ['编辑接龙内容', '复制接龙内容', '暂停接龙', '删除接龙']
+    } else if (_this.data.solitaire.status == -1) {
+      itemList = ['编辑接龙内容', '复制接龙内容', '恢复接龙', '删除接龙']
+    }
     wx.showActionSheet({
-      itemList: ['编辑接龙内容', '暂停接龙', '恢复接龙', '删除接龙'],
+      itemList: itemList,
       success(res) {
         if (res.tapIndex == 0) {
-          console.log(_this.data.solitaire.type);
-          if (_this.data.solitaire.type == 1){
+          if (_this.data.solitaire.type == 1) {
             wx.navigateTo({
               url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
             })
@@ -107,47 +173,114 @@ Page({
               url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
             })
           }
-         
         } else if (res.tapIndex == 1) {
-          wx.showModal({
-            title: '提示',
-            content: '是否确定暂停接龙？',
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
+          if (_this.data.solitaire.type == 1) {
+            wx.navigateTo({
+              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
+            })
+          } else if (_this.data.solitaire.type == 2) {
+            wx.navigateTo({
+              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
+            })
+          }
         } else if (res.tapIndex == 2) {
-          wx.showModal({
-            title: '提示',
-            content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
+          if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
+            wx.showModal({
+              title: '提示',
+              content: '是否确定暂停接龙？',
+              success(res) {
+                if (res.confirm) {
+                  _this.updateSolitaireStatus(-1)
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
               }
-            }
-          })
-        } else if (res.tapIndex == 3) {
-          wx.showModal({
-            title: '提示',
-            content: '确认删除接龙吗？',
-            success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定')
-              } else if (res.cancel) {
-                console.log('用户点击取消')
+            })
+          } else if (_this.data.solitaire.status == -1) {
+            wx.showModal({
+              title: '提示',
+              content: '是否确定恢复接龙？',
+              success(res) {
+                if (res.confirm) {
+                  _this.updateSolitaireStatus(0)
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
               }
-            }
-          })
+            })
+          }
+        } else if (res.tapIndex == 3) { //删除接龙
+          if (_this.data.solitaireList.length > 0) {
+            wx.showModal({
+              title: '提示',
+              content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
+              success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定')
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '确认删除接龙吗？',
+              success(res) {
+                if (res.confirm) {
+                  _this.deleteSolitaire();
+                } else if (res.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          }
         }
       },
       fail(res) {
         console.log(res.errMsg)
+      }
+    })
+  },
+  // 修改订单状态 （editStatus）
+  editStatus(e){
+    let _this = this;
+    let id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '是否确定申请取消？',
+      success(res) {
+        if (res.confirm) {
+          let params = {
+            param: {
+              "solitaireId": _this.data.solitaireId, //接龙主键
+              "orderId": id,  //订单ID
+              "status": -1,//订单状态 -1取消 0进行中  1已完成
+            }
+          }
+          wx.showLoading({
+            title: '取消中',
+            mask: true
+          })
+          app.$API.editStatus(params).then(res => {
+            if (res.code == 200) {
+              wx.showToast({
+                title: '申请成功'
+              })
+              this.get_list();
+            } else {
+              wx.showToast({
+                title: '申请失败',
+                icon: 'none'
+              })
+            }
+            wx.hideLoading()
+          }).catch(() => {
+            wx.hideLoading()
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
     })
   },
@@ -164,7 +297,7 @@ Page({
         url = '/pages/subPackagesC/withdraw_deposit/withdraw_deposit';
         break;
       case 'participation_solitaire':
-        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId;
+        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
         break;
     }
     if (url.match('tabBar')) {
@@ -189,7 +322,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.get_details(this.data.solitaireId);
+    this.get_list();
   },
 
   /**

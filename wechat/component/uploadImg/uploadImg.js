@@ -98,6 +98,7 @@ Component({
       this.setData({
         uploaderList: this.data.imgList
       })
+      this.triggerEvent('upload', this.data.uploaderList);
     }
   }
 })

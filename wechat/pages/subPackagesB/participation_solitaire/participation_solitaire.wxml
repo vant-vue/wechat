@@ -26,11 +26,26 @@
   </view>
 </view>
 <view class="t_box">已选商品</view>
-<view class="s_box bg_fff">
+<!-- 团购接龙 -->
+<view wx:if="{{type==1}}" class="s_box bg_fff">
   <view class="flex" wx:for="{{list}}" wx:for-item="item" wx:key="key" wx:for-index="index">
     <view class="item">
       <view class="t1">{{item.goodsName}}</view>
       <view class="t2">￥{{filter.money(item.money)}}/{{item.specifications}}</view>
+    </view>
+    <view class="t1">+{{item.buyCount}}</view>
+  </view>
+  <view class="tr fb count">
+    <text>总共 {{shop_num}} 件 合计 </text>
+    <text class="f00"> ￥{{filter.money(shop_price)}}</text>
+  </view>
+</view>
+<!-- 合买接龙 -->
+<view wx:if="{{type==2}}"  class="s_box bg_fff">
+  <view class="flex" wx:for="{{list}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+    <view class="item">
+      <view class="t1">{{title}}</view>
+      <view class="t2">￥{{filter.money(item.money)}}/份</view>
     </view>
     <view class="t1">+{{item.buyCount}}</view>
   </view>

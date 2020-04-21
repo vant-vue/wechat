@@ -88,9 +88,21 @@ const wxPay = (params) => postAction("/solitaire/solitaire/api", params, {
 const selectSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "selectSolitaire"
 });
-// 修改接龙 （editSolitaire））
+// 修改接龙 （editSolitaire）
 const editSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "editSolitaire"
+});
+// 修改接龙状态-暂停/恢复 （updateSolitaireStatus）
+const updateSolitaireStatus = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "updateSolitaireStatus"
+});
+// 删除接龙 （deleteSolitaire）
+const deleteSolitaire = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "deleteSolitaire"
+});
+// 申请取消接龙/撤回取消申请 （applyRemove）
+const applyRemove = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "applyRemove"
 });
 
 export default {
@@ -117,5 +129,8 @@ export default {
   updateWxRefund,
   wxPay,
   selectSolitaire,
-  editSolitaire
+  editSolitaire,
+  updateSolitaireStatus,
+  deleteSolitaire,
+  applyRemove
 }

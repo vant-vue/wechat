@@ -288,9 +288,12 @@ Page({
       mask: true
     })
     app.$API.selectSolitaire(params).then(res => {
-      console.log(res);
       let solitaire = res.args.solitaire;
       let goodsList = res.args.goodsList;
+      goodsList.forEach(item => {
+        item.price = item.price / 100
+        item.togoMoney = item.togoMoney / 100
+      })
       let logisticsMode = res.args.logisticsMode;
       let logisticsTypeName = '';
       if (solitaire.logisticsType == 1) {
@@ -318,7 +321,6 @@ Page({
           "mode": logisticsMode,
         }
       });
-      console.log(this.data.params);
 
 
       wx.hideLoading()

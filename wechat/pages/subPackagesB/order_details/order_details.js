@@ -198,11 +198,10 @@ Page({
         this.get_details();
       } else {
         wx.showToast({
-          title: '退款失败',
+          title: res.msg,
           icon: 'none'
         });
       }
-      wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })
