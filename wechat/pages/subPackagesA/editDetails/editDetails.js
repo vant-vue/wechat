@@ -26,12 +26,11 @@ Page({
   },
   // 图片上传
   uploadImg(imgurl) {
-    if (imgurl.length == 0) return;
-    wx.showLoading({
-      title: '上传中',
-      mask: true
-    })
     return new Promise((resolve, reject) => {
+      if (imgurl.length == 0){
+        resolve([]);
+        return;
+      };
       this.data.pictureList = [];
       let that = this;
       let token = wx.getStorageSync('token') || "";
@@ -42,6 +41,13 @@ Page({
         header.Authorization = token;
       };
       for (let i = 0; i < imgurl.length; i++) {
+        if (imgurl[i].indexOf(config.download_path) > -1) {
+          that.data.pictureList.push(imgurl[i]);
+          if (that.data.pictureList.length == imgurl.length) {
+            resolve(that.data.pictureList);
+          }
+          continue;
+        }
         wx.uploadFile({
           url: config.api_url + "/solitaire/uploadFiles/uploadImg",
           filePath: imgurl[i],
@@ -67,14 +73,19 @@ Page({
             reject(res);
           },
           complete: (() => {
-            wx.hideLoading();
+            
           })
         })
       }
     })
   },
   get_img_list(e) {
+    wx.showLoading({
+      title: '上传中',
+      mask: true
+    })
     this.uploadImg(e.detail).then(res => {
+      wx.hideLoading();
       let pages = getCurrentPages();
       let prevPage = pages[pages.length - 2];
       let str = `goodsList[${this.data.index}].goodsImg`

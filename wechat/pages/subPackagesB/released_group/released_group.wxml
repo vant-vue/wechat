@@ -95,8 +95,10 @@
       <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
     </view>
     <view class="btn_box">
-      <button wx:if="{{shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择商品</button>
-      <button wx:else bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与接龙</button>
+      <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择商品</button>
+      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
+      <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
+      <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与接龙</button>
     </view>
   </view>
   <!-- 合买内容 -->
@@ -168,9 +170,10 @@
       <text class="tit2"> ￥{{filter.money(shop_price)}}</text>
     </view>
     <view class="btn_box">
-      <button wx:if="{{shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择份数</button>
-      <!-- <button wx:else class="active_btn" type="primary" style="width:100%">参与合买</button> -->
-      <button wx:else bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与合买</button>
+      <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择份数</button>
+      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
+      <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
+      <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与合买</button>
     </view>
   </view>
   <!-- 接龙列表 -->
@@ -212,7 +215,6 @@
     </view> -->
   </view>
   <!-- 客服 -->
-<button open-type="contact" bindcontact="handleContact"></button>
   <view style="padding-top:20rpx;">
     <service></service>
   </view>
@@ -230,11 +232,11 @@
   </view>
   <!-- 底部按钮2 -->
   <view class="footer2 flex bg_fff" wx:elif="{{!isMine}}">
-    <view class="item">
+    <view class="item" bindtap="jump" data-page="add_solitaire">
       <image src="/images/record/add.png"></image>
       <text class="tit">发个接龙</text>
     </view>
-    <view class="item line">
+    <view class="item line" bindtap="jump" data-page="copy_solitaire">
       <image src="/images/home/复制.png"></image>
       <text class="tit"> 复制接龙</text>
     </view>

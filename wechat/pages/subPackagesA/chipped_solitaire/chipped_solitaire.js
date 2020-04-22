@@ -62,7 +62,6 @@ Page({
       };
       for (let i = 0; i < imgurl.length; i++) {
         if (imgurl[i].indexOf(config.download_path) > -1) {
-          console.log('进来了：', imgurl[i]);
           that.data.pictureList.push(imgurl[i]);
           if (that.data.pictureList.length == imgurl.length) {
             resolve(that.data.pictureList);

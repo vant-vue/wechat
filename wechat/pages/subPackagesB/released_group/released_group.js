@@ -22,7 +22,7 @@ Page({
     isMine: '',
     shop_num: 0,
     shop_price: 0,
-    userId:''
+    userId: ''
   },
   // 计算
   callChangeCount(e) {
@@ -42,7 +42,7 @@ Page({
       shop_num: all_num,
       shop_price: all_price,
       goodsList: this.data.goodsList
-    })
+    });
   },
   // 获取详情
   get_details(id) {
@@ -182,13 +182,12 @@ Page({
             wx.navigateTo({
               url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
             })
-          }else{
+          } else {
             wx.showModal({
               title: '提示',
               content: '该接龙不允许复制',
               success(res) {
-                if (res.confirm) {
-                } else if (res.cancel) {
+                if (res.confirm) {} else if (res.cancel) {
                   console.log('用户点击取消')
                 }
               }
@@ -234,17 +233,17 @@ Page({
           //     }
           //   })
           // } else {
-            wx.showModal({
-              title: '提示',
-              content: '确认删除接龙吗？',
-              success(res) {
-                if (res.confirm) {
-                  _this.deleteSolitaire();
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
+          wx.showModal({
+            title: '提示',
+            content: '确认删除接龙吗？',
+            success(res) {
+              if (res.confirm) {
+                _this.deleteSolitaire();
+              } else if (res.cancel) {
+                console.log('用户点击取消')
               }
-            })
+            }
+          })
           // }
         }
       },
@@ -254,7 +253,7 @@ Page({
     })
   },
   // 修改订单状态 （editStatus）
-  editStatus(e){
+  editStatus(e) {
     let _this = this;
     let id = e.currentTarget.dataset.id;
     wx.showModal({
@@ -265,8 +264,8 @@ Page({
           let params = {
             param: {
               "solitaireId": _this.data.solitaireId, //接龙主键
-              "orderIds": id,  //订单ID
-              "status": -1,//订单状态 -1取消 0进行中  1已完成
+              "orderIds": id, //订单ID
+              "status": -1, //订单状态 -1取消 0进行中  1已完成
             }
           }
           wx.showLoading({
@@ -295,6 +294,7 @@ Page({
       }
     })
   },
+
   //跳转
   jump(e) {
     let page = e.currentTarget.dataset.page;
@@ -310,7 +310,25 @@ Page({
       case 'participation_solitaire':
         url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
         break;
+        // 发个接龙
+      case 'add_solitaire':
+        if (this.data.solitaire.type == 1) {
+          url = '/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire';
+        } else if (this.data.solitaire.type == 2) {
+          url = '/pages/subPackagesA/chipped_solitaire/chipped_solitaire';
+        }
+        break;
+        // 复制接龙
+      case 'copy_solitaire':
+        console.log(this.data.solitaire.type);
+        if (this.data.solitaire.type == 1) {
+          url = "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + this.data.solitaireId;
+        } else if (this.data.solitaire.type == 2) {
+          url = "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + this.data.solitaireId;
+        }
+        break;
     }
+    console.log(url);
     if (url.match('tabBar')) {
       wx.switchTab({
         url
