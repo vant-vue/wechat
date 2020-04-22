@@ -106,6 +106,9 @@ Page({
           nationalCode: res.nationalCode,
           telNumber: res.telNumber,
         })
+
+
+        
       }
     })
   },

@@ -212,6 +212,7 @@
     </view> -->
   </view>
   <!-- 客服 -->
+<button open-type="contact" bindcontact="handleContact"></button>
   <view style="padding-top:20rpx;">
     <service></service>
   </view>
