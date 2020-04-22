@@ -1,73 +1,99 @@
 <!--pages/subPackagesC/order_details/order_details.wxml-->
 <wxs src="../../../utils/filter.wxs" module="filter" />
+<wxs src="../../../utils/filter.wxs" module="filter" />
 <!-- 状态 -->
 <view>
-  <view class="tc wait">待处理</view>
-  <!-- <view class="tc success">已完成</view>
-<view class="tc cancel">已取消</view> -->
+  <view class="tc wait" wx:if="{{order.status == 0}}">待处理</view>
+  <view class="tc success" wx:elif="{{order.status == 1}}">已完成</view>
+  <view class="tc cancel" wx:elif="{{order.status ==-1}}">已取消</view>
+</view>
+<!-- 状态按钮 -->
+<view class="status_box">
+  <view class="flex">
+    <view class="item">
+      <view class="btn" bindtap="callPhone_fun">联系买家</view>
+    </view>
+    <view class="item">
+      <view class="btn" bindtap="remark_fun">修改备注</view>
+    </view>
+    <view class="item" wx:if="{{order.status == 0}}">
+      <view class="btn yet" bindtap="already_fun">已发货/取货</view>
+    </view>
+    <view class="item" wx:if="{{order.status == 0}}">
+      <view class="btn can" bindtap="cancel_fun">取消订单</view>
+    </view>
+  </view>
 </view>
 <!-- 买家申请取消 -->
-<view class="apply_box flex bg_fff">
-  <view class="item f00 tc">申请取消中，等待卖家处理</view>
+<view class="apply_box flex bg_fff" wx:if="{{order.status == -1}}">
+  <view class="item f00">买家申请取消</view>
+  <view class="item f06 tr">同意</view>
 </view>
-<!-- 配送方式 -->
-<view class="details_box bg_fff">
-  <view class="title">
-    <text>配送方式</text>
-    <view class="fr_090">提货点自提/商家配送/无需配送</view>
-  </view>
-  <view class="content">
-    <view class="mb20">提货电话：15666656666</view>
-    <view>提货地址：武汉市东西湖区航天华宇2栋</view>
-  </view>
-  <view class="content">
-    <view class="mb20">收货人：所得到</view>
-    <view class="mb20">收货电话：15666656666</view>
-    <view>收货地址：武汉市东西湖区航天华宇2栋</view>
-  </view>
+<view class=" apply_box flex bg_fff ">
+  <view class="item ccc ">备注：{{order.remarks?order.remarks:'无'}}</view>
 </view>
 <!-- 已购商品 -->
-<view class="details_box bg_fff">
-  <view class="title">
+<view class="details_box bg_fff ">
+  <view class="title ">
     <text>已购商品</text>
   </view>
-  <view class="content" wx:for="{{goodsList}}" wx:for-item="item" wx:key="indexs" wx:for-index="indexs">
-    <view class="flex li">
-      <view class="item">{{item.goodsName}} </view>
-      <view class="tit">x{{item.buyCount}}</view>
-      <view class="">￥{{filter.money(item.money)}}</view>
+  <view class="content ">
+    <view class="flex li " wx:for="{{goodsList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="item ">{{item.goodsName}} </view>
+      <view class="tit ">x{{item.buyCount}}</view>
+      <view class=" ">￥{{filter.money(item.money)}}</view>
     </view>
-    <!-- <view class="flex li">
-      <view class="item">精品伦晚 </view>
-      <view class="tit">x1</view>
-      <view class="">￥18.00</view>
+    <!-- <view class="flex li ">
+      <view class="item ">精品伦晚 </view>
+      <view class="tit ">x1</view>
+      <view class=" ">￥18.00</view>
     </view> -->
-    <view class="tr">
-      <text class="fb">总共 2 件 合计 </text>
-      <text class="fb f00"> ￥36.00</text>
+    <view class="tr ">
+      <text class="fb ">总共 {{order.goodsCount}} 件 合计 </text>
+      <text class="fb f00 "> ￥{{filter.money(order.payMoney)}}</text>
     </view>
+  </view>
+</view>
+<!-- 买家信息 -->
+<view class="details_box bg_fff ">
+  <view class="title ">
+    <text>买家信息</text>
+  </view>
+  <view class="content ">
+    <view class="flex li ">
+      <view class=" ">
+        <image class="head_img " src="{{userInfo.headerImg}}"></image>
+      </view>
+      <view class="item name ">{{userInfo.nickName}}</view>
+      <view>
+        <image class="book_img " src="/images/record/book.png "></image>
+      </view>
+    </view>
+    <view>{{logistics.name?logistics.name+'，':''}}{{logistics.phone?logistics.phone+'，':''}}{{logistics.address?logistics.address:''}}</view>
   </view>
 </view>
 <!-- 订单信息 -->
-<view class="details_box bg_fff">
-  <view class="title">
+<view class="details_box bg_fff ">
+  <view class="title ">
     <text>订单信息</text>
   </view>
   <view class="content">
-    <view class="mb20">订单编号：20023211511515</view>
-    <view>下单时间：03-25 12:15:15</view>
+    <view class="mb20 ">订单编号：{{order.orderNo}}</view>
+    <view>下单时间：{{order.orderTime}}</view>
   </view>
 </view>
 <!-- 商家退款 -->
-<view class="details_box bg_fff">
+<view class="details_box bg_fff" wx:if="{{refundList.length>0}}">
   <view class="title">
     <text>商家退款</text>
   </view>
   <view class="content">
-    <view class="flex">
-      <view class="item">退款100.00 </view>
-      <view class="tit_t">03-25 15:15:55 </view>
+    <view class="flex" wx:for="{{refundList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
+      <view class="item">退款{{item.refundMoney}} </view>
+      <view class="tit_t">{{item.insertTime}}</view>
     </view>
   </view>
 </view>
 <service></service>
+<!-- 备注弹窗 -->
+<actionSheetRemark show="{{isRemark}}" bind:ok="remark_ok" id="remark"></actionSheetRemark>

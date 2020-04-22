@@ -83,6 +83,7 @@ Page({
    */
   onLoad: function(options) {
     this.data.solitaireId = options.id;
+    this.get_details(this.data.solitaireId);
   },
   // 转发
   show_popup_fun() {
@@ -308,6 +309,14 @@ Page({
         url = '/pages/subPackagesC/withdraw_deposit/withdraw_deposit';
         break;
       case 'participation_solitaire':
+        let listFilter = list.map(item=>{
+          if (item.num && item.num>0){
+            return item;
+          }else{
+            return
+          }
+        });
+        console.log(listFilter);
         url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
         break;
         // 发个接龙
@@ -320,7 +329,6 @@ Page({
         break;
         // 复制接龙
       case 'copy_solitaire':
-        console.log(this.data.solitaire.type);
         if (this.data.solitaire.type == 1) {
           url = "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + this.data.solitaireId;
         } else if (this.data.solitaire.type == 2) {
@@ -328,7 +336,6 @@ Page({
         }
         break;
     }
-    console.log(url);
     if (url.match('tabBar')) {
       wx.switchTab({
         url
@@ -351,7 +358,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.get_details(this.data.solitaireId);
     this.get_list();
   },
 

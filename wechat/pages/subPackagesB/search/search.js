@@ -15,7 +15,7 @@ Page({
       "hasRemark": '', //是否有备注  0 OR 1  可空
       "orderDate": "", //下单日期 可空
       "refundStatus": '', //退款状态  0未退款  1有退款
-      'search':''
+      'search': ''
     },
     orderManagerList: [],
     last: false,
@@ -42,14 +42,14 @@ Page({
     let str = `${item.logistics.name}，${item.logistics.phone}，${item.logistics.provice ? item.logistics.provice : '' + item.logistics.city ? item.logistics.city : '' + item.logistics.area ? item.logistics.area : '' + item.logistics.address ? item.logistics.address : ''}`
     wx.setClipboardData({
       data: str,
-      success: function () {
+      success: function() {
         // 添加下面的代码可以复写复制成功默认提示文本`内容已复制` 
         wx.showToast({
           title: '复制成功',
           duration: 3000
         })
         wx.getClipboardData({
-          success: function (res) {
+          success: function(res) {
             console.log(res);
           }
         })
@@ -132,6 +132,7 @@ Page({
       title: '加载中',
       mask: true
     });
+    this.data.orderManagerList = [];
     app.$API.orderManagerList(params).then(res => {
       res.args.orderManagerList.forEach(item => {
         item.checked = false;
@@ -151,7 +152,7 @@ Page({
     })
   },
   // 滚动加载
-  scrollBottom: function (e) {
+  scrollBottom: function(e) {
     if (!this.data.last) {
       this.data.param.pageNo += 1;
       this.get_list();
@@ -269,8 +270,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    // this.data.param.solitaireId = options.id;
+  onLoad: function(options) {
+    this.data.param.solitaireId = options.id;
     this.get_list();
   },
   //跳转
@@ -296,49 +297,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

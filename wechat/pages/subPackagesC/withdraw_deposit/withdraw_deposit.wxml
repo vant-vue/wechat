@@ -6,7 +6,7 @@
       <text class="f00">*</text>
     </view>
     <view class="item">
-      <input placeholder="请输入绑定微信支付的实名"></input>
+      <input type="text" disabled="{{isPayee}}" bindinput="listenerInputSimple" data-row="userInfo.payee" value="{{userInfo.payee}}" placeholder="请输入绑定微信支付的实名"></input>
     </view>
   </view>
   <view class="flex">
@@ -15,14 +15,14 @@
       <text class="f00">*</text>
     </view>
     <view class="item">
-      <input placeholder="0.00"></input>
+      <input type="digit" bindinput="listenerInputSimple" data-row="cashAmount" value="{{cashAmount}}" placeholder="0.00"></input>
     </view>
-    <view class="f06">全部提现</view>
+    <view class="f06" bindtap="allMony">全部提现</view>
   </view>
 </view>
 <view class="btn_box">
-  <button class="btn1" style="width: 90%;">提现</button>
-  <button class="btn2" style="width: 90%;">取消</button>
+  <button class="btn1" style="width: 90%;" bindtap="wxOutMoney">提现</button>
+  <button class="btn2" style="width: 90%;" bindtap="cancel">取消</button>
 </view>
 <view class="b_box">
   <view>· 每次提现金额需≥1元，每日最多提现3次，每日限额2万元</view>

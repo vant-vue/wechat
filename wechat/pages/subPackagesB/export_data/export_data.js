@@ -20,7 +20,7 @@ Page({
   // 复制
   copy(e) {
     let item = e.currentTarget.dataset.item;
-    let str = this.data.url;
+    let str = this.data.excelUrl;
     wx.setClipboardData({
       data: str,
       success: function () {
@@ -47,7 +47,9 @@ Page({
     }
     app.$API.createExcel(params).then(res => {
       if (res.code == 200) {
-       
+      this.setData({
+        excelUrl: res.args.excelUrl
+      })
       } else {
         wx.showToast({
           title: '获取地址失败',

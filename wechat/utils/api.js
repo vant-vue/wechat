@@ -108,6 +108,10 @@ const applyRemove = (params) => postAction("/solitaire/solitaire/api", params, {
 const createExcel = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "createExcel"
 });
+// 提现到微信（wxOutMoney）
+const wxOutMoney = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "wxOutMoney"
+});
 
 export default {
   getSessionKey,
@@ -137,5 +141,6 @@ export default {
   updateSolitaireStatus,
   deleteSolitaire,
   applyRemove,
-  createExcel
+  createExcel,
+  wxOutMoney
 }

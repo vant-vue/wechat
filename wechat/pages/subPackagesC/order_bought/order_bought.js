@@ -71,7 +71,7 @@ Page({
     let url = '';
     switch (page) {
       case 'order_details':
-        url = '/pages/subPackagesB/order_details/order_details?id=' + id;
+        url = '/pages/subPackagesC/order_details/order_details?id=' + id;
         break;
     }
     if (url.match('tabBar')) {

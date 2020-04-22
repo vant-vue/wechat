@@ -37,10 +37,10 @@ Page({
         "orderId": this.data.orderId, //订单主键
       }
     }
-    wx.showLoading({
-      title: '加载中',
-      mask: true
-    })
+    // wx.showLoading({
+    //   title: '加载中',
+    //   mask: true
+    // })
     app.$API.orderDetail(params).then(res => {
       // if (res.code == 200) {
       this.setData({
@@ -53,9 +53,9 @@ Page({
         callPhone: res.args.callPhone,
       })
       // }
-      wx.hideLoading()
+      // wx.hideLoading()
     }).catch(err => {
-      wx.hideLoading()
+      // wx.hideLoading()
     })
   },
   //监听input 商品
@@ -194,6 +194,9 @@ Page({
       if (res.code == 200) {
         wx.showToast({
           title: '退款成功'
+        });
+        this.setData({
+          refundMoney:''
         });
         this.get_details();
       } else {

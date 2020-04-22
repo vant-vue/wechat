@@ -24,10 +24,9 @@
   </view>
 </view>
 <!-- 买家申请取消 -->
-<view class="apply_box flex bg_fff">
+<view class="apply_box flex bg_fff" wx:if="{{order.status == -1}}">
   <view class="item f00">买家申请取消</view>
-  <view class="item f06 tr" wx:if="{{order.isRemove == 1}}">同意</view>
-  <view class="item f06 tr" wx:elif="{{order.isRemove == 0}}">不同意</view>
+  <view class="item f06 tr">同意</view>
 </view>
 <view class=" apply_box flex bg_fff ">
   <view class="item ccc ">备注：{{order.remarks?order.remarks:'无'}}</view>
@@ -69,7 +68,7 @@
         <image class="book_img " src="/images/record/book.png "></image>
       </view>
     </view>
-    <view>{{logistics.name}}，{{logistics.phone}}，{{logistics.address?logistics.address:''}}</view>
+    <view>{{logistics.name?logistics.name+'，':''}}{{logistics.phone?logistics.phone+'，':''}}{{logistics.address?logistics.address:''}}</view>
   </view>
 </view>
 <!-- 订单信息 -->
@@ -93,7 +92,7 @@
       <view class="item ">
         <!-- <view class="money ccc">可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}</view> -->
         <view class="item">
-          <input type="digit" class="money"  bindinput='listenerInput' data-row="refundMoney" data-index="{{index}}" value="{{refundMoney}}" placeholder="可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}"></input>
+          <input type="digit" class="money" bindinput='listenerInput' data-row="refundMoney" data-index="{{index}}" value="{{refundMoney}}" placeholder="可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}"></input>
         </view>
       </view>
       <view class="refund_btn" bindtap="refund_fun">退款</view>

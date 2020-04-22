@@ -97,7 +97,7 @@
     <view class="btn_box">
       <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择商品</button>
       <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
-      <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
+      <button wx:elif="{{solitaire.status==-1}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
       <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与接龙</button>
     </view>
   </view>
@@ -172,7 +172,7 @@
     <view class="btn_box">
       <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择份数</button>
       <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
-      <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
+      <button wx:elif="{{solitaire.status==-1}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
       <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与合买</button>
     </view>
   </view>
@@ -192,8 +192,8 @@
         <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
           <view class="item omit1 tit2">{{item2.goodsName}}</view>
           <view wx:if="{{(item.status == 0) && (item.orderGoods.length==index2+1)&&(userId==item.userId)}}" bindtap="editStatus" data-page="applyRemove" data-id="{{item.orderId}}" class="item tr  tit3">申请取消</view>
-          <view wx:elif="{{item.status == -1}}" class="tit2">已取消</view>
-          <view wx:elif="{{item.status == 1}}" class="tit2">已完成</view>
+          <view wx:elif="{{(item.status == -1) && (item.orderGoods.length==index2+1)}}" class="tit2">已取消</view>
+          <view wx:elif="{{(item.status == 1) && (item.orderGoods.length==index2+1)}}" class="tit2">已完成</view>
         </view>
       </view>
     </view>

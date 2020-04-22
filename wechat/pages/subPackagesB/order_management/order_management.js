@@ -354,7 +354,7 @@ Page({
         url = '/pages/subPackagesB/order_details/order_details?id=' + id
         break;
       case 'search':
-        url = '/pages/subPackagesB/search/search'
+        url = '/pages/subPackagesB/search/search?id=' + this.data.param.solitaireId
         break;
       case 'export_data':
         url = '/pages/subPackagesB/export_data/export_data?id=' + this.data.param.solitaireId
