@@ -338,7 +338,6 @@ Page({
    */
   onLoad: function(options) {
     this.data.param.solitaireId = options.id;
-    this.get_list();
     this.get_statistics();
   },
   //跳转
@@ -381,7 +380,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.get_list();
   },
 
   /**

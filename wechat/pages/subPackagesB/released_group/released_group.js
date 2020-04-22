@@ -309,15 +309,13 @@ Page({
         url = '/pages/subPackagesC/withdraw_deposit/withdraw_deposit';
         break;
       case 'participation_solitaire':
-        let listFilter = list.map(item=>{
-          if (item.num && item.num>0){
-            return item;
-          }else{
-            return
+        let listFilter = [];
+        list.forEach(item=>{
+          if (item.num && item.num > 0) {
+            listFilter.push(item)
           }
-        });
-        console.log(listFilter);
-        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(list) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
+        })
+        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(listFilter) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
         break;
         // 发个接龙
       case 'add_solitaire':
