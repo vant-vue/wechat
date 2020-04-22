@@ -104,6 +104,10 @@ const deleteSolitaire = (params) => postAction("/solitaire/solitaire/api", param
 const applyRemove = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "applyRemove"
 });
+// 生成excel表格（createExcel）
+const createExcel = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "createExcel"
+});
 
 export default {
   getSessionKey,
@@ -132,5 +136,6 @@ export default {
   editSolitaire,
   updateSolitaireStatus,
   deleteSolitaire,
-  applyRemove
+  applyRemove,
+  createExcel
 }

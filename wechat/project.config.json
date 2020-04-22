@@ -93,14 +93,14 @@
 					"id": 5,
 					"name": "我发布的",
 					"pathName": "pages/subPackagesB/released_group/released_group",
-					"query": "id=32",
+					"query": "id=22",
 					"scene": null
 				},
 				{
 					"id": 6,
 					"name": "订单管理",
 					"pathName": "pages/subPackagesB/order_management/order_management",
-					"query": "id=3",
+					"query": "id=37",
 					"scene": null
 				},
 				{
@@ -118,17 +118,17 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 9,
 					"name": "搜索",
 					"pathName": "pages/subPackagesB/search/search",
-					"query": "",
+					"query": "id=37",
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 10,
 					"name": "导出数据",
 					"pathName": "pages/subPackagesB/export_data/export_data",
-					"query": "",
+					"query": "id=37",
 					"scene": null
 				},
 				{

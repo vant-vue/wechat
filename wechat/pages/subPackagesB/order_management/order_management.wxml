@@ -36,12 +36,12 @@
     <!-- 筛选 -->
     <view class="flex search_box bg_fff">
       <view class="right_box">
-        <view class="sea">
+        <view class="sea" bindtap="jump" data-page="search">
           <icon class="searchcion" size='16' type='search'></icon>
-          <input class="input_z" disabled="true" placeholder="查找订单" value="{{searchValue}}" />
+          <input class="input_z" disabled="true" placeholder="查找订单" />
         </view>
       </view>
-      <view class="item">
+      <view class="item" bindtap="jump" data-page="export_data">
         <image src="/images/record/right.png"></image>
         <text>导出</text>
       </view>
@@ -62,7 +62,6 @@
     </view>
     <!-- 商品list -->
     <view class="list_box bg_fff" wx:for="{{orderManagerList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-    <!-- <view class="list_box bg_fff" wx:for="{{[1,2]}}" wx:for-item="item" wx:key="index" wx:for-index="index"> -->
       <view class="top flex">
         <view wx:if="{{isBatch}}">
           <checkbox class="cb" bindtap="one_checked" data-index="{{index}}" checked="{{item.checked}}" />
@@ -95,11 +94,11 @@
         <view class="shop flex" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
           <view class="item">{{item2.goodsName}}</view>
           <view class="t1">x{{item2.buyCount}}</view>
-          <view class="t2">￥{{item2.money}}</view>
+          <view class="t2">￥{{filter.money(item2.money)}}</view>
         </view>
         <view class="shop_cout tr">
           <text>总共 {{item.goodsCount}} 件 合计 </text>
-          <text class="ft_f0">￥{{item.payMoney}}</text>
+          <text class="ft_f0">￥{{filter.money(item.payMoney)}}</text>
         </view>
       </view>
       <!-- 联系人信息 -->
@@ -110,7 +109,7 @@
             <image src="/images/record/book.png" bindtap="copy" data-item="{{item}}"></image>
           </view>
         </view>
-        <view class="mb20">{{item.logistics.name}}，{{item.logistics.phone}}，{{item.logistics.provice?item.logistics.provice:''+item.logistics.city?item.logistics.city:''+item.logistics.area?item.logistics.area:''+item.logistics.address?item.logistics.address:''}}
+        <view class="mb20">{{item.logistics.name?item.logistics.name+' ':''}}{{item.logistics.phone?item.logistics.phone+' ':''}} {{item.logistics.provice?item.logistics.provice:''+item.logistics.city?item.logistics.city:''+item.logistics.area?item.logistics.area:''+item.logistics.address?item.logistics.address:''}}
           <text wx:for="{{item.logistics.otherMode}}" wx:for-item="item3" wx:key="index3" wx:for-index="index3">{{item3}}:{{item.logistics[item3]}}</text>
         </view>
       </view>

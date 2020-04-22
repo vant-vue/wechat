@@ -247,7 +247,7 @@ Page({
       } else {
         wx.showToast({
           title: '修改失败',
-          icon:'none'
+          icon: 'none'
         });
       }
       wx.hideLoading()
@@ -352,6 +352,12 @@ Page({
         break;
       case 'order_details':
         url = '/pages/subPackagesB/order_details/order_details?id=' + id
+        break;
+      case 'search':
+        url = '/pages/subPackagesB/search/search'
+        break;
+      case 'export_data':
+        url = '/pages/subPackagesB/export_data/export_data?id=' + this.data.param.solitaireId
         break;
     }
     if (url.match('tabBar')) {
