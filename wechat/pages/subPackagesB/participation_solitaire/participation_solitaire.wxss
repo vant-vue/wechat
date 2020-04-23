@@ -10,7 +10,7 @@ page{
 }
 
 .shop_box .tit1 {
-  width: 200rpx;
+  width: 300rpx;
   font-size: 28rpx;
 }
 
