@@ -32,7 +32,7 @@ Page({
   },
   // 用户信息
   userInfo() {
-    app.$API.userInfo({}).then(res => {
+    app.$API.assetInfo({}).then(res => {
       if (res.code == 200) {
         this.setData({
           userInfo: res.args,

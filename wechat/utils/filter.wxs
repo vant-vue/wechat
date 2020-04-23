@@ -1,8 +1,8 @@
 var filter = {
   //将分转化为元
-  money: function (num) {
+  money: function(num) {
     if (typeof num == "undefined") return '--';
-    num = parseFloat(num/100).toFixed(2);
+    num = parseFloat(num / 100).toFixed(2);
     return num;
   },
   getIponeEncryption: function(iponeNumber) {
@@ -51,7 +51,27 @@ var filter = {
     } else {
       return year + "-" + month + "-" + date + " " + hour + ":" + minute + ":" + second;
     }
-  }
+  },
+  typeFilter: function(n) {
+    //交易类型,101 收入-收款 102 收入-退款  103 收入-充值  104 收入-手续费  201 支出-消费 202 支出-提现  203 支出-退款 204 支出-手续费
+    if (n == 101) {
+      return '收入-收款'
+    } else if (n == 102) {
+      return '收入-退款'
+    } else if (n == 103) {
+      return '收入-充值'
+    } else if (n == 104) {
+      return '收入-手续费'
+    } else if (n == 201) {
+      return '支出-消费'
+    } else if (n == 202) {
+      return '支出-提现'
+    } else if (n == 203) {
+      return '支出-退款'
+    } else if (n == 204) {
+      return '支出-手续费'
+    }
+  },
 }
 module.exports = {
   money: filter.money, //金额（1,000.00）
@@ -63,4 +83,5 @@ module.exports = {
   getDateDay: filter.getDateDay, ///日期格式月
   getDateHours: filter.getDateHours, ///日期格式时
   formatTime: filter.formatTime, //2020-02-27 00:00:00
+  typeFilter: filter.typeFilter, //2020-02-27 00:00:00
 };

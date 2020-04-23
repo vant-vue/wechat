@@ -21,7 +21,7 @@ Page({
     app.$API.assetInfo({}).then(res => {
       if(res.code == 200){
         this.setData({
-          outMoney: res.args.cashAmount,
+          outMoney: res.args.outMoney,
           waitMoney: res.args.waitMoney,
           cashAmount: res.args.cashAmount,
         })

@@ -17,22 +17,22 @@ Component({
         title: '收入',
         item: [{
             name: "收款",
-            value: '1',
+            value: '101',
             checked: false
           },
           {
             name: "充值",
-            value: '2',
+            value: '103',
             checked: false
           },
           {
             name: "退款",
-            value: '3',
+            value: '102',
             checked: false
           },
           {
             name: "手续费",
-            value: '4',
+            value: '104',
             checked: false
           },
 
@@ -42,22 +42,22 @@ Component({
         title: '支出',
         item: [{
             name: "消费",
-            value: '5',
+            value: '201',
             checked: false
           },
           {
             name: "提现",
-            value: '6',
+            value: '202',
             checked: false
           },
           {
             name: "退款",
-            value: '7',
+            value: '203',
             checked: false
           },
           {
             name: "手续费",
-            value: '8',
+            value: '204',
             checked: false
           }
         ]

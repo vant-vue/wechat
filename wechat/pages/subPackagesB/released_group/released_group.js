@@ -24,6 +24,12 @@ Page({
     shop_price: 0,
     userId: ''
   },
+  // 打电话
+  callPhone_fun() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.solitairecallPhone ? this.data.solitaire.callPhone : '' //仅为示例，并非真实的电话号码
+    })
+  },
   // 计算
   callChangeCount(e) {
     let obj = JSON.parse(JSON.stringify(e.detail));
@@ -72,6 +78,9 @@ Page({
       }
     }
     app.$API.solitaireList(params).then(res => {
+      res.args.solitaireList.forEach(item=>{
+        console.log(item);
+      })
       this.setData({
         solitaireList: res.args.solitaireList,
         userId: res.args.userId
@@ -143,7 +152,7 @@ Page({
         }, 2000)
       } else {
         wx.showToast({
-          title: '删除失败',
+          title: res.msg,
           icon: 'none'
         })
       }
@@ -253,8 +262,8 @@ Page({
       }
     })
   },
-  // 修改订单状态 （editStatus）
-  editStatus(e) {
+  // 修改订单状态 （applyRemove）
+  applyRemove(e) {
     let _this = this;
     let id = e.currentTarget.dataset.id;
     wx.showModal({
@@ -265,15 +274,15 @@ Page({
           let params = {
             param: {
               "solitaireId": _this.data.solitaireId, //接龙主键
-              "orderIds": id, //订单ID
-              "status": -1, //订单状态 -1取消 0进行中  1已完成
+              "orderId": id, //订单ID
+              "isRemove": 1, //订单状态 -1取消 0进行中  1已完成
             }
           }
           wx.showLoading({
             title: '取消中',
             mask: true
           })
-          app.$API.editStatus(params).then(res => {
+          app.$API.applyRemove(params).then(res => {
             if (res.code == 200) {
               wx.showToast({
                 title: '申请成功'
@@ -310,7 +319,7 @@ Page({
         break;
       case 'participation_solitaire':
         let listFilter = [];
-        list.forEach(item=>{
+        list.forEach(item => {
           if (item.num && item.num > 0) {
             listFilter.push(item)
           }
