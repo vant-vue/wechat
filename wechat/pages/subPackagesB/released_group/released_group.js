@@ -36,7 +36,7 @@ Page({
   // 打电话
   callPhone_fun() {
     wx.makePhoneCall({
-      phoneNumber: this.data.solitairecallPhone ? this.data.solitaire.callPhone : '' //仅为示例，并非真实的电话号码
+      phoneNumber: this.data.solitaire.callPhone ? this.data.solitaire.callPhone : '' //仅为示例，并非真实的电话号码
     })
   },
   // 计算
