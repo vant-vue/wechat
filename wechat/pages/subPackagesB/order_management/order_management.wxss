@@ -247,6 +247,15 @@ page {
   font-size: 30rpx;
   color: #fff;
 }
+.retransmission.no_click{
+  width: 240rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  background: #ccc;
+  font-size: 30rpx;
+  color: #fff;
+}
+
 
 .footer .tit1 {
   color: #999;

@@ -101,16 +101,17 @@ Component({
     },
     // 取消
     cancel: function() {
-      this.setData({
-        isOrderDate: 'all',
-        isHasRemark: 'all',
-        isRefundStatus: 'all',
-        changeData: {
-          orderDate: '',
-          hasRemark: '',
-          refundStatus: ''
-        }
-      });
+      this.close();
+      // this.setData({
+      //   isOrderDate: 'all',
+      //   isHasRemark: 'all',
+      //   isRefundStatus: 'all',
+      //   changeData: {
+      //     orderDate: '',
+      //     hasRemark: '',
+      //     refundStatus: ''
+      //   }
+      // });
     },
   }
 })

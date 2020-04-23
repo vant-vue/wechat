@@ -23,7 +23,8 @@ Page({
     orderManagerList: [],
     last: false,
     statistics: {},
-    isAll: false
+    isAll: false,
+    is_click: false
   },
   toggle(e) {
     let tab = e.currentTarget.dataset.tab;
@@ -82,6 +83,11 @@ Page({
 
     app.$API.editStatus(params).then(res => {
       if (res.code == 200) {
+        this.clear_filter();
+        this.get_list();
+        this.setData({
+          isBatch:false
+        });
         wx.showToast({
           title: '修改成功'
         });
@@ -181,7 +187,6 @@ Page({
       } else {
         this.data.last = false;
       }
-      console.log(this.data.orderManagerList);
       wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
@@ -195,6 +200,15 @@ Page({
         item.checked = !item.checked;
       }
     })
+    let is_click = false;
+    this.data.orderManagerList.forEach((item) => {
+      if (item.checked && item.status == 0) {
+        is_click = true;
+      }
+    })
+    this.setData({
+      is_click: is_click
+    })
     this.setData({
       orderManagerList: this.data.orderManagerList
     });
@@ -204,6 +218,11 @@ Page({
     if (e.detail.value.length > 0) {
       this.data.orderManagerList.forEach(item => {
         item.checked = true;
+        if (item.status == 0) {
+          this.setData({
+            is_click: true
+          })
+        }
       })
       this.setData({
         orderManagerList: this.data.orderManagerList
@@ -211,6 +230,9 @@ Page({
     } else {
       this.data.orderManagerList.forEach(item => {
         item.checked = false;
+        this.setData({
+          is_click: false
+        })
       })
       this.setData({
         orderManagerList: this.data.orderManagerList
@@ -282,13 +304,13 @@ Page({
     let that = this;
     let idArr = [];
     this.data.orderManagerList.forEach(item => {
-      if (item.checked) {
+      if (item.checked && (item.status == 0)) {
         idArr.push(item.id);
       }
     });
     if (idArr.length == 0) {
       wx.showToast({
-        title: '请选择订单',
+        title: '请选择待处理订单',
         icon: 'none'
       })
       return
@@ -380,6 +402,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.clear_filter();
     this.get_list();
   },
 

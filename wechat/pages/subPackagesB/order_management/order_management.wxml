@@ -212,7 +212,8 @@
       <view class="item">
         <view class="tit2" bindtap="batch_remark">批量写备注</view>
       </view>
-      <view class="retransmission" bindtap="batch_pick">批量发货/取货</view>
+      <view wx:if="{{is_click}}" class="retransmission" bindtap="batch_pick">批量发货/取货</view>
+      <view wx:elif="{{!is_click}}" class="retransmission {is_click?'no_click':''}">批量发货/取货</view>
     </view>
     <!-- 筛选弹窗 -->
     <actionSheetFilter show="{{isFilter}}" bind:ok="filter_ok"></actionSheetFilter>
