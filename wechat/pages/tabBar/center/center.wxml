@@ -1,4 +1,5 @@
 <!--pages/tabBar/center/center.wxml-->
+<wxs src="../../../utils/filter.wxs" module="filter" />
 <view class="top_box tc">
   <view class="head_img">
     <open-data type="userAvatarUrl"></open-data>
@@ -10,7 +11,7 @@
 <view class="list_box">
   <view class="flex" bindtap="jump" data-page="my_balance">
     <view class="item title">账户余额</view>
-    <view class="val">{{cashAmount}}</view>
+    <view class="val">{{filter.money(cashAmount)}}</view>
     <view>
       <text class='icon_right'></text>
     </view>
@@ -41,3 +42,4 @@
     </view>
   </view>
 </view>
+<service></service>
