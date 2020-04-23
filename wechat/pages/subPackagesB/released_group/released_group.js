@@ -22,7 +22,15 @@ Page({
     isMine: '',
     shop_num: 0,
     shop_price: 0,
-    userId: ''
+    userId: '',
+    banner_index: 0, //当前轮播图(顶部) 显示 index
+  },
+  //轮播图改变
+  change_index: function (e) {
+    let current = e.detail.current;
+    this.setData({
+      banner_index: current
+    })
   },
   // 打电话
   callPhone_fun() {
@@ -78,9 +86,6 @@ Page({
       }
     }
     app.$API.solitaireList(params).then(res => {
-      res.args.solitaireList.forEach(item=>{
-        console.log(item);
-      })
       this.setData({
         solitaireList: res.args.solitaireList,
         userId: res.args.userId

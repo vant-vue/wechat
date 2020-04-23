@@ -65,6 +65,22 @@
   /* height: 300rpx; */
 }
 
+.banner_inner {
+  position: relative;
+}
+
+.banner_inner image {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+.current {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 .cont_box .tit1 {
   font-size: 28rpx;
   color: #333;
@@ -201,7 +217,7 @@
 
 .list .tit {
   font-size: 28rpx;
-  padding:32rpx 20rpx 20rpx;
+  padding: 32rpx 20rpx 20rpx;
 }
 
 .list .head_img {
