@@ -27,7 +27,7 @@
           </view>
           <view class="span_a">
             <image src="/images/home/deal.png"></image>
-            <text class="tit2">{{item.forwardTimes?item.forwardTimes:0}}</text>
+            <text class="tit2">{{item.buyTimes?item.buyTimes:0}}</text>
           </view>
         </view>
       </view>
