@@ -13,7 +13,7 @@
           <image class="img1" src="/images/home/eye.png"></image>
           <text class="tit">{{info.viewTimes}}</text>
           <image class="img1" src="/images/home/deal.png"></image>
-          <text class="tit">{{info.forwardTimes}}</text>
+          <text class="tit">{{info.buyTimes}}</text>
         </view>
       </view>
       <view class="item tr">
