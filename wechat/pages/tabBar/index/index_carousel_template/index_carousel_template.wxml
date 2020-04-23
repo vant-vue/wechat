@@ -3,7 +3,9 @@
     <swiper autoplay circular class="banner_inner" bindchange="change_index" interval="3000" duration="500">
       <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
         <swiper-item>
-          <image src="/images/home/banner.png"></image>
+          <navigator url="{{item.url}}" hover-class="navigator-hover">
+            <image src="{{item.imageAttr}}"></image>
+          </navigator>
         </swiper-item>
       </block>
     </swiper>

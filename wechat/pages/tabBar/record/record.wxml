@@ -32,6 +32,7 @@
         </view>
       </view>
     </view>
+    <view wx:if="{{list.length==0}}" class="tc c_999 mt20">~无数据~</view>
     <!-- <view class="list bg_fff mt20">
       <view class="flex">
         <view class="item omit1 tit1">秭归伦晚团购秭归伦晚团购秭归伦晚团购秭归伦晚团购</view>

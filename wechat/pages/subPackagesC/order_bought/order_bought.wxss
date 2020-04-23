@@ -7,13 +7,14 @@
   min-height: 100vh;
   height: 100vh;
   box-sizing: border-box;
-  margin-top:80rpx;
 }
 .f_box{
   position: fixed;
   width: 100%;
   top:0;
   left: 0;
+  background: #fff;
+  z-index: 999;
 }
 .f00 {
   color: #f00;

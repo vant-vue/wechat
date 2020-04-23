@@ -6,6 +6,8 @@ import {
 const getSessionKey = (params) => postActionUrlencoded("/wx/wxLogin/getSessionKey", params, {});
 // 微信登录
 const wxLogin = (params) => postActionUrlencoded("/wx/wxLogin/login", params, {});
+// 首页（banner）
+const banner = (params) => postActionUrlencoded("/solitaire/solitaire/getHomeBannerList", params, {});
 // 文件上传(批量上传)
 const uploadImg = (params) => postAction("/solitaire/uploadFiles/uploadImg", params, {});
 // 用户信息
@@ -113,6 +115,7 @@ const wxOutMoney = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "wxOutMoney"
 });
 
+
 export default {
   getSessionKey,
   wxLogin,
@@ -142,5 +145,6 @@ export default {
   deleteSolitaire,
   applyRemove,
   createExcel,
-  wxOutMoney
+  wxOutMoney,
+  banner
 }

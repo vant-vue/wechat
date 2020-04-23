@@ -9,6 +9,7 @@ Page({
     solitaireId: '',
     banner_list: [],
     show_popup: false,
+    refundMap:{1:"已全部退款",2:"已部分退款"},
     param: {
       "pageNo": 1, //页数
       "pageSize": 10, //单页记录数
@@ -86,6 +87,51 @@ Page({
       }
     }
     app.$API.solitaireList(params).then(res => {
+      let loginUserId = res.args.userId;
+      res.args.solitaireList.forEach(item=>{
+        let itemstr='';
+        if (loginUserId==item.pubUserId){//先判定是否本人发布
+          if (item.status==-1){//已取消
+            itemstr +='已取消接龙';
+          } 
+          if(item.refundStatus!=0){//存在退款
+            if (itemstr.length>0){
+              itemstr+=',';
+            }
+            itemstr += this.data.refundMap[item.refundStatus];
+          }
+          if (loginUserId==item.userId&&itemstr==''){
+             if(item.isRemove==1){
+               itemstr=='已申请取消，待通过';
+             }else{
+               itemstr='申请取消';
+               item.hasOnclick=1;
+             }
+          }
+        }else{//参与者
+          if (loginUserId == item.userId){//只有是本人参与的记录才显示
+            if (item.status == -1) {//已取消
+              itemstr += '已取消接龙';
+            }
+            if (item.refundStatus != 0) {//存在退款
+              if (itemstr.length > 0) {
+                itemstr += ',';
+              }
+              itemstr += this.data.refundMap[item.refundStatus];
+            }
+            if (itemstr == '') {
+              if (item.isRemove == 1) {
+                itemstr == '已申请取消，待通过';
+              } else {
+                itemstr = '申请取消';
+                item.hasOnclick = 1;
+              }
+            }
+          }
+        }
+        item.itemstr = itemstr;
+      })
+      console.log(res.args.solitaireList);
       this.setData({
         solitaireList: res.args.solitaireList,
         userId: res.args.userId

@@ -25,6 +25,10 @@ textarea {
   background: #090;
   color: #fff;
 }
+.btnccc{
+   background: #ccc;
+  color: #fff;
+}
 
 .tit {
   padding-top: 20rpx;

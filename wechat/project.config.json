@@ -207,6 +207,13 @@
 					"pathName": "pages/subPackagesC/order_details/order_details",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 22,
+					"name": "登录",
+					"pathName": "pages/tabBar/login/login",
+					"query": "id=37",
+					"scene": null
 				}
 			]
 		}

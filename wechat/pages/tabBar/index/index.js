@@ -7,12 +7,16 @@ Page({
    */
   data: {
     banner_index: 0, //当前轮播图(顶部) 显示 index
-    banner_list: [
-      1
-    ],
+    banner_list: [],
   },
   //跳转
   jump(e) {
+    if (!app.globalData.isLogin){
+      wx.navigateTo({
+        url:'/pages/tabBar/login/login'
+      });
+      return;
+    }
     let page = e.currentTarget.dataset.page;
     let url = '';
     switch (page) {
@@ -33,22 +37,22 @@ Page({
       })
     }
   },
-  bindGetUserInfo(e){
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        app.getSessionKey({
-          code: res.code
-        });
-      }
+  // 获取banner
+  get_banner() {
+    let params = {
+      spaceId: 9
+    }
+    app.$API.banner(params).then(res => {
+      this.setData({
+        banner_list: res.list
+      })
     })
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+    this.get_banner();
   },
 
   /**

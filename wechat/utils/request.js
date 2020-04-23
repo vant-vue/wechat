@@ -31,6 +31,10 @@ const request = ((options) => {
             successCallback(res.data);
             if (res.data.code == "200" && res.data.args.token) {
               wx.setStorageSync('token', res.data.args.token)
+            } else if (res.data.code == "402") {
+              wx.navigateTo({
+                url: '/pages/tabBar/login/login',
+              })
             }
           } catch (e) {
             console.error('出错了，' + e + ',接口返回数据:' + res.data);

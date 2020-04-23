@@ -272,7 +272,6 @@ Page({
    */
   onLoad: function(options) {
     this.data.param.solitaireId = options.id;
-    this.get_list();
   },
   //跳转
   jump(e) {

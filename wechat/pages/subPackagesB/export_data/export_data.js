@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    solitaireId:'',
-    excelUrl:''
+    solitaireId: '',
+    excelUrl: ''
   },
 
   /**
@@ -23,14 +23,14 @@ Page({
     let str = this.data.excelUrl;
     wx.setClipboardData({
       data: str,
-      success: function () {
+      success: function() {
         // 添加下面的代码可以复写复制成功默认提示文本`内容已复制` 
         wx.showToast({
           title: '复制成功',
           duration: 3000
         })
         wx.getClipboardData({
-          success: function (res) {
+          success: function(res) {
             console.log(res);
           }
         })
@@ -47,18 +47,17 @@ Page({
     }
     app.$API.createExcel(params).then(res => {
       if (res.code == 200) {
-      this.setData({
-        excelUrl: res.args.excelUrl
-      })
+        this.setData({
+          excelUrl: res.args.excelUrl
+        })
       } else {
         wx.showToast({
-          title: '获取地址失败',
+          title: res.msg,
           icon: 'none'
         });
       }
       wx.hideLoading()
-    }).catch(() => {
-    })
+    }).catch(() => {})
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -2,7 +2,8 @@
   "pages": [
     "pages/tabBar/index/index",
     "pages/tabBar/record/record",
-    "pages/tabBar/center/center"
+    "pages/tabBar/center/center",
+    "pages/tabBar/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",

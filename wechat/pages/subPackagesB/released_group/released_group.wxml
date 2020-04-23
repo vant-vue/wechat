@@ -195,8 +195,8 @@
         </view>
         <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
           <view class="item omit1 tit2">{{item2.goodsName}}</view>
-          <view wx:if="{{(item.status == 0) && (item.orderGoods.length==index2+1)&&(userId==item.userId)}}" bindtap="editStatus" data-page="applyRemove" data-id="{{item.orderId}}" class="item tr tit3">申请取消</view>
-          <view wx:elif="{{(item.status == -1 ) && (item.orderGoods.length==index2+1)}}" class="tit3">已取消</view>
+          <view wx:if="{{(item.hasOnclick == 1) && (item.orderGoods.length==index2+1)&&(userId==item.userId)}}" bindtap="applyRemove" data-page="applyRemove" data-id="{{item.orderId}}" class="item tr tit3">申请取消</view>
+          <view wx:elif="{{(item.hasOnclick != 1 ) && (item.orderGoods.length==index2+1)}}" class="tit3">{{item.itemstr}}</view>
         </view>
       </view>
     </view>

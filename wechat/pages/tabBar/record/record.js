@@ -41,11 +41,11 @@ Page({
     obj.then(res => {
       if (this.data.tab == 1) {
         this.setData({
-          list: this.data.list.concat(res.args.pubList)
+          list: this.data.list.concat(res.args.pubList ? res.args.pubList : [])
         })
       } else if (this.data.tab == 2) {
         this.setData({
-          list: this.data.list.concat(res.args.joinList)
+          list: this.data.list.concat(res.args.joinList ? res.args.joinList : [])
         })
       }
       if (res.args.pubList.length < 10 || res.args.joinList.length < 10) {
@@ -53,7 +53,6 @@ Page({
       } else {
         this.data.last = false;
       }
-      console.log(this.data.list);
       wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
@@ -80,7 +79,7 @@ Page({
     switch (page) {
       case 'released':
         url = '/pages/subPackagesB/released_group/released_group?id=' + id;
-          break;
+        break;
         // case 'group':
         //   if (type == 1) {
         //     url = '/pages/subPackagesB/released_group/released_group?id=' + id;

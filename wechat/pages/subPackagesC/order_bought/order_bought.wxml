@@ -1,24 +1,25 @@
 <!--pages/subPackagesC/order_bought/order_bought.wxml-->
 <wxs src="../../../utils/filter.wxs" module="filter" />
-<view class="mid_box">
-  <view class="f_box flex bg_fff tc">
-    <view class="item tc">
-      <text class="title {{tab=='all'?'active':''}}" bindtap="toggle" data-tab="all">全部</text>
-    </view>
-    <view class="item tc">
-      <text class="title {{tab==0?'active':''}}" bindtap="toggle" data-tab="0">进行中</text>
-    </view>
-    <view class="item tc">
-      <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">已完成</text>
-    </view>
-    <view class="item tc">
-      <text class="title {{tab==-1?'active':''}}" bindtap="toggle" data-tab="-1">已取消</text>
+
+<scroll-view class="main-wrap" scroll-y='{{true}}' bindscrolltolower='scrollBottom'>
+  <view class="mid_box">
+    <view class="f_box flex bg_fff tc">
+      <view class="item tc">
+        <text class="title {{tab=='all'?'active':''}}" bindtap="toggle" data-tab="all">全部</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==0?'active':''}}" bindtap="toggle" data-tab="0">进行中</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==1?'active':''}}" bindtap="toggle" data-tab="1">已完成</text>
+      </view>
+      <view class="item tc">
+        <text class="title {{tab==-1?'active':''}}" bindtap="toggle" data-tab="-1">已取消</text>
+      </view>
     </view>
   </view>
-</view>
-<view class="mid_box">
-  <!-- 商品list -->
-  <scroll-view class="main-wrap" scroll-y='{{true}}' bindscrolltolower='scrollBottom'>
+  <view class="mid_box" style="margin-top:100rpx;">
+    <!-- 商品list -->
     <view class="list_box bg_fff" wx:for="{{list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
       <!-- 商品信息 -->
       <view bindtap="jump" data-page="order_details" data-id="{{item.id}}">
@@ -53,10 +54,10 @@
       </view>
     </view>
     <view wx:if="{{list.length==0}}" class="tc c_999" style="padding:30rpx;">~无数据~</view>
-  </scroll-view>
-  <!-- 筛选弹窗 -->
-  <!-- <actionSheetFilter show="{{isFilter}}"></actionSheetFilter> -->
-</view>
+    <!-- 筛选弹窗 -->
+    <!-- <actionSheetFilter show="{{isFilter}}"></actionSheetFilter> -->
+  </view>
+</scroll-view>
 <!-- <view class="footer">
   <service></service>
 </view> -->
