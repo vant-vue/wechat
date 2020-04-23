@@ -41,3 +41,6 @@
     </view>
   </view>
 </view>
+
+  <!-- 客服 -->
+<button open-type="contact" bindcontact="handleContact" session-from="attentionPublic">联系客服</button>
