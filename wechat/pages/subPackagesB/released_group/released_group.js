@@ -102,7 +102,7 @@ Page({
           }
           if (loginUserId==item.userId&&itemstr==''){
              if(item.isRemove==1){
-               itemstr=='已申请取消，待通过';
+               itemstr='已申请取消，待通过';
              }else{
                itemstr='申请取消';
                item.hasOnclick=1;
@@ -121,7 +121,7 @@ Page({
             }
             if (itemstr == '') {
               if (item.isRemove == 1) {
-                itemstr == '已申请取消，待通过';
+                itemstr = '已申请取消，待通过';
               } else {
                 itemstr = '申请取消';
                 item.hasOnclick = 1;

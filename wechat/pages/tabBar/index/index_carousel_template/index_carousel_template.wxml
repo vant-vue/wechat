@@ -11,7 +11,8 @@
     </swiper>
     <!-- <view class="index">
       <block wx:for="{{banner_list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-        <text class="{{index == banner_index ? 'current' : ''}}"></text>
+        <text class="{{index == banner_index
+         ? 'current' : ''}}"></text>
       </block>
     </view> -->
   </view>
