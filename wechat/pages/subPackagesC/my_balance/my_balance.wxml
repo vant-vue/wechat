@@ -23,7 +23,7 @@
 </view>
 <button class="btn" style="width: 90%;" bindtap="jump" data-page="withdraw_deposit">提现</button>
 <view class="b_box">
-  <view>· 每次提现金额需≥1元，每日最多提现3次，每日限额2万元</view>
+  <view>· 每次提现金额需≥1元，每日最多提现10次，每日限额5000元</view>
   <view>
     <text>· 如有问题请 </text>
     <text class="f06">联系客服</text>
