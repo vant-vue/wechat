@@ -42,7 +42,7 @@
               <swiper circular class="banner_inner" bindchange="change_index" interval="6000" duration="500">
                 <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
                   <swiper-item>
-                    <image src="{{banner}}"></image>
+                    <image src="{{banner}}" mode="aspectFill"></image>
                   </swiper-item>
                 </block>
               </swiper>
