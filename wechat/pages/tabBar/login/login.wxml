@@ -1,6 +1,6 @@
 <!--pages/tabBar/login/login.wxml-->
 <view class="tc">
-  <image class="logo" src="/images/home/friends.png"></image>
+  <image class="logo" src="/images/common/logo.jpg"></image>
 </view>
 <view class="title1 tc">百万接龙申请获取以下以下权限：</view>
 <view class="title2 tc">获取您的公开信息（昵称、头像等）</view>
