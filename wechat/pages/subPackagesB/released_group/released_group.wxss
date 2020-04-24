@@ -273,7 +273,6 @@
 .footer .retransmission {
   width: 240rpx;
   height: 120rpx;
-  line-height: 120rpx;
   background: #090;
   font-size: 30rpx;
   color: #fff;
@@ -301,7 +300,7 @@
 }
 
 .footer2 .item {
-  padding: 40rpx 0;
+  padding: 15rpx 0;
 }
 
 .footer2 .line {

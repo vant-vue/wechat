@@ -70,7 +70,7 @@
         <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
           <view class="flex">
             <view>
-              <image class="head_img" src="{{item.goodsImg}}"  mode="aspectFill"></image>
+              <image class="head_img" bindtap="showImg2" data-url="{{[item.goodsImg]}}" src="{{item.goodsImg}}" mode="aspectFill"></image>
             </view>
             <view class="item">
               <view class="flex">
@@ -244,7 +244,10 @@
       <image src="/images/home/set.png"></image>
       <view class="tit">接龙设置</view>
     </view>
-    <view class="retransmission" bindtap="show_popup_fun">转发</view>
+    <!-- <view class="retransmission" bindtap="show_popup_fun"> -->
+    <view class="retransmission">
+      <button open-type="share" style="width:100%;height:100%;line-height:88rpx;;">转发</button>
+    </view>
   </view>
   <!-- 底部按钮2 -->
   <view class="footer2 flex bg_fff" wx:elif="{{!isMine}}">
@@ -253,19 +256,22 @@
       <text class="tit">发个接龙</text>
     </view>
     <view class="item line" bindtap="jump" data-page="copy_solitaire">
-      <image src="/images/home/复制.png"></image>
+      <image src="/images/home/copy.png"></image>
       <text class="tit"> 复制接龙</text>
     </view>
-    <view class="item retransmission" bindtap="show_popup_fun">
-      <image src="/images/record/right.png"></image>
-      <text class="tit10">转发接龙</text>
+    <!-- <view class="item retransmission" bindtap="show_popup_fun"> -->
+    <view class="item retransmission">
+      <button open-type="share" style="padding:0;width:100%;height:100%;line-height:88rpx;;">
+        <image src="/images/record/right.png"></image>
+        <text class="tit10">转发接龙</text>
+      </button>
     </view>
   </view>
   <!-- 转发成功弹出层 -->
   <transmit show_popup="{{show_popup}}">
     <view slot="after">
       <view class="p_content1">发布成功</view>
-      <view class="p_content2">快发给群友开始接龙吧~</view>
+      <view class="p_content2" style="padding:20rpx 0;">快发给群友开始接龙吧~</view>
     </view>
   </transmit>
 </view>

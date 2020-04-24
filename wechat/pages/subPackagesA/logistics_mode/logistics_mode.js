@@ -75,6 +75,20 @@ Page({
       })
       return
     }
+    let str = '';
+    this.data.modeList.forEach(item => {
+      if (!item.mode) {
+        str = '请填写自定义填写项'
+        return;
+      }
+    })
+    if (str) {
+      wx.showToast({
+        title: str,
+        icon: "none"
+      })
+      return;
+    }
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
@@ -129,8 +143,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-  },
+  onUnload: function() {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

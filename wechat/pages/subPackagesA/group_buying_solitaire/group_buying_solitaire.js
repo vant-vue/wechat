@@ -39,7 +39,8 @@ Page({
       "getAddress": "", //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
       "isCopy": true, //是否允许复制  0表示不可复制  1表示可复制
       'mode': "" //物流非必填字段 发布人自定义字段 逗号隔开  可空
-    }
+    },
+    is_request: false
   },
   // 上传图片组件返回的数据
   get_img_list(e) {
@@ -146,6 +147,7 @@ Page({
   },
   // 提交
   submit() {
+    if (this.data.is_request) return;
     let str = '';
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
@@ -181,7 +183,7 @@ Page({
       })
       return;
     }
-
+    this.data.is_request = true;
     this.uploadImg(this.data.uploadList).then(res => {
       let params = {
         param: {
@@ -206,11 +208,13 @@ Page({
         });
         let setTime;
         setTime = setTimeout(() => {
+          this.data.is_request = false;
           wx.switchTab({
             url: '/pages/tabBar/record/record'
           })
         }, 2000)
       }).catch(err => {
+        this.data.is_request = false;
         wx.hideLoading()
       })
     })
@@ -329,6 +333,7 @@ Page({
   },
   // 编辑
   edit() {
+    if (this.data.is_request) return;
     let str = '';
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
@@ -364,6 +369,7 @@ Page({
       })
       return;
     }
+    this.data.is_request = true;
     this.uploadImg(this.data.uploadList).then(res => {
       let params = {
         param: {
@@ -389,6 +395,7 @@ Page({
           });
           let setTime;
           setTime = setTimeout(() => {
+            this.data.is_request = false;
             wx.switchTab({
               url: '/pages/tabBar/record/record'
             })
@@ -401,6 +408,7 @@ Page({
         }
         wx.hideLoading()
       }).catch(err => {
+        this.data.is_request = false;
         wx.hideLoading()
       })
     });

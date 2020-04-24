@@ -55,16 +55,20 @@
 .uploader_item image {
   width: 100%;
   height: 100%;
-  border: 1px dashed #83838b;
+  /* border: 1px dashed #83838b; */
 }
 
 .uploader {
   display: inline-block;
   position: relative;
   box-sizing: border-box;
-  border: 1px dashed #83838b;
-  width: 168rpx;
-  height: 168rpx;
+  /* border: 1px dashed #83838b; */
+  width: 180rpx;
+  height: 180rpx;
+}
+.uploader image{
+  width: 180rpx;
+  height: 180rpx;
 }
 
 .uploader>text {

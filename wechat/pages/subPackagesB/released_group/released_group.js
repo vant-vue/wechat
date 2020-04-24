@@ -9,7 +9,10 @@ Page({
     solitaireId: '',
     banner_list: [],
     show_popup: false,
-    refundMap:{1:"已全部退款",2:"已部分退款"},
+    refundMap: {
+      1: "已全部退款",
+      2: "已部分退款"
+    },
     param: {
       "pageNo": 1, //页数
       "pageSize": 10, //单页记录数
@@ -27,15 +30,22 @@ Page({
     banner_index: 0, //当前轮播图(顶部) 显示 index
   },
   //展示图片
-  showImg: function (e) {
+  showImg: function(e) {
     var that = this;
     wx.previewImage({
       urls: that.data.banner_list,
       current: that.data.banner_list[e.currentTarget.dataset.index]
     })
   },
+  showImg2: function(e) {
+    var that = this;
+    wx.previewImage({
+      urls: e.currentTarget.dataset.url,
+      current: 0
+    })
+  },
   //轮播图改变
-  change_index: function (e) {
+  change_index: function(e) {
     let current = e.detail.current;
     this.setData({
       banner_index: current
@@ -96,32 +106,32 @@ Page({
     }
     app.$API.solitaireList(params).then(res => {
       let loginUserId = res.args.userId;
-      res.args.solitaireList.forEach(item=>{
-        let itemstr='';
-        if (loginUserId==item.pubUserId){//先判定是否本人发布
-          if (item.status==-1){//已取消
-            itemstr +='已取消接龙';
-          } 
-          if(item.refundStatus!=0){//存在退款
-            if (itemstr.length>0){
-              itemstr+=',';
+      res.args.solitaireList.forEach(item => {
+        let itemstr = '';
+        if (loginUserId == item.pubUserId) { //先判定是否本人发布
+          if (item.status == -1) { //已取消
+            itemstr += '已取消接龙';
+          }
+          if (item.refundStatus != 0) { //存在退款
+            if (itemstr.length > 0) {
+              itemstr += ',';
             }
             itemstr += this.data.refundMap[item.refundStatus];
           }
-          if (loginUserId==item.userId&&itemstr==''){
-             if(item.isRemove==1){
-               itemstr='已申请取消，待通过';
-             }else{
-               itemstr='申请取消';
-               item.hasOnclick=1;
-             }
+          if (loginUserId == item.userId && itemstr == '') {
+            if (item.isRemove == 1) {
+              itemstr = '已申请取消，待通过';
+            } else {
+              itemstr = '申请取消';
+              item.hasOnclick = 1;
+            }
           }
-        }else{//参与者
-          if (loginUserId == item.userId){//只有是本人参与的记录才显示
-            if (item.status == -1) {//已取消
+        } else { //参与者
+          if (loginUserId == item.userId) { //只有是本人参与的记录才显示
+            if (item.status == -1) { //已取消
               itemstr += '已取消接龙';
             }
-            if (item.refundStatus != 0) {//存在退款
+            if (item.refundStatus != 0) { //存在退款
               if (itemstr.length > 0) {
                 itemstr += ',';
               }
@@ -458,7 +468,34 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function(options) {
+    var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
+    var shareObj = {
+      title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
+      path: '/pages/subPackagesB/released_group/released_group' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      success: function(res) { // 转发成功之后的回调
+        if (res.errMsg == 'shareAppMessage:ok') {}　　　　
+      },
+      fail: function() { // 转发失败之后的回调
+        if (res.errMsg == 'shareAppMessage:fail cancel') {
+          // 用户取消转发
+        } else if (res.errMsg == 'shareAppMessage:fail') {
+          // 转发失败，其中 detail message 为详细失败信息
+        }　　　　
+      },
+      complete: function() {
+        // 转发结束之后的回调（转发成不成功都会执行）
+      }
+    };
+    // 来自页面内的按钮的转发
+    if (options.from == 'button') {
+      // var eData = options.target.dataset;
+      // console.log(eData.name); // shareBtn
+      // // 此处可以修改 shareObj 中的内容
+      // shareObj.path = '/pages/subPackagesB/released_group/released_group' + that.data.solitaireId;
+    }
+    // 返回shareObj
+    return shareObj;
   }
 })

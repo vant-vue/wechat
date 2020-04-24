@@ -22,19 +22,19 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" style="text-align:right;" placeholder="必填"></input>
+        <input type="text" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="flex bg box2" wx:for="{{modeList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
       <view class="item">
-        <input type="text" bindinput='listenerInput' data-row="mode" data-index="{{index}}" value="{{item.mode}}" placeholder="请输入选项名称"></input>
+        <input type="text" bindinput='listenerInput' maxlength="6" data-row="mode" data-index="{{index}}" value="{{item.mode}}" placeholder="请输入选项名称"></input>
       </view>
       <view bindtap="del_mode" class="delete">
         删除
       </view>
     </view>
     <view class="bg box2 tc">
-      <view bindtap="add_mode" class="add">+新增自定义填写项</view>
+      <view bindtap="add_mode" wx:if="{{modeList.length<3}}" class="add">+新增自定义填写项</view>
     </view>
   </view>
   <!-- 快递发货 -->
@@ -46,7 +46,7 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" style="text-align:right;" placeholder="必填"></input>
+        <input type="text" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="flex bg box">
@@ -55,7 +55,7 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" style="text-align:right;" placeholder="必填"></input>
+        <input type="text" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="flex bg box">
@@ -64,19 +64,19 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" bindinput="listenerInputSimple" data-row="getAddress" value="{{getAddress}}" style="text-align:right;" placeholder="必填"></input>
+        <input type="text" bindinput="listenerInputSimple" data-row="getAddress" value="{{getAddress}}" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="flex bg box2" wx:for="{{modeList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
       <view class="item">
-        <input type="text" bindinput='listenerInput' data-row="mode" data-index="{{index}}" value="{{item.mode}}" placeholder="请输入选项名称"></input>
+        <input type="text" bindinput='listenerInput' maxlength="6" data-row="mode" data-index="{{index}}" value="{{item.mode}}" placeholder="请输入选项名称"></input>
       </view>
       <view bindtap="del_mode" class="delete">
         删除
       </view>
     </view>
     <view class="bg box2 tc">
-      <view bindtap="add_mode" class="add">+新增自定义填写项</view>
+      <view bindtap="add_mode" wx:if="{{modeList.length<3}}" class="add">+新增自定义填写项</view>
     </view>
   </view>
   <!-- 提货点自提 -->
@@ -89,7 +89,7 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" style="text-align:right;" placeholder="必填"></input>
+        <input type="text" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="box tit2">设置提货点信息</view>
