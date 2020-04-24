@@ -26,6 +26,14 @@ Page({
     userId: '',
     banner_index: 0, //当前轮播图(顶部) 显示 index
   },
+  //展示图片
+  showImg: function (e) {
+    var that = this;
+    wx.previewImage({
+      urls: that.data.banner_list,
+      current: that.data.banner_list[e.currentTarget.dataset.index]
+    })
+  },
   //轮播图改变
   change_index: function (e) {
     let current = e.detail.current;

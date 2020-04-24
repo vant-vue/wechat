@@ -42,7 +42,7 @@
               <swiper circular class="banner_inner" bindchange="change_index" interval="6000" duration="500">
                 <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
                   <swiper-item>
-                    <image src="{{banner}}" mode="aspectFill"></image>
+                    <image src="{{banner}}" bindtap="showImg" data-index="{{index}}" mode="aspectFill"></image>
                   </swiper-item>
                 </block>
               </swiper>
@@ -119,14 +119,27 @@
           <view>
             <view class="tit3">{{solitaire.summary}}</view>
             <!-- 轮播 -->
-            <view>
+            <!-- <view>
               <swiper autoplay circular indicator-dots class="banner_inner" interval="6000" duration="500">
                 <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
                   <swiper-item>
-                    <image src="{{banner}}"></image>
+                    <image src="{{banner}}" bindtap="showImg" data-index="{{index}}" ></image>
                   </swiper-item>
                 </block>
               </swiper>
+            </view> -->
+            <view wx:if="{{banner_list.length>0}}" class="pr">
+              <!-- autoplay -->
+              <swiper circular class="banner_inner" bindchange="change_index" interval="6000" duration="500">
+                <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
+                  <swiper-item>
+                    <image src="{{banner}}" bindtap="showImg" data-index="{{index}}" mode="aspectFill"></image>
+                  </swiper-item>
+                </block>
+              </swiper>
+              <view class="current">
+                <text>{{banner_index+1}}/{{banner_list.length}}</text>
+              </view>
             </view>
             <view class="shop_b">
               <view class="flex">
