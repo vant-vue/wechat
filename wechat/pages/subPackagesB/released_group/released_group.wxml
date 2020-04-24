@@ -70,7 +70,7 @@
         <view class="bot" wx:for="{{goodsList}}" wx:for-item="item" wx:key="key" wx:for-index="index">
           <view class="flex">
             <view>
-              <image class="head_img" src="{{item.goodsImg}}"></image>
+              <image class="head_img" src="{{item.goodsImg}}"  mode="aspectFill"></image>
             </view>
             <view class="item">
               <view class="flex">
