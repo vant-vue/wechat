@@ -29,6 +29,10 @@ Component({
       this.setData({
         show_popup: false
       })
+    },
+    handleContact(e) {
+      console.log(e.detail.path)
+      console.log(e.detail.query)
     }
   },
   onShareAppMessage: function(e) {

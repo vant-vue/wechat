@@ -18,6 +18,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    handleContact(e) {
+      console.log(e.detail.path)
+      console.log(e.detail.query)
+    }
   }
 })

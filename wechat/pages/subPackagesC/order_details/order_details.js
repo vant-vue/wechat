@@ -46,7 +46,7 @@ Page({
       this.setData({
         goodsList: res.args.goodsList ? res.args.goodsList : [],
         order: res.args.order ? res.args.order : {},
-        refundList: res.args.refundLis ? res.args.refundList : [],
+        refundList: res.args.refundList ? res.args.refundList : [],
         logistics: res.args.logistics ? res.args.logistics : {},
         userInfo: res.args.userInfo ? res.args.userInfo : {},
         isMine: res.args.isMine,

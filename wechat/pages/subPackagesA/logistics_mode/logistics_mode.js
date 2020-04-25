@@ -21,7 +21,7 @@ Page({
       }
     ],
     modeList: [],
-    getgetAddress: '' ////当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+    getAddress: '' ////当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
   },
   // 新增商品
   add_mode() {
@@ -119,10 +119,13 @@ Page({
     })
     if (options.mode) {
       this.setData({
-        modeList: mode,
-        index: type
+        modeList: mode
       });
     }
+    this.setData({
+      index: type,
+      getAddress: options.getAddress
+    });
   },
 
   /**

@@ -27,14 +27,14 @@
   </view>
 </view>
 <view class="list_box">
-  <view class="flex">
+  <view class="flex" bindtap="wait">
     <view class="item title">常见问题</view>
     <view class="val"></view>
     <view>
       <text class='icon_right'></text>
     </view>
   </view>
-  <view class="flex">
+  <view class="flex" bindtap="wait">
     <view class="item title">推荐给朋友</view>
     <view class="val"></view>
     <view>

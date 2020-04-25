@@ -91,7 +91,7 @@
   </view>
   <view class="content">
     <view class="flex" wx:for="{{refundList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-      <view class="item">退款{{item.refundMoney}} </view>
+      <view class="item">退款 {{filter.money(item.refundMoney)}} </view>
       <view class="tit_t">{{item.insertTime}}</view>
     </view>
   </view>

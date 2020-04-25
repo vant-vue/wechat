@@ -90,3 +90,16 @@
   color: #ccc;
   margin-right: 20rpx;
 }
+/* 无数据 */
+.no_data{
+  padding-top:100rpx;
+}
+.no_data image{
+  width: 300rpx;
+}
+.no_data>.no_div{
+  background: #3E5CF2;
+  margin-top: 50rpx;
+  color: #fff;
+  border-radius: 60rpx;
+}

@@ -2,9 +2,9 @@
 <wxs src="../../../utils/filter.wxs" module="filter" />
 <view class="shop_box bg_fff">
   <view class="flex" bindtap="get_wx_address" wx:if="{{logistics.logisticsType == 1}}">
-    <view class="tit1">{{provinceName?provinceName+cityName+countyName+detailInfo:'收货地址'}}</view>
-    <view class="item tr">
-      <text class="tit2 mr20" style="width: 590rpx;">请选择</text>
+    <view class="item tit1">{{provinceName?provinceName+cityName+countyName+detailInfo:'收货地址'}}</view>
+    <view class="tr">
+      <text class="tit2 mr20">请选择</text>
     </view>
     <view>
       <text class='icon_right'></text>

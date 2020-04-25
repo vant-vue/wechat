@@ -238,7 +238,7 @@ Page({
         url = '/pages/subPackagesA/editDetails/editDetails?title=' + title + "&index=" + id + "&img=" + img;
         break;
       case 'logistics_mode':
-        url = '/pages/subPackagesA/logistics_mode/logistics_mode?mode=' + this.data.params.mode + "&type=" + this.data.params.logisticsType;
+        url = '/pages/subPackagesA/logistics_mode/logistics_mode?mode=' + this.data.params.mode + "&type=" + this.data.params.logisticsType + "&getAddress=" + this.data.params.getAddress;
         break;
     }
     if (url.match('tabBar')) {
