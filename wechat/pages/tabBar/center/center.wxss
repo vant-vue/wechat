@@ -2,7 +2,7 @@
 
 .top_box {
   background: #fc0;
-  height: 220rpx;
+  height: 440rpx;
 }
 
 .top_box .head_img {
