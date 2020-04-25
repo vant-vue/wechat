@@ -8,6 +8,10 @@ Page({
   data: {
     banner_index: 0, //当前轮播图(顶部) 显示 index
     banner_list: [],
+    height:0
+  },
+  get_wxml: function (className, callback) {
+    wx.createSelectorQuery().selectAll(className).boundingClientRect(callback).exec()
   },
   //跳转
   jump(e) {

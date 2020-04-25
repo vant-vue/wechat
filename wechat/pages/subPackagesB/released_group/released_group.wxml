@@ -20,7 +20,7 @@
         <image bindtap="callPhone_fun" class="img2" src="/images/home/tel.png"></image>
         <image class="img2" src="/images/home/wechat.png"></image>
         <image class="img2" src="/images/home/friends.png"></image>
-         <button open-type="share" style="position:absolute;right:80rpx;top:0;width:60rpx;height:60rpx;padding:0;margin:0;background:transparent;">
+        <button open-type="share" style="position:absolute;right:80rpx;top:0;width:60rpx;height:60rpx;padding:0;margin:0;background:transparent;">
         </button>
       </view>
     </view>
@@ -62,10 +62,10 @@
               <image src="/images/record/book.png"></image>
             </view> -->
             </view>
-            <view class="tel">
+            <!-- <view class="tel">
               <view wx:if="{{logistics.phone}}">联系电话：{{logistics.phone}}</view>
               <view wx:if="{{logistics.address}}">提货地址：{{logistics.address}}</view>
-            </view>
+            </view> -->
           </view>
         </view>
         <!-- 商品 -->
@@ -196,7 +196,7 @@
     </view>
   </view>
   <!-- 开启消息提醒 -->
-  <view class="notice_box" wx:if="{{info.isAttentionPublic == 0}}">
+  <view class="notice_box bg_fff" wx:if="{{info.isAttentionPublic == 0}}">
     <view class='flex'>
       <view class="" bindtap="open_show_notice">
         <image src="/images/record/notice.png" mode="widthFix"></image>
@@ -247,7 +247,10 @@
     </view>
     <!-- <view class="retransmission" bindtap="show_popup_fun"> -->
     <view class="retransmission">
-      <button open-type="share" style="width:100%;height:100%;line-height:88rpx;;">转发</button>
+      <button open-type="share" style="width:100%;height:100%;line-height:88rpx;;">
+        <image class="zf_img" src="/images/home/right.png"></image>
+        <text class="tit10">转发</text>
+      </button>
     </view>
   </view>
   <!-- 底部按钮2 -->
@@ -263,7 +266,7 @@
     <!-- <view class="item retransmission" bindtap="show_popup_fun"> -->
     <view class="item retransmission">
       <button open-type="share" style="padding:0;width:100%;height:100%;line-height:88rpx;">
-        <image src="/images/record/right.png"></image>
+        <image src="/images/home/right.png"></image>
         <text class="tit10">转发接龙</text>
       </button>
     </view>

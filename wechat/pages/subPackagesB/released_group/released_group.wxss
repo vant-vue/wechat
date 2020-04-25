@@ -79,6 +79,10 @@
   position: absolute;
   right: 0;
   bottom: 0;
+  padding:3rpx 15rpx;
+  opacity: 0.5;
+  border-radius: 30rpx;
+  background: #ccc;
 }
 
 .cont_box .tit1 {
@@ -286,6 +290,16 @@
   font-size: 28rpx;
   padding: 20rpx 0;
 }
+.footer .tit10 {
+  font-size: 30rpx;
+  color: #fff;
+}
+.footer .zf_img{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
 
 /* 底部 */
 
@@ -335,6 +349,7 @@
 
 .notice_box {
   margin: 40rpx 20rpx;
+  padding: 20rpx 0;
 }
 
 .notice_box .flex {
@@ -351,4 +366,5 @@
 
 .notice_box image {
   width: 50rpx;
+  margin:0 20rpx;
 }

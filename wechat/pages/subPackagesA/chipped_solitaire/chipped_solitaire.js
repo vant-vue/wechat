@@ -210,8 +210,8 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           this.data.is_request = false;
-          wx.switchTab({
-            url: '/pages/tabBar/record/record'
+          wx.navigateTo({
+            url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
           })
         }, 2000)
       }).catch(err => {
@@ -370,7 +370,7 @@ Page({
       wx.showToast({
         title: str,
         icon: 'none',
-        duration:3000
+        duration: 3000
       })
       return;
     }
@@ -404,8 +404,8 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           this.data.is_request = false;
-          wx.switchTab({
-            url: '/pages/tabBar/record/record'
+          wx.navigateTo({
+            url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
           })
         }, 2000)
       }).catch(err => {

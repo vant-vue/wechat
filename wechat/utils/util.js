@@ -15,9 +15,10 @@ const formatTime = (date, type) => {
   return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 const formatTime7 = (date, type) => {
+  date = new Date(date.getTime() + 7 * 24 * 3600 * 1000);
   const year = date.getFullYear()
   const month = date.getMonth() + 1
-  const day = date.getDate() + 7
+  const day = date.getDate()
   const hour = date.getHours()
   const minute = date.getMinutes()
   const second = date.getSeconds()

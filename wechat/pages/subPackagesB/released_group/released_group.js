@@ -446,12 +446,18 @@ Page({
   onLoad: function(options) {
     console.log(options);
     this.data.solitaireId = options.id;
-    this.get_details(this.data.solitaireId);
+    if (options.released_id) {
+      this.data.solitaireId = options.released_id;
+      this.setData({
+        show_popup: true
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.get_details(this.data.solitaireId);
     this.get_list();
   },
 

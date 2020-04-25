@@ -2,11 +2,12 @@
 <view>
   <view class="bg title">{{title}}</view>
   <view class="bg box">
-    <textarea placeholder="请输入商品简介" bindinput='listenerInput' data-row="summary" value="{{summary}}" />
+    <textarea placeholder="建议您填写吸引眼球商品介绍并上传图片" bindinput='listenerInput' data-row="summary" value="{{summary}}" />
   </view>
   <!-- 图片 -->
   <view class="bg box">
-    <view class="tit">建议您填写吸引眼球商品介绍并上传图片</view>
-    <upload-img id="uploadImg" defaultNum="1" bind:upload="get_img_list" imgList="{{imgList}}"></upload-img>
+    <!-- <view class="tit">建议您填写吸引眼球商品介绍并上传图片</view> -->
+    <upload-img wx:if="{{imgList.length==0}}" id="uploadImg" defaultNum="1" bind:upload="get_img_list" imgList="{{imgList}}"></upload-img>
+    <image wx:else src="{{imgList[0]}}" style="width:100%" mode="widthFix"></image>
   </view>
 </view>

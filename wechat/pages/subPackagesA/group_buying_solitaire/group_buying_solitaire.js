@@ -159,9 +159,9 @@ Page({
       if (!valid.check_positive(item.price)) {
         str = "请填写正确商品价格"
       }
-      if (!valid.check_required(item.goodsImg)) {
-        str = "请上传商品图片"
-      }
+      // if (!valid.check_required(item.goodsImg)) {
+      //   str = "请上传商品图片"
+      // }
       if (str) {
         return;
       }
@@ -211,8 +211,8 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           this.data.is_request = false;
-          wx.switchTab({
-            url: '/pages/tabBar/record/record'
+          wx.navigateTo({
+            url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
           })
         }, 2000)
       }).catch(err => {
@@ -226,6 +226,7 @@ Page({
     let page = e.currentTarget.dataset.page;
     let id = e.currentTarget.dataset.id;
     let title = e.currentTarget.dataset.title;
+    let summary = e.currentTarget.dataset.summary;
     let img = e.currentTarget.dataset.img;
     let url = '';
     switch (page) {
@@ -238,7 +239,7 @@ Page({
           })
           return;
         }
-        url = '/pages/subPackagesA/editDetails/editDetails?title=' + title + "&index=" + id + "&img=" + img;
+        url = '/pages/subPackagesA/editDetails/editDetails?title=' + title + "&index=" + id + "&img=" + img + "&" + "&summary=" + summary;
         break;
       case 'logistics_mode':
         url = '/pages/subPackagesA/logistics_mode/logistics_mode?mode=' + this.data.params.mode + "&type=" + this.data.params.logisticsType + "&getAddress=" + this.data.params.getAddress;
@@ -348,9 +349,9 @@ Page({
       if (!valid.check_positive(item.price)) {
         str = "请填写正确商品价格"
       }
-      if (!valid.check_required(item.goodsImg)) {
-        str = "请上传商品图片"
-      }
+      // if (!valid.check_required(item.goodsImg)) {
+      //   str = "请上传商品图片"
+      // }
       if (str) {
         return;
       }
@@ -401,8 +402,8 @@ Page({
           let setTime;
           setTime = setTimeout(() => {
             this.data.is_request = false;
-            wx.switchTab({
-              url: '/pages/tabBar/record/record'
+            wx.navigateTo({
+              url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
             })
           }, 2000)
         } else {

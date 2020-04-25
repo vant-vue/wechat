@@ -52,6 +52,7 @@
   border-radius: 60rpx;
   border: 1rpx solid #090;
   margin-right: 20rpx;
+  margin-bottom: 1rpx;
 }
 
 .chipped {
@@ -61,6 +62,7 @@
   border-radius: 60rpx;
   border: 1rpx solid #f90;
   margin-right: 20rpx;
+  margin-bottom: 1rpx;
 }
 
 .jxz {

@@ -26,7 +26,7 @@
       <view class="item">
         <input type="text" bindinput='listenerInput' data-row="goodsName" data-index="{{index}}" value="{{item.goodsName}}" placeholder="请输入商品名称"></input>
       </view>
-      <view class="tit4" bindtap="jump" data-page="editDetails" data-title="{{item.goodsName}}" data-id="{{index}}" data-img="{{item.goodsImg}}">编辑详情</view>
+      <view class="tit4" bindtap="jump" data-page="editDetails" data-title="{{item.goodsName}}" data-summary="{{item.summary}}" data-id="{{index}}" data-img="{{item.goodsImg}}">编辑详情</view>
     </view>
     <view class="flex bg box">
       <view class="left left_width">

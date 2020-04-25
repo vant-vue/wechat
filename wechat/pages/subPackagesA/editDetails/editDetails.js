@@ -21,6 +21,7 @@ Page({
     this.setData({
       title: options.title,
       index: options.index,
+      summary: options.summary,
       imgList: options.img ? options.img.split(";") : []
     })
   },
