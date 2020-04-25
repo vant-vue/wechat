@@ -1,4 +1,5 @@
 // pages/tabBar/index/index.js
+import config from "./../../../utils/config.js"
 const app = getApp();
 Page({
 
@@ -44,9 +45,15 @@ Page({
   // 获取banner
   get_banner() {
     let params = {
-      spaceId: 9
+      spaceId: 10
     }
     app.$API.banner(params).then(res => {
+      if(res.list){
+        res.list.forEach(item => {
+          item.imageAttr = item.imageAttr.indexOf("|") == 0?item.imageAttr.substring(1):item.imageAttr;
+          item.imageAttr = config.api_url + item.imageAttr;
+        });
+      }
       this.setData({
         banner_list: res.list
       })
