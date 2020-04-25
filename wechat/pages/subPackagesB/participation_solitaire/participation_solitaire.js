@@ -120,7 +120,8 @@ Page({
     if (!valid.check_mobile(this.data.telNumber)) {
       wx.showToast({
         title: '请输入正确的联系电话',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
@@ -171,6 +172,7 @@ Page({
             if (res.errMsg == "requestPayment:ok") {
               wx.showToast({
                 title: '支付成功',
+                duration: 3000
               })
               let setTime = setTimeout(() => {
                 wx.navigateBack();

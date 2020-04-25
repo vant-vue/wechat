@@ -17,7 +17,7 @@
     </view>
   </view>
 </view>
-<view class="list_box"  bindtap="jump" data-page="order_bought">
+<view class="list_box" bindtap="jump" data-page="order_bought">
   <view class="flex">
     <view class="item title">已购买的订单</view>
     <view class="val"></view>
@@ -34,9 +34,12 @@
       <text class='icon_right'></text>
     </view>
   </view>
-  <view class="flex" bindtap="wait">
-    <view class="item title">推荐给朋友</view>
-    <view class="val"></view>
+
+  <view class="flex">
+    <view class="title">推荐给朋友</view>
+    <view class="item val">
+      <button open-type="share" style="width:100%;background:#fff"></button>
+    </view>
     <view>
       <text class='icon_right'></text>
     </view>

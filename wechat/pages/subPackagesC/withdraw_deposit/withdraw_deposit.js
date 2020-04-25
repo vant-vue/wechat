@@ -47,21 +47,24 @@ Page({
     if (!this.data.userInfo.payee) {
       wx.showToast({
         title: '请输入收款人',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
     if (this.data.cashAmount == '') {
       wx.showToast({
         title: '请输入提现金额',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
     if (this.data.cashAmount * 100 > this.data.userInfo.cashAmount) {
       wx.showToast({
         title: `提现金额应小于${this.data.userInfo.cashAmount/100}`,
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
@@ -78,7 +81,8 @@ Page({
     app.$API.wxOutMoney(params).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: '提现成功'
+          title: '提现成功',
+          duration: 3000
         })
       } else {
         wx.showToast({

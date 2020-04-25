@@ -24,6 +24,7 @@ Page({
         }).then(res => {
           wx.showToast({
             title: '授权成功',
+            duration: 3000
           })
           let setTime = setTimeout(() => {
             this.goBack();

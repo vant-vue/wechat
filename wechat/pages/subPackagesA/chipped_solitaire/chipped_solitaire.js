@@ -176,7 +176,8 @@ Page({
     if (str) {
       wx.showToast({
         title: str,
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
@@ -203,7 +204,8 @@ Page({
       this.data.is_request = true;
       app.$API.insertPubSolitaire(params).then(res => {
         wx.showToast({
-          title: '发布成功'
+          title: '发布成功',
+          duration: 3000
         });
         let setTime;
         setTime = setTimeout(() => {
@@ -231,7 +233,8 @@ Page({
         if (!title) {
           wx.showToast({
             title: '请输入商品名称',
-            icon: "none"
+            icon: "none",
+            duration: 3000
           })
           return;
         }
@@ -366,7 +369,8 @@ Page({
     if (str) {
       wx.showToast({
         title: str,
-        icon: 'none'
+        icon: 'none',
+        duration:3000
       })
       return;
     }
@@ -394,7 +398,8 @@ Page({
       this.data.is_request = true;
       app.$API.editSolitaire(params).then(res => {
         wx.showToast({
-          title: '修改成功'
+          title: '修改成功',
+          duration: 3000
         });
         let setTime;
         setTime = setTimeout(() => {

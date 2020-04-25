@@ -71,7 +71,8 @@ Page({
     if (this.data.objectArray[this.data.index].id == 2 && !this.data.getAddress) {
       wx.showToast({
         title: '请填写地址',
-        icon: "none"
+        icon: "none",
+        duration: 3000
       })
       return
     }
@@ -85,7 +86,8 @@ Page({
     if (str) {
       wx.showToast({
         title: str,
-        icon: "none"
+        icon: "none",
+        duration: 3000
       })
       return;
     }

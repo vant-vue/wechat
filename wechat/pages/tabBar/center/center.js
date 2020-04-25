@@ -107,7 +107,7 @@ Page({
     var shareObj = {
       title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
       path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
-      imageUrl: '/pages/tabBar/index/index', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      // imageUrl: '/pages/tabBar/index/index', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function (res) { // 转发成功之后的回调
         if (res.errMsg == 'shareAppMessage:ok') { }
       },

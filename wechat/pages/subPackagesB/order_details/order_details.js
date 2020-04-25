@@ -79,7 +79,8 @@ Page({
     if (!e.detail.value) {
       wx.showToast({
         title: '请填写备注',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
@@ -102,12 +103,14 @@ Page({
       if (res.code == 200) {
         this.get_details();
         wx.showToast({
-          title: '修改成功'
+          title: '修改成功',
+          duration: 3000
         });
       } else {
         wx.showToast({
           title: '修改失败',
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         });
       }
       wx.hideLoading()
@@ -133,12 +136,14 @@ Page({
       if (res.code == 200) {
         this.get_details();
         wx.showToast({
-          title: '修改成功'
+          title: '修改成功',
+          duration: 3000
         });
       } else {
         wx.showToast({
           title: '修改失败',
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         });
       }
       wx.hideLoading()
@@ -208,7 +213,8 @@ Page({
     app.$API.updateWxRefund(params).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: '退款成功'
+          title: '退款成功',
+          duration: 3000
         });
         this.setData({
           refundMoney:''
@@ -217,7 +223,8 @@ Page({
       } else {
         wx.showToast({
           title: res.msg,
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         });
       }
     }).catch(() => {
@@ -230,21 +237,24 @@ Page({
     if (!this.data.refundMoney) {
       wx.showToast({
         title: '请输入退款金额',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
     if (this.data.refundMoney > this.data.order.payMoney / 100) {
       wx.showToast({
         title: '退款金额应小于支付金额',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }
     if (this.data.refundMoney < 0) {
       wx.showToast({
         title: '退款金额应大于0',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       })
       return;
     }

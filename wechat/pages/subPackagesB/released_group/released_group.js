@@ -189,13 +189,15 @@ Page({
     app.$API.updateSolitaireStatus(params).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: '修改成功'
+          title: '修改成功',
+          duration: 3000
         })
         this.get_details(this.data.solitaireId);
       } else {
         wx.showToast({
           title: '修改失败',
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         })
       }
       wx.hideLoading()
@@ -217,7 +219,8 @@ Page({
     app.$API.deleteSolitaire(params).then(res => {
       if (res.code == 200) {
         wx.showToast({
-          title: '删除成功'
+          title: '删除成功',
+          duration: 3000
         })
         let setTime = setTimeout(() => {
           wx.switchTab({
@@ -227,7 +230,8 @@ Page({
       } else {
         wx.showToast({
           title: res.msg,
-          icon: 'none'
+          icon: 'none',
+          duration: 3000
         })
       }
       wx.hideLoading()
@@ -359,13 +363,15 @@ Page({
           app.$API.applyRemove(params).then(res => {
             if (res.code == 200) {
               wx.showToast({
-                title: '申请成功'
+                title: '申请成功',
+                duration: 3000
               })
               _this.get_list();
             } else {
               wx.showToast({
                 title: '申请失败',
-                icon: 'none'
+                icon: 'none',
+                duration: 3000
               })
             }
             wx.hideLoading()
