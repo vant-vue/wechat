@@ -24,9 +24,11 @@
 <button class="btn" style="width: 90%;" bindtap="jump" data-page="withdraw_deposit">提现</button>
 <view class="b_box">
   <view>· 每次提现金额需≥1元，每日最多提现10次，每日限额5000元</view>
-  <view>
+  <view class="pr">
     <text>· 如有问题请 </text>
-    <text class="f06">联系客服</text>
+    <button open-type="contact" bindcontact="handleContact" session-from="attentionPublic" style="background:transparent;position:abosulte;left:-152rpx;top:-60rpx">
+      <text class="f06">联系客服</text>
+    </button>
   </view>
 </view>
 <view class="footer">

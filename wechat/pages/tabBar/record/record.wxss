@@ -16,14 +16,14 @@
 }
 
 .fixed_record .title.active {
-  border-bottom: 2px solid #090;
-  color: #090;
+  border-bottom: 2px solid #3E5CF2;
+  color: #3E5CF2;
   font-weight: bold;
 }
 
 .record_box {
   padding-top: 90rpx;
-  padding-bottom: 20rpx; 
+  padding-bottom: 20rpx;
 }
 
 .list {
@@ -51,6 +51,7 @@
   padding: 4rpx 10rpx;
   border-radius: 60rpx;
   border: 1rpx solid #090;
+  margin-right: 20rpx;
 }
 
 .chipped {
@@ -59,6 +60,19 @@
   padding: 4rpx 10rpx;
   border-radius: 60rpx;
   border: 1rpx solid #f90;
+  margin-right: 20rpx;
+}
+
+.jxz {
+  color: #090;
+}
+
+.ywc {
+  color: #f90;
+}
+
+.yqx {
+  color: #999;
 }
 
 .bot_box {
@@ -74,4 +88,18 @@
   height: 30rpx;
   vertical-align: middle;
   margin-right: 10rpx;
+}
+
+/* 无数据 */
+.no_data{
+  padding-top:100rpx;
+}
+.no_data image{
+  width: 300rpx;
+}
+.no_data>.no_div{
+  background: #3E5CF2;
+  margin-top: 50rpx;
+  color: #fff;
+  border-radius: 60rpx;
 }

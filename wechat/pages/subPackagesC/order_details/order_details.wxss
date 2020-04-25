@@ -1,5 +1,7 @@
 /* pages/subPackagesC/order_details/order_details.wxss */
-
+page{
+  padding-bottom: 100rpx;
+}
 .wait {
   color: #fff;
   background: #090;
@@ -16,6 +18,11 @@
 }
 
 .status_box {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
 }
 
 .status_box .flex {
@@ -24,7 +31,7 @@
 }
 
 .status_box .flex .btn {
-  border: 1rpx solid #090;
+  /* border: 1rpx solid #090; */
   margin: 15rpx;
   padding: 20rpx 0;
   color: #090;

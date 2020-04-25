@@ -189,7 +189,7 @@
 
 .btn_box .active_btn {
   color: #fff;
-  background: #090;
+  background: #3E5CF2;
 }
 
 /* 接龙列表 */
@@ -262,7 +262,7 @@
   width: 100%;
   align-items: center;
   text-align: center;
-  z-index: 999;
+  z-index: 99;
 }
 
 .footer image {
@@ -273,7 +273,7 @@
 .footer .retransmission {
   width: 240rpx;
   height: 120rpx;
-  background: #090;
+  background: #3E5CF2;
   font-size: 30rpx;
   color: #fff;
 }
@@ -296,7 +296,7 @@
   width: 100%;
   align-items: center;
   text-align: center;
-  z-index: 999;
+  z-index: 99;
 }
 
 .footer2 .item {
@@ -315,7 +315,7 @@
 }
 
 .footer2 .retransmission {
-  background: #090;
+  background: #3E5CF2;
   color: #fff;
 }
 
@@ -332,3 +332,23 @@
   font-size: 28rpx;
   padding: 20rpx 0;
 } */
+
+.notice_box {
+  margin: 40rpx 20rpx;
+}
+
+.notice_box .flex {
+  align-items: center;
+}
+.notice_box .ts_tit{
+  padding-left: 20rpx;
+}
+.notice_box .ts_tit .t1{
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.notice_box image {
+  width: 50rpx;
+}

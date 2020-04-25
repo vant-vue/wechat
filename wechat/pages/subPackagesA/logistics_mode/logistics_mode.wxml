@@ -104,6 +104,6 @@
   </view>
   <!-- 按钮 -->
   <view class="btn">
-    <button bindtap="submit" type="primary" style="width:100%">确 定</button>
+    <button bindtap="submit" style="width:100%">确 定</button>
   </view>
 </view>

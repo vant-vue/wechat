@@ -33,7 +33,7 @@
 .btn{
   margin: 40rpx;
   border-radius: 60rpx;
-  background: #090;
+  background: #3E5CF2;
   color:#fff;
 }
 .b_box{

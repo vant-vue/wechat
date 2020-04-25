@@ -194,11 +194,18 @@
     </view>
   </view>
   <!-- 开启消息提醒 -->
-  <view>
+  <view class="notice_box" wx:if="{{info.isAttentionPublic == 0}}">
     <view class='flex'>
-      <view class="item"></view>
-      <view class="item"></view>
-      <view class="item"></view>
+      <view class="" bindtap="open_show_notice">
+        <image src="/images/record/notice.png" mode="widthFix"></image>
+      </view>
+      <view class="ts_tit" bindtap="open_show_notice">
+        <view class="t1">开启消息提醒</view>
+        <view class="t2">关注百万接龙公众号，实时掌握接龙信息</view>
+      </view>
+      <view class="item tr" bindtap="close_notice">
+        <image src="/images/record/close.png" mode="widthFix"></image>
+      </view>
     </view>
   </view>
   <!-- 接龙列表 -->
@@ -221,22 +228,6 @@
         </view>
       </view>
     </view>
-    <!-- <view class="flex list">
-      <view class="tit">1</view>
-      <view>
-        <image class="head_img" src="/images/home/banner.png"></image>
-      </view>
-      <view class="item">
-        <view class="flex mb_20">
-          <view class="item tit1">名字</view>
-          <view class="item tr tit2">03-22 14:15 </view>
-        </view>
-        <view class="flex mb_20">
-          <view class="item omit1 tit2">精品伦晚 +1</view>
-          <view class="item tr  tit3">申请取消</view>
-        </view>
-      </view>
-    </view> -->
   </view>
   <!-- 客服 -->
   <view style="padding-top:20rpx;">
@@ -269,7 +260,7 @@
     </view>
     <!-- <view class="item retransmission" bindtap="show_popup_fun"> -->
     <view class="item retransmission">
-      <button open-type="share" style="padding:0;width:100%;height:100%;line-height:88rpx;;">
+      <button open-type="share" style="padding:0;width:100%;height:100%;line-height:88rpx;">
         <image src="/images/record/right.png"></image>
         <text class="tit10">转发接龙</text>
       </button>
@@ -282,4 +273,6 @@
       <view class="p_content2" style="padding:20rpx 0;">快发给群友开始接龙吧~</view>
     </view>
   </transmit>
+  <!-- 客服会话 -->
+  <notice show_popup="{{show_notice}}"></notice>
 </view>

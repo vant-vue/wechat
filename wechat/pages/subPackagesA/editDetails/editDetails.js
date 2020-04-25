@@ -26,6 +26,7 @@ Page({
   },
   // 图片上传
   uploadImg(imgurl) {
+    console.log(imgurl);
     return new Promise((resolve, reject) => {
       if (imgurl.length == 0){
         resolve([]);

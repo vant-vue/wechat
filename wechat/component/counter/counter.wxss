@@ -15,7 +15,7 @@
   width: 50rpx;
   height: 50rpx;
   line-height: 44rpx;
-  background: #090;
+  background: #3E5CF2;
   color: #fff;
   font-size: 50rpx;
   text-align: center;

@@ -11,7 +11,7 @@
         <!-- 删除-->
         <icon class='uploader_item_icon' bindtap='clearImg' data-index="{{index}}" type="clear" size="20" color="red" />
         <!-- 图片-->
-        <image bindtap='showImg' data-index="{{index}}" src='{{item}}'></image>
+        <image bindtap='showImg' data-index="{{index}}" src='{{item}}' mode="aspectFill"></image>
       </view>
     </view>
     <!-- 上传按钮+框 -->

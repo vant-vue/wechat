@@ -72,8 +72,8 @@
 }
 
 .flex .item text.active {
-  border: 1rpx solid #090;
-  color: #090;
+  border: 1rpx solid #3E5CF2;
+  color: #3E5CF2;
   background: #fff;
 }
 
@@ -84,9 +84,9 @@
 .close {
   padding: 20rpx 0;
   font-size: 30rpx;
-  border: 1rpx solid #090;
+  border: 1rpx solid #3E5CF2;
   text-align: center;
-  color: #090;
+  color: #3E5CF2;
   border-radius: 10rpx;
   margin-right: 10rpx;
 }
@@ -94,10 +94,10 @@
 .ok {
   padding: 20rpx 0;
   font-size: 30rpx;
-  border: 1rpx solid #090;
+  border: 1rpx solid #3E5CF2;
   text-align: center;
   color: #fff;
-  background: #090;
+  background: #3E5CF2;
   border-radius: 10rpx;
   margin-left: 10rpx;
 }

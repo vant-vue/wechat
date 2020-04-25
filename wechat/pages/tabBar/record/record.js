@@ -80,6 +80,14 @@ Page({
       case 'released':
         url = '/pages/subPackagesB/released_group/released_group?id=' + id;
         break;
+        // 发个接龙
+      case 'add_solitaire':
+        if (this.data.tab == 1) {
+          url = '/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire';
+        } else if (this.data.tab == 2) {
+          url = '/pages/subPackagesA/chipped_solitaire/chipped_solitaire';
+        }
+        break;
         // case 'group':
         //   if (type == 1) {
         //     url = '/pages/subPackagesB/released_group/released_group?id=' + id;

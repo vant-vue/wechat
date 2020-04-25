@@ -177,6 +177,21 @@ Page({
       }
     })
   },
+  // 取消订单popup（）
+  cancel_fun_kh() {
+    let that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确定同意客户的取消申请吗？',
+      success(res) {
+        if (res.confirm) {
+          that.editStatus(that.data.order.id, -1);
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   // 微信退款（updateWxRefund）
   updateWxRefund(id, refundMoney) {
     let params = {

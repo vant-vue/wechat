@@ -2,6 +2,12 @@
   <view class="solitaire pr">
     <view class="flex">
       <view class="item">
+        <image src="/images/home/tg.jpg" mode="widthFix"></image>
+      </view>
+      <view class="right_img">
+        <image src="/images/home/hm.jpg" mode="widthFix"></image>
+      </view>
+      <!-- <view class="item">
         <view class="flex box" bindtap="jump" data-page="group">
           <view>
             <image src="/images/home/shop.png"></image>
@@ -22,7 +28,7 @@
             <view class="tit2">代销者发起合买</view>
           </view>
         </view>
-      </view>
+      </view> -->
     </view>
   </view>
 </template>

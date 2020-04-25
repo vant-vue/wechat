@@ -90,5 +90,5 @@
 .btn>button {
   border-radius: 60rpx;
   color: #fff;
-  background: #090;
+  background: #3E5CF2;
 }

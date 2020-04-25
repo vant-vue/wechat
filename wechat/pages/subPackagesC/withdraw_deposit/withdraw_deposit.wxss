@@ -49,7 +49,7 @@
   color: #fff;
 }
 .btn_box .btn1{
-  background: #090;
+  background: #3E5CF2;
 }
 .btn_box .btn2{
   background: #CCCCCC;

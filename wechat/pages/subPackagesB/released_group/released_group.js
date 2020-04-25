@@ -9,6 +9,7 @@ Page({
     solitaireId: '',
     banner_list: [],
     show_popup: false,
+    show_notice: false,
     refundMap: {
       1: "已全部退款",
       2: "已部分退款"
@@ -28,6 +29,17 @@ Page({
     shop_price: 0,
     userId: '',
     banner_index: 0, //当前轮播图(顶部) 显示 index
+  },
+  // 关闭提醒消息
+  close_notice() {
+    this.setData({
+      'info.isAttentionPublic': -1
+    })
+  },
+  open_show_notice() {
+    this.setData({
+      show_notice: true
+    })
   },
   //展示图片
   showImg: function(e) {
@@ -155,13 +167,6 @@ Page({
         userId: res.args.userId
       })
     })
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    this.data.solitaireId = options.id;
-    this.get_details(this.data.solitaireId);
   },
   // 转发
   show_popup_fun() {
@@ -429,7 +434,14 @@ Page({
   onReady: function() {
 
   },
-
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    console.log(options);
+    this.data.solitaireId = options.id;
+    this.get_details(this.data.solitaireId);
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -470,9 +482,10 @@ Page({
    */
   onShareAppMessage: function(options) {
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
+    console.log(that.data.solitaireId);
     var shareObj = {
       title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
-      path: '/pages/subPackagesB/released_group/released_group' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
+      path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function(res) { // 转发成功之后的回调
         if (res.errMsg == 'shareAppMessage:ok') {}　　　　

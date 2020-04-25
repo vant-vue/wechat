@@ -106,16 +106,22 @@ Page({
    */
   onLoad: function(options) {
     console.log(options);
-    let mode = options.mode.split(',');
+    let mode = options.mode.split(',').map(item => {
+      return {
+        mode: item
+      }
+    });
+    let type = 0;
+    this.data.objectArray.forEach((item, index) => {
+      if (item.id == options.type) {
+        type = index
+      }
+    })
     if (options.mode) {
-      // this.setData({
-      //   modeList: mode.map(item => {
-      //     return {
-      //       mode: item
-      //     }
-      //   }),
-      //   index: options.type ? options.type : 0
-      // });
+      this.setData({
+        modeList: mode,
+        index: type
+      });
     }
   },
 

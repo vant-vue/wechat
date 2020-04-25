@@ -67,3 +67,7 @@ button {
   background: #3E5CF2;
   color: #fff;
 }
+
+.title{
+  padding-bottom: 20rpx;
+}

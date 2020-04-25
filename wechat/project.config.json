@@ -202,10 +202,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 21,
 					"name": "我的-订单详情",
 					"pathName": "pages/subPackagesC/order_details/order_details",
-					"query": "",
+					"query": "id=24",
 					"scene": null
 				},
 				{

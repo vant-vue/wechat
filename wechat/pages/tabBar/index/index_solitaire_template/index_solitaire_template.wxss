@@ -1,10 +1,13 @@
 .solitaire{
-
+  padding: 20rpx;
 }
 .solitaire image{
-  width: 60rpx;
-  height: 46rpx;
-  margin: 0 20rpx;
+  width: 100%;
+  border-radius: 20rpx;
+}
+.right_img{
+  margin-left:20rpx;
+  width: 276rpx;
 }
 .box{
   background: #fff;
