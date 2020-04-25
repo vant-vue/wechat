@@ -109,7 +109,7 @@
             <image src="/images/home/copy.png" bindtap="copy" data-item="{{item}}"></image>
           </view>
         </view>
-        <view class="mb20">{{item.logistics.name?item.logistics.name+' ':''}}{{item.logistics.phone?item.logistics.phone+' ':''}} {{item.logistics.provice?item.logistics.provice:''+item.logistics.city?item.logistics.city:''+item.logistics.area?item.logistics.area:''+item.logistics.address?item.logistics.address:''}}
+        <view class="mb20">{{item.logistics.name?item.logistics.name+' ':''}}{{item.logistics.phone?item.logistics.phone+' ':''}} {{(item.logistics.provice?item.logistics.provice:'')+(item.logistics.city?item.logistics.city:'')+(item.logistics.area?item.logistics.area:'')+(item.logistics.address?item.logistics.address:'')}}
           <text wx:for="{{item.logistics.otherMode}}" wx:for-item="item3" wx:key="index3" wx:for-index="index3">{{item3}}:{{item.logistics[item3]}}</text>
         </view>
       </view>

@@ -50,7 +50,7 @@ Page({
   // 复制
   copy(e) {
     let item = e.currentTarget.dataset.item;
-    let str = `${item.logistics.name} ${item.logistics.phone} ${item.logistics.provice?item.logistics.provice:''+item.logistics.city?item.logistics.city:''+item.logistics.area?item.logistics.area:''+item.logistics.address?item.logistics.address:''}`
+    let str = `${item.logistics.name} ${item.logistics.phone} ${(item.logistics.provice?item.logistics.provice:'')+(item.logistics.city?item.logistics.city:'')+(item.logistics.area?item.logistics.area:'')+(item.logistics.address?item.logistics.address:'')}`;
     wx.setClipboardData({
       data: str,
       success: function() {
