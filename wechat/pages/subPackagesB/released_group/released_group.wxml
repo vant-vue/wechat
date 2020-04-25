@@ -193,6 +193,14 @@
       <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与合买</button>
     </view>
   </view>
+  <!-- 开启消息提醒 -->
+  <view>
+    <view class='flex'>
+      <view class="item"></view>
+      <view class="item"></view>
+      <view class="item"></view>
+    </view>
+  </view>
   <!-- 接龙列表 -->
   <view class="list_box bg_fff" wx:if="{{solitaireList.length>0}}">
     <view class="title">接龙列表</view>
