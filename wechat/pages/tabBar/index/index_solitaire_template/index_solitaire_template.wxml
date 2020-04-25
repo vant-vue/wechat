@@ -1,10 +1,10 @@
 <template name="index_solitaire_template">
   <view class="solitaire pr">
     <view class="flex">
-      <view class="item">
+      <view class="item" bindtap="jump" data-page="group">
         <image src="/images/home/tg.jpg" mode="widthFix"></image>
       </view>
-      <view class="right_img">
+      <view class="right_img" bindtap="jump" data-page="chipped">
         <image src="/images/home/hm.jpg" mode="widthFix"></image>
       </view>
       <!-- <view class="item">
