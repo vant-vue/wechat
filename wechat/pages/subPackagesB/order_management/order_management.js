@@ -104,6 +104,22 @@ Page({
       wx.hideLoading()
     })
   },
+  // 取消订单popup（）
+  cancel_fun_kh(e) {
+    let that = this;
+    let id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '确定同意客户的取消申请吗？',
+      success(res) {
+        if (res.confirm) {
+          that.editStatus(id, -1);
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   // 确定取货
   already_fun(e) {
     let that = this;

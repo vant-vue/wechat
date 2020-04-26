@@ -18,7 +18,7 @@ Page({
     title: '',
     type: null,
     show_popup: false,
-    popup_order_list:{}
+    popup_order_list: {}
   },
 
   /**
@@ -197,8 +197,8 @@ Page({
     })
   },
   // 接龙成功后返回记录（findNewOrder）
-  findNewOrder(){
-    let params={
+  findNewOrder() {
+    let params = {
       param: {
         "solitaireId": this.data.solitaireId, //接龙ID
       }
@@ -208,12 +208,17 @@ Page({
         show_popup: true
       })
       if (res.code == 200) {
-       this.setData({
-         popup_order_list: res.args.order
-       })
+        this.setData({
+          popup_order_list: res.args.order
+        })
       }
-    }).catch(() => {
+    }).catch(() => {})
+  },
+  popup_close() {
+    this.setData({
+      show_popup: false
     })
+    wx.navigateBack();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -260,7 +265,8 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function(option) {
+    console.log(option);
+    this.popup_close();
   }
 })

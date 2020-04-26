@@ -72,6 +72,12 @@ var filter = {
       return '支出-手续费'
     }
   },
+  img: function(url) {
+    if(url){
+      return url;
+    }
+    return '/images/common/shop.png'
+  },
 }
 module.exports = {
   money: filter.money, //金额（1,000.00）
@@ -84,4 +90,5 @@ module.exports = {
   getDateHours: filter.getDateHours, ///日期格式时
   formatTime: filter.formatTime, //2020-02-27 00:00:00
   typeFilter: filter.typeFilter, //2020-02-27 00:00:00
+  img: filter.img, //默认图片
 };

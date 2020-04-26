@@ -31,7 +31,8 @@ Page({
       "startTime": util.formatTime(new Date()), //接龙开始时间 即当前时间 2020-03-27 12:22:22
       "endTime": util.formatTime7(new Date()), //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
       "type": 2, //接龙类型   1，表示团购接龙  2，表示合买接龙
-      "logisticsType": '', //物流方式  1快递发货  2提货点自提  3没有物流
+      "logisticsType": '3', //物流方式  1快递发货  2提货点自提  3没有物流
+      "logisticsTypeName": '没有物流', //物流方式  1快递发货  2提货点自提  3没有物流
       "getAddress": "", //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
       "isCopy": false, //是否允许复制  0表示不可复制  1表示可复制
       'mode': "" //物流非必填字段 发布人自定义字段 逗号隔开  可空
@@ -301,7 +302,9 @@ Page({
         item.price = item.price / 100
         item.togoMoney = item.togoMoney / 100
       })
-      let logisticsMode = res.args.logisticsMode;
+      console.log('1');
+      let logisticsMode = res.args.logisticsMode ? res.args.logisticsMode : '';
+      
       let logisticsTypeName = '';
       if (solitaire.logisticsType == 1) {
         logisticsTypeName = '快递发货';
@@ -310,6 +313,7 @@ Page({
       } else if (solitaire.logisticsType == 3) {
         logisticsTypeName = '没有物流';
       }
+      
       this.setData({
         goodsList: goodsList,
         imgList: solitaire.img ? solitaire.img.split(";") : [],
@@ -323,12 +327,12 @@ Page({
           "logisticsType": solitaire.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
           "logisticsTypeName": logisticsTypeName, //物流名称
           "type": solitaire.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
-          "getAddress": solitaire.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+          "getAddress": solitaire.getAddress ? solitaire.getAddress:'', //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
           "isCopy": solitaire.isCopy, //是否允许复制  0表示不可复制  1表示可复制
-          "mode": logisticsMode,
+          "mode": logisticsMode
         }
       });
-
+      console.log(2);
 
       wx.hideLoading()
     }).catch(err => {
@@ -404,7 +408,7 @@ Page({
         let setTime;
         setTime = setTimeout(() => {
           this.data.is_request = false;
-          wx.navigateTo({
+          wx.reLaunch({
             url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
           })
         }, 2000)

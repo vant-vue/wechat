@@ -28,11 +28,8 @@ Component({
     close() {
       this.setData({
         show_popup: false
-      })
+      });
+      this.triggerEvent('close',{});
     }
-  },
-  onShareAppMessage: function(e) {
-    console.log(e)
-    // return custom share data when user share.
-  },
+  }
 })

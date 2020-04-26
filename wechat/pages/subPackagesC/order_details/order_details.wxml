@@ -13,22 +13,23 @@
   <view class="item f00 tc">申请取消中，等待买家处理</view>
   <!-- <view class="item f06 tr">同意</view> -->
 </view>
-<!-- <view class=" apply_box flex bg_fff ">
+<view class=" apply_box flex bg_fff" wx:if="{{order.remarks}}" style="margin-top:20rpx;">
   <view class="item ccc ">备注：{{order.remarks?order.remarks:'无'}}</view>
-</view> -->
+</view>
 <!-- 配送方式 -->
 <view class="details_box bg_fff ">
   <view class="title ">
+    <text class="line"></text>
     <text>配送方式</text>
     <view wx:if="{{logistics.logisticsType == 2}}" style="float:right;color:#090;">提货点自提</view>
     <view wx:elif="{{logistics.logisticsType == 1}}" style="float:right;color:#090;">商家配送</view>
     <view wx:elif="{{logistics.logisticsType == 3}}" style="float:right;color:#090;">无需配送</view>
   </view>
-  <view wx:if="{{logistics.logisticsType == 2}}"  class="content">
+  <view wx:if="{{logistics.logisticsType == 2}}" class="content">
     <view class="mb20 ">提货电话：{{logistics.phone}}</view>
     <view>提货地址：{{logistics.address}}</view>
   </view>
-  <view  wx:elif="{{logistics.logisticsType == 1}}" class="content">
+  <view wx:elif="{{logistics.logisticsType == 1}}" class="content">
     <view class="mb20 ">收货人：{{logistics.name}}</view>
     <view class="mb20 ">收货电话：{{logistics.phone}}</view>
     <view>收货地址：{{logistics.address}}</view>
@@ -37,6 +38,7 @@
 <!-- 已购商品 -->
 <view class="details_box bg_fff ">
   <view class="title ">
+    <text class="line"></text>
     <text>已购商品</text>
   </view>
   <view class="content ">
@@ -59,6 +61,7 @@
 <!-- 买家信息 -->
 <!-- <view class="details_box bg_fff ">
   <view class="title ">
+  <text class="line"></text>
     <text>买家信息</text>
   </view>
   <view class="content ">
@@ -77,6 +80,7 @@
 <!-- 订单信息 -->
 <view class="details_box bg_fff ">
   <view class="title ">
+    <text class="line"></text>
     <text>订单信息</text>
   </view>
   <view class="content">
@@ -87,6 +91,7 @@
 <!-- 商家退款 -->
 <view class="details_box bg_fff" wx:if="{{refundList.length>0}}">
   <view class="title">
+    <text class="line"></text>
     <text>商家退款</text>
   </view>
   <view class="content">

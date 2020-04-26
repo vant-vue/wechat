@@ -30,4 +30,5 @@
   margin-left: 20rpx;
   color:#666666;
   font-size: 28rpx;
+  font-weight: 300;
 }

@@ -28,12 +28,13 @@
   <view class="item f00">买家申请取消</view>
   <view class="item f06 tr" bindtap="cancel_fun_kh">同意</view>
 </view>
-<view class=" apply_box flex bg_fff ">
+<view class=" apply_box flex bg_fff" wx:if="{{order.remarks}}">
   <view class="item ccc ">备注：{{order.remarks?order.remarks:'无'}}</view>
 </view>
 <!-- 已购商品 -->
-<view class="details_box bg_fff ">
-  <view class="title ">
+<view class="details_box bg_fff">
+  <view class="title">
+    <text class="line"></text>
     <text>已购商品</text>
   </view>
   <view class="content ">
@@ -56,6 +57,7 @@
 <!-- 买家信息 -->
 <view class="details_box bg_fff ">
   <view class="title ">
+    <text class="line"></text>
     <text>买家信息</text>
   </view>
   <view class="content ">
@@ -74,6 +76,7 @@
 <!-- 订单信息 -->
 <view class="details_box bg_fff ">
   <view class="title ">
+    <text class="line"></text>
     <text>订单信息</text>
   </view>
   <view class="content">
@@ -84,6 +87,7 @@
 <!-- 商家退款 -->
 <view class="details_box bg_fff">
   <view class="title ">
+    <text class="line"></text>
     <text>商家退款</text>
   </view>
   <view class="content">

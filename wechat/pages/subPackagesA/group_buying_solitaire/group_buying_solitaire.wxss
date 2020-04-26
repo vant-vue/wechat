@@ -32,7 +32,7 @@
 }
 
 .left_width {
-  width: 100rpx;
+  width: 120rpx;
 }
 
 .tit {

@@ -52,7 +52,7 @@
         </view>
         <view wx:else bindtap="batch_toggle">
           <image src="/images/record/batched.png"></image>
-          <text style="color:#009900">完成</text>
+          <text style="color:#3E5CF2">完成</text>
         </view>
       </view>
       <view class="item" bindtap="filter_fun">
@@ -85,9 +85,9 @@
         </view>
       </view>
       <!-- 申请状态 -->
-      <view class="apply flex" wx:if="{{item.isRemove ==1}}">
+      <view class="apply flex" wx:if="{{item.status == 0 && tem.isRemove ==1}}">
         <view class="item ft_f0">买家申请取消</view>
-        <view class="item ft_6f tr">点击处理</view>
+        <view class="item ft_6f tr" bindtap="cancel_fun_kh" data-id="{{item.id}}">点击处理</view>
       </view>
       <!-- 商品信息 -->
       <view>
@@ -113,6 +113,12 @@
           <text wx:for="{{item.logistics.otherMode}}" wx:for-item="item3" wx:key="index3" wx:for-index="index3">{{item3}}:{{item.logistics[item3]}}</text>
         </view>
       </view>
+      <!-- 备注 -->
+      <view class="detail_box" wx:if="{{item.remarks}}">
+        <view class="flex lx">
+          <view class="item tit1">备注：{{item.remarks}}</view>
+        </view>
+      </view>
       <!-- 按钮 -->
       <view class="btn_box flex">
         <view class="item" bindtap="remark_fun" data-id="{{item.id}}">
@@ -126,11 +132,11 @@
         <view class="tit2">{{item.orderTime}}</view>
       </view>
     </view>
-    <view wx:if="{{orderManagerList.length==0}}" class="tc c_999 mt20">~无数据~</view>
+    <view wx:if="{{orderManagerList.length==0}}" class="tc c_999 mt20">无数据</view>
 
     <service></service>
     <!-- 底部批量 -->
-    <view wx:if="{{isBatch}}" class="footer flex bg_fff">
+    <view wx:if="{{isBatch&&(tab!=-1)}}" class="footer flex bg_fff">
       <view class="item">
         <!-- <checkbox class="cb"></checkbox>
         <text class="tit1">全选</text> -->

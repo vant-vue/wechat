@@ -73,7 +73,7 @@
 
 
  <!-- 转发成功弹出层 -->
-  <transmit show_popup="{{show_popup}}">
+  <transmit show_popup="{{show_popup}}" bind:close="popup_close">
     <view slot="after">
       <view class="p_content1">接龙成功</view>
       <view class="p_list">

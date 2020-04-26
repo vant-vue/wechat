@@ -179,7 +179,7 @@ Page({
     let params = {
       param: {
         "solitaireId": this.data.solitaireId, //接龙主键
-        "status": status, //修改接龙状态  -1表示暂停  0表示恢复  1接龙结束
+        "status": status, //修改接龙状态  2表示暂停  0表示恢复  1接龙结束
       }
     }
     wx.showLoading({
@@ -231,7 +231,7 @@ Page({
         wx.showToast({
           title: res.msg,
           icon: 'none',
-          duration: 3000
+          duration: 5000
         })
       }
       wx.hideLoading()
@@ -245,7 +245,7 @@ Page({
     let itemList = [];
     if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
       itemList = ['编辑接龙内容', '复制接龙内容', '暂停接龙', '删除接龙']
-    } else if (_this.data.solitaire.status == -1) {
+    } else if (_this.data.solitaire.status == 2) {
       itemList = ['编辑接龙内容', '复制接龙内容', '恢复接龙', '删除接龙']
     }
     wx.showActionSheet({
@@ -288,13 +288,13 @@ Page({
               content: '是否确定暂停接龙？',
               success(res) {
                 if (res.confirm) {
-                  _this.updateSolitaireStatus(-1)
+                  _this.updateSolitaireStatus(2)
                 } else if (res.cancel) {
                   console.log('用户点击取消')
                 }
               }
             })
-          } else if (_this.data.solitaire.status == -1) {
+          } else if (_this.data.solitaire.status == 2) {
             wx.showModal({
               title: '提示',
               content: '是否确定恢复接龙？',
@@ -414,6 +414,9 @@ Page({
           url = '/pages/subPackagesA/chipped_solitaire/chipped_solitaire';
         }
         break;
+      case 'index':
+        url = '/pages/tabBar/index/index';
+        break;
         // 复制接龙
       case 'copy_solitaire':
         if (this.data.solitaire.type == 1) {
@@ -446,18 +449,22 @@ Page({
   onLoad: function(options) {
     console.log(options);
     this.data.solitaireId = options.id;
+    if (this.data.solitaireId) {
+      this.get_details(this.data.solitaireId);
+    }
     if (options.released_id) {
       this.data.solitaireId = options.released_id;
       this.setData({
         show_popup: true
-      })
+      });
+      this.get_details(this.data.solitaireId);
     }
+
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.get_details(this.data.solitaireId);
     this.get_list();
   },
 
@@ -497,7 +504,8 @@ Page({
     console.log(that.data.solitaireId);
     var shareObj = {
       title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
-      path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
+      // path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
+      path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function(res) { // 转发成功之后的回调
         if (res.errMsg == 'shareAppMessage:ok') {}　　　　

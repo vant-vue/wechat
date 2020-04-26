@@ -64,7 +64,7 @@
         <!-- <text class="red">*</text> -->
       </view>
       <view class="item">
-        <input type="text" bindinput="listenerInputSimple" data-row="getAddress" value="{{getAddress}}" style="text-align:right;" disabled placeholder="必填"></input>
+        <input type="text" bindinput="listenerInputSimple" data-row="getAddress" style="text-align:right;" disabled placeholder="必填"></input>
       </view>
     </view>
     <view class="flex bg box2" wx:for="{{modeList}}" wx:for-item="item" wx:key="index" wx:for-index="index">

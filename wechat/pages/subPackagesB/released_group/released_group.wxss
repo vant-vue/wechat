@@ -1,5 +1,9 @@
 /* pages/subPackagesB/released_group/released_group.wxss */
 
+button.button-hover {
+  background-color: #3e5cf2;
+}
+
 .main_box {
   padding-bottom: 200rpx;
 }
@@ -79,14 +83,14 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  padding:3rpx 15rpx;
+  padding: 3rpx 15rpx;
   opacity: 0.5;
   border-radius: 30rpx;
   background: #ccc;
 }
 
 .cont_box .tit1 {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #333;
   padding-bottom: 16rpx;
 }
@@ -193,7 +197,7 @@
 
 .btn_box .active_btn {
   color: #fff;
-  background: #3E5CF2;
+  background: #3e5cf2;
 }
 
 /* 接龙列表 */
@@ -277,7 +281,7 @@
 .footer .retransmission {
   width: 240rpx;
   height: 120rpx;
-  background: #3E5CF2;
+  background: #3e5cf2;
   font-size: 30rpx;
   color: #fff;
 }
@@ -290,15 +294,24 @@
   font-size: 28rpx;
   padding: 20rpx 0;
 }
+
 .footer .tit10 {
   font-size: 30rpx;
   color: #fff;
 }
-.footer .zf_img{
+
+.footer .zf_img {
   width: 40rpx;
   height: 40rpx;
   vertical-align: middle;
   margin-right: 20rpx;
+}
+
+.footer .tit {
+  color: #8a8a8a;
+}
+.footer2 .tit {
+  color: #8a8a8a;
 }
 
 /* 底部 */
@@ -329,7 +342,7 @@
 }
 
 .footer2 .retransmission {
-  background: #3E5CF2;
+  background: #3e5cf2;
   color: #fff;
 }
 
@@ -355,10 +368,12 @@
 .notice_box .flex {
   align-items: center;
 }
-.notice_box .ts_tit{
+
+.notice_box .ts_tit {
   padding-left: 20rpx;
 }
-.notice_box .ts_tit .t1{
+
+.notice_box .ts_tit .t1 {
   font-size: 28rpx;
   font-weight: bold;
   margin-bottom: 10rpx;
@@ -366,5 +381,5 @@
 
 .notice_box image {
   width: 50rpx;
-  margin:0 20rpx;
+  margin: 0 20rpx;
 }

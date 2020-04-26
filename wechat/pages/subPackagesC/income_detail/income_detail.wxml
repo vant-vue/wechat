@@ -33,7 +33,7 @@
       </view>
     </view>
   </view>
-  <view wx:if="{{list.length==0}}" class="tc c_999">~无数据~</view>
+  <view wx:if="{{list.length==0}}" class="tc c_999">无数据</view>
   <!-- <view class="footer">
   <service></service>
 </view> -->

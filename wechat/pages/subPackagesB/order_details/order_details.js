@@ -172,7 +172,7 @@ Page({
     let that = this;
     wx.showModal({
       title: '提示',
-      content: '确定取消客户的订单吗？',
+      content: '确定取消订单吗？取消订单不会自动给买家退款，请手动给买家退款。',
       success(res) {
         if (res.confirm) {
           that.editStatus(that.data.order.id, -1);
