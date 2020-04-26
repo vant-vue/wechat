@@ -70,3 +70,22 @@
 <view class="footer">
   <view class="btn" bindtap="wxPay">支付</view>
 </view>
+
+
+ <!-- 转发成功弹出层 -->
+  <transmit show_popup="{{show_popup}}">
+    <view slot="after">
+      <view class="p_content1">接龙成功</view>
+      <view class="p_list">
+        <view class="flex" wx:for="{{popup_order_list.orderGoods}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+          <view>1</view>
+          <view>
+            <image class="head_img" src="{{popup_order_list.userInfo.headerImg}}"></image>
+          </view>
+          <view class="item tl">{{popup_order_list.userInfo.nickName}}</view>
+          <view>{{item.goodsName}} +{{item.buyCount}}</view>
+        </view>
+      </view>
+      <view class="p_content2">转发到群聊！告诉团长你已经接龙成功啦~~</view>
+    </view>
+  </transmit>

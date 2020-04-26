@@ -16,14 +16,16 @@ Page({
     isAnonymous: false, //是否匿名
     is_request: false,
     title: '',
-    type: null
+    type: null,
+    show_popup: false,
+    popup_order_list:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log(options);
+    console.log(options);
     // console.log(JSON.parse(options.list));
     // console.log(JSON.parse(options.logistics));
     let logistics = JSON.parse(options.logistics);
@@ -56,7 +58,7 @@ Page({
       modeList: modeList,
       type: options.type,
       title: options.title
-    })
+    });
     // console.log(modeList);
   },
   check_change() {
@@ -108,12 +110,13 @@ Page({
         })
 
 
-        
+
       }
     })
   },
   // 支付
   wxPay() {
+    let _this = this;
     if (this.data.is_request) {
       return;
     }
@@ -174,12 +177,14 @@ Page({
                 title: '支付成功',
                 duration: 3000
               })
-              let setTime = setTimeout(() => {
-                wx.navigateBack();
-              }, 2000)
+              _this.findNewOrder();
+              // let setTime = setTimeout(() => {
+              //   wx.navigateBack();
+              // }, 2000)
             }
           },
           fail(res) {
+            _this.findNewOrder();
             console.log(res, '支付失败');
           }
         })
@@ -189,6 +194,25 @@ Page({
     }).catch(() => {
       wx.hideLoading()
       this.data.is_request = false;
+    })
+  },
+  // 接龙成功后返回记录（findNewOrder）
+  findNewOrder(){
+    let params={
+      param: {
+        "solitaireId": this.data.solitaireId, //接龙ID
+      }
+    }
+    app.$API.findNewOrder(params).then(res => {
+      this.setData({
+        show_popup: true
+      })
+      if (res.code == 200) {
+       this.setData({
+         popup_order_list: res.args.order
+       })
+      }
+    }).catch(() => {
     })
   },
   /**

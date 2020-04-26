@@ -114,6 +114,10 @@ const createExcel = (params) => postAction("/solitaire/solitaire/api", params, {
 const wxOutMoney = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "wxOutMoney"
 });
+// 接龙成功后返回记录（findNewOrder）
+const findNewOrder = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "findNewOrder"
+});
 
 
 export default {
@@ -146,5 +150,6 @@ export default {
   applyRemove,
   createExcel,
   wxOutMoney,
-  banner
+  banner,
+  findNewOrder
 }

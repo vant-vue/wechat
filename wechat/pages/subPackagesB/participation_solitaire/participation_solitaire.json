@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "参与接龙",
-  "usingComponents": {}
+  "usingComponents": {
+    "transmit": "/component/transmit/transmit"
+  }
 }
