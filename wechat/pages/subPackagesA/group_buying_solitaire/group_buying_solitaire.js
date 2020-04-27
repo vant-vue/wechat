@@ -267,6 +267,9 @@ Page({
   },
   // 开始时间
   start_time_fun(e) {
+    if (util.compareDate(util.formatTime(new Date()),e.detail)){
+      e.detail = util.formatTime(new Date());
+    }
     this.data.params.startTime = e.detail;
   },
   // 结束时间

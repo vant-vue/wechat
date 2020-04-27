@@ -53,8 +53,13 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const compareDate = (d1, d2) =>{
+  return ((new Date(d1.replace(/-/g, "\/"))) > (new Date(d2.replace(/-/g, "\/"))));
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTime7: formatTime7,
   formatTimeYes: formatTimeYes,
+  compareDate: compareDate
 }
