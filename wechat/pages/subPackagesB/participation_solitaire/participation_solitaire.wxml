@@ -78,7 +78,7 @@
       <view class="p_content1">接龙成功</view>
       <view class="p_list">
         <view class="flex" wx:for="{{popup_order_list.orderGoods}}" wx:for-item="item" wx:key="key" wx:for-index="index">
-          <view>1</view>
+          <view>{{index+1}}</view>
           <view>
             <image class="head_img" src="{{popup_order_list.userInfo.headerImg}}"></image>
           </view>

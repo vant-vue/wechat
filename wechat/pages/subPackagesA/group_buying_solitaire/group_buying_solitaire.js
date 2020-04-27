@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    is_edit: 0, //0-发布，1-编辑
+    is_edit: 0, //0-复制，1-编辑
     solitaireId: '', //编辑复制用到
     uploadList: [], //编辑复制用到
     imgList: [],
@@ -33,7 +33,7 @@ Page({
       "img": "", //图片介绍 最多上传9张 每张分号隔开
       "callPhone": "", //发布者联系电话 
       "startTime": util.formatTime(new Date()), //接龙开始时间 即当前时间 2020-03-27 12:22:22
-      "endTime": util.formatTime7(new Date()), //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
+      "endTime": util.formatTime(new Date(new Date().getTime() + 7 * 24 * 3600 * 1000)), //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
       "type": 1, //接龙类型   1，表示团购接龙  2，表示合买接龙
       "logisticsType": '3', //物流方式  1快递发货  2提货点自提  3没有物流
       "logisticsTypeName": '没有物流', //物流方式  1快递发货  2提货点自提  3没有物流
@@ -135,6 +135,20 @@ Page({
       [str]: value.replace(/,/g, "")
     });
   },
+  // 数字转金额
+  moneyToString(num) {
+    if (typeof num === 'undefined' || num === '') return '';
+    return parseFloat(num).toFixed(2);
+  },
+  handleInput(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    let index = e.currentTarget.dataset.index;
+    let str = `goodsList[${index}].${row}`;
+    this.setData({
+      [str]: this.moneyToString(value)
+    });
+  },
   //监听input 普通输入框
   listenerInputSimple(e) {
     let value = e.detail.value || '';
@@ -205,7 +219,7 @@ Page({
       }
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
-        if(res.flag){
+        if (res.flag) {
           wx.showToast({
             title: '发布成功',
             duration: 3000
@@ -217,14 +231,14 @@ Page({
               url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
             })
           }, 1000)
-        }else{
+        } else {
           wx.showToast({
             title: res.msg,
             icon: 'none',
             duration: 1000
           })
         }
-        
+
       }).catch(err => {
         this.data.is_request = false;
         wx.hideLoading()
@@ -267,14 +281,23 @@ Page({
   },
   // 开始时间
   start_time_fun(e) {
-    if (util.compareDate(util.formatTime(new Date()),e.detail)){
+    if (util.compareDate(util.formatTime(new Date()), e.detail)) {
       e.detail = util.formatTime(new Date());
     }
-    this.data.params.startTime = e.detail;
+    let endTime = util.formatTime(new Date(new Date(e.detail).getTime() + 7 * 24 * 3600 * 1000));
+    this.setData({
+      'params.startTime': e.detail,
+      'params.endTime': endTime,
+    })
   },
   // 结束时间
   end_time_fun(e) {
-    this.data.params.endTime = e.detail;
+    if (util.compareDate(this.data.params.startTime, e.detail)) {
+      e.detail = util.formatTime(new Date(new Date(this.data.params.startTime).getTime() + 1 * 3600 * 1000));
+    }
+    this.setData({
+      'params.endTime': e.detail,
+    })
   },
   // check框
   onChange(e) {
@@ -314,7 +337,7 @@ Page({
       goodsList.forEach(item => {
         item.price = item.price / 100
       })
-      let logisticsMode = res.args.logisticsMode ? res.args.logisticsMode:'';
+      let logisticsMode = res.args.logisticsMode ? res.args.logisticsMode : '';
       let logisticsTypeName = '';
       if (solitaire.logisticsType == 1) {
         logisticsTypeName = '快递发货';
@@ -323,25 +346,46 @@ Page({
       } else if (solitaire.logisticsType == 3) {
         logisticsTypeName = '没有物流';
       }
-      this.setData({
-        goodsList: goodsList,
-        imgList: solitaire.img ? solitaire.img.split(";") : [],
-        params: {
-          "title": solitaire.title,
-          "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍
-          "img": solitaire.img, //图片介绍 最多上传9张 每张分号隔开
-          "callPhone": solitaire.callPhone, //发布者联系电话 
-          "startTime": solitaire.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
-          "endTime": solitaire.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
-          "logisticsType": solitaire.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
-          "logisticsTypeName": logisticsTypeName, //物流名称
-          "type": solitaire.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
-          "getAddress": solitaire.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
-          "isCopy": solitaire.isCopy, //是否允许复制  0表示不可复制  1表示可复制
-          "mode": logisticsMode
-        }
-        
-      });
+      if (this.data.is_edit == 0) { //复制
+        this.setData({
+          goodsList: goodsList,
+          imgList: solitaire.img ? solitaire.img.split(";") : [],
+          params: {
+            "title": solitaire.title,
+            "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍
+            "img": solitaire.img, //图片介绍 最多上传9张 每张分号隔开
+            "callPhone": solitaire.callPhone, //发布者联系电话 
+            "startTime": util.formatTime(new Date()), //接龙开始时间 即当前时间 2020-03-27 12:22:22
+            "endTime": util.formatTime(new Date(new Date().getTime() + 7 * 24 * 3600 * 1000)), //接龙结束时间  
+            "logisticsType": solitaire.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
+            "logisticsTypeName": logisticsTypeName, //物流名称
+            "type": solitaire.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
+            "getAddress": solitaire.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+            "isCopy": solitaire.isCopy, //是否允许复制  0表示不可复制  1表示可复制
+            "mode": logisticsMode
+          }
+        });
+      } else if (this.data.is_edit == 1) {
+        this.setData({
+          goodsList: goodsList,
+          imgList: solitaire.img ? solitaire.img.split(";") : [],
+          params: {
+            "title": solitaire.title,
+            "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍
+            "img": solitaire.img, //图片介绍 最多上传9张 每张分号隔开
+            "callPhone": solitaire.callPhone, //发布者联系电话 
+            "startTime": solitaire.startTime, //接龙开始时间 即当前时间 2020-03-27 12:22:22
+            "endTime": solitaire.endTime, //接龙结束时间  团购默认为7天  合买默认为当天晚上8:00 2020-04-27 12:22:22
+            "logisticsType": solitaire.logisticsType, //物流方式  1快递发货  2提货点自提  3没有物流
+            "logisticsTypeName": logisticsTypeName, //物流名称
+            "type": solitaire.type, //接龙类型   1，表示团购接龙  2，表示合买接龙
+            "getAddress": solitaire.getAddress, //当用户发布的物流方式为自提的时候 需要设置发布人的提货地址  即当type==2有此数据
+            "isCopy": solitaire.isCopy, //是否允许复制  0表示不可复制  1表示可复制
+            "mode": logisticsMode
+          }
+        });
+      }
+
       console.log(this.data.params);
 
 

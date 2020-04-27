@@ -34,7 +34,7 @@
         <text class="red">*</text>
       </view>
       <view class="item">
-        <input type="digit" bindinput='listenerInput' data-row="price" data-index="{{index}}" value="{{item.price}}" placeholder="0.00"></input>
+        <input type="digit" bindblur="handleInput" bindinput='listenerInput' data-row="price" data-index="{{index}}" value="{{item.price}}" placeholder="0.00"></input>
       </view>
     </view>
     <view class="flex bg box">

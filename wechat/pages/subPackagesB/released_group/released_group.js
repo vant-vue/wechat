@@ -449,14 +449,16 @@ Page({
   onLoad: function(options) {
     console.log(options);
     this.data.solitaireId = options.id;
-    if (this.data.solitaireId) {
-      this.get_details(this.data.solitaireId);
-    }
+    // // if (this.data.solitaireId) {
+    //   this.get_details(this.data.solitaireId);
+    // // }
     if (options.released_id) {
       this.data.solitaireId = options.released_id;
       this.setData({
         show_popup: true
       });
+      this.get_details(this.data.solitaireId);
+    }else{
       this.get_details(this.data.solitaireId);
     }
 
