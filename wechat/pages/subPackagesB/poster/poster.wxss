@@ -1,0 +1,66 @@
+/* pages/subPackagesB/poster/poster.wxss */
+
+page {
+  padding-bottom: 200rpx;
+}
+
+.poster {
+  padding: 20rpx;
+  margin: 20rpx;
+  background: #fff;
+}
+
+.top_box {
+  align-items: center;
+}
+
+.logo {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.goods_img {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.tit1 {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.tit2 {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #f90;
+}
+.tit3{
+  margin-bottom:20rpx; 
+}
+.code_box{
+  text-align: center;
+  padding: 20rpx 0; 
+}
+.code_box .code{
+  width: 300rpx;
+  margin-bottom: 20rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 30rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background: #3e5cf2;
+}

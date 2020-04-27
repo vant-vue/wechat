@@ -3,7 +3,8 @@
     "pages/tabBar/index/index",
     "pages/tabBar/record/record",
     "pages/tabBar/center/center",
-    "pages/tabBar/login/login"
+    "pages/tabBar/login/login",
+    "component/showActionSheet/showActionSheet"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -50,7 +51,7 @@
     {
       "root": "pages/subPackagesB",
       "pages": [
-        "released_group/released_group", 
+        "released_group/released_group",
         "participation_group/participation_group",
         "participation_details/participation_details",
         "participation_solitaire/participation_solitaire",
@@ -61,7 +62,8 @@
         "export_data/export_data",
         "my_chipped_released/my_chipped_released",
         "my_chipped_participation/my_chipped_participation",
-        "participation_chipped/participation_chipped"
+        "participation_chipped/participation_chipped",
+        "poster/poster"
       ]
     },
     {

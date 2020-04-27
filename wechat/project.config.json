@@ -100,7 +100,7 @@
 					"id": 6,
 					"name": "订单管理",
 					"pathName": "pages/subPackagesB/order_management/order_management",
-					"query": "id=37",
+					"query": "id=44",
 					"scene": null
 				},
 				{
@@ -212,6 +212,13 @@
 					"id": 22,
 					"name": "登录",
 					"pathName": "pages/tabBar/login/login",
+					"query": "id=37",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "海报",
+					"pathName": "pages/subPackagesB/poster/poster",
 					"query": "id=37",
 					"scene": null
 				}

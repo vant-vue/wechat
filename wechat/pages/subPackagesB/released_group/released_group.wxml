@@ -19,7 +19,7 @@
       <view class="item tr pr">
         <image bindtap="callPhone_fun" class="img2" src="/images/home/tel.png"></image>
         <image class="img2" src="/images/home/wechat.png"></image>
-        <image class="img2" src="/images/home/friends.png"></image>
+        <image bindtap="jump" data-page="poster" class="img2" src="/images/home/friends.png"></image>
         <button open-type="share" style="position:absolute;right:80rpx;top:0;width:60rpx;height:60rpx;padding:0;margin:0;background:transparent;">
         </button>
       </view>
@@ -216,7 +216,7 @@
     <view class="flex list" wx:for="{{solitaireList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
       <view class="tit">{{index+1}}</view>
       <view>
-        <image class="head_img" src="{{item.headerImg}}"></image>
+        <image class="head_img" src="{{filter.head_img(item.isAnonymous==0?item.headerImg:'')}}"></image>
       </view>
       <view class="item">
         <view class="flex mb_20">
@@ -241,13 +241,13 @@
       <image src="/images/home/order.png"></image>
       <view class="tit">订单管理</view>
     </view>
-    <view class="item" bindtap="solitaire_fun">
+    <view class="item" bindtap="showActionSheet_fun">
       <image src="/images/home/set.png"></image>
       <view class="tit">接龙设置</view>
     </view>
     <!-- <view class="retransmission" bindtap="show_popup_fun"> -->
     <view class="retransmission">
-      <button style="width:100%;height:100%;line-height:88rpx;">
+      <button open-type="share" style="width:100%;height:100%;line-height:88rpx;">
         <image class="zf_img" src="/images/home/right.png"></image>
         <text class="tit10">转发</text>
       </button>
@@ -265,7 +265,7 @@
     </view>
     <!-- <view class="item retransmission" bindtap="show_popup_fun"> -->
     <view class="item retransmission">
-      <button style="padding:0;width:100%;height:100%;line-height:88rpx;">
+      <button open-type="share" style="padding:0;width:100%;height:100%;line-height:88rpx;">
         <image src="/images/home/right.png"></image>
         <text class="tit10">转发接龙</text>
       </button>
@@ -280,4 +280,6 @@
   </transmit>
   <!-- 客服会话 -->
   <notice show_popup="{{show_notice}}"></notice>
+  <!-- 下拉框 -->
+  <showActionSheet show="{{showActionSheet}}" bind:selectValue="selectValue" list="{{selectList}}"></showActionSheet>
 </view>

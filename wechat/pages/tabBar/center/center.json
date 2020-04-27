@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "",
-  "navigationBarBackgroundColor": "#FFCC00",
-  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
   "usingComponents": {
     "service": "/component/service/service"
   }

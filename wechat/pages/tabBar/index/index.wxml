@@ -4,6 +4,6 @@
 <!-- 接龙 -->
 <import src="./index_solitaire_template/index_solitaire_template.wxml" />
 <block>
-  <template is="index_carousel_template" data="{{banner_list,banner_index,imageUrl}}" />
-  <template is="index_solitaire_template" data="{{banner_list,banner_index,imageUrl}}" />
+  <template is="index_carousel_template" data="{{banner_list,current,imageUrl,imgheights,imgwidth}}" />
+  <template is="index_solitaire_template" data="{{banner_list,current,imageUrl}}" />
 </block>

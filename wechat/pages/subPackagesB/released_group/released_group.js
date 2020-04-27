@@ -29,7 +29,282 @@ Page({
     shop_price: 0,
     userId: '',
     banner_index: 0, //当前轮播图(顶部) 显示 index
+    selectList: [{
+        key: '1',
+        value: '编辑接龙内容'
+      },
+      {
+        key: '2',
+        value: '复制接龙内容'
+      },
+      {
+        key: '3',
+        value: '暂停接龙'
+      },
+      {
+        key: '4',
+        value: '恢复接龙'
+      },
+      {
+        key: '5',
+        value: '删除接龙'
+      }
+    ],
+    showActionSheet: false
   },
+
+  showActionSheet_fun() {
+    this.setData({
+      showActionSheet: true
+    })
+  },
+  selectValue(e) {
+    console.log(e.detail);
+    let obj = e.detail;
+    let _this = this;
+    if (obj.key == 1) {
+      if (_this.data.solitaire.type == 1) {
+        wx.navigateTo({
+          url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
+        })
+      } else if (_this.data.solitaire.type == 2) {
+        wx.navigateTo({
+          url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
+        })
+      }
+    } else if (obj.key == 2) {
+      if (_this.data.solitaire.type == 1 && _this.data.solitaire.isCopy == 1) {
+        wx.navigateTo({
+          url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
+        })
+      } else if (_this.data.solitaire.type == 2 && _this.data.solitaire.isCopy == 1) {
+        wx.navigateTo({
+          url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
+        })
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '该接龙不允许复制',
+          success(res) {
+            if (res.confirm) {} else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    } else if (obj.key == 3 || obj.key == 4) {
+      if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
+        wx.showModal({
+          title: '提示',
+          content: '是否确定暂停接龙？',
+          success(res) {
+            if (res.confirm) {
+              _this.updateSolitaireStatus(2)
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      } else if (_this.data.solitaire.status == 2) {
+        wx.showModal({
+          title: '提示',
+          content: '是否确定恢复接龙？',
+          success(res) {
+            if (res.confirm) {
+              _this.updateSolitaireStatus(0)
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      }
+    } else if (obj.key == 5) { //删除接龙
+      wx.showModal({
+        title: '提示',
+        content: '确认删除接龙吗？',
+        success(res) {
+          if (res.confirm) {
+            _this.deleteSolitaire();
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+  },
+  select_list_fun(type) {
+    console.log(type);
+    if (type == 0) {
+      this.setData({
+        selectList: [{
+            key: '1',
+            value: '编辑接龙内容'
+          },
+          {
+            key: '2',
+            value: '复制接龙内容'
+          },
+          {
+            key: '3',
+            value: '暂停接龙'
+          },
+          {
+            key: '5',
+            value: '删除接龙'
+          }
+        ],
+      })
+    } else if (type == 2) {
+      this.setData({
+        selectList: [{
+            key: '1',
+            value: '编辑接龙内容'
+          },
+          {
+            key: '2',
+            value: '复制接龙内容'
+          },
+          {
+            key: '4',
+            value: '恢复接龙'
+          },
+          {
+            key: '5',
+            value: '删除接龙'
+          }
+        ],
+      })
+    } else if (type == -1) {
+      this.setData({
+        selectList: [{
+            key: '1',
+            value: '编辑接龙内容'
+          },
+          {
+            key: '2',
+            value: '复制接龙内容'
+          },
+          {
+            key: '5',
+            value: '删除接龙'
+          }
+        ],
+      })
+    } else if (type == 1) {
+      this.setData({
+        selectList: [{
+            key: '2',
+            value: '复制接龙内容'
+          },
+          {
+            key: '5',
+            value: '删除接龙'
+          }
+        ],
+      })
+    }
+  },
+  // 接龙设置
+  // solitaire_fun() {
+  //   let _this = this;
+  //   let itemList = [];
+  //   if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
+  //     itemList = ['编辑接龙内容', '复制接龙内容', '暂停接龙', '删除接龙']
+  //   } else if (_this.data.solitaire.status == 2) {
+  //     itemList = ['编辑接龙内容', '复制接龙内容', '恢复接龙', '删除接龙']
+  //   }
+  //   wx.showActionSheet({
+  //     itemList: itemList,
+  //     success(res) {
+  //       if (res.tapIndex == 0) {
+  //         if (_this.data.solitaire.type == 1) {
+  //           wx.navigateTo({
+  //             url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
+  //           })
+  //         } else if (_this.data.solitaire.type == 2) {
+  //           wx.navigateTo({
+  //             url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
+  //           })
+  //         }
+  //       } else if (res.tapIndex == 1) {
+  //         if (_this.data.solitaire.type == 1 && _this.data.solitaire.isCopy == 1) {
+  //           wx.navigateTo({
+  //             url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
+  //           })
+  //         } else if (_this.data.solitaire.type == 2 && _this.data.solitaire.isCopy == 1) {
+  //           wx.navigateTo({
+  //             url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
+  //           })
+  //         } else {
+  //           wx.showModal({
+  //             title: '提示',
+  //             content: '该接龙不允许复制',
+  //             success(res) {
+  //               if (res.confirm) {} else if (res.cancel) {
+  //                 console.log('用户点击取消')
+  //               }
+  //             }
+  //           })
+  //         }
+  //       } else if (res.tapIndex == 2) {
+  //         if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
+  //           wx.showModal({
+  //             title: '提示',
+  //             content: '是否确定暂停接龙？',
+  //             success(res) {
+  //               if (res.confirm) {
+  //                 _this.updateSolitaireStatus(2)
+  //               } else if (res.cancel) {
+  //                 console.log('用户点击取消')
+  //               }
+  //             }
+  //           })
+  //         } else if (_this.data.solitaire.status == 2) {
+  //           wx.showModal({
+  //             title: '提示',
+  //             content: '是否确定恢复接龙？',
+  //             success(res) {
+  //               if (res.confirm) {
+  //                 _this.updateSolitaireStatus(0)
+  //               } else if (res.cancel) {
+  //                 console.log('用户点击取消')
+  //               }
+  //             }
+  //           })
+  //         }
+  //       } else if (res.tapIndex == 3) { //删除接龙
+  //         // if (_this.data.solitaireList.length > 0) {
+  //         //   wx.showModal({
+  //         //     title: '提示',
+  //         //     content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
+  //         //     success(res) {
+  //         //       if (res.confirm) {
+  //         //         console.log('用户点击确定')
+  //         //       } else if (res.cancel) {
+  //         //         console.log('用户点击取消')
+  //         //       }
+  //         //     }
+  //         //   })
+  //         // } else {
+  //         wx.showModal({
+  //           title: '提示',
+  //           content: '确认删除接龙吗？',
+  //           success(res) {
+  //             if (res.confirm) {
+  //               _this.deleteSolitaire();
+  //             } else if (res.cancel) {
+  //               console.log('用户点击取消')
+  //             }
+  //           }
+  //         })
+  //         // }
+  //       }
+  //     },
+  //     fail(res) {
+  //       console.log(res.errMsg)
+  //     }
+  //   })
+  // },
   // 关闭提醒消息
   close_notice() {
     this.setData({
@@ -104,7 +379,8 @@ Page({
         info: res.args.info,
         isMine: res.args.isMine,
         banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
-      })
+      });
+      this.select_list_fun(this.data.solitaire.status);
     })
   },
   // 接龙列表
@@ -239,107 +515,7 @@ Page({
       wx.hideLoading()
     })
   },
-  // 接龙设置
-  solitaire_fun() {
-    let _this = this;
-    let itemList = [];
-    if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
-      itemList = ['编辑接龙内容', '复制接龙内容', '暂停接龙', '删除接龙']
-    } else if (_this.data.solitaire.status == 2) {
-      itemList = ['编辑接龙内容', '复制接龙内容', '恢复接龙', '删除接龙']
-    }
-    wx.showActionSheet({
-      itemList: itemList,
-      success(res) {
-        if (res.tapIndex == 0) {
-          if (_this.data.solitaire.type == 1) {
-            wx.navigateTo({
-              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
-            })
-          } else if (_this.data.solitaire.type == 2) {
-            wx.navigateTo({
-              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
-            })
-          }
-        } else if (res.tapIndex == 1) {
-          if (_this.data.solitaire.type == 1 && _this.data.solitaire.isCopy == 1) {
-            wx.navigateTo({
-              url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
-            })
-          } else if (_this.data.solitaire.type == 2 && _this.data.solitaire.isCopy == 1) {
-            wx.navigateTo({
-              url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
-            })
-          } else {
-            wx.showModal({
-              title: '提示',
-              content: '该接龙不允许复制',
-              success(res) {
-                if (res.confirm) {} else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          }
-        } else if (res.tapIndex == 2) {
-          if (_this.data.solitaire.status == 0 || _this.data.solitaire.status == 1) {
-            wx.showModal({
-              title: '提示',
-              content: '是否确定暂停接龙？',
-              success(res) {
-                if (res.confirm) {
-                  _this.updateSolitaireStatus(2)
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          } else if (_this.data.solitaire.status == 2) {
-            wx.showModal({
-              title: '提示',
-              content: '是否确定恢复接龙？',
-              success(res) {
-                if (res.confirm) {
-                  _this.updateSolitaireStatus(0)
-                } else if (res.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
-            })
-          }
-        } else if (res.tapIndex == 3) { //删除接龙
-          // if (_this.data.solitaireList.length > 0) {
-          //   wx.showModal({
-          //     title: '提示',
-          //     content: '当前接龙已有订单，如需停止接龙可设为暂停接龙',
-          //     success(res) {
-          //       if (res.confirm) {
-          //         console.log('用户点击确定')
-          //       } else if (res.cancel) {
-          //         console.log('用户点击取消')
-          //       }
-          //     }
-          //   })
-          // } else {
-          wx.showModal({
-            title: '提示',
-            content: '确认删除接龙吗？',
-            success(res) {
-              if (res.confirm) {
-                _this.deleteSolitaire();
-              } else if (res.cancel) {
-                console.log('用户点击取消')
-              }
-            }
-          })
-          // }
-        }
-      },
-      fail(res) {
-        console.log(res.errMsg)
-      }
-    })
-  },
+
   // 修改订单状态 （applyRemove）
   applyRemove(e) {
     let _this = this;
@@ -393,6 +569,9 @@ Page({
     switch (page) {
       case 'order_management':
         url = '/pages/subPackagesB/order_management/order_management?id=' + this.data.solitaireId;
+        break;
+      case 'poster':
+        url = '/pages/subPackagesB/poster/poster?id=' + this.data.solitaireId;
         break;
       case 'withdraw_deposit':
         url = '/pages/subPackagesC/withdraw_deposit/withdraw_deposit';
@@ -458,7 +637,7 @@ Page({
         show_popup: true
       });
       this.get_details(this.data.solitaireId);
-    }else{
+    } else {
       this.get_details(this.data.solitaireId);
     }
 
@@ -497,22 +676,32 @@ Page({
   onReachBottom: function() {
 
   },
-
+  // 转发次数统计 （forwadStatics）
+  forwadStatics() {
+    let params = {
+      param: {
+        "solitaireId": this.data.solitaireId, //接龙主键
+      }
+    }
+    app.$API.forwadStatics(params).then(res => {}).catch(() => {})
+  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(options) {
+    this.forwadStatics();
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
-    console.log(that.data.solitaireId);
     var shareObj = {
       title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
-      // path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
-      path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
+      // path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function(res) { // 转发成功之后的回调
+        console.log(res, '转发成功');
         if (res.errMsg == 'shareAppMessage:ok') {}　　　　
       },
-      fail: function() { // 转发失败之后的回调
+      fail: function(res) { // 转发失败之后的回调
+        console.log(res, '转发失败');
         if (res.errMsg == 'shareAppMessage:fail cancel') {
           // 用户取消转发
         } else if (res.errMsg == 'shareAppMessage:fail') {

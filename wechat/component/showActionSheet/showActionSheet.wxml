@@ -1,0 +1,11 @@
+<!--component/showActionSheet/showActionSheet.wxml-->
+<!-- 弹窗 -->
+<view class='dialog_bg' wx:if="{{show}}" bindtap="cancel"></view>
+<view class="popup follow-up {{show?'show':''}}">
+  <view class="list">
+    <view class="item" bindtap="select" data-item="{{item}}" data-index="{{index}}" wx:for="{{list}}" wx:for-item="item" wx:key="index" wx:for-index="index">{{item.value}}
+    </view>
+    <view wx:if="{{noData}}" class="item">暂无</view>
+  </view>
+  <view class="cancel" bindtap="cancel">取消</view>
+</view>

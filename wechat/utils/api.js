@@ -118,6 +118,10 @@ const wxOutMoney = (params) => postAction("/solitaire/solitaire/api", params, {
 const findNewOrder = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "findNewOrder"
 });
+//转发次数统计（forwadStatics）
+const forwadStatics = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "forwadStatics"
+});
 
 
 export default {
@@ -151,5 +155,6 @@ export default {
   createExcel,
   wxOutMoney,
   banner,
-  findNewOrder
+  findNewOrder,
+  forwadStatics
 }

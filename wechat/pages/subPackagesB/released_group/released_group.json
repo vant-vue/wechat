@@ -4,6 +4,7 @@
     "shop-num": "/component/counter/counter",
     "service": "/component/service/service",
     "transmit": "/component/transmit/transmit",
-    "notice": "/component/notice/notice"
+    "notice": "/component/notice/notice",
+    "showActionSheet": "/component/showActionSheet/showActionSheet"
   }
 }

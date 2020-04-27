@@ -1,17 +1,17 @@
 <template name="index_carousel_template">
   <view class="banner pr">
-    <swiper autoplay circular class="banner_inner" bindchange="change_index" interval="3000" duration="500">
+    <swiper style="height:{{imgheights[current]}}rpx;" autoplay circular class="banner_inner" bindchange="change_index" interval="3000" duration="500">
       <block wx:for="{{banner_list}}" wx:for-item="banner" wx:key="key" wx:for-index="index">
         <swiper-item>
           <navigator url="{{banner.url}}" hover-class="navigator-hover">
-            <image src="{{banner.imageAttr}}"></image>
+            <image src="{{banner.imageAttr}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;" bindload="imageLoad" data-index='{{index}}'></image>
           </navigator>
         </swiper-item>
       </block>
     </swiper>
     <!-- <view class="index">
       <block wx:for="{{banner_list}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-        <text class="{{index == banner_index
+        <text class="{{index == current
          ? 'current' : ''}}"></text>
       </block>
     </view> -->

@@ -3,7 +3,7 @@
 .banner swiper, .banner image ,.banner_inner image{
   display: block;
   width: 100vw;
-  height: 300rpx;
+  /* height: 300rpx; */
 }
 
 .banner .index {
