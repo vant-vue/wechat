@@ -181,7 +181,7 @@ Page({
       wx.showToast({
         title: str,
         icon: 'none',
-        duration: 3000
+        duration: 1000
       })
       return;
     }
@@ -205,17 +205,26 @@ Page({
       }
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
-        wx.showToast({
-          title: '发布成功',
-          duration: 3000
-        });
-        let setTime;
-        setTime = setTimeout(() => {
-          this.data.is_request = false;
-          wx.navigateTo({
-            url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
+        if(res.flag){
+          wx.showToast({
+            title: '发布成功',
+            duration: 3000
+          });
+          let setTime;
+          setTime = setTimeout(() => {
+            this.data.is_request = false;
+            wx.navigateTo({
+              url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
+            })
+          }, 1000)
+        }else{
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+            duration: 1000
           })
-        }, 2000)
+        }
+        
       }).catch(err => {
         this.data.is_request = false;
         wx.hideLoading()
