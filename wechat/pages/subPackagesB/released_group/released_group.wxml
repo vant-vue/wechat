@@ -83,7 +83,7 @@
               <view class="flex">
                 <view class="item">
                   <text class="txt4">￥{{filter.money(item.price)}}</text>
-                  <text class="txt5" wx:if="{{item.stock&&item.stock>0}}">库存{{item.stock}}</text>
+                  <text class="txt5" wx:if="{{item.stock!=null&&item.stock!=0}}">库存{{item.stock}}</text>
                   <text class="txt5" wx:else>不限</text>
                 </view>
                 <view class="">
