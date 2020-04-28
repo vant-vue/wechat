@@ -1,6 +1,6 @@
 <!--pages/subPackagesB/poster/poster.wxml-->
 <wxs src="../../../utils/filter.wxs" module="filter" />
-<view class="poster">
+<!-- <view class="poster">
   <view class="flex top_box">
     <view>
       <image class="logo" src="/images/common/logo.jpg"></image>
@@ -8,14 +8,17 @@
     <view class="item title">{{info.nickName}} 邀请你来接龙</view>
   </view>
   <image class="goods_img" src="{{filter.img(banner_list[0])}}" mode="widthFix"></image>
-   <view class="flex top_box" style="align-items: center;padding:20rpx 0;">
+  <view class="flex top_box" style="align-items: center;padding:20rpx 0;">
     <view class="tit1">{{solitaire.title}}</view>
     <view class="item tr tit2">¥{{filter.money(goodsList[0].price)}}起</view>
   </view>
   <view class="tit3">{{solitaire.summary}}</view>
   <view class="code_box">
-     <image class="code" src="/images/common/logo.jpg" mode="widthFix"></image>
-     <view class="tit4">微信扫码，开始接龙</view>
+    <image class="code" src="/images/common/logo.jpg" mode="widthFix"></image>
+    <view class="tit4">微信扫码，开始接龙</view>
   </view>
-  <view class="footer">保存海报</view>
-</view>
+
+  <view class="footer" bindtap="formSubmit">保存海报</view>
+</view> -->
+<!-- <image src="{{imagePath}}" mode="widthFix"></image> -->
+<canvas style="width: {{windowW}}px;height: {{windowH}}px;" hidden="{{false}}" canvas-id="mycanvas" />
