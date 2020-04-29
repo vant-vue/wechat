@@ -12,8 +12,7 @@ Page({
     info: {},
     isMine: '',
     imagePath: '',
-    windowW: '',
-    windowH: ''
+    canvasHidden: ''
   },
 
   // 获取详情
@@ -42,23 +41,17 @@ Page({
     console.log(options.id);
     let that = this;
     this.get_details(options.id);
-    wx.getSystemInfo({
-      success: function(res) {
-        console.log(res);
-        that.setData({
-          windowW: res.screenWidth,
-          windowH: res.screenHeight
-        })
-        that.formSubmit();
-      },
-    })
   },
 
   // 获取小程序
   promise1() {
     return new Promise((resolve, reject) => {
-      if (!this.data.banner_list[0]){
-        resolve({'path':'',});
+      if (!this.data.banner_list[0]) {
+        resolve({
+          'path': '/images/common/shop.png',
+          height: 375,
+          width: 375
+        });
         return;
       }
       wx.getImageInfo({ //保存网络图片
@@ -69,119 +62,164 @@ Page({
       })
     })
   },
+  promise2() {
+    return new Promise((resolve, reject) => {
+      if (!this.data.banner_list[0]) {
+        resolve({
+          'path': '/images/common/shop.png',
+          height: 375,
+          width: 375
+        });
+        return;
+      }
+      wx.getImageInfo({ //保存网络图片
+        src: this.data.banner_list[0], //请求的网络图片路径
+        success: function(res) {
+          resolve(res);
+        }
+      })
+    })
+  },
+
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
-    Promise.all([this.promise1()]).then(res => {
-      console.log(res, 'reas');
+    Promise.all([this.promise1(), this.promise2()]).then(res => {
       var that = this;
       var context = wx.createCanvasContext('mycanvas');
       context.setFillStyle("#fff");
       context.fillRect(0, 0, 375, 667);
       var path1 = "/images/common/logo.jpg";
       var path2 = res[0].path;
-      var path3 = "/images/common/logo.jpg";
-      var path4 = "/images/common/logo.jpg";
-      var path5 = "/images/common/logo.jpg";
+      var path3 = res[1].path;
       // 小程序logo
       context.drawImage(path1, 10, 10, 40, 40);
       //绘制名字
-      context.setFontSize(16);
+      context.setFontSize(18);
       context.setFillStyle('#333333');
-      context.setTextAlign('center');
-      let title = `${this.data.info.nickName} 邀请你来接龙`
-      context.fillText(title, 120, 35);
+      context.setTextAlign('left');
+      var title = `${this.data.info.nickName} 邀请你来接龙`
+      context.fillText(title, 70, 35);
       context.stroke();
       // 商品图片
       context.drawImage(path2, 10, 60, 355, 355 * (res[0].height / res[0].width));
+      context.stroke();
       // 商品名称
-      context.setFontSize(16);
-      context.setFillStyle('#333333');
+      context.setFontSize(18);
+      context.setFillStyle('#000');
+      context.setTextAlign('left');
+      var title = `${this.data.solitaire.title}`
+      context.fillText(title, 10, (355 * (res[0].height / res[0].width)) + 100, 375 - 135);
+      context.stroke();
+      // 商品价格
+      context.setFontSize(18);
+      context.setFillStyle('#f90');
+      context.setTextAlign('right');
+      var title = `¥ ${((this.data.goodsList[0].price)/100).toFixed(2)} 起`
+      context.fillText(title, 360, (355 * (res[0].height / res[0].width)) + 100);
+      context.stroke();
+      //介绍
+      context.setFontSize(15);
+      context.setFillStyle('#999');
+      context.setTextAlign('left');
+      // context.fillText(that.data.userInfo.nickName + "邀请您一起参加", 110, 50, 375 - 35);
+      var title = `${this.data.solitaire.summary ? this.data.solitaire.summary:''}`;
+      if (title.length > 37) {
+        var a = title.substr(0, 37);
+        var b = title.substr(37, title.length);
+        context.fillText(a, 10, (355 * (res[0].height / res[0].width)) + 130, 375 - 10);
+        context.fillText(b, 10, (355 * (res[0].height / res[0].width)) + 150, 375 - 10);
+
+      } else {
+        context.fillText(title, 10, (355 * (res[0].height / res[0].width)) + 130, 375 - 10);
+      }
+      // 小程序码
+      context.drawImage(path3, 138, (355 * (res[0].height / res[0].width)) + 130 + 30, 100, 100 * (res[0].height / res[0].width));
+      context.stroke();
+      // 文字
+      context.setFontSize(14);
+      context.setFillStyle('#999');
       context.setTextAlign('center');
-      let name = `${this.data.info.nickName} 邀请你来接龙`
-      context.fillText(name, 70, (355 * (res[0].height / res[0].width))+90);
-      // context.drawImage(path, 0, 100, 80, 80);
-      // // context.arc(100, 80, 40, 0, Math.PI * 2, false);
-      // context.arc(100, 80, 50, 0, 2 * Math.PI) //画出圆
-      // context.clip();
-      // context.restore();
-      // var path5 = "/images/common/logo.jpg";
-      // var path2 = "/images/common/logo.jpg";
-      // var name = that.data.name;
-      // context.drawImage(path2, 56, 400, 263, 121);
+      var title = `微信扫码，开始接龙`
+      context.fillText(title, 190, (355 * (res[0].height / res[0].width)) + 130 + 30 + 125, 375 - 135);
 
-      // context.setFontSize(16);
-      // context.setFillStyle('#f00');
-      // context.setTextAlign('left');
-      // context.fillText("邀请你来接龙", 200, 100);
-      // context.stroke();
-      // //绘制左下角文字
-      // context.setFontSize(14);
-      // context.setFillStyle('#333');
-      // context.setTextAlign('left');
-      // context.fillText("长按识别小程序", 70, 560);
-      // context.stroke();
-      // context.setFontSize(14);
-      // context.setFillStyle('#333');
-      // context.setTextAlign('left');
-      // context.fillText("跟我一起来学习吧~~", 70, 580);
-      // context.stroke();
-
-      // //绘制右下角小程序二维码
-      // context.drawImage(path5, 230, 530, 80, 80);
-
+      context.stroke();
       context.draw();
-      //将生成好的图片保存到本地
-      setTimeout(function() {
+      setTimeout(() => {
         wx.canvasToTempFilePath({
           x: 0,
           y: 0,
-          width: 375,
-          height: 667,
-          destWidth: 375,
-          destHeight: 667,
+          width: 375 * 4,
+          height: 667 * 4,
+          destWidth: 375 * 4,
+          destHeight: 667 * 4,
           canvasId: 'mycanvas',
           success: function(res) {
-            var tempFilePath = res.tempFilePath;
-            that.setData({
-              imagePath: tempFilePath,
-              canvasHidden: true
-            });
-            console.log(that.data.imagePath);
+            that.data.imagePath = res.tempFilePath;
           },
           fail: function(res) {
             console.log(res);
           }
         });
-      }, 200);
+      }, 200)
     })
 
   },
+  openSetting() {
+    wx.openSetting()
+  },
   //点击保存到相册
   baocun: function() {
+    //将生成好的图片保存到本地
+    wx.showToast({
+      title: '海报生成中...',
+      icon: 'loading',
+      duration: 1000
+    });
     var that = this
-    wx.saveImageToPhotosAlbum({
-      filePath: that.data.imagePath,
+
+    wx.getSetting({
       success(res) {
-        wx.showModal({
-          content: '海报已保存到相册',
-          showCancel: false,
-          confirmText: '确定',
-          confirmColor: '#333',
-          success: function(res) {
-            if (res.confirm) {
-              console.log('用户点击确定');
-              /* 该隐藏的隐藏 */
-              that.setData({
-                maskHidden: false
+        // 如果没有则获取授权
+        if (res.authSetting['scope.writePhotosAlbum'] == false) {
+          wx.showModal({
+            content: '相册未授权',
+            showCancel: false,
+            confirmText: '确定',
+            confirmColor: '#333',
+            success: function(res) {
+              if (res.confirm) {
+                that.openSetting();
+              }
+            },
+            fail: function(res) {
+              console.log(res, 'fail');
+            }
+          })
+        } else {
+          wx.saveImageToPhotosAlbum({
+            filePath: that.data.imagePath,
+            success(res) {
+              wx.showModal({
+                content: '海报已保存到相册',
+                showCancel: false,
+                confirmText: '确定',
+                confirmColor: '#333',
+                success: function(res) {
+                  if (res.confirm) {
+                    wx.navigateBack()
+                  }
+                },
+                fail: function(res) {
+                  console.log(res, 'fail');
+                }
               })
             }
-          },
-          fail: function(res) {
-            console.log(11111)
-          }
-        })
+          })
+        }
       }
+
     })
+
   },
   //点击生成
   formSubmit: function(e) {
@@ -189,13 +227,8 @@ Page({
     this.setData({
       maskHidden: false
     });
-    wx.showToast({
-      title: '海报生成中...',
-      icon: 'loading',
-      duration: 1000
-    });
+
     setTimeout(function() {
-      wx.hideToast()
       that.createNewImg();
       // that.setData({
       //   maskHidden: true

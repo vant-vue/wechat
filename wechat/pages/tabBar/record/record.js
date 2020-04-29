@@ -43,15 +43,20 @@ Page({
         this.setData({
           list: this.data.list.concat(res.args.pubList ? res.args.pubList : [])
         })
+        if (res.args.pubList.length < 10) {
+          this.data.last = true;
+        } else {
+          this.data.last = false;
+        }
       } else if (this.data.tab == 2) {
         this.setData({
           list: this.data.list.concat(res.args.joinList ? res.args.joinList : [])
         })
-      }
-      if (res.args.pubList.length < 10 || res.args.joinList.length < 10) {
-        this.data.last = true;
-      } else {
-        this.data.last = false;
+        if (res.args.joinList.length < 10) {
+          this.data.last = true;
+        } else {
+          this.data.last = false;
+        }
       }
       wx.hideLoading()
     }).catch(() => {

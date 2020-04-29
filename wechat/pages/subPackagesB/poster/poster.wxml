@@ -1,6 +1,6 @@
 <!--pages/subPackagesB/poster/poster.wxml-->
 <wxs src="../../../utils/filter.wxs" module="filter" />
-<!-- <view class="poster">
+<view class="poster">
   <view class="flex top_box">
     <view>
       <image class="logo" src="/images/common/logo.jpg"></image>
@@ -18,7 +18,11 @@
     <view class="tit4">微信扫码，开始接龙</view>
   </view>
 
-  <view class="footer" bindtap="formSubmit">保存海报</view>
+</view>
+<view class="footer" bindtap="baocun">保存海报</view>
+<!-- <view style="padding:20rpx;" wx:if="{{imagePath}}">
+  <image src="{{imagePath}}" mode="widthFix" style="width:100%"></image>
 </view> -->
-<!-- <image src="{{imagePath}}" mode="widthFix"></image> -->
-<canvas style="width: {{windowW}}px;height: {{windowH}}px;" hidden="{{false}}" canvas-id="mycanvas" />
+<view style="position: fixed;top:1000px">
+  <canvas style="width: 375px;height: 667px;" canvas-id="mycanvas" />
+</view>
