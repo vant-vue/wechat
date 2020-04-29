@@ -73,11 +73,11 @@ Page({
         })
       }
     } else if (obj.key == 2) {
-      if (_this.data.solitaire.type == 1 && _this.data.solitaire.isCopy == 1) {
+      if (_this.data.solitaire.type == 1 && (_this.data.isMine || _this.data.solitaire.isCopy == 1)) {
         wx.navigateTo({
           url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
         })
-      } else if (_this.data.solitaire.type == 2 && _this.data.solitaire.isCopy == 1) {
+      } else if (_this.data.solitaire.type == 2 && (_this.data.isMine || _this.data.solitaire.isCopy == 1)) {
         wx.navigateTo({
           url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
         })
