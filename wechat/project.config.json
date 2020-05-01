@@ -93,7 +93,7 @@
 					"id": 5,
 					"name": "我发布的",
 					"pathName": "pages/subPackagesB/released_group/released_group",
-					"query": "id=37",
+					"query": "id=85",
 					"scene": null
 				},
 				{
@@ -142,7 +142,7 @@
 					"id": 12,
 					"name": "参与接龙",
 					"pathName": "pages/subPackagesB/participation_solitaire/participation_solitaire",
-					"query": "",
+					"query": "id=44",
 					"scene": null
 				},
 				{

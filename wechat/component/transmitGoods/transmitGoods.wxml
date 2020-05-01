@@ -1,0 +1,4 @@
+<!--component/transmitImage/transmitImage.wxml-->
+<view style="position: fixed;top:10000px">
+  <canvas style="width: 375px;height: 300px;" canvas-id="mycanvas" />
+</view>

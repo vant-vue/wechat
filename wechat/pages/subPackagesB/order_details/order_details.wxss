@@ -25,7 +25,7 @@
 
 .status_box .flex .btn {
   border: 2rpx solid #090;
-  margin: 15rpx;
+  margin: 14rpx;
   padding: 20rpx 0;
   color: #090;
   border-radius: 10rpx;
@@ -38,7 +38,7 @@
 
 .status_box .flex .btn.can {
   color: #f00;
-  border: 1rpx solid #f00;
+  border: 2rpx solid #f00;
 }
 
 .apply_box {

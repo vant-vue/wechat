@@ -14,7 +14,7 @@
   </view>
   <view class="tit3">{{solitaire.summary}}</view>
   <view class="code_box">
-    <image class="code" src="/images/common/logo.jpg" mode="widthFix"></image>
+    <image class="code" src="{{codeUrl}}" mode="widthFix"></image>
     <view class="tit4">微信扫码，开始接龙</view>
   </view>
 
@@ -23,6 +23,6 @@
 <!-- <view style="padding:20rpx;" wx:if="{{imagePath}}">
   <image src="{{imagePath}}" mode="widthFix" style="width:100%"></image>
 </view> -->
-<view style="position: fixed;top:1000px">
+<view style="position: fixed;top:10000px">
   <canvas style="width: 375px;height: 667px;" canvas-id="mycanvas" />
 </view>

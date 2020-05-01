@@ -214,13 +214,13 @@
   <view class="list_box bg_fff" wx:if="{{solitaireList.length>0}}">
     <view class="title">接龙列表</view>
     <view class="flex list" wx:for="{{solitaireList}}" wx:for-item="item" wx:key="index" wx:for-index="index">
-      <view class="tit">{{index+1}}</view>
+      <view class="tit">{{item.solitaireNo}}</view>
       <view>
         <image class="head_img" src="{{filter.head_img(item.isAnonymous==0?item.headerImg:'')}}"></image>
       </view>
       <view class="item">
         <view class="flex mb_20">
-          <view class="item tit1">{{item.nickName}}</view>
+          <view class="item tit1">{{item.isAnonymous==0?item.nickName:'匿名用户'}}</view>
           <view class="item tr tit2">{{item.orderTime}}</view>
         </view>
         <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
@@ -283,3 +283,4 @@
   <!-- 下拉框 -->
   <showActionSheet show="{{showActionSheet}}" bind:selectValue="selectValue" list="{{selectList}}"></showActionSheet>
 </view>
+<transmitImage id="shareid" bind:imagePathFun="imagePathFun"></transmitImage>

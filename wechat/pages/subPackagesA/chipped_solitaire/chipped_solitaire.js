@@ -167,8 +167,8 @@ Page({
       if (!valid.check_positive(item.price)) {
         str = "请填写单份金额"
       }
-      if (!valid.check_positive(item.stock)) {
-        str = "请填写可售份数"
+      if (!valid.check_positive(item.stock) || item.stock == 0) {
+        str = "请填写不为0可售份数"
       }
       if (!valid.check_positive(item.togoMoney)) {
         str = "请填写合买金额"
@@ -226,7 +226,7 @@ Page({
           let setTime;
           setTime = setTimeout(() => {
             this.data.is_request = false;
-            wx.navigateTo({
+            wx.redirectTo({
               url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
             })
           }, 2000)
@@ -404,8 +404,8 @@ Page({
       if (!valid.check_positive(item.price)) {
         str = "请填写单份金额"
       }
-      if (!valid.check_positive(item.stock)) {
-        str = "请填写可售份数"
+      if (!valid.check_positive(item.stock) || item.stock == 0) {
+        str = "请填写不为0可售份数"
       }
       if (!valid.check_positive(item.togoMoney)) {
         str = "请填写合买金额"
@@ -456,17 +456,26 @@ Page({
       // wx.hideLoading()
       this.data.is_request = true;
       app.$API.editSolitaire(params).then(res => {
-        wx.showToast({
-          title: '修改成功',
-          duration: 3000
-        });
-        let setTime;
-        setTime = setTimeout(() => {
-          this.data.is_request = false;
-          wx.reLaunch({
-            url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
-          })
-        }, 2000)
+        if (res.code == 200) {
+          wx.showToast({
+            title: '修改成功',
+            duration: 3000
+          });
+          let setTime;
+          setTime = setTimeout(() => {
+            this.data.is_request = false;
+            wx.redirectTo({
+              url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
+            })
+          }, 2000)
+        } else {
+          wx.showToast({
+            title: res.msg,
+            icon: 'none',
+            duration: 3000
+          });
+        }
+
       }).catch(err => {
         this.data.is_request = false;
         wx.hideLoading()
@@ -522,7 +531,7 @@ Page({
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
       // title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
-      path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/center/zf.jpeg',
       success: function() { // 转发成功之后的回调
       },

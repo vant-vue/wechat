@@ -50,7 +50,8 @@ Page({
         value: '删除接龙'
       }
     ],
-    showActionSheet: false
+    showActionSheet: false,
+    imagePath: ''
   },
 
   showActionSheet_fun() {
@@ -64,21 +65,21 @@ Page({
     let _this = this;
     if (obj.key == 1) {
       if (_this.data.solitaire.type == 1) {
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=1&id=" + _this.data.solitaireId
         })
       } else if (_this.data.solitaire.type == 2) {
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=1&id=" + _this.data.solitaireId
         })
       }
     } else if (obj.key == 2) {
       if (_this.data.solitaire.type == 1 && (_this.data.isMine || _this.data.solitaire.isCopy == 1)) {
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + _this.data.solitaireId
         })
       } else if (_this.data.solitaire.type == 2 && (_this.data.isMine || _this.data.solitaire.isCopy == 1)) {
-        wx.navigateTo({
+        wx.redirectTo({
           url: "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + _this.data.solitaireId
         })
       } else {
@@ -437,7 +438,7 @@ Page({
         }
         item.itemstr = itemstr;
       })
-      console.log(res.args.solitaireList);
+      // console.log(res.args.solitaireList);
       this.setData({
         solitaireList: res.args.solitaireList,
         userId: res.args.userId
@@ -510,7 +511,6 @@ Page({
           duration: 5000
         })
       }
-      wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })
@@ -627,7 +627,10 @@ Page({
    */
   onLoad: function(options) {
     console.log(options);
-    this.data.solitaireId = options.id;
+    // this.data.solitaireId = options.id;
+    this.setData({
+      solitaireId: options.id
+    });
     // // if (this.data.solitaireId) {
     //   this.get_details(this.data.solitaireId);
     // // }
@@ -640,7 +643,11 @@ Page({
     } else {
       this.get_details(this.data.solitaireId);
     }
-
+    if (this.data.solitaireId) {
+      let shareid = this.selectComponent("#shareid");
+      shareid.data.solitaireId = this.data.solitaireId;
+      shareid.getSolitaireShareInfo();
+    }
   },
   /**
    * 生命周期函数--监听页面显示
@@ -685,6 +692,10 @@ Page({
     }
     app.$API.forwadStatics(params).then(res => {}).catch(() => {})
   },
+  imagePathFun(e) {
+    this.data.imagePath = e.detail;
+    console.log(this.data.imagePath);
+  },
   /**
    * 用户点击右上角分享
    */
@@ -692,10 +703,10 @@ Page({
     this.forwadStatics();
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
-      title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
+      title: `${that.data.info.nickName}邀请你来接龙`, // 默认是小程序的名称(可以写slogan等)
       path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
-      // path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
-      imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      // path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: that.data.imagePath, //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function(res) { // 转发成功之后的回调
         console.log(res, '转发成功');
         if (res.errMsg == 'shareAppMessage:ok') {}　　　　

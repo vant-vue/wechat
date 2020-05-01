@@ -12,7 +12,8 @@ Page({
     info: {},
     isMine: '',
     imagePath: '',
-    canvasHidden: ''
+    canvasHidden: '',
+    codeUrl:''
   },
 
   // 获取详情
@@ -31,6 +32,24 @@ Page({
         isMine: res.args.isMine,
         banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
       });
+      this.getWxAppCode();
+    })
+  },
+  // 获取小程序码
+  getWxAppCode() {
+    let params = {
+      param: {
+        "path": "pages/tabBar/index/index", //小程序地址 pages开通
+        "sence": "a=1&b=2", // 最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~，其它字符请自行编码为合法字符（因不支持%，中文无法使用 urlencode 处理，请使用其他编码方式）  const {query} = wx.getLaunchOptionsSync();const scene = decodeURIComponent(query.scene) 获取方式
+        "width": 200, //二维码的宽度，单位 px，最小 280px，最大 1280px
+      }
+    }
+    app.$API.getWxAppCode(params).then(res => {
+      if(res.code == 200){
+        this.setData({
+          codeUrl: res.args.codeUrl
+        });
+      }
       this.createNewImg();
     })
   },
@@ -43,21 +62,29 @@ Page({
     this.get_details(options.id);
   },
 
-  // 获取小程序
-  promise1() {
+  // 获取小程序吗
+  promisegetWxAppCode() {
     return new Promise((resolve, reject) => {
-      if (!this.data.banner_list[0]) {
+      console.log(this.data.codeUrl);
+      if (!this.data.codeUrl) {
         resolve({
-          'path': '/images/common/shop.png',
+          'path': '/images/common/no_head.png',
           height: 375,
           width: 375
         });
         return;
       }
       wx.getImageInfo({ //保存网络图片
-        src: this.data.banner_list[0], //请求的网络图片路径
+        src: this.data.codeUrl, //请求的网络图片路径
         success: function(res) {
           resolve(res);
+        },
+        fail:function(){
+          resolve({
+            'path': '/images/common/no_head.png',
+            height: 375,
+            width: 375
+          });
         }
       })
     })
@@ -83,7 +110,8 @@ Page({
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
-    Promise.all([this.promise1(), this.promise2()]).then(res => {
+    Promise.all([this.promise2(), this.promisegetWxAppCode()]).then(res => {
+      console.log(res);
       var that = this;
       var context = wx.createCanvasContext('mycanvas');
       context.setFillStyle("#fff");
@@ -91,9 +119,10 @@ Page({
       var path1 = "/images/common/logo.jpg";
       var path2 = res[0].path;
       var path3 = res[1].path;
-      // 小程序logo
-      context.drawImage(path1, 10, 10, 40, 40);
-      //绘制名字
+
+
+
+      //绘制名字------------------------------------------
       context.setFontSize(18);
       context.setFillStyle('#333333');
       context.setTextAlign('left');
@@ -143,6 +172,26 @@ Page({
       context.fillText(title, 190, (355 * (res[0].height / res[0].width)) + 130 + 30 + 125, 375 - 135);
 
       context.stroke();
+      // 小程序logo----------------------------------
+      //绘制的头像宽度
+      let avatarurl_width = 40
+      //绘制的头像高度
+      let avatarurl_heigth = 40
+      //绘制的头像在画布上的位置
+      let avatarurl_x = 10
+      //绘制的头像在画布上的位置
+      let avatarurl_y = 10
+      // 绘制头像
+      context.save()
+      // 开始创建一个路径
+      context.beginPath()
+      // 画一个圆形裁剪区域
+      context.arc(avatarurl_width / 2 + avatarurl_x, avatarurl_heigth / 2 + avatarurl_y, avatarurl_width / 2, 0, Math.PI * 2, false)
+      // 裁剪
+      context.clip();
+      // 绘制图片
+      // context.drawImage(path1, 10, 10, 40, 40);
+      context.drawImage(path1, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth)
       context.draw();
       setTimeout(() => {
         wx.canvasToTempFilePath({
@@ -162,7 +211,6 @@ Page({
         });
       }, 200)
     })
-
   },
   openSetting() {
     wx.openSetting()
@@ -217,7 +265,6 @@ Page({
           })
         }
       }
-
     })
 
   },
@@ -294,7 +341,7 @@ Page({
     var shareObj = {
       title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
       path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
-      // path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      // path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
       success: function(res) { // 转发成功之后的回调
         console.log(res, '转发成功');

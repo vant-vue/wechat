@@ -18,7 +18,9 @@ Page({
     title: '',
     type: null,
     show_popup: false,
-    popup_order_list: {}
+    popup_order_list: {},
+    is_success: false,
+    goods: {}
   },
 
   /**
@@ -177,6 +179,7 @@ Page({
                 title: '支付成功',
                 duration: 3000
               })
+              _this.data.is_success = true;
               _this.findNewOrder();
               // let setTime = setTimeout(() => {
               //   wx.navigateBack();
@@ -204,21 +207,31 @@ Page({
       }
     }
     app.$API.findNewOrder(params).then(res => {
-      this.setData({
-        show_popup: true
-      })
       if (res.code == 200) {
         this.setData({
-          popup_order_list: res.args.order
-        })
+          popup_order_list: res.args.order,
+          goods: res.args.goods
+        });
       }
+      setTimeout(() => {
+        this.setData({
+          show_popup: true
+        })
+      }, 200)
+
     }).catch(() => {})
   },
   popup_close() {
     this.setData({
       show_popup: false
     })
-    wx.navigateBack();
+    setTimeout(()=>{
+      if (this.data.is_success) {
+        wx.redirectTo({
+          url: '/pages/subPackagesB/released_group/released_group?id=' + this.data.solitaireId
+        });
+      }
+    },500)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -230,9 +243,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
-  },
+  onShow: function() {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -261,24 +272,35 @@ Page({
   onReachBottom: function() {
 
   },
-
+  // 转发次数统计 （forwadStatics）
+  forwadStatics() {
+    let params = {
+      param: {
+        "solitaireId": this.data.solitaireId, //接龙主键
+      }
+    }
+    app.$API.forwadStatics(params).then(res => {}).catch(() => {})
+  },
+  imagePathFun(e) {
+    this.data.imagePath = e.detail;
+    console.log(this.data.imagePath);
+  },
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (options) {
-    this.popup_close();
+  onShareAppMessage: function(options) {
     this.forwadStatics();
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
-      title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
+      title: `${that.data.title}`, // 默认是小程序的名称(可以写slogan等)
       path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
-      // path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
-      imageUrl: '/images/home/wechat.png', //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
-      success: function (res) { // 转发成功之后的回调
+      // path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      imageUrl: that.data.imagePath, //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4
+      success: function(res) { // 转发成功之后的回调
         console.log(res, '转发成功');
-        if (res.errMsg == 'shareAppMessage:ok') { }
+        if (res.errMsg == 'shareAppMessage:ok') {}
       },
-      fail: function (res) { // 转发失败之后的回调
+      fail: function(res) { // 转发失败之后的回调
         console.log(res, '转发失败');
         if (res.errMsg == 'shareAppMessage:fail cancel') {
           // 用户取消转发
@@ -286,7 +308,7 @@ Page({
           // 转发失败，其中 detail message 为详细失败信息
         }
       },
-      complete: function () {
+      complete: function() {
         // 转发结束之后的回调（转发成不成功都会执行）
       }
     };

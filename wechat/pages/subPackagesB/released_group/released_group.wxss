@@ -363,6 +363,7 @@ button.button-hover {
 .notice_box {
   margin: 40rpx 20rpx;
   padding: 20rpx 0;
+  border-radius: 10rpx;
 }
 
 .notice_box .flex {
@@ -382,4 +383,5 @@ button.button-hover {
 .notice_box image {
   width: 50rpx;
   margin: 0 20rpx;
+  vertical-align: bottom;
 }

@@ -350,7 +350,7 @@ Page({
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
       // title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
-      path: '//pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
+      path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/center/zf.jpeg',
       success: function() { // 转发成功之后的回调
       },

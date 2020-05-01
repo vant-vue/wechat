@@ -2,7 +2,7 @@
 <view>
   <view class="bg title">{{title}}</view>
   <view class="bg box">
-    <textarea placeholder="请输入商品简介" bindinput='listenerInput' data-row="summary" value="{{summary}}" />
+    <textarea placeholder="请输入商品介绍" bindinput='listenerInput' data-row="summary" value="{{summary}}" />
   </view>
   <!-- 图片 -->
   <view class="bg box">

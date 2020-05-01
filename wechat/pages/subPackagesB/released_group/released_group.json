@@ -5,6 +5,7 @@
     "service": "/component/service/service",
     "transmit": "/component/transmit/transmit",
     "notice": "/component/notice/notice",
-    "showActionSheet": "/component/showActionSheet/showActionSheet"
+    "showActionSheet": "/component/showActionSheet/showActionSheet",
+    "transmitImage": "/component/transmitImage/transmitImage"
   }
 }

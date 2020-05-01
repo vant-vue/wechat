@@ -5,7 +5,7 @@
     <view class='content'>
       <image class="success" src="/images/home/success.png"></image>
       <slot></slot>
-      <button open-type="share" style="width:100%;">转发到群聊</button>
+      <button open-type="share" bindtap="close" style="width:100%;">转发到群聊</button>
     </view>
     <view class='close'>
       <image class="close" bindtap="close" src="/images/home/close.png"></image>

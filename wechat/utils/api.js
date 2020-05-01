@@ -122,6 +122,14 @@ const findNewOrder = (params) => postAction("/solitaire/solitaire/api", params, 
 const forwadStatics = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "forwadStatics"
 });
+//获取接龙分享信息（getSolitaireShareInfo）
+const getSolitaireShareInfo = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "getSolitaireShareInfo"
+});
+//获取小程序码（getWxAppCode）
+const getWxAppCode = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "getWxAppCode"
+});
 
 
 export default {
@@ -156,5 +164,7 @@ export default {
   wxOutMoney,
   banner,
   findNewOrder,
-  forwadStatics
+  forwadStatics,
+  getSolitaireShareInfo,
+  getWxAppCode
 }
