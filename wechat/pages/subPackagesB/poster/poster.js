@@ -191,7 +191,7 @@ Page({
       context.clip();
       // 绘制图片
       // context.drawImage(path1, 10, 10, 40, 40);
-      context.drawImage(path1, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth)
+      context.drawImage(path1, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth);
       context.draw();
       setTimeout(() => {
         wx.canvasToTempFilePath({
