@@ -23,14 +23,14 @@ Page({
         solitaireId: id
       }
     }
-    app.$API.mySolitaire(params).then(res => {
+    app.$API.getSolitaireShareInfo(params).then(res => {
       this.setData({
-        solitaire: res.args.solitaire,
-        logistics: res.args.logistics,
-        goodsList: res.args.goodsList,
-        info: res.args.info,
-        isMine: res.args.isMine,
-        banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
+        nickName: res.args.nickName,
+        headerImg: res.args.headerImg,
+        title: res.args.title,
+        summary: res.args.summary,
+        startMoney: res.args.startMoney,
+        banner_list: res.args.img ? res.args.img.split(';') : []
       });
       this.getWxAppCode();
     })
@@ -40,7 +40,7 @@ Page({
     let params = {
       param: {
         "path": "pages/tabBar/index/index", //小程序地址 pages开通
-        "sence": "a=1&b=2", // 最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~，其它字符请自行编码为合法字符（因不支持%，中文无法使用 urlencode 处理，请使用其他编码方式）  const {query} = wx.getLaunchOptionsSync();const scene = decodeURIComponent(query.scene) 获取方式
+        "sence": decodeURIComponent("a=1&b=2"), // 最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~，其它字符请自行编码为合法字符（因不支持%，中文无法使用 urlencode 处理，请使用其他编码方式）  const {query} = wx.getLaunchOptionsSync();const scene = decodeURIComponent(query.scene) 获取方式
         "width": 200, //二维码的宽度，单位 px，最小 280px，最大 1280px
       }
     }
@@ -116,7 +116,7 @@ Page({
       var context = wx.createCanvasContext('mycanvas');
       context.setFillStyle("#fff");
       context.fillRect(0, 0, 375, 667);
-      var path1 = "/images/common/logo.jpg";
+      var path1 = that.data.headerImg;
       var path2 = res[0].path;
       var path3 = res[1].path;
 
@@ -126,7 +126,7 @@ Page({
       context.setFontSize(18);
       context.setFillStyle('#333333');
       context.setTextAlign('left');
-      var title = `${this.data.info.nickName} 邀请你来接龙`
+      var title = `${this.data.nickName} 邀请你来接龙`
       context.fillText(title, 70, 35);
       context.stroke();
       // 商品图片
@@ -136,14 +136,14 @@ Page({
       context.setFontSize(18);
       context.setFillStyle('#000');
       context.setTextAlign('left');
-      var title = `${this.data.solitaire.title}`
+      var title = `${this.data.title}`
       context.fillText(title, 10, (355 * (res[0].height / res[0].width)) + 100, 375 - 135);
       context.stroke();
       // 商品价格
       context.setFontSize(18);
       context.setFillStyle('#f90');
       context.setTextAlign('right');
-      var title = `¥ ${((this.data.goodsList[0].price)/100).toFixed(2)} 起`
+      var title = `¥ ${((this.data.startMoney)/100).toFixed(2)} 起`
       context.fillText(title, 360, (355 * (res[0].height / res[0].width)) + 100);
       context.stroke();
       //介绍
@@ -151,7 +151,7 @@ Page({
       context.setFillStyle('#999');
       context.setTextAlign('left');
       // context.fillText(that.data.userInfo.nickName + "邀请您一起参加", 110, 50, 375 - 35);
-      var title = `${this.data.solitaire.summary ? this.data.solitaire.summary:''}`;
+      var title = `${this.data.summary ? this.data.summary:''}`;
       if (title.length > 37) {
         var a = title.substr(0, 37);
         var b = title.substr(37, title.length);

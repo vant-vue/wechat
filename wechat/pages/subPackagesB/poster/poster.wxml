@@ -3,16 +3,16 @@
 <view class="poster">
   <view class="flex top_box">
     <view>
-      <image class="logo" src="/images/common/logo.jpg"></image>
+      <image class="logo" src="{{headerImg}}"></image>
     </view>
-    <view class="item title">{{info.nickName}} 邀请你来接龙</view>
+    <view class="item title">{{nickName}} 邀请你来接龙</view>
   </view>
   <image class="goods_img" src="{{filter.img(banner_list[0])}}" mode="widthFix"></image>
   <view class="flex top_box" style="align-items: center;padding:20rpx 0;">
-    <view class="tit1">{{solitaire.title}}</view>
-    <view class="item tr tit2">¥{{filter.money(goodsList[0].price)}}起</view>
+    <view class="tit1">{{title}}</view>
+    <view class="item tr tit2">¥{{filter.money(startMoney)}}起</view>
   </view>
-  <view class="tit3">{{solitaire.summary}}</view>
+  <view class="tit3">{{summary}}</view>
   <view class="code_box">
     <image class="code" src="{{codeUrl}}" mode="widthFix"></image>
     <view class="tit4">微信扫码，开始接龙</view>
