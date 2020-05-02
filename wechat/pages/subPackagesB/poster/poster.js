@@ -145,8 +145,11 @@ Page({
       context.fillText(title, 70, 35);
       context.stroke();
       // 商品图片
-      // context.drawImage(path2, 10, 60, 355, 355 * (res[0].height / res[0].width));
-      context.drawImage(path2, 0, 0, res[0].width, res[0].height, 10, 60, 355, 355);
+      if (path2 == '/images/common/shop.png') {
+        context.drawImage(path2, 10, 60, 355, 355);
+      } else {
+        context.drawImage(path2, 0, 0, res[0].width, res[0].height, 10, 60, 355, 355);
+      }
       context.stroke();
       // 商品名称
       context.setFontSize(18);
