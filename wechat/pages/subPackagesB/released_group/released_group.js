@@ -379,7 +379,7 @@ Page({
         goodsList: res.args.goodsList,
         info: res.args.info,
         isMine: res.args.isMine,
-        banner_list: res.args.solitaire ? res.args.solitaire.img.split(';') : []
+        banner_list: res.args.solitaire.img? res.args.solitaire.img.split(';') : []
       });
       this.select_list_fun(this.data.solitaire.status);
     })
