@@ -9,11 +9,12 @@ Page({
     solitaire: {},
     logistics: {},
     goodsList: [],
+    banner_list: [],
     info: {},
     isMine: '',
     imagePath: '',
     canvasHidden: '',
-    codeUrl:''
+    codeUrl: ''
   },
 
   // 获取详情
@@ -45,7 +46,7 @@ Page({
       }
     }
     app.$API.getWxAppCode(params).then(res => {
-      if(res.code == 200){
+      if (res.code == 200) {
         this.setData({
           codeUrl: res.args.codeUrl
         });
@@ -65,7 +66,6 @@ Page({
   // 获取小程序吗
   promisegetWxAppCode() {
     return new Promise((resolve, reject) => {
-      console.log(this.data.codeUrl);
       if (!this.data.codeUrl) {
         resolve({
           'path': '/images/common/no_head.png',
@@ -79,7 +79,7 @@ Page({
         success: function(res) {
           resolve(res);
         },
-        fail:function(){
+        fail: function() {
           resolve({
             'path': '/images/common/no_head.png',
             height: 375,
@@ -89,9 +89,9 @@ Page({
       })
     })
   },
-  promise2() {
+  promise_url(img) {
     return new Promise((resolve, reject) => {
-      if (!this.data.banner_list[0]) {
+      if (!img) {
         resolve({
           'path': '/images/common/shop.png',
           height: 375,
@@ -100,9 +100,16 @@ Page({
         return;
       }
       wx.getImageInfo({ //保存网络图片
-        src: this.data.banner_list[0], //请求的网络图片路径
+        src: img, //请求的网络图片路径
         success: function(res) {
           resolve(res);
+        },
+        fail(err) {
+          resolve({
+            'path': '/images/common/shop.png',
+            height: 375,
+            width: 375
+          });
         }
       })
     })
@@ -110,13 +117,12 @@ Page({
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
-    Promise.all([this.promise2(), this.promisegetWxAppCode()]).then(res => {
-      console.log(res);
+    Promise.all([this.promise_url(this.data.banner_list[0]), this.promisegetWxAppCode(), this.promise_url(this.data.headerImg)]).then(res => {
       var that = this;
       var context = wx.createCanvasContext('mycanvas');
       context.setFillStyle("#fff");
       context.fillRect(0, 0, 375, 667);
-      var path1 = that.data.headerImg;
+      var path1 = res[2].path;
       var path2 = res[0].path;
       var path3 = res[1].path;
 
@@ -130,46 +136,46 @@ Page({
       context.fillText(title, 70, 35);
       context.stroke();
       // 商品图片
-      context.drawImage(path2, 10, 60, 355, 355 * (res[0].height / res[0].width));
+      // context.drawImage(path2, 10, 60, 355, 355 * (res[0].height / res[0].width));
+      context.drawImage(path2, 0, 0, res[0].width, res[0].height, 10, 60, 355, 355);
       context.stroke();
       // 商品名称
       context.setFontSize(18);
       context.setFillStyle('#000');
       context.setTextAlign('left');
       var title = `${this.data.title}`
-      context.fillText(title, 10, (355 * (res[0].height / res[0].width)) + 100, 375 - 135);
+      context.fillText(title, 10, 440, 375 - 135);
       context.stroke();
       // 商品价格
       context.setFontSize(18);
       context.setFillStyle('#f90');
       context.setTextAlign('right');
       var title = `¥ ${((this.data.startMoney)/100).toFixed(2)} 起`
-      context.fillText(title, 360, (355 * (res[0].height / res[0].width)) + 100);
+      context.fillText(title, 360, 440);
       context.stroke();
       //介绍
       context.setFontSize(15);
       context.setFillStyle('#999');
       context.setTextAlign('left');
-      // context.fillText(that.data.userInfo.nickName + "邀请您一起参加", 110, 50, 375 - 35);
       var title = `${this.data.summary ? this.data.summary:''}`;
       if (title.length > 37) {
         var a = title.substr(0, 37);
         var b = title.substr(37, title.length);
-        context.fillText(a, 10, (355 * (res[0].height / res[0].width)) + 130, 375 - 10);
-        context.fillText(b, 10, (355 * (res[0].height / res[0].width)) + 150, 375 - 10);
+        context.fillText(a, 10, 465, 375 - 10);
+        context.fillText(b, 10, 485, 375 - 10);
 
       } else {
-        context.fillText(title, 10, (355 * (res[0].height / res[0].width)) + 130, 375 - 10);
+        context.fillText(title, 10, 465, 375 - 10);
       }
       // 小程序码
-      context.drawImage(path3, 138, (355 * (res[0].height / res[0].width)) + 130 + 30, 100, 100 * (res[0].height / res[0].width));
+      context.drawImage(path3, 112, 485, 150, 150);
       context.stroke();
       // 文字
       context.setFontSize(14);
       context.setFillStyle('#999');
       context.setTextAlign('center');
       var title = `微信扫码，开始接龙`
-      context.fillText(title, 190, (355 * (res[0].height / res[0].width)) + 130 + 30 + 125, 375 - 135);
+      context.fillText(title, 185, 655, 375 - 135);
 
       context.stroke();
       // 小程序logo----------------------------------
@@ -190,7 +196,6 @@ Page({
       // 裁剪
       context.clip();
       // 绘制图片
-      // context.drawImage(path1, 10, 10, 40, 40);
       context.drawImage(path1, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth);
       context.draw();
       setTimeout(() => {

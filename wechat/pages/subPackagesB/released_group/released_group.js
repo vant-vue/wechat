@@ -379,7 +379,7 @@ Page({
         goodsList: res.args.goodsList,
         info: res.args.info,
         isMine: res.args.isMine,
-        banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
+        banner_list: res.args.solitaire ? res.args.solitaire.img.split(';') : []
       });
       this.select_list_fun(this.data.solitaire.status);
     })
@@ -643,6 +643,7 @@ Page({
     } else {
       this.get_details(this.data.solitaireId);
     }
+    console.log('123');
     if (this.data.solitaireId) {
       let shareid = this.selectComponent("#shareid");
       shareid.data.solitaireId = this.data.solitaireId;
@@ -693,8 +694,11 @@ Page({
     app.$API.forwadStatics(params).then(res => {}).catch(() => {})
   },
   imagePathFun(e) {
-    this.data.imagePath = e.detail;
+    // this.data.imagePath = e.detail;
     console.log(this.data.imagePath);
+    this.setData({
+      imagePath: e.detail
+    })
   },
   /**
    * 用户点击右上角分享

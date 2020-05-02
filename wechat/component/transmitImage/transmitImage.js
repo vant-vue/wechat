@@ -5,14 +5,13 @@ Component({
    * 组件的属性列表
    */
   behaviors: [],
-  properties: {
-  },
+  properties: {},
 
   /**
    * 组件的初始数据
    */
   data: {
-    solitaireId:'',
+    solitaireId: '',
     imgList: [],
     nickName: '',
     startMoney: '',
@@ -79,6 +78,13 @@ Component({
           src: img, //请求的网络图片路径
           success: function(res) {
             resolve(res);
+          },
+          fail: function(err) {
+            resolve({
+              'path': '/images/common/shop.png',
+              height: 120,
+              width: 120
+            });
           }
         })
       })
@@ -159,6 +165,7 @@ Component({
         var title = `参与接龙`
         context.fillText(title, 185, 228);
         context.draw();
+        console.log(11111);
         setTimeout(() => {
           wx.canvasToTempFilePath({
             x: 0,

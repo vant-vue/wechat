@@ -216,10 +216,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 23,
 					"name": "海报",
 					"pathName": "pages/subPackagesB/poster/poster",
-					"query": "id=37",
+					"query": "id=85",
 					"scene": null
 				}
 			]
