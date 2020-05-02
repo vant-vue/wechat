@@ -19,7 +19,8 @@
   </view>
 
 </view>
-<view class="footer" bindtap="baocun">保存海报</view>
+<view class="footer" wx:if="{{imagePath}}" bindtap="baocun">保存海报</view>
+<view class="footer nodata" wx:else >海报正在生成中</view>
 <!-- <view style="padding:20rpx;" wx:if="{{imagePath}}">
   <image src="{{imagePath}}" mode="widthFix" style="width:100%"></image>
 </view> -->

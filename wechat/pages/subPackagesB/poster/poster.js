@@ -209,7 +209,9 @@ Page({
           destHeight: 667 * 4,
           canvasId: 'mycanvas',
           success: function(res) {
-            that.data.imagePath = res.tempFilePath;
+            that.setData({
+              imagePath: res.tempFilePath
+            })
           },
           fail: function(res) {
             console.log(res);
