@@ -25,6 +25,10 @@ Page({
         solitaireId: id
       }
     }
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     app.$API.getSolitaireShareInfo(params).then(res => {
       this.setData({
         nickName: res.args.nickName,
@@ -52,7 +56,9 @@ Page({
           codeUrl: res.args.codeUrl
         });
       }
-      this.createNewImg();
+      wx.hideLoading();
+    }).catch(err => {
+      wx.hideLoading();
     })
   },
   /**
@@ -118,6 +124,11 @@ Page({
 
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
+    //将生成好的图片保存到本地
+    wx.showLoading({
+      title: '海报生成中...',
+      mask: true
+    });
     Promise.all([this.promise_url(this.data.banner_list[0]), this.promisegetWxAppCode(), this.promise_url(this.data.headerImg)]).then(res => {
       var that = this;
       var context = wx.createCanvasContext('mycanvas');
@@ -126,9 +137,6 @@ Page({
       var path1 = res[2].path;
       var path2 = res[0].path;
       var path3 = res[1].path;
-
-
-
       //绘制名字------------------------------------------
       context.setFontSize(18);
       context.setFillStyle('#333333');
@@ -211,7 +219,8 @@ Page({
           success: function(res) {
             that.setData({
               imagePath: res.tempFilePath
-            })
+            });
+            that.baocun();
           },
           fail: function(res) {
             console.log(res);
@@ -223,16 +232,9 @@ Page({
   openSetting() {
     wx.openSetting()
   },
-  //点击保存到相册
+  //保存到相册
   baocun: function() {
-    //将生成好的图片保存到本地
-    wx.showToast({
-      title: '海报生成中...',
-      icon: 'loading',
-      duration: 1000
-    });
     var that = this
-
     wx.getSetting({
       success(res) {
         // 如果没有则获取授权
@@ -251,6 +253,7 @@ Page({
               console.log(res, 'fail');
             }
           })
+          wx.hideLoading();
         } else {
           wx.saveImageToPhotosAlbum({
             filePath: that.data.imagePath,
@@ -271,24 +274,11 @@ Page({
               })
             }
           })
+          wx.hideLoading();
         }
       }
     })
 
-  },
-  //点击生成
-  formSubmit: function(e) {
-    var that = this;
-    this.setData({
-      maskHidden: false
-    });
-
-    setTimeout(function() {
-      that.createNewImg();
-      // that.setData({
-      //   maskHidden: true
-      // });
-    }, 1000)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
