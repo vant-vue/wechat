@@ -20,7 +20,7 @@
         <image bindtap="callPhone_fun" class="img2" src="/images/home/tel.png"></image>
         <image class="img2" src="/images/home/wechat.png"></image>
         <image bindtap="jump" data-page="poster" class="img2" src="/images/home/friends.png"></image>
-        <button open-type="share" style="position:absolute;right:80rpx;top:0;width:60rpx;height:60rpx;padding:0;margin:0;background:transparent;">
+        <button open-type="{{imagePath?'share':''}}" style="position:absolute;right:80rpx;top:0;width:60rpx;height:60rpx;padding:0;margin:0;background:transparent;">
         </button>
       </view>
     </view>
