@@ -85,7 +85,7 @@
         </view>
       </view>
       <!-- 申请状态 -->
-      <view class="apply flex" wx:if="{{item.status == 0 && tem.isRemove ==1}}">
+      <view class="apply flex" wx:if="{{item.status == 0 && item.isRemove ==1}}">
         <view class="item ft_f0">买家申请取消</view>
         <view class="item ft_6f tr" bindtap="cancel_fun_kh" data-id="{{item.id}}">点击处理</view>
       </view>
