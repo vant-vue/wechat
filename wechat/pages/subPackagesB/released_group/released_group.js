@@ -627,13 +627,11 @@ Page({
    */
   onLoad: function(options) {
     console.log(options);
-    // this.data.solitaireId = options.id;
-    this.setData({
-      solitaireId: options.id
-    });
-    // // if (this.data.solitaireId) {
-    //   this.get_details(this.data.solitaireId);
-    // // }
+    if (options.id) {
+      this.data.solitaireId = options.id;
+    } else if (options.scene) {
+      this.data.solitaireId = options.scene;
+    }
     if (options.released_id) {
       this.data.solitaireId = options.released_id;
       this.setData({
@@ -643,7 +641,6 @@ Page({
     } else {
       this.get_details(this.data.solitaireId);
     }
-    console.log('123');
     if (this.data.solitaireId) {
       let shareid = this.selectComponent("#shareid");
       shareid.data.solitaireId = this.data.solitaireId;

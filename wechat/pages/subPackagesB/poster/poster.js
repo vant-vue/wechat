@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    solitaireId: '',
     solitaire: {},
     logistics: {},
     goodsList: [],
@@ -40,8 +41,8 @@ Page({
   getWxAppCode() {
     let params = {
       param: {
-        "path": "pages/tabBar/index/index", //小程序地址 pages开通
-        "sence": decodeURIComponent("a=1&b=2"), // 最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~，其它字符请自行编码为合法字符（因不支持%，中文无法使用 urlencode 处理，请使用其他编码方式）  const {query} = wx.getLaunchOptionsSync();const scene = decodeURIComponent(query.scene) 获取方式
+        "path": "pages/subPackagesB/released_group/released_group", //小程序地址 pages开通
+        "sence": `${this.data.solitaireId}`, // 最大32个可见字符，只支持数字，大小写英文以及部分特殊字符：!#$&'()*+,/:;=?@-._~，其它字符请自行编码为合法字符（因不支持%，中文无法使用 urlencode 处理，请使用其他编码方式）  const {query} = wx.getLaunchOptionsSync();const scene = decodeURIComponent(query.scene) 获取方式
         "width": 200, //二维码的宽度，单位 px，最小 280px，最大 1280px
       }
     }
@@ -59,7 +60,7 @@ Page({
    */
   onLoad: function(options) {
     console.log(options.id);
-    let that = this;
+    this.data.solitaireId = options.id;
     this.get_details(options.id);
   },
 
