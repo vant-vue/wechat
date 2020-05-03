@@ -76,10 +76,10 @@
             </view>
             <view class="item">
               <view class="flex">
-                <view class="omit1 txt1" style="width:300rpx">{{item.goodsName}}</view>
-                <view class="item tr txt2">已售{{item.sellTimes}}</view>
+                <view class="omit1 txt1" style="width:300rpx" bindtap="jump" data-page="goods_details" data-goods_id="{{item.id}}">{{item.goodsName}}</view>
+                <view class="item tr txt2" bindtap="jump" data-page="goods_details" data-goods_id="{{item.id}}">已售{{item.sellTimes}}</view>
               </view>
-              <view class="txt3">{{item.specifications}}</view>
+              <view class="txt3" bindtap="jump" data-page="goods_details" data-goods_id="{{item.id}}">{{item.specifications}}</view>
               <view class="flex">
                 <view class="item">
                   <text class="txt4">￥{{filter.money(item.price)}}</text>

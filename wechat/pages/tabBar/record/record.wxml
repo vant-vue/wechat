@@ -39,7 +39,7 @@
     <view wx:if="{{list.length==0}}" class="tc no_data">
       <image src="/images/home/no_data.png" mode="widthFix"></image>
       <view>暂无记录</view>
-      <button class="no_div" bindtap="jump" data-page="add_solitaire">发个接龙</button>
+      <button class="no_div" bindtap="jump" data-page="home">发个接龙</button>
     </view>
     <!-- <view class="list bg_fff mt20">
       <view class="flex">

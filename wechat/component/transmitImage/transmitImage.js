@@ -165,7 +165,6 @@ Component({
         var title = `参与接龙`
         context.fillText(title, 185, 228);
         context.draw();
-        console.log(11111);
         setTimeout(() => {
           wx.canvasToTempFilePath({
             x: 0,

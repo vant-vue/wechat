@@ -5,7 +5,7 @@
     <open-data type="userAvatarUrl"></open-data>
   </view>
   <view class="name">
-    <open-data type="userNickName"></open-data>
+    <open-data type="userNickName" style="color:#fff;"></open-data>
   </view>
 </view>
 <view class="list_box">

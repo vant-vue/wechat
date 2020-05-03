@@ -85,6 +85,9 @@ Page({
       case 'released':
         url = '/pages/subPackagesB/released_group/released_group?id=' + id;
         break;
+      case 'home':
+        url = '/pages/tabBar/index/index'
+        break;
         // 发个接龙
       case 'add_solitaire':
         if (this.data.tab == 1) {

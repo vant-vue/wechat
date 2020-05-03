@@ -396,8 +396,9 @@ Page({
     app.$API.solitaireList(params).then(res => {
       let loginUserId = res.args.userId;
       res.args.solitaireList.forEach(item => {
+        console.log(item);
         if (item.status==1){
-          continue;
+          return;
         }
         let itemstr = '';
         if (loginUserId == item.pubUserId) { //先判定是否本人发布
@@ -568,8 +569,12 @@ Page({
   jump(e) {
     let page = e.currentTarget.dataset.page;
     let list = e.currentTarget.dataset.list;
+    let goods_id = e.currentTarget.dataset.goods_id;
     let url = '';
     switch (page) {
+      case 'goods_details':
+        url = '/pages/subPackagesB/goods_details/goods_details?id=' + this.data.solitaireId + '&goods_id=' + goods_id;
+        break;
       case 'order_management':
         url = '/pages/subPackagesB/order_management/order_management?id=' + this.data.solitaireId;
         break;
