@@ -76,7 +76,7 @@
             </view>
             <view class="item">
               <view class="flex">
-                <view class="item omit1 txt1">{{item.goodsName}}</view>
+                <view class="omit1 txt1" style="width:300rpx">{{item.goodsName}}</view>
                 <view class="item tr txt2">已售{{item.sellTimes}}</view>
               </view>
               <view class="txt3">{{item.specifications}}</view>
@@ -164,7 +164,7 @@
           <view class="flex">
             <view class="item">
               <view class="flex">
-                <view class="item omit1 txt1">合买金额{{filter.money(item.togoMoney)}}元</view>
+                <view class="omit1 txt1" style="width:300rpx">合买金额{{filter.money(item.togoMoney)}}元</view>
                 <view class="item tr txt2">已售{{item.sellTimes}}</view>
               </view>
               <view class="txt3">共{{item.stock}}份</view>

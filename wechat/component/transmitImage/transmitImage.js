@@ -114,13 +114,13 @@ Component({
         context.setTextAlign('left');
         // context.fillText(that.data.userInfo.nickName + "邀请您一起参加", 110, 50, 375 - 35);
         var title = `${that.data.title}`;
-        if (title.length > 22) {
-          var a = title.substr(0, 22);
-          var b = title.substr(22, title.length);
-          context.fillText(a, 0, 130, 375 - 100);
-          context.fillText(b, 0, 150, 375 - 100);
+        if (title.length > 20) {
+          var a = title.substr(0, 20)+'...';
+          var b = title.substr(20, title.length);
+          context.fillText(a, 0, 130, 375 - 150);
+          // context.fillText(b, 0, 150, 375 - 150);
         } else {
-          context.fillText(title, 0, 130, 375 - 100);
+          context.fillText(title, 0, 130, 375 - 150);
         }
         // 价格--------------------------
         context.setFontSize(20);
