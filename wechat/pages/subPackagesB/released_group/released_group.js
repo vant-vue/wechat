@@ -396,6 +396,9 @@ Page({
     app.$API.solitaireList(params).then(res => {
       let loginUserId = res.args.userId;
       res.args.solitaireList.forEach(item => {
+        if (item.status==1){
+          continue;
+        }
         let itemstr = '';
         if (loginUserId == item.pubUserId) { //先判定是否本人发布
           if (item.status == -1) { //已取消
