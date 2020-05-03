@@ -19,8 +19,7 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {
-  },
+  data: {},
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function() {},
@@ -60,7 +59,7 @@ Component({
     //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
     // 已结束
     createNewImg: function() {
-      if (Object.keys(this.data.goods).length==0){
+      if (Object.keys(this.data.goods).length == 0) {
         return;
       }
       console.log(this.data.order, this.data.goods)
@@ -80,7 +79,8 @@ Component({
         context.setFillStyle('#fff');
         context.setTextAlign('left');
         var title = `${that.data.order.userInfo.nickName}`
-        context.fillText(title, 220, 60,375);
+        const nameWidth = context.measureText(title).width
+        context.fillText(title, (375 + 50 - nameWidth) / 2, 60);
         // //接龙号----------------------
         context.setFontSize(18);
         context.setFillStyle('#fff');
@@ -110,7 +110,7 @@ Component({
         //绘制的头像高度
         let avatarurl_heigth = 50
         //绘制的头像在画布上的位置
-        let avatarurl_x = 150
+        let avatarurl_x = (375 - 70 - nameWidth) / 2
         //绘制的头像在画布上的位置
         let avatarurl_y = 30
         // 绘制头像
@@ -156,7 +156,7 @@ Component({
     },
   },
   observers: {
-    'goods': function () {
+    'goods': function() {
       this.createNewImg();
     }
   }
