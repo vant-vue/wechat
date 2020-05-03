@@ -5,7 +5,7 @@
     <view class="flex">
       <view class="item">
         <view>
-          <picker mode="date" value="{{param.yearMonthStr}}" fields="month" end="2020-04" bindchange="bindDateChange">
+          <picker mode="date" value="{{param.yearMonthStr}}" fields="month" end="{{yearMonthStr}}" bindchange="bindDateChange">
             <!-- <text>{{date?date:"选择日期"}}</text> -->
             <text class="tit1">{{param.yearMonthStr}}</text>
             <text class="icon_bottom"></text>

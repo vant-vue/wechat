@@ -156,6 +156,9 @@ Page({
       context.setFillStyle('#000');
       context.setTextAlign('left');
       var title = `${this.data.title}`
+      if (title.length>15){
+        title = title.substr(0, 15)+'...'
+      }
       context.fillText(title, 10, 440, 375 - 135);
       context.stroke();
       // 商品价格
@@ -166,15 +169,15 @@ Page({
       context.fillText(title, 360, 440);
       context.stroke();
       //介绍
-      context.setFontSize(15);
+      context.setFontSize(14);
       context.setFillStyle('#999');
       context.setTextAlign('left');
       var title = `${this.data.summary ? this.data.summary:''}`;
-      if (title.length > 37) {
-        var a = title.substr(0, 37);
-        var b = title.substr(37, title.length);
-        context.fillText(a, 10, 465, 375 - 10);
-        context.fillText(b, 10, 485, 375 - 10);
+      if (title.length > 30) {
+        var a = title.substr(0, 30);
+        var b = title.substr(30, title.length);
+        context.fillText(a, 10, 465, 375 - 20);
+        context.fillText(b, 10, 485, 375 - 20);
 
       } else {
         context.fillText(title, 10, 465, 375 - 10);

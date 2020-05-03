@@ -16,6 +16,7 @@ Page({
       "type": "", //交易类型 多选 可空  1收款 2充值 3退款 4退款手续费 5消费 6提现 7退款给参与接龙的 8平台手续费
       "yearMonthStr": util.formatTime(new Date(), 'month') //月份参数  不可空
     },
+    "yearMonthStr": util.formatTime(new Date(), 'month'), //月份参数  不可空
     last: false,
     "sy": 0, //收入    
     "zc": 0 //支出

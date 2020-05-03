@@ -9,7 +9,7 @@
   </view>
   <image class="goods_img" src="{{filter.img(banner_list[0])}}" mode="aspectFill"></image>
   <view class="flex top_box" style="align-items: center;padding:20rpx 0;">
-    <view class="tit1">{{title}}</view>
+    <view class="tit1 omit1" style="width:500rpx;">{{title}}</view>
     <view class="item tr tit2">¥{{filter.money(startMoney)}}起</view>
   </view>
   <view class="tit3">{{summary}}</view>

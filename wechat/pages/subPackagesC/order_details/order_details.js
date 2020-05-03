@@ -182,6 +182,50 @@ Page({
       }
     })
   },
+  // 修改订单状态 （applyRemove）
+  applyRemove(e) {
+    let _this = this;
+    let id = e.currentTarget.dataset.id;
+    wx.showModal({
+      title: '提示',
+      content: '是否确定申请取消？',
+      success(res) {
+        if (res.confirm) {
+          let params = {
+            param: {
+              "solitaireId": _this.data.order.solitaireId, //接龙主键
+              "orderId": _this.data.order.id, //订单ID
+              "isRemove": -1, //订单状态 -1取消 0进行中  1已完成
+            }
+          }
+          wx.showLoading({
+            title: '取消中',
+            mask: true
+          })
+          app.$API.applyRemove(params).then(res => {
+            if (res.code == 200) {
+              wx.showToast({
+                title: '申请成功',
+                duration: 3000
+              })
+              _this.get_details();
+            } else {
+              wx.showToast({
+                title: '申请失败',
+                icon: 'none',
+                duration: 3000
+              })
+            }
+            wx.hideLoading()
+          }).catch(() => {
+            wx.hideLoading()
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   // 微信退款（updateWxRefund）
   updateWxRefund(id, refundMoney) {
     let params = {

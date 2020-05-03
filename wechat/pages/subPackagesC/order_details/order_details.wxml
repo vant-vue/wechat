@@ -116,7 +116,7 @@
       <view class="btn yet" bindtap="already_fun">已发货/取货</view>
     </view> -->
     <view class="item" wx:if="{{order.status == 0 && order.isRemove==0}}">
-      <view class="btn" bindtap="cancel_fun">取消订单</view>
+      <view class="btn" bindtap="applyRemove">取消订单</view>
     </view>
   </view>
 </view>
