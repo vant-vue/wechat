@@ -263,5 +263,5 @@ page {
 
 .footer .tit2 {
   font-size: 30rpx;
-  color: #090;
+  color: #3E5CF2;
 }
