@@ -3,12 +3,13 @@
   <view class="bg title">{{goods.goodsName}}</view>
   <view class="bg box">
     <!-- <textarea placeholder="请输入商品介绍" disabled value="{{goods.summary}}" /> -->
-    <view>{{goods.summary}}</view>
-  </view>
-  <!-- 图片 -->
-  <view class="bg box">
+    <view style="padding-bottom:6rpx;">{{goods.summary}}</view>
     <image src="{{goods.goodsImg}}" mode="widthFix"></image>
   </view>
+  <!-- 图片 -->
+  <!-- <view class="bg box"> -->
+    
+  <!-- </view> -->
 </view>
 <!-- 按钮 -->
 <!-- <view class="btn">
