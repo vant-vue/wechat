@@ -43,8 +43,8 @@ Component({
         if (!img) {
           resolve({
             'path': '/images/common/shop.png',
-            height: 140,
-            width: 140
+            height: 128,
+            width: 128
           });
           return;
         }
