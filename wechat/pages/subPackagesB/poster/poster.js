@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: '',
     solitaireId: '',
     solitaire: {},
     logistics: {},
@@ -31,6 +32,7 @@ Page({
     })
     app.$API.getSolitaireShareInfo(params).then(res => {
       this.setData({
+        type: res.args.type,
         nickName: res.args.nickName,
         headerImg: res.args.headerImg,
         title: res.args.title,
@@ -188,7 +190,12 @@ Page({
       context.setFontSize(18);
       context.setFillStyle('#f90');
       context.setTextAlign('right');
-      var title = `¥ ${((this.data.startMoney)/100).toFixed(2)} 起`
+      var title = '';
+      if (that.data.type == 1) {
+        title = `¥ ${((this.data.startMoney)/100).toFixed(2)} 起`
+      } else if (that.data.type == 2) {
+        title = `¥ ${((this.data.startMoney)/100).toFixed(2)} /份`
+      }
       context.fillText(title, 360, 440);
       context.stroke();
       //介绍

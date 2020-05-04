@@ -214,6 +214,7 @@ button.button-hover {
 }
 
 .list {
+  padding-top: 20rpx;
   padding-bottom: 20rpx;
   border-bottom: 2rpx solid #f2f2f2;
   align-items: center;
@@ -234,6 +235,7 @@ button.button-hover {
   height: 100rpx;
   border-radius: 50%;
   margin-right: 20rpx;
+  vertical-align: bottom;
 }
 
 .list .flex {

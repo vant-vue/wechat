@@ -93,14 +93,14 @@
 					"id": 5,
 					"name": "我发布的",
 					"pathName": "pages/subPackagesB/released_group/released_group",
-					"query": "id=100",
+					"query": "id=96",
 					"scene": null
 				},
 				{
 					"id": 6,
 					"name": "订单管理",
 					"pathName": "pages/subPackagesB/order_management/order_management",
-					"query": "id=44",
+					"query": "id=97",
 					"scene": null
 				},
 				{

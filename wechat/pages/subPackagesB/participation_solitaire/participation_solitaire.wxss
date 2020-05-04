@@ -75,7 +75,7 @@ page {
   color: #fff;
   font-size: 30rpx;
   font-weight: bold;
-  background: #090;
+  background: #3E5CF2;
 }
 
 .p_content1 {

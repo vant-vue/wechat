@@ -207,13 +207,13 @@ page {
   background: #f2f2f2;
   padding: 20rpx 0;
   border-radius: 10rpx;
-  color: #090;
+  color: #3E5CF2;
 }
 
 .list_box .btn_box .btn2 {
   width: 50%;
   margin-left: 20rpx;
-  background: #090;
+  background: #3E5CF2;
   padding: 20rpx 0;
   border-radius: 10rpx;
   color: #fff;

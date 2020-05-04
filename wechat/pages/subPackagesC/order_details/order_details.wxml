@@ -107,7 +107,7 @@
 <view class="status_box">
   <view class="flex">
     <view class="item">
-      <view class="btn" bindtap="callPhone_fun">联系买家</view>
+      <view class="btn" bindtap="callPhone_fun">联系卖家</view>
     </view>
     <!-- <view class="item">
       <view class="btn" bindtap="remark_fun">修改备注</view>

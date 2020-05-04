@@ -47,10 +47,10 @@
 
 .group {
   font-size: 24rpx;
-  color: #090;
+  color: #3E5CF2;
   padding: 4rpx 10rpx;
   border-radius: 60rpx;
-  border: 1rpx solid #090;
+  border: 1rpx solid #3E5CF2;
   margin-right: 20rpx;
   margin-bottom: 1rpx;
 }

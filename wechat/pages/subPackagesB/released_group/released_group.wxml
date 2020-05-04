@@ -224,7 +224,7 @@
           <view class="item tr tit2">{{item.orderTime}}</view>
         </view>
         <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
-          <view class="omit1 tit2" style="width:200rpx;">{{item2.goodsName}}111111111111111111111111111111111111111111</view>
+          <view class="omit1 tit2" style="width:200rpx;">{{item2.goodsName}}</view>
           <view wx:if="{{(item.hasOnclick == 1) && (item.orderGoods.length==index2+1)&&(userId==item.userId)}}" bindtap="applyRemove" data-page="applyRemove" data-id="{{item.orderId}}" class="item tr tit3">申请取消</view>
           <view wx:elif="{{(item.hasOnclick != 1 ) && (item.orderGoods.length==index2+1)}}" class="item tr tit3">{{item.itemstr}}</view>
         </view>

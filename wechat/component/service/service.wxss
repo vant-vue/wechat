@@ -27,7 +27,7 @@
 }
 
 .title {
-  margin-left: 20rpx;
+  margin-left: 0rpx;
   color:#666666;
   font-size: 28rpx;
   font-weight: 300;

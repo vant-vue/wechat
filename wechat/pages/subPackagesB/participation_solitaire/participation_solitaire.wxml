@@ -14,7 +14,7 @@
     <view class="flex">
       <view class="tit1">联系电话</view>
       <view class="item">
-        <input type="number" bindinput='listenerInputSimple' data-row="telNumber" value="{{telNumber}}" placeholder="请输入联系电话"></input>
+        <input type="number" style="font-size:28rpx;" bindinput='listenerInputSimple' data-row="telNumber" value="{{telNumber}}" placeholder="请输入联系电话"></input>
       </view>
     </view>
     <view class="flex" style="margin-top:10rpx;" wx:for="{{modeList}}" wx:for-item="item" wx:key="key" wx:for-index="index">

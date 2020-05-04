@@ -43,8 +43,8 @@ Component({
         if (!img) {
           resolve({
             'path': '/images/common/shop.png',
-            height: 120,
-            width: 120
+            height: 140,
+            width: 140
           });
           return;
         }
@@ -105,7 +105,7 @@ Component({
         const nameWidth = context.measureText(title).width
         context.fillText(title, (375 + 50 - nameWidth) / 2, 60);
         // //接龙号----------------------
-        context.setFontSize(18);
+        context.setFontSize(34);
         context.setFillStyle('#fff');
         context.setTextAlign('center');
         var title = `${that.data.order.solitaireNo}. 已接龙+1`

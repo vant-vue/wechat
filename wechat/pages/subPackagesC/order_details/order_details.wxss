@@ -1,7 +1,9 @@
 /* pages/subPackagesC/order_details/order_details.wxss */
-page{
+
+page {
   padding-bottom: 100rpx;
 }
+
 .wait {
   color: #fff;
   background: #090;
@@ -34,13 +36,13 @@ page{
   /* border: 1rpx solid #090; */
   margin: 15rpx;
   padding: 20rpx 0;
-  color: #090;
+  color: #3e5cf2;
   border-radius: 10rpx;
 }
 
 .status_box .flex .btn.yet {
   color: #fff;
-  background: #090;
+  background: #3e5cf2;
 }
 
 .status_box .flex .btn.can {
@@ -76,11 +78,12 @@ page{
   border-bottom: 2rpx solid #f2f2f2;
 }
 
-.details_box .title text{
-  padding-left:20rpx;
+.details_box .title text {
+  padding-left: 10rpx;
   font-size: 28rpx;
 }
-.details_box .title .line{
+
+.details_box .title .line {
   display: inline-block;
   height: 26rpx;
   border-left: 10rpx solid #000;
@@ -125,7 +128,7 @@ page{
 
 .details_box .refund_btn {
   padding: 20rpx 30rpx;
-  background: #090;
+  background: #3e5cf2;
   border-radius: 10rpx;
   color: #fff;
   margin-left: 20rpx;

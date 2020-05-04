@@ -22,7 +22,7 @@ textarea {
 }
 
 .btn {
-  background: #090;
+  background: #3E5CF2;
   color: #fff;
 }
 .btnccc{
