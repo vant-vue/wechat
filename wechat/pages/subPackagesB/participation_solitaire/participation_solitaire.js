@@ -187,7 +187,7 @@ Page({
             }
           },
           fail(res) {
-            _this.findNewOrder();
+            //_this.findNewOrder();
             console.log(res, '支付失败');
           }
         })
