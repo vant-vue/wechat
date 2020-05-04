@@ -195,7 +195,7 @@ Page({
             param: {
               "solitaireId": _this.data.order.solitaireId, //接龙主键
               "orderId": _this.data.order.id, //订单ID
-              "isRemove": -1, //订单状态 -1取消 0进行中  1已完成
+              "isRemove": 1, //订单状态 -1取消 0进行中  1已完成
             }
           }
           wx.showLoading({
