@@ -56,6 +56,29 @@ Component({
         })
       })
     },
+    imgcut(img, context, x, y) {
+      var w = img.width
+      var h = img.height
+      var dw = 118 / w //canvas与图片的宽高比
+      var dh = 118 / h
+      var ratio
+      // 裁剪图片中间部分
+      if (w > 118 && h > 118 || w < 118 && h < 118) {
+        if (dw > dh) {
+          context.drawImage(img.path, 0, (h - 118 / dw) / 2, w, 118 / dw, x, y, 118, 118)
+        } else {
+          context.drawImage(img.path, (w - 118 / dh) / 2, 0, 118 / dh, h, x, y, 118, 118)
+        }
+      }
+      // 拉伸图片
+      else {
+        if (w < 118) {
+          context.drawImage(img.path, 0, (h - 118 / dw) / 2, w, 118 / dw, x, y, 118, 118)
+        } else {
+          context.drawImage(img.path, (w - 118 / dh) / 2, 0, 118 / dh, h, x, y, 118, 118)
+        }
+      }
+    },
     //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
     // 已结束
     createNewImg: function() {
@@ -101,7 +124,8 @@ Component({
           context.fillText(title, 130, 190, 375 - 150);
         }
         // 商品图片-------------------------------------
-        context.drawImage(res[1].path, 0, 0, res[1].width, res[1].height, 0, 170, 118, 118);
+        // context.drawImage(res[1].path, 0, 0, res[1].width, res[1].height, 0, 170, 118, 118);
+        this.imgcut(res[1], context, 0, 170);
         context.stroke();
 
         // // // 小程序logo---------------------------

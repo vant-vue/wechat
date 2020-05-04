@@ -121,7 +121,29 @@ Page({
       })
     })
   },
-
+  imgcut(img, context, x, y) {
+    var w = img.width
+    var h = img.height
+    var dw = 355 / w //canvas与图片的宽高比
+    var dh = 355 / h
+    var ratio
+    // 裁剪图片中间部分
+    if (w > 355 && h > 355 || w < 355 && h < 355) {
+      if (dw > dh) {
+        context.drawImage(img.path, 0, (h - 355 / dw) / 2, w, 355 / dw, x, y, 355, 355)
+      } else {
+        context.drawImage(img.path, (w - 355 / dh) / 2, 0, 355 / dh, h, x, y, 355, 355)
+      }
+    }
+    // 拉伸图片
+    else {
+      if (w < 355) {
+        context.drawImage(img.path, 0, (h - 355 / dw) / 2, w, 355 / dw, x, y, 355, 355)
+      } else {
+        context.drawImage(img.path, (w - 355 / dh) / 2, 0, 355 / dh, h, x, y, 355, 355)
+      }
+    }
+  },
   //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
   createNewImg: function() {
     //将生成好的图片保存到本地
@@ -148,7 +170,8 @@ Page({
       if (path2 == '/images/common/shop.png') {
         context.drawImage(path2, 10, 60, 355, 355);
       } else {
-        context.drawImage(path2, 0, 0, res[0].width, res[0].height, 10, 60, 355, 355);
+        // context.drawImage(path2, 0, 0, res[0].width, res[0].height, 10, 60, 355, 355);
+        this.imgcut(res[0], context, 10, 60);
       }
       context.stroke();
       // 商品名称
@@ -156,8 +179,8 @@ Page({
       context.setFillStyle('#000');
       context.setTextAlign('left');
       var title = `${this.data.title}`
-      if (title.length>15){
-        title = title.substr(0, 15)+'...'
+      if (title.length > 15) {
+        title = title.substr(0, 15) + '...'
       }
       context.fillText(title, 10, 440, 375 - 135);
       context.stroke();

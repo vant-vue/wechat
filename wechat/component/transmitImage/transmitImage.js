@@ -49,7 +49,6 @@ Component({
           "orderId": '', //订单ID 可空 当不是完成参与接龙时 为空
         }
       }
-      console.log(params);
       app.$API.getSolitaireShareInfo(params).then(res => {
         this.setData({
           imgList: res.args.img ? res.args.img.split(';') : [],
@@ -89,6 +88,29 @@ Component({
         })
       })
     },
+    imgcut(img, context, x, y) {
+      var w = img.width
+      var h = img.height
+      var dw = 118 / w //canvas与图片的宽高比
+      var dh = 118 / h
+      var ratio
+      // 裁剪图片中间部分
+      if (w > 118 && h > 118 || w < 118 && h < 118) {
+        if (dw > dh) {
+          context.drawImage(img.path, 0, (h - 118 / dw) / 2, w, 118 / dw, x, y, 118, 118)
+        } else {
+          context.drawImage(img.path, (w - 118 / dh) / 2, 0, 118 / dh, h, x, y, 118, 118)
+        }
+      }
+      // 拉伸图片
+      else {
+        if (w < 118) {
+          context.drawImage(img.path, 0, (h - 118 / dw) / 2, w, 118 / dw, x, y, 118, 118)
+        } else {
+          context.drawImage(img.path, (w - 118 / dh) / 2, 0, 118 / dh, h, x, y, 118, 118)
+        }
+      }
+    },
     //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
     // 已结束
     createNewImg: function() {
@@ -115,7 +137,7 @@ Component({
         // context.fillText(that.data.userInfo.nickName + "邀请您一起参加", 110, 50, 375 - 35);
         var title = `${that.data.title}`;
         if (title.length > 20) {
-          var a = title.substr(0, 20)+'...';
+          var a = title.substr(0, 20) + '...';
           var b = title.substr(20, title.length);
           context.fillText(a, 0, 130, 375 - 150);
           // context.fillText(b, 0, 150, 375 - 150);
@@ -128,11 +150,14 @@ Component({
         context.setTextAlign('right');
         var title = `￥${that.data.startMoney}起`
         context.fillText(title, 375, 130);
+
         // 商品图片-------------------------------------
-        // context.drawImage(res[0].path, 0, 230, 118 * (res[0].width / res[0].height), 118);
-        context.drawImage(res[0].path, 0, 0, res[0].width, res[0].height, 0, 160, 118, 118);
-        context.drawImage(res[1].path, 0, 0, res[1].width, res[1].height, 128, 160, 118, 118);
-        context.drawImage(res[2].path, 0, 0, res[2].width, res[2].height, 256, 160, 118, 118);
+        this.imgcut(res[0], context, 0, 160);
+        this.imgcut(res[1], context, 128, 160);
+        this.imgcut(res[2], context, 256, 160);
+        // context.drawImage(res[0].path, 0, 0, res[0].width, res[0].height, 0, 160, 118, 118);
+        // context.drawImage(res[1].path, 0, 0, res[1].width, res[1].height, 128, 160, 118, 118);
+        // context.drawImage(res[2].path, 0, res[2].height / 2, res[2].width, res[2].height, 256, 160, 118, 118);
         // context.drawImage(res[2].path, 256, 230, 118 * (res[2].width / res[2].height), 118);
         context.stroke();
 
