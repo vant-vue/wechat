@@ -76,7 +76,7 @@ Page({
         // 发个接龙
       case 'add_solitaire':
         // if (this.data.tab == 1) {
-        url = '/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire';
+        url = '/pages/tabBar/index/index';
         // } else if (this.data.tab == 2) {
         //   url = '/pages/subPackagesA/chipped_solitaire/chipped_solitaire';
         // }

@@ -68,8 +68,8 @@ Component({
         if (!img) {
           resolve({
             'path': '/images/common/shop.png',
-            height: 140,
-            width: 140
+            height: 127,
+            width: 127
           });
           return;
         }
@@ -81,8 +81,8 @@ Component({
           fail: function(err) {
             resolve({
               'path': '/images/common/shop.png',
-              height: 140,
-              width: 140
+              height: 127,
+              width: 127
             });
           }
         })

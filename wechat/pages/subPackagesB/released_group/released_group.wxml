@@ -167,11 +167,11 @@
                 <view class="omit1 txt1" style="width:300rpx">合买金额{{filter.money(item.togoMoney)}}元</view>
                 <view class="item tr txt2">已售{{item.sellTimes}}</view>
               </view>
-              <view class="txt3">共{{item.stock}}份</view>
+              <view class="txt3">共{{item.stock+item.sellTimes}}份</view>
               <view class="flex">
                 <view class="item">
                   <text class="txt4">￥{{filter.money(item.price)}}/份</text>
-                  <text class="txt5" wx:if="{{item.stock||item.stock==0}}">剩余{{item.stock - item.sellTimes}}份</text>
+                  <text class="txt5" wx:if="{{item.stock||item.stock==0}}">剩余{{item.stock }}份</text>
                   <text class="txt5" wx:else>不限</text>
                 </view>
                 <view class="">
