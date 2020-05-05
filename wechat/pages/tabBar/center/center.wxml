@@ -38,7 +38,7 @@
   <view class="flex pr">
     <view class="title">推荐给朋友</view>
     <view class="item val">
-      <button open-type="share" class="tj_btn"></button>
+      <button open-type="share" class="tj_btn" style="width:100%;"></button>
     </view>
     <view>
       <text class='icon_right'></text>

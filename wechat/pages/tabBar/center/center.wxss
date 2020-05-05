@@ -47,9 +47,8 @@
 
 .tj_btn {
   position: absolute;
-  background: #fff;
+  background: transparent;
   top: 0;
   right: 0;
-  width: 375rpx;
   height: 90rpx;
 }
