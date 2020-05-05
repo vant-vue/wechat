@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "发布接龙",
+  "navigationBarTitleText": "",
   "usingComponents": {
     "upload-img": "/component/uploadImg/uploadImg",
     "pickerYMDHM": "/component/pickerYMDHM/pickerYMDHM"
