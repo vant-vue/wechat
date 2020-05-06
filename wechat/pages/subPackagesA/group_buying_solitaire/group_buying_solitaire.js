@@ -135,6 +135,22 @@ Page({
       [str]: value.replace(/,/g, "")
     });
   },
+  //监听金额框
+  listenerInputMoney(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    let index = e.currentTarget.dataset.index;
+    let str = `goodsList[${index}].${row}`;
+    if (!(/^(\d?)+(\.\d{0,2})?$/.test(value))) { //正则验证，提现金额小数点后不能大于两位数字
+      value = value.substring(0, value.length - 1);
+    }
+    if (value.length>8){
+      value = value.substring(0, 8);
+    }
+    this.setData({
+      [str]: value.replace(/,/g, "")
+    });
+  },
   // 数字转金额
   moneyToString(num) {
     if (typeof num === 'undefined' || num === '') return '';

@@ -15,7 +15,7 @@
       <text class="f00">*</text>
     </view>
     <view class="item">
-      <input type="digit" bindinput="listenerInputSimple" data-row="cashAmount" value="{{cashAmount}}" placeholder="0.00"></input>
+      <input type="digit" bindinput="listenerInput" data-row="cashAmount" value="{{cashAmount}}" placeholder="0.00"></input>
     </view>
     <view class="f06" bindtap="allMony">全部提现</view>
   </view>

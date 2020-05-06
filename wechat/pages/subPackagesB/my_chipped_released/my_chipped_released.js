@@ -32,7 +32,7 @@ Page({
         if (res.tapIndex == 0) {
           wx.navigateTo({
             url: "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire"
-          })
+          });
         } else if (res.tapIndex == 1) {
           wx.showModal({
             title: '提示',

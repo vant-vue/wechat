@@ -14,6 +14,23 @@ Page({
   listenerInputSimple(e) {
     let value = e.detail.value || '';
     let row = e.currentTarget.dataset.row;
+    if (value.length > 7) {
+      value = value.substring(0, 7);
+    }
+    this.setData({
+      [row]: value.replace(/,/g, "")
+    });
+  },
+  //监听input 普通输入框
+  listenerInput(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    if (!(/^(\d?)+(\.\d{0,2})?$/.test(value))) { //正则验证，提现金额小数点后不能大于两位数字
+      value = value.substring(0, value.length - 1);
+    }
+    if (value.length > 6) {
+      value = value.substring(0, 6);
+    }
     this.setData({
       [row]: value.replace(/,/g, "")
     });
@@ -37,7 +54,7 @@ Page({
         this.setData({
           userInfo: res.args,
           isPayee: res.args.payee ? true : false
-        })
+        });
       }
     })
   },
@@ -83,7 +100,7 @@ Page({
         wx.showToast({
           title: '提现成功',
           duration: 3000
-        })
+        });
       } else {
         wx.showToast({
           title: res.msg,
