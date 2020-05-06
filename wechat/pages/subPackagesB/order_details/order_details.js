@@ -1,5 +1,6 @@
 // pages/subPackagesB/order_details/order_details.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -92,7 +93,7 @@ Page({
       wx.showToast({
         title: '请填写备注',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -116,13 +117,13 @@ Page({
         this.get_details();
         wx.showToast({
           title: '修改成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       }
       wx.hideLoading()
@@ -149,13 +150,13 @@ Page({
         this.get_details();
         wx.showToast({
           title: '修改成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       }
       wx.hideLoading()
@@ -226,7 +227,7 @@ Page({
       if (res.code == 200) {
         wx.showToast({
           title: '退款成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
         this.setData({
           refundMoney:''
@@ -236,7 +237,7 @@ Page({
         wx.showToast({
           title: res.msg,
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       }
     }).catch(() => {
@@ -250,7 +251,7 @@ Page({
       wx.showToast({
         title: '请输入退款金额',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -258,7 +259,7 @@ Page({
       wx.showToast({
         title: '退款金额应小于支付金额',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -266,7 +267,7 @@ Page({
       wx.showToast({
         title: '退款金额应大于0',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }

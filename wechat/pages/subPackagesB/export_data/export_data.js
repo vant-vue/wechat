@@ -1,5 +1,6 @@
 // pages/subPackagesB/export_data/export_data.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -27,7 +28,7 @@ Page({
         // 添加下面的代码可以复写复制成功默认提示文本`内容已复制` 
         wx.showToast({
           title: '复制成功',
-          duration: 3000
+          duration: config.timeoutSecond
         })
         wx.getClipboardData({
           success: function(res) {

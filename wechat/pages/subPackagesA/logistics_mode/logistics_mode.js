@@ -1,4 +1,5 @@
 // pages/subPackagesA/logistics_mode/logistics_mode.js
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -72,7 +73,7 @@ Page({
       wx.showToast({
         title: '请填写地址',
         icon: "none",
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return
     }
@@ -87,7 +88,7 @@ Page({
       wx.showToast({
         title: str,
         icon: "none",
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }

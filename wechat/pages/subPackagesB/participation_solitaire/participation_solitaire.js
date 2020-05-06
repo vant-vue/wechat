@@ -1,6 +1,7 @@
 // pages/subPackagesB/participation_solitaire/participation_solitaire.js
 const app = getApp();
 import valid from '../../../utils/valid.js'
+import config from "../../../utils/config.js"
 Page({
 
   /**
@@ -127,7 +128,7 @@ Page({
       wx.showToast({
         title: '请输入正确的联系电话',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -178,7 +179,7 @@ Page({
             if (res.errMsg == "requestPayment:ok") {
               wx.showToast({
                 title: '支付成功',
-                duration: 3000
+                duration: config.timeoutSecond
               })
               _this.data.is_success = true;
               _this.findNewOrder();

@@ -1,5 +1,6 @@
 // pages/subPackagesB/released_group/released_group.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -471,14 +472,14 @@ Page({
       if (res.code == 200) {
         wx.showToast({
           title: '修改成功',
-          duration: 3000
+          duration: config.timeoutSecond
         })
         this.get_details(this.data.solitaireId);
       } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         })
       }
       wx.hideLoading()
@@ -501,7 +502,7 @@ Page({
       if (res.code == 200) {
         wx.showToast({
           title: '删除成功',
-          duration: 3000
+          duration: config.timeoutSecond
         })
         let setTime = setTimeout(() => {
           wx.switchTab({
@@ -512,7 +513,7 @@ Page({
         wx.showToast({
           title: res.msg,
           icon: 'none',
-          duration: 5000
+          duration: config.timeoutSecond
         })
       }
     }).catch(() => {
@@ -544,14 +545,14 @@ Page({
             if (res.code == 200) {
               wx.showToast({
                 title: '申请成功',
-                duration: 3000
+                duration: config.timeoutSecond
               })
               _this.get_list();
             } else {
               wx.showToast({
                 title: '申请失败',
                 icon: 'none',
-                duration: 3000
+                duration: config.timeoutSecond
               })
             }
             wx.hideLoading()

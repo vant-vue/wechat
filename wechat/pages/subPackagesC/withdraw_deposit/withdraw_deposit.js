@@ -1,5 +1,6 @@
 // pages/subPackagesC/withdraw_deposit/withdraw_deposit.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -65,7 +66,7 @@ Page({
       wx.showToast({
         title: '请输入收款人',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -73,7 +74,7 @@ Page({
       wx.showToast({
         title: '请输入提现金额',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -81,7 +82,7 @@ Page({
       wx.showToast({
         title: `提现金额应小于${this.data.userInfo.cashAmount/100}`,
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -99,14 +100,14 @@ Page({
       if (res.code == 200) {
         wx.showToast({
           title: '提现成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       } else {
         wx.showToast({
           title: res.msg,
           icon: 'none',
           mask: true,
-          duration: 3000
+          duration: config.timeoutSecond
         })
       }
     }).catch(() => {

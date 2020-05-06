@@ -1,5 +1,6 @@
 // pages/subPackagesB/order_management/order_management.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -57,7 +58,7 @@ Page({
         // 添加下面的代码可以复写复制成功默认提示文本`内容已复制` 
         wx.showToast({
           title: '复制成功',
-          duration: 3000
+          duration: config.timeoutSecond
         })
         wx.getClipboardData({
           success: function(res) {
@@ -90,13 +91,13 @@ Page({
         });
         wx.showToast({
           title: '修改成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       }
       wx.hideLoading()
@@ -156,7 +157,7 @@ Page({
       wx.showToast({
         title: '请填写备注',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -287,13 +288,13 @@ Page({
         this.get_list();
         wx.showToast({
           title: '修改成功',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       } else {
         wx.showToast({
           title: '修改失败',
           icon: 'none',
-          duration: 3000
+          duration: config.timeoutSecond
         });
       }
       wx.hideLoading()
@@ -313,7 +314,7 @@ Page({
       wx.showToast({
         title: '请选择订单',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return
     };
@@ -337,7 +338,7 @@ Page({
       wx.showToast({
         title: '请选择待处理订单',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return
     };
@@ -366,7 +367,7 @@ Page({
       wx.showToast({
         title: '请选择订单',
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return
     };

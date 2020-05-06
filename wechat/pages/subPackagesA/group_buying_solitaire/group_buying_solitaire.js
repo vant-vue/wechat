@@ -212,7 +212,7 @@ Page({
       wx.showToast({
         title: str,
         icon: 'none',
-        duration: 1000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -239,7 +239,7 @@ Page({
         if (res.flag) {
           wx.showToast({
             title: '发布成功',
-            duration: 3000
+            duration: config.timeoutSecond
           });
           let setTime;
           setTime = setTimeout(() => {
@@ -247,12 +247,12 @@ Page({
             wx.redirectTo({
               url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
             })
-          }, 1000)
+          }, config.timeoutSecond)
         } else {
           wx.showToast({
             title: res.msg,
             icon: 'none',
-            duration: 1000
+            duration: config.timeoutSecond
           })
         }
 
@@ -276,7 +276,7 @@ Page({
           wx.showToast({
             title: '请输入商品名称',
             icon: "none",
-            duration: 3000
+            duration: config.timeoutSecond
           })
           return;
         }
@@ -450,7 +450,7 @@ Page({
       wx.showToast({
         title: str,
         icon: 'none',
-        duration: 3000
+        duration: config.timeoutSecond
       })
       return;
     }
@@ -477,7 +477,7 @@ Page({
         if (res.code == 200) {
           wx.showToast({
             title: '修改成功',
-            duration: 3000
+            duration: config.timeoutSecond
           });
           let setTime;
           setTime = setTimeout(() => {
@@ -485,12 +485,12 @@ Page({
             wx.redirectTo({
               url: '/pages/subPackagesB/released_group/released_group?released_id=' + res.args.solitaireId
             })
-          }, 2000)
+          }, config.timeoutSecond)
         } else {
           wx.showToast({
             title: res.msg,
             icon: 'none',
-            duration: 3000
+            duration: config.timeoutSecond
           });
         }
       }).catch(err => {
