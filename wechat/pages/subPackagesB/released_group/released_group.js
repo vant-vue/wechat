@@ -590,8 +590,8 @@ Page({
           if (item.num && item.num > 0) {
             listFilter.push(item)
           }
-        })
-        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + JSON.stringify(listFilter) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + JSON.stringify(this.data.logistics) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
+        });
+        url = '/pages/subPackagesB/participation_solitaire/participation_solitaire?list=' + encodeURIComponent(JSON.stringify(listFilter)) + "&shop_num=" + this.data.shop_num + "&shop_price=" + this.data.shop_price + "&logistics=" + encodeURIComponent(JSON.stringify(this.data.logistics)) + "&id=" + this.data.solitaireId + "&type=" + this.data.solitaire.type + "&title=" + this.data.solitaire.title;
         break;
         // 发个接龙
       case 'add_solitaire':

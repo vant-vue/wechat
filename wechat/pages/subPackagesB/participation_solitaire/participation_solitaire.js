@@ -30,8 +30,9 @@ Page({
     console.log(options);
     // console.log(JSON.parse(options.list));
     // console.log(JSON.parse(options.logistics));
-    let logistics = JSON.parse(options.logistics);
-    let list = JSON.parse(options.list).map(item => {
+    let logistics = JSON.parse(decodeURIComponent(options.logistics));
+    let olist = JSON.parse(decodeURIComponent(options.list));
+    let list = olist.map(item => {
       return {
         "goodsName": item.goodsName,
         "goodsId": item.id, //商品ID
