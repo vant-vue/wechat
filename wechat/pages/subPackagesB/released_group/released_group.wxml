@@ -37,7 +37,9 @@
           </view>
           <!-- 产品详情 -->
           <view>
-            <view class="tit3">{{solitaire.summary}}</view>
+            <view class="tit3">
+              <textarea maxlength="1000" value='{{solitaire.summary}}' style="width:100%;" auto-height disabled/>
+            </view>
             <!-- 轮播 -->
             <view wx:if="{{banner_list.length>0}}" class="pr">
               <!-- autoplay -->
