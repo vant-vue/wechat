@@ -1,5 +1,6 @@
 //pages/tabBar/login/login.js
 const app = getApp();
+import config from '../../../utils/config.js'
 Page({
 
   /**
@@ -24,11 +25,11 @@ Page({
         }).then(res => {
           wx.showToast({
             title: '授权成功',
-            duration: 3000
+            duration: config.timeoutSecond
           })
           let setTime = setTimeout(() => {
             this.goBack();
-          }, 2000)
+          }, config.timeoutSecond)
         }).catch(err => {
           console.log(err);
         });
