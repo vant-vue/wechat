@@ -100,7 +100,7 @@
 					"id": 6,
 					"name": "订单管理",
 					"pathName": "pages/subPackagesB/order_management/order_management",
-					"query": "id=97",
+					"query": "id=96",
 					"scene": null
 				},
 				{

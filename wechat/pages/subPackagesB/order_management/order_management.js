@@ -42,11 +42,13 @@ Page({
   },
   remark_fun(e) {
     let id = e.currentTarget.dataset.id;
+    let remarks = e.currentTarget.dataset.remarks ? e.currentTarget.dataset.remarks : '';
     this.setData({
       isRemark: true
     });
     let remark = this.selectComponent('#remark');
     remark.data.id = id;
+    remark.set_value(remarks);
   },
   // 复制
   copy(e) {
@@ -87,7 +89,7 @@ Page({
         this.clear_filter();
         this.get_list();
         this.setData({
-          isBatch:false
+          isBatch: false
         });
         wx.showToast({
           title: '修改成功',
@@ -198,7 +200,7 @@ Page({
     app.$API.orderManagerList(params).then(res => {
       res.args.orderManagerList.forEach(item => {
         item.checked = false;
-        if (item.logistics.otherMode){
+        if (item.logistics.otherMode) {
           item.logistics.otherMode = JSON.parse(item.logistics.otherMode)
         }
       })
@@ -285,11 +287,14 @@ Page({
     app.$API.editRemark(params).then(res => {
       if (res.code == 200) {
         this.clear_filter();
-        this.get_list();
         wx.showToast({
           title: '修改成功',
           duration: config.timeoutSecond
         });
+        setTimeout(() => {
+          this.get_list();
+        }, config.timeoutSecond)
+
       } else {
         wx.showToast({
           title: '修改失败',
@@ -297,7 +302,7 @@ Page({
           duration: config.timeoutSecond
         });
       }
-      wx.hideLoading()
+      // wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })
@@ -465,17 +470,17 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (options) {
+  onShareAppMessage: function(options) {
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
       // title: "转发的标题", // 默认是小程序的名称(可以写slogan等)
       path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: '/images/center/zf.jpeg',
-      success: function () { // 转发成功之后的回调
+      success: function() { // 转发成功之后的回调
       },
-      fail: function () { // 转发失败之后的回调
+      fail: function() { // 转发失败之后的回调
       },
-      complete: function () { }
+      complete: function() {}
     };
     // 来自页面内的按钮的转发
     if (options.from == 'button') {

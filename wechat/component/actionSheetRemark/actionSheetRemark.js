@@ -14,7 +14,7 @@ Component({
    */
   data: {
     value: '',
-    id:''
+    id: ''
   },
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -38,6 +38,13 @@ Component({
       this.setData({
         [row]: value
       });
+    },
+    set_value(v) {
+      setTimeout(() => {
+        this.setData({
+          value: v
+        })
+      }, 300)
     },
     // 确定
     ok() {

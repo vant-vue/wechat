@@ -81,11 +81,13 @@ Page({
   },
   remark_fun(e) {
     let id = this.data.order.id;
+    let remarks = this.data.order.remarks;
     this.setData({
       isRemark: true
     });
     let remark = this.selectComponent('#remark');
     remark.data.id = id;
+    remark.set_value(remarks);
   },
   // 备注
   remark_ok(e) {
@@ -114,11 +116,13 @@ Page({
     });
     app.$API.editRemark(params).then(res => {
       if (res.code == 200) {
-        this.get_details();
         wx.showToast({
           title: '修改成功',
           duration: config.timeoutSecond
         });
+        setTimeout(() => {
+          this.get_details();
+        }, config.timeoutSecond)
       } else {
         wx.showToast({
           title: '修改失败',
@@ -126,7 +130,7 @@ Page({
           duration: config.timeoutSecond
         });
       }
-      wx.hideLoading()
+      // wx.hideLoading()
     }).catch(() => {
       wx.hideLoading()
     })

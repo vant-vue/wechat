@@ -121,7 +121,7 @@
       </view>
       <!-- 按钮 -->
       <view class="btn_box flex">
-        <view class="item" bindtap="remark_fun" data-id="{{item.id}}">
+        <view class="item" bindtap="remark_fun" data-id="{{item.id}}" data-remarks="{{item.remarks}}">
           <view class="btn1 tc">写备注</view>
         </view>
         <view wx:if="{{item.status == 0}}" class="btn2 tc" bindtap="already_fun" data-id="{{item.id}}">已发货/已取货</view>
