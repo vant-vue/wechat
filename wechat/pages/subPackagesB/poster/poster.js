@@ -202,17 +202,26 @@ Page({
       context.setFontSize(14);
       context.setFillStyle('#999');
       context.setTextAlign('left');
-      var title = `${this.data.summary ? this.data.summary:''}`;
-      title = title.replace(/[\r\n]/g, "");
-      title = title.length > 35 ? title.substring(0, 35) + "..." : title;
-      if (title.length > 30) {
-        var a = title.substr(0, 30);
-        var b = title.substr(30, title.length);
-        context.fillText(a, 10, 465, 375 - 20);
+      var summary = `${this.data.summary ? this.data.summary:''}`;
+      summary = summary.replace(/[\r\n]/g, "");
+      var tempTitle = summary;
+     
+      tempTitle = tempTitle.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|[\uD800-\uDBFF]|[\uDC00-\uDFFF]|[^\u0020-\u007E\u00A0-\u00BE\u2E80-\uA4CF\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFFEF\u0080-\u009F\u2000-\u201f\u2026\u2022\u20ac\r\n]/g, '*');
+      var c = tempTitle.length > 35 ? tempTitle.substr(0, 35) + "..." : tempTitle;
+      var clen = (c.split('*')).length - 1;
+      summary = title.substr(0, c.length+clen);
+      if(c.indexOf("...")!=-1){
+        summary += "...";
+      }
+      if (tempTitle.length > 30) {
+        var a = tempTitle.substr(0, 30);
+        var alen = (a.split('*')).length - 1;
+        var atitle = summary.substr(0, 30 + alen);
+        var b = summary.substr(30 + alen, summary.length);
+        context.fillText(atitle, 10, 465, 375 - 20);
         context.fillText(b, 10, 485, 375 - 20);
-
       } else {
-        context.fillText(title, 10, 465, 375 - 10);
+        context.fillText(summary, 10, 465, 375 - 10);
       }
       // 小程序码
       context.drawImage(path3, 112, 485, 150, 150);
