@@ -66,6 +66,18 @@ Page({
       [row]: value.replace(/,/g, "")
     });
   },
+  //监听金额框
+  listenerInputMoney(e) {
+    let value = e.detail.value || '';
+    let row = e.currentTarget.dataset.row;
+    let index = e.currentTarget.dataset.index;
+    if (!(/^(\d?)+(\.\d{0,2})?$/.test(value))) { //正则验证，提现金额小数点后不能大于两位数字
+      value = value.substring(0, value.length - 1);
+    }
+    this.setData({
+      [str]: value.replace(/,/g, "")
+    });
+  },
   remark_fun(e) {
     let id = this.data.order.id;
     this.setData({

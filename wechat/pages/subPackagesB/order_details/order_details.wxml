@@ -96,7 +96,7 @@
       <view class="item ">
         <!-- <view class="money ccc">可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}</view> -->
         <view class="item">
-          <input type="digit" class="money" bindinput='listenerInput' data-row="refundMoney" data-index="{{index}}" value="{{refundMoney}}" placeholder="可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}"></input>
+          <input type="digit" class="money" bindinput='listenerInputMoney' maxlength="8" data-row="refundMoney" data-index="{{index}}" value="{{refundMoney}}" placeholder="可退款金额 {{filter.money(order.payMoney-order.refundMoney)}}"></input>
         </view>
       </view>
       <view class="refund_btn" bindtap="refund_fun">退款</view>
