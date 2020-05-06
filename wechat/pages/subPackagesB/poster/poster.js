@@ -203,6 +203,8 @@ Page({
       context.setFillStyle('#999');
       context.setTextAlign('left');
       var title = `${this.data.summary ? this.data.summary:''}`;
+      title = title.replace(/[\r\n]/g, "");
+      title = title.length > 35 ? title.substring(0, 35) + "..." : title;
       if (title.length > 30) {
         var a = title.substr(0, 30);
         var b = title.substr(30, title.length);
