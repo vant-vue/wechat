@@ -17,6 +17,10 @@ Page({
 
   },
   bindGetUserInfo(e) {
+    wx.showLoading({
+      title: '授权中',
+      mask: true
+    })
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
