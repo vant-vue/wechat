@@ -76,7 +76,7 @@ Page({
       value = value.substring(0, value.length - 1);
     }
     this.setData({
-      [str]: value.replace(/,/g, "")
+      [row]: value.replace(/,/g, "")
     });
   },
   remark_fun(e) {
