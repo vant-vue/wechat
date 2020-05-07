@@ -136,7 +136,8 @@
 
         <!-- <checkbox-group>
           <label> -->
-        <checkbox bindtap="onChange" checked="{{params.isCopy}}" class="cb" />
+        <!-- <checkbox bindtap="onChange" checked="{{params.isCopy}}" class="cb" /> -->
+        <switch checked="{{params.isCopy}}" bindchange="onChange" class="cb"/>
         <!-- </label>
         </checkbox-group> -->
       </view>

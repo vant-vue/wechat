@@ -63,7 +63,8 @@
       <text class="tit1">匿名参与</text>
     </view>
     <view>
-      <checkbox class="cb" bindtap="check_change" checked="{{isAnonymous}}"></checkbox>
+      <!-- <checkbox class="cb" bindtap="check_change" checked="{{isAnonymous}}"></checkbox> -->
+      <switch checked="{{isAnonymous}}" bindchange="check_change" class="cb" />
     </view>
   </view>
 </view>
