@@ -144,7 +144,7 @@ Page({
     if (!(/^(\d?)+(\.\d{0,2})?$/.test(value))) { //正则验证，提现金额小数点后不能大于两位数字
       value = value.substring(0, value.length - 1);
     }
-    if (value.length>8){
+    if (value.length > 8) {
       value = value.substring(0, 8);
     }
     this.setData({
@@ -236,6 +236,7 @@ Page({
       }
       // wx.hideLoading()
       app.$API.insertPubSolitaire(params).then(res => {
+        this.getUserOtherInfo();
         if (res.flag) {
           wx.showToast({
             title: '发布成功',
@@ -498,6 +499,20 @@ Page({
         wx.hideLoading()
       })
     });
+  },
+  // 获取个人其他信息（getUserOtherInfo）
+  getUserOtherInfo() {
+    let params = {
+      param: {
+        "getUserOtherInfo": this.data.params.callPhone ? this.data.params.callPhone : '', //手机号 可能为空
+        "address": this.data.params.getAddress ? this.data.params.getAddress : '', //地址 可能为空
+      }
+    }
+    app.$API.getUserOtherInfo(params).then(res => {
+
+    }).catch(err => {
+
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

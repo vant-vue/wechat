@@ -130,6 +130,10 @@ const getSolitaireShareInfo = (params) => postAction("/solitaire/solitaire/api",
 const getWxAppCode = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "getWxAppCode"
 });
+//获取个人其他信息（getUserOtherInfo）
+const getUserOtherInfo = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "getUserOtherInfo"
+});
 
 
 export default {
@@ -166,5 +170,6 @@ export default {
   findNewOrder,
   forwadStatics,
   getSolitaireShareInfo,
-  getWxAppCode
+  getWxAppCode,
+  getUserOtherInfo
 }
