@@ -62,7 +62,7 @@ Page({
     this.setData({
       index: e.detail.value,
       mode_list: [],
-      getAddress: ''
+      // getAddress: ''
     });
   },
   submit() {

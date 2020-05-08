@@ -234,7 +234,6 @@ Page({
       // wx.hideLoading()
       this.data.is_request = true;
       app.$API.insertPubSolitaire(params).then(res => {
-        this.getUserOtherInfo();
         if (res.flag) {
           wx.showToast({
             title: '发布成功',
@@ -501,14 +500,11 @@ Page({
   },
   // 获取个人其他信息（getUserOtherInfo）
   getUserOtherInfo() {
-    let params = {
-      param: {
-        "getUserOtherInfo": this.data.params.callPhone ? this.data.params.callPhone : '', //手机号 可能为空
-        "address": this.data.params.getAddress ? this.data.params.getAddress : '', //地址 可能为空
-      }
-    }
-    app.$API.getUserOtherInfo(params).then(res => {
-
+    app.$API.getUserOtherInfo({}).then(res => {
+      this.setData({
+        "params.callPhone": res.args.phone,
+        "params.getAddress": res.args.address
+      });
     }).catch(err => {
 
     })
@@ -524,7 +520,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getUserOtherInfo();
   },
 
   /**
