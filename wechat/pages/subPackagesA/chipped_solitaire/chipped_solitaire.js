@@ -296,22 +296,25 @@ Page({
   },
   // 开始时间
   start_time_fun(e) {
-    if (util.compareDate(util.formatTime(new Date()), e.detail)) {
-      e.detail = util.formatTime(new Date());
+    let time = e.detail.dateString;
+    if (util.compareDate(util.formatTime(new Date()), time)) {
+      time = util.formatTime(new Date());
     }
-    let endTime = util.formatTime(new Date(util.parseTime(e.detail).getTime() + 7 * 24 * 3600 * 1000));
+    let endTime = util.formatTime(new Date(util.parseTime(time).getTime() + 7 * 24 * 3600 * 1000));
+
     this.setData({
-      'params.startTime': e.detail,
+      'params.startTime': time,
       'params.endTime': endTime,
     })
   },
   // 结束时间
   end_time_fun(e) {
-    if (util.compareDate(this.data.params.startTime, e.detail)) {
-      e.detail = util.formatTime(new Date(util.parseTime(this.data.params.startTime).getTime() + 1 * 3600 * 1000));
+    let time = e.detail.dateString;
+    if (util.compareDate(this.data.params.startTime, time)) {
+      time = util.formatTime(new Date(util.parseTime(this.data.params.startTime).getTime() + 1 * 3600 * 1000));
     }
     this.setData({
-      'params.endTime': e.detail,
+      'params.endTime': time
     })
   },
   // check框

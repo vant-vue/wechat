@@ -75,7 +75,10 @@
         <text class="tit3">开始时间</text>
       </view>
       <view class="item tr">
-        <pickerYMDHM bind:bindChangeTime="start_time_fun" defaultTime="{{params.startTime}}" placeholder="开始时间"></pickerYMDHM>
+        <!-- <pickerYMDHM bind:bindChangeTime="start_time_fun" defaultTime="{{params.startTime}}" placeholder="开始时间"></pickerYMDHM> -->
+        <date-time-picker value="{{params.startTime}}" bind:change="start_time_fun">
+          <text class="text_picker">当前选择：{{params.startTime}}</text>
+        </date-time-picker>
       </view>
       <view>
         <text class='icon_right'></text>
@@ -89,7 +92,10 @@
         <!-- <picker mode="date" value="{{date}}" start="2020-04-01" bindchange="bindDateChange">
           <text class="tit2 mr20">当前选择: {{date?date:'--'}}</text>
         </picker> -->
-        <pickerYMDHM bind:bindChangeTime="end_time_fun" defaultTime="{{params.endTime}}" placeholder="结束时间"></pickerYMDHM>
+        <!-- <pickerYMDHM bind:bindChangeTime="end_time_fun" defaultTime="{{params.endTime}}" placeholder="结束时间"></pickerYMDHM> -->
+        <date-time-picker value="{{params.endTime}}" bind:change="end_time_fun">
+          <text class="text_picker">当前选择：{{params.endTime}}</text>
+        </date-time-picker>
       </view>
       <view>
         <text class='icon_right'></text>

@@ -2,6 +2,7 @@
   "navigationBarTitleText": "合买接龙",
   "usingComponents": {
     "upload-img": "/component/uploadImg/uploadImg",
-    "pickerYMDHM": "/component/pickerYMDHM/pickerYMDHM"
+    "pickerYMDHM": "/component/pickerYMDHM/pickerYMDHM",
+    "date-time-picker": "/component/date-time-picker/date-time-picker"
   }
 }
