@@ -197,11 +197,12 @@ Component({
             width: 375 * 4,
             height: 300 * 4,
             destWidth: 375 * 4,
+
             destHeight: 300 * 4,
             canvasId: 'mycanvas',
             success: function(res) {
               that.data.imagePath = res.tempFilePath;
-              that.triggerEvent('imagePathFun', that.data.imagePath);
+              that.triggerEvent('imagePathFun', [that.data.imagePath, that.data.nickName]); 
             },
             fail: function(res) {
               console.log(res);

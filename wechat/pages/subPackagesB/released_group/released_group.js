@@ -52,7 +52,8 @@ Page({
       }
     ],
     showActionSheet: false,
-    imagePath: ''
+    imagePath: '',
+    nickName:""
   },
 
   showActionSheet_fun() {
@@ -701,11 +702,13 @@ Page({
   },
   imagePathFun(e) {
     // this.data.imagePath = e.detail;
-    console.log(this.data.imagePath);
+    console.log(e.detail);
     this.setData({
-      imagePath: e.detail
+      imagePath: e.detail[0],
+      nickName: e.detail[1]
     })
   },
+
   /**
    * 用户点击右上角分享
    */
@@ -713,7 +716,7 @@ Page({
     this.forwadStatics();
     var that = this;　　 // 设置菜单中的转发按钮触发转发事件时的转发内容
     var shareObj = {
-      title: `${that.data.info.nickName}邀请你来接龙`, // 默认是小程序的名称(可以写slogan等)
+      title: `${that.data.nickName}邀请你来接龙`, // 默认是小程序的名称(可以写slogan等)
       path: '/pages/subPackagesB/released_group/released_group?id=' + that.data.solitaireId, // 默认是当前页面，必须是以‘/’开头的完整路径
       // path: '/pages/tabBar/index/index', // 默认是当前页面，必须是以‘/’开头的完整路径
       imageUrl: that.data.imagePath, //自定义图片路径，可以是本地文件路径、代码包文件路径或者网络图片路径，支持PNG及JPG，不传入 imageUrl 则使用默认截图。显示图片长宽比是 5:4

@@ -57,7 +57,7 @@ text,view{ font-size: 26rpx; font-family: Microsoft YaHei; color: #010102;}
 .translateX { transform: translateX(-50%); -webkit-transform: translateX(-50%); left: 50%;}
 .translateY { transform: translateY(-50%); -webkit-transform: translateY(-50%); top: 50%;}
 .icon_right{/*向右图标*/float:right;} 
-.icon_right::before{content: " ";display: inline-block;height: 16rpx;width: 16rpx;border-width: 4rpx 4rpx 0 0;border-color: #DEDEDE;border-style: solid;-webkit-transform: matrix(.71,.71,-.71,.71,0,0);transform: matrix(.71,.71,-.71,.71,0,0);}
+.icon_right::before{content: " ";display: inline-block;height: 16rpx;width: 16rpx;border-width: 4rpx 4rpx 0 0;border-color: #ccc;border-style: solid;-webkit-transform: matrix(.71,.71,-.71,.71,0,0);transform: matrix(.71,.71,-.71,.71,0,0);}
 .bg_fff{
   background-color:#ffffff; 
 }
