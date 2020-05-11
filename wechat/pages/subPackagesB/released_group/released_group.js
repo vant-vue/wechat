@@ -647,9 +647,6 @@ Page({
       this.setData({
         show_popup: true
       });
-      this.get_details(this.data.solitaireId);
-    } else {
-      this.get_details(this.data.solitaireId);
     }
     if (this.data.solitaireId) {
       let shareid = this.selectComponent("#shareid");
@@ -661,6 +658,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.get_details(this.data.solitaireId);
     this.get_list();
   },
 

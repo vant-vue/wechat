@@ -1,5 +1,6 @@
 import config from "./config.js"
 const baseUrl = config.api_url;
+let isRequest = false;
 // interceptor(请求拦截)
 const request = ((options) => {
   if (options) {
@@ -32,9 +33,16 @@ const request = ((options) => {
             if (res.data.code == "200" && res.data.args.token) {
               wx.setStorageSync('token', res.data.args.token)
             } else if (res.data.code == "402") {
+              if (isRequest) {
+                return;
+              }
+              isRequest = true;
               wx.navigateTo({
                 url: '/pages/tabBar/login/login',
               })
+              setTimeout(() => {
+                isRequest = false;
+              }, 1000)
             }
           } catch (e) {
             console.error('出错了，' + e + ',接口返回数据:' + res.data);
