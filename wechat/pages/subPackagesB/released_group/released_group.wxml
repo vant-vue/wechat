@@ -38,7 +38,8 @@
           <!-- 产品详情 -->
           <view>
             <view class="tit3">
-              <textarea maxlength="1000" value='{{solitaire.summary}}' style="width:100%;" auto-height disabled/>
+              <textarea wx:if="{{!show_popup}}" maxlength="1000" value='{{solitaire.summary}}' style="width:100%;" auto-height disabled/>
+              <text wx:else>{{solitaire.summary}}</text>
             </view>
             <!-- 轮播 -->
             <view wx:if="{{banner_list.length>0}}" class="pr">
@@ -123,7 +124,8 @@
           <!-- 产品详情 -->
           <view>
             <view class="tit3">
-               <textarea maxlength="1000" value='{{solitaire.summary}}' style="width:100%;" auto-height disabled/>
+              <textarea wx:if="{{!show_popup}}" maxlength="1000" value='{{solitaire.summary}}' style="width:100%;" auto-height disabled/>
+              <text wx:else>{{solitaire.summary}}</text>
             </view>
             <!-- 轮播 -->
             <!-- <view>
@@ -278,7 +280,7 @@
     </view>
   </view>
   <!-- 转发成功弹出层 -->
-  <transmit show_popup="{{show_popup}}">
+  <transmit show_popup="{{show_popup}}" bind:close="popup_close">
     <view slot="after">
       <view class="p_content1">发布成功</view>
       <view class="p_content2" style="padding:20rpx 0;">快发给群友开始接龙吧~</view>

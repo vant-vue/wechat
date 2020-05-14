@@ -55,7 +55,11 @@ Page({
     imagePath: '',
     nickName:""
   },
-
+  popup_close() {
+    this.setData({
+      show_popup: false
+    })
+  },
   showActionSheet_fun() {
     this.setData({
       showActionSheet: true
