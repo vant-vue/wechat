@@ -102,6 +102,7 @@ Page({
           title: '提现成功',
           duration: config.timeoutSecond
         });
+        this.userInfo();
       } else {
         wx.showToast({
           title: res.msg,
