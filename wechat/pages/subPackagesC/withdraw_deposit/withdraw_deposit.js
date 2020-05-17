@@ -54,7 +54,8 @@ Page({
       if (res.code == 200) {
         this.setData({
           userInfo: res.args,
-          isPayee: res.args.payee ? true : false
+          isPayee: res.args.payee ? true : false,
+          cashAmount: ''
         });
       }
     })
@@ -110,6 +111,7 @@ Page({
           mask: true,
           duration: config.timeoutSecond
         })
+        this.userInfo();
       }
     }).catch(() => {
       wx.hideLoading();

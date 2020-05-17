@@ -566,6 +566,11 @@ Page({
                 title: '申请成功',
                 duration: config.timeoutSecond
               })
+              this.data.param = {
+                "pageNo": 1, //页数
+                "pageSize": 10, //单页记录数
+              };
+              this.data.solitaireList = [];
               _this.get_list();
             } else {
               wx.showToast({
@@ -677,6 +682,11 @@ Page({
    */
   onShow: function() {
     this.get_details(this.data.solitaireId);
+    this.data.param = {
+      "pageNo": 1, //页数
+      "pageSize": 10, //单页记录数
+    };
+    this.data.solitaireList = [];
     this.get_list();
   },
 
