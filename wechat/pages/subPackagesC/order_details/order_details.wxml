@@ -13,9 +13,9 @@
   <view class="item f00 tc">申请取消中，等待买家处理</view>
   <!-- <view class="item f06 tr">同意</view> -->
 </view>
-<view class=" apply_box flex bg_fff" wx:if="{{order.remarks}}" style="margin-top:20rpx;">
+<!--<view class=" apply_box flex bg_fff" wx:if="{{order.remarks}}" style="margin-top:20rpx;">
   <view class="item ccc ">备注：{{order.remarks?order.remarks:'无'}}</view>
-</view>
+</view>-->
 <!-- 配送方式 -->
 <view class="details_box bg_fff ">
   <view class="title ">
