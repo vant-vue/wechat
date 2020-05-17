@@ -191,7 +191,7 @@ Page({
               _this.data.is_success = true;
               let setTime = setTimeout(() => {
                 _this.findNewOrder();
-              }, 1500)
+              }, 800)
             }
           },
           fail(res) {

@@ -27,13 +27,13 @@ Page({
         app.getSessionKey({
           code: res.code
         }).then(res => {
-          wx.showToast({
-            title: '授权成功',
-            duration: config.timeoutSecond
-          })
-          let setTime = setTimeout(() => {
-            this.goBack();
-          }, config.timeoutSecond)
+            wx.showToast({
+              title: '授权成功',
+              duration: config.timeoutSecond
+            })
+            let setTime = setTimeout(() => {
+              this.goBack();
+            }, config.timeoutSecond)
         }).catch(err => {
           console.log(err);
         });
