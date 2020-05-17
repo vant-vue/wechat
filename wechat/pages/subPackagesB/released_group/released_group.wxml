@@ -238,6 +238,7 @@
         </view>
       </view>
     </view>
+    <view class="more" bindtap="more" wx:if="{{last}}">点击加载更多</view>
   </view>
   <!-- 客服 -->
   <view style="padding-top:20rpx;">

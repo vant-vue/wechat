@@ -29,6 +29,7 @@ Page({
     shop_num: 0,
     shop_price: 0,
     userId: '',
+    last:false,
     banner_index: 0, //当前轮播图(顶部) 显示 index
     selectList: [{
         key: '1',
@@ -53,7 +54,7 @@ Page({
     ],
     showActionSheet: false,
     imagePath: '',
-    nickName:""
+    nickName: ""
   },
   popup_close() {
     this.setData({
@@ -385,16 +386,20 @@ Page({
         goodsList: res.args.goodsList,
         info: res.args.info,
         isMine: res.args.isMine,
-        banner_list: res.args.solitaire.img? res.args.solitaire.img.split(';') : []
+        banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
       });
       this.select_list_fun(this.data.solitaire.status);
     })
+  },
+  more() {
+    this.data.param.pageNo += 1;
+    this.get_list();
   },
   // 接龙列表
   get_list() {
     let params = {
       param: {
-        "pageNo": 1, //页数
+        "pageNo": this.data.param.pageNo, //页数
         "pageSize": 10, //单页记录数
         "solitaireId": this.data.solitaireId, //接龙主键
       }
@@ -403,7 +408,7 @@ Page({
       let loginUserId = res.args.userId;
       res.args.solitaireList.forEach(item => {
         console.log(item);
-        if (item.status==1){
+        if (item.status == 1) {
           return;
         }
         let itemstr = '';
@@ -450,9 +455,18 @@ Page({
       })
       // console.log(res.args.solitaireList);
       this.setData({
-        solitaireList: res.args.solitaireList,
+        solitaireList: this.data.solitaireList.concat(res.args.solitaireList),
         userId: res.args.userId
       })
+      if (res.args.solitaireList.length < 10) {
+        this.setData({
+          last: false
+        })
+      } else {
+        this.setData({
+          last: true
+        })
+      }
     })
   },
   // 转发

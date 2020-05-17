@@ -124,9 +124,16 @@ Page({
     if (this.data.is_request) {
       return;
     }
-    if (!valid.check_mobile(this.data.telNumber)) {
+    if ((this.data.logistics.logisticsType == 2 || this.data.logistics.logisticsType == 3) && !valid.check_mobile(this.data.telNumber)) {
       wx.showToast({
         title: '请输入正确的联系电话',
+        icon: 'none',
+        duration: config.timeoutSecond
+      })
+      return;
+    } else if (this.data.logistics.logisticsType == 1 && !this.data.provinceName) {
+      wx.showToast({
+        title: '请选择收货地址',
         icon: 'none',
         duration: config.timeoutSecond
       })
@@ -182,10 +189,9 @@ Page({
                 duration: config.timeoutSecond
               })
               _this.data.is_success = true;
-              _this.findNewOrder();
-              // let setTime = setTimeout(() => {
-              //   wx.navigateBack();
-              // }, 2000)
+              let setTime = setTimeout(() => {
+                _this.findNewOrder();
+              }, 1500)
             }
           },
           fail(res) {
@@ -227,13 +233,13 @@ Page({
     this.setData({
       show_popup: false
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       if (this.data.is_success) {
         wx.redirectTo({
           url: '/pages/subPackagesB/released_group/released_group?id=' + this.data.solitaireId
         });
       }
-    },500)
+    }, 500)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
