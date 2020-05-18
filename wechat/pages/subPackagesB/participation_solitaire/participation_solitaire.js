@@ -196,6 +196,10 @@ Page({
           },
           fail(res) {
             //_this.findNewOrder();
+            wx.showToast({
+              title: '支付失败',
+              duration: config.timeoutSecond
+            })
             console.log(res, '支付失败');
           }
         })

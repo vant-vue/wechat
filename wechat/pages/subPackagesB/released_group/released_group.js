@@ -29,7 +29,7 @@ Page({
     shop_num: 0,
     shop_price: 0,
     userId: '',
-    last:false,
+    last: false,
     banner_index: 0, //当前轮播图(顶部) 显示 index
     selectList: [{
         key: '1',
@@ -631,14 +631,34 @@ Page({
         break;
         // 复制接龙
       case 'copy_solitaire':
-        if (this.data.solitaire.type == 1) {
-          url = "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + this.data.solitaireId;
-        } else if (this.data.solitaire.type == 2) {
-          url = "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + this.data.solitaireId;
+        // if (this.data.solitaire.type == 1) {
+        //   url = "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + this.data.solitaireId;
+        // } else if (this.data.solitaire.type == 2) {
+        //   url = "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + this.data.solitaireId;
+        // }
+        if (this.data.solitaire.type == 1 && (this.data.isMine || this.data.solitaire.isCopy == 1)) {
+          url = "/pages/subPackagesA/group_buying_solitaire/group_buying_solitaire?is_edit=0&id=" + this.data.solitaireId
+        } else if (this.data.solitaire.type == 2 && (this.data.isMine || this.data.solitaire.isCopy == 1)) {
+          url = "/pages/subPackagesA/chipped_solitaire/chipped_solitaire?is_edit=0&id=" + this.data.solitaireId
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '该接龙不允许复制',
+            success(res) {
+              if (res.confirm) {} else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+          return;
         }
         break;
     }
-    if (url.match('tabBar')) {
+    if (url.match('pages/subPackagesA/group_buying_solitaire/group_buying_solitaire') || url.match('pages/subPackagesA/chipped_solitaire/chipped_solitaire')) {
+      wx.redirectTo({
+        url
+      })
+    } else if (url.match('tabBar')) {
       wx.switchTab({
         url
       })
@@ -671,11 +691,6 @@ Page({
         show_popup: true
       });
     }
-    if (this.data.solitaireId) {
-      let shareid = this.selectComponent("#shareid");
-      shareid.data.solitaireId = this.data.solitaireId;
-      shareid.getSolitaireShareInfo();
-    }
   },
   /**
    * 生命周期函数--监听页面显示
@@ -688,6 +703,11 @@ Page({
     };
     this.data.solitaireList = [];
     this.get_list();
+    if (this.data.solitaireId && !this.data.imagePath) {
+      let shareid = this.selectComponent("#shareid");
+      shareid.data.solitaireId = this.data.solitaireId;
+      shareid.getSolitaireShareInfo();
+    }
   },
 
   /**

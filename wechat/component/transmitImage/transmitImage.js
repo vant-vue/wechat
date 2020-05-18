@@ -50,16 +50,20 @@ Component({
         }
       }
       app.$API.getSolitaireShareInfo(params).then(res => {
-        this.setData({
-          imgList: res.args.img ? res.args.img.split(';') : [],
-          nickName: res.args.nickName ? res.args.nickName : '',
-          startMoney: (res.args.startMoney / 100).toFixed(2),
-          title: res.args.title ? res.args.title : '',
-          headerImg: res.args.headerImg,
-          solitaireNo: res.args.solitaireNo,
-          goods: res.args.goods ? res.args.goods : [],
-        })
-        this.createNewImg();
+        if (!res.flag){
+          that.triggerEvent('imagePathFun', ['', '']);
+        }else{
+          this.setData({
+            imgList: res.args.img ? res.args.img.split(';') : [],
+            nickName: res.args.nickName ? res.args.nickName : '',
+            startMoney: (res.args.startMoney / 100).toFixed(2),
+            title: res.args.title ? res.args.title : '',
+            headerImg: res.args.headerImg,
+            solitaireNo: res.args.solitaireNo,
+            goods: res.args.goods ? res.args.goods : [],
+          })
+          this.createNewImg();
+        }
       }).catch(() => {})
     },
     // 获取图片地址

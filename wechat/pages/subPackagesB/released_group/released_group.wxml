@@ -268,7 +268,7 @@
       <image src="/images/record/add.png"></image>
       <text class="tit">发个接龙</text>
     </view>
-    <view class="item line" bindtap="jump" data-page="copy_solitaire">
+    <view class="item line" bindtap="jump" data-page="copy_solitaire" wx:if="{{solitaire.isCopy==1}}">
       <image src="/images/home/copy.png"></image>
       <text class="tit"> 复制接龙</text>
     </view>
