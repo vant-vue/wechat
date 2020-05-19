@@ -355,7 +355,7 @@ Page({
       goodsList.forEach(item => {
         item.price = item.price / 100;
         item.togoMoney = item.togoMoney / 100;
-        if (this.data.is_edit) {
+        if (this.data.is_edit == 0) {
           item.stock = null;
         }
       })

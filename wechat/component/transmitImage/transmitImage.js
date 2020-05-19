@@ -95,8 +95,8 @@ Component({
     imgcut(img, context, x, y) {
       var w = img.width
       var h = img.height
-      var dw = 118 / w //canvas与图片的宽高比
-      var dh = 118 / h
+      var dw = 118 / w; //canvas与图片的宽高比
+      var dh = 118 / h;
       var ratio
       // 裁剪图片中间部分
       if (w > 118 && h > 118 || w < 118 && h < 118) {

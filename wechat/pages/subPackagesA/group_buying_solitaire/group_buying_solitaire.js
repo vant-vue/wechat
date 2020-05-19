@@ -356,7 +356,7 @@ Page({
       let goodsList = res.args.goodsList;
       goodsList.forEach(item => {
         item.price = item.price / 100;
-        if (this.data.is_edit){
+        if (this.data.is_edit == 0){
           item.stock=null;
         }
       })
