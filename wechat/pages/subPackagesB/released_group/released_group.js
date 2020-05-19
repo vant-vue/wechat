@@ -109,7 +109,7 @@ Page({
             if (res.confirm) {
               _this.updateSolitaireStatus(2)
             } else if (res.cancel) {
-              console.log('用户点击取消') 
+              console.log('用户点击取消')
             }
           }
         })
@@ -696,7 +696,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.get_details(this.data.solitaireId);
+    if (this.data.goodsList.length == 0) {
+      this.get_details(this.data.solitaireId);
+    }
     this.data.param = {
       "pageNo": 1, //页数
       "pageSize": 10, //单页记录数
