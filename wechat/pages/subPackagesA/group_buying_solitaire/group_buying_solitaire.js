@@ -355,7 +355,10 @@ Page({
       let solitaire = res.args.solitaire;
       let goodsList = res.args.goodsList;
       goodsList.forEach(item => {
-        item.price = item.price / 100
+        item.price = item.price / 100;
+        if (this.data.is_edit){
+          item.stock=null;
+        }
       })
       let logisticsMode = res.args.logisticsMode ? res.args.logisticsMode : '';
       let logisticsTypeName = '';
