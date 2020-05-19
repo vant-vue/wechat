@@ -174,6 +174,7 @@ Page({
     this.data.is_request = true;
     app.$API.wxPay(params).then(res => {
       console.log(res);
+      wx.hideLoading();
       if (res.code == 200) {
         wx.requestPayment({
           timeStamp: res.args.timeStamp,
@@ -223,7 +224,7 @@ Page({
           duration: config.timeoutSecond
         })
       }
-      wx.hideLoading()
+     
       this.data.is_request = false;
     }).catch(() => {
       wx.hideLoading()
