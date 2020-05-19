@@ -9,6 +9,7 @@ Page({
   data: {
     isPayee: '',
     cashAmount: '',
+    is_request:false,
     userInfo: {}
   },
   //监听input 普通输入框
@@ -62,6 +63,10 @@ Page({
   },
   // 提现
   wxOutMoney() {
+    if (this.data.is_request) {
+      return;
+    }
+    this.data.is_request = true;
     let str = '';
     if (!this.data.userInfo.payee) {
       wx.showToast({
@@ -69,6 +74,7 @@ Page({
         icon: 'none',
         duration: config.timeoutSecond
       })
+      this.data.is_request = false;
       return;
     }
     if (this.data.cashAmount == '') {
@@ -76,7 +82,8 @@ Page({
         title: '请输入提现金额',
         icon: 'none',
         duration: config.timeoutSecond
-      })
+      });
+      this.data.is_request = false;
       return;
     }
     if (this.data.cashAmount * 100 > this.data.userInfo.cashAmount) {
@@ -84,7 +91,8 @@ Page({
         title: `提现金额应小于${this.data.userInfo.cashAmount/100}`,
         icon: 'none',
         duration: config.timeoutSecond
-      })
+      });
+      this.data.is_request = false;
       return;
     }
     let params = {
@@ -113,6 +121,7 @@ Page({
         })
         this.userInfo();
       }
+      this.data.is_request = false;
     }).catch(() => {
       wx.hideLoading();
     })

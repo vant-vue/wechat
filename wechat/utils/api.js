@@ -134,7 +134,10 @@ const getWxAppCode = (params) => postAction("/solitaire/solitaire/api", params, 
 const getUserOtherInfo = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "getUserOtherInfo"
 });
-
+// 关闭支付弹窗恢复商品数量
+const updateOrderGood = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "updateOrderGood"
+});
 
 export default {
   getSessionKey,
@@ -171,5 +174,6 @@ export default {
   forwadStatics,
   getSolitaireShareInfo,
   getWxAppCode,
-  getUserOtherInfo
+  getUserOtherInfo,
+  updateOrderGood
 }

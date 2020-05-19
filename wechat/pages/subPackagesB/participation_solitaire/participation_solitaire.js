@@ -198,10 +198,29 @@ Page({
             //_this.findNewOrder();
             wx.showToast({
               title: '支付失败',
+              icon: 'none',
               duration: config.timeoutSecond
             })
+            //支付失败 调用恢复订单接口
+            let paramsGood = {
+              param: {
+                "solitaireId": _this.data.solitaireId,
+                "goodsList": _this.data.list
+              }
+            }
+            app.$API.updateOrderGood(paramsGood).then(res => {
+              
+              console.log(res);
+
+            }).catch(() => { });
             console.log(res, '支付失败');
           }
+        })
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: config.timeoutSecond
         })
       }
       wx.hideLoading()

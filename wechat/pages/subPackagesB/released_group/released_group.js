@@ -109,7 +109,7 @@ Page({
             if (res.confirm) {
               _this.updateSolitaireStatus(2)
             } else if (res.cancel) {
-              console.log('用户点击取消')
+              console.log('用户点击取消') 
             }
           }
         })
