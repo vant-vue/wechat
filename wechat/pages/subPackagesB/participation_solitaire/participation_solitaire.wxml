@@ -77,7 +77,7 @@
 <transmit show_popup="{{show_popup}}" bind:close="popup_close">
   <view slot="after">
     <view class="p_content1">接龙成功</view>
-    <view class="p_list">
+    <!-- <view class="p_list">
       <view class="flex" wx:for="{{popup_order_list.orderGoods}}" wx:for-item="item" wx:key="key" wx:for-index="index">
         <view style="width:50rpx;">{{item.solitaireNo}}</view>
         <view>
@@ -85,6 +85,16 @@
         </view>
         <view class="item tl">{{popup_order_list.userInfo.nickName}}</view>
         <view>{{item.goodsName}} +{{item.buyCount}}</view>
+      </view>
+    </view> -->
+    <view class="p_list">
+      <view wx:for="{{popup_order_list.orderGoods}}" wx:for-item="item" wx:key="key" wx:for-index="index">
+        <view class="tc">
+          {{item.solitaireNo}}
+          <image class="head_img vm" src="{{popup_order_list.userInfo.headerImg}}"></image>
+          {{popup_order_list.userInfo.nickName}}
+        </view>
+        <view class="omit1 tc">{{item.goodsName}} +{{item.buyCount}}</view>
       </view>
     </view>
     <view class="p_content2">转发到群聊！告诉团长你已经接龙成功啦~~</view>

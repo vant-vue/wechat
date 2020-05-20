@@ -16,7 +16,7 @@
           <view class="item omit1 tit1">
             <text class="group" wx:if="{{item.type===1}}">团购</text>
             <text class="chipped" wx:elif="{{item.type===2}}">合买</text>{{item.title}}</view>
-          <view class="item tr">
+          <view class="tr" style="width:200rpx;">
             <text wx:if="{{item.status == -1}}" class="yqx">未开始</text>
             <text wx:elif="{{item.status == 0}}" class="jxz">进行中</text>
             <text wx:elif="{{item.status == 1}}" class="ywc">已结束</text>
