@@ -413,17 +413,6 @@ Page({
         if (item.status == 1) {
           return;
         }
-        let itemstr = '';
-        if (loginUserId == item.pubUserId) { //先判定是否本人发布
-          if (item.status == -1) { //已取消
-            itemstr += '已取消接龙';
-          }
-          if (item.refundStatus != 0) { //存在退款
-            if (itemstr.length > 0) {
-              itemstr += ',';
-            }
-            itemstr += this.data.refundMap[item.refundStatus];
-          }
           let itemstr = '';
           if (loginUserId == item.pubUserId) { //先判定是否本人发布
             if (item.status == -1) { //已取消
@@ -465,7 +454,6 @@ Page({
             }
           }
           item.itemstr = itemstr;
-        }
       })
       // console.log(res.args.solitaireList);
       this.setData({
