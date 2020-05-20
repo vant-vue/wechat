@@ -373,7 +373,7 @@ Page({
       if (this.data.is_edit == 0) { //复制
         this.setData({
           goodsList: goodsList,
-          imgList: solitaire.img ? solitaire.img.split(";") : [],
+          imgList: solitaire&&solitaire.img ? solitaire.img.split(";") : [],
           params: {
             "title": solitaire.title,
             "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍

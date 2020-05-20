@@ -386,7 +386,7 @@ Page({
         goodsList: res.args.goodsList,
         info: res.args.info,
         isMine: res.args.isMine,
-        banner_list: res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
+        banner_list: res.args.solitaire && res.args.solitaire.img ? res.args.solitaire.img.split(';') : []
       });
       this.select_list_fun(this.data.solitaire.status);
     })
@@ -405,12 +405,24 @@ Page({
       }
     }
     app.$API.solitaireList(params).then(res => {
-      if (res.flag) {
-        let loginUserId = res.args.userId;
-        res.args.solitaireList.forEach(item => {
-          console.log(item);
-          if (item.status == 1) {
-            return;
+      let loginUserId = res.args.userId;
+      res.args.solitaireList.forEach(item => {
+        if (item.orderTime) {
+          item.orderTime = item.orderTime.substring(5, 16);
+        }
+        if (item.status == 1) {
+          return;
+        }
+        let itemstr = '';
+        if (loginUserId == item.pubUserId) { //先判定是否本人发布
+          if (item.status == -1) { //已取消
+            itemstr += '已取消接龙';
+          }
+          if (item.refundStatus != 0) { //存在退款
+            if (itemstr.length > 0) {
+              itemstr += ',';
+            }
+            itemstr += this.data.refundMap[item.refundStatus];
           }
           let itemstr = '';
           if (loginUserId == item.pubUserId) { //先判定是否本人发布
@@ -453,21 +465,21 @@ Page({
             }
           }
           item.itemstr = itemstr;
-        })
-        // console.log(res.args.solitaireList);
-        this.setData({
-          solitaireList: this.data.solitaireList.concat(res.args.solitaireList),
-          userId: res.args.userId
-        })
-        if (res.args.solitaireList.length < 10) {
-          this.setData({
-            last: false
-          })
-        } else {
-          this.setData({
-            last: true
-          })
         }
+      })
+      // console.log(res.args.solitaireList);
+      this.setData({
+        solitaireList: this.data.solitaireList.concat(res.args.solitaireList),
+        userId: res.args.userId
+      })
+      if (res.args.solitaireList.length < 10) {
+        this.setData({
+          last: false
+        })
+      } else {
+        this.setData({
+          last: true
+        })
       }
 
     })

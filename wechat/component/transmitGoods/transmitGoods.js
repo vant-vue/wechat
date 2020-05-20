@@ -82,7 +82,7 @@ Component({
     //将canvas转换为图片保存到本地，然后将图片路径传给image图片的src
     // 已结束
     createNewImg: function() {
-      if (Object.keys(this.data.goods).length == 0) {
+      if (this.data.goods && Object.keys(this.data.goods).length == 0) {
         return;
       }
       console.log(this.data.order, this.data.goods)
