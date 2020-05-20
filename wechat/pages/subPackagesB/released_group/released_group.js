@@ -407,7 +407,9 @@ Page({
     app.$API.solitaireList(params).then(res => {
       let loginUserId = res.args.userId;
       res.args.solitaireList.forEach(item => {
-        console.log(item);
+        if (item.orderTime){
+          item.orderTime = item.orderTime.substring(5,16);
+        }
         if (item.status == 1) {
           return;
         }
