@@ -11,7 +11,11 @@ Component({
     show_popup: {
       type: Boolean,
       value: false
-    }
+    },
+    imagePath: {
+      type: String,
+      value: ''
+    },
   },
 
   /**
@@ -19,6 +23,7 @@ Component({
    */
   data: {
     popup: '', //打开弹窗类型
+    src:''
   },
 
   /**
@@ -30,6 +35,13 @@ Component({
         show_popup: false
       });
       this.triggerEvent('close',{});
+    }
+  },
+  observers: {
+    'imagePath': function (v) {
+      this.setData({
+        src: v
+      });
     }
   }
 })

@@ -283,7 +283,7 @@
     </view>
   </view>
   <!-- 转发成功弹出层 -->
-  <transmit show_popup="{{show_popup}}" bind:close="popup_close">
+  <transmit show_popup="{{show_popup}}" imagePath="{{imagePath}}" bind:close="popup_close">
     <view slot="after">
       <view class="p_content1">发布成功</view>
       <view class="p_content2" style="padding:20rpx 0;">快发给群友开始接龙吧~</view>

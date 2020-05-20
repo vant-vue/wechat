@@ -91,7 +91,7 @@ Page({
   // 获取微信地址
   get_wx_address() {
     let _this = this;
-    this.data.modeList
+    // this.data.modeList
     wx.chooseAddress({
       success(res) {
         // console.log(res.userName)
@@ -210,21 +210,21 @@ Page({
               }
             }
             app.$API.updateOrderGood(paramsGood).then(res => {
-              
+
               console.log(res);
 
-            }).catch(() => { });
+            }).catch(() => {});
             console.log(res, '支付失败');
           }
         })
-      }else{
+      } else {
         wx.showToast({
           title: res.msg,
           icon: 'none',
           duration: config.timeoutSecond
         })
       }
-     
+
       this.data.is_request = false;
     }).catch(() => {
       wx.hideLoading()
@@ -314,8 +314,10 @@ Page({
     app.$API.forwadStatics(params).then(res => {}).catch(() => {})
   },
   imagePathFun(e) {
-    this.data.imagePath = e.detail;
-    console.log(this.data.imagePath);
+    this.setData({
+      imagePath: e.detail
+    })
+    // console.log(this.data.imagePath);
   },
   /**
    * 用户点击右上角分享
