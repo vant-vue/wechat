@@ -25,7 +25,7 @@
       </view>
       <view class="item">
         <!-- <input type="text" placeholder="0.00"></input> -->
-        <input type="digit" bindblur="handleInput" bindinput='listenerInputMoney' data-row="togoMoney" data-index="{{index}}" value="{{item.togoMoney}}" placeholder="0.00"></input>
+        <input type="digit" bindblur="handleInput" bindinput='listenerInputMoney' data-row="togoMoney" data-index="{{index}}" value="{{item.togoMoney}}" placeholder="0"></input>
       </view>
     </view>
     <view class="flex bg box">
@@ -45,7 +45,7 @@
       </view>
       <view class="item">
         <!-- <input type="text" placeholder="0.00"></input> -->
-        <input type="digit" bindblur="handleInput" bindinput='listenerInputMoney' data-row="price" data-index="{{index}}" value="{{item.price}}" placeholder="0.00"></input>
+        <input type="digit" bindblur="handleInput" bindinput='listenerInputMoney' data-row="price" data-index="{{index}}" value="{{item.price}}" placeholder="0"></input>
       </view>
     </view>
   </view>

@@ -150,7 +150,7 @@ Page({
   // 数字转金额
   moneyToString(num) {
     if (typeof num === 'undefined' || num === '') return '';
-    return parseFloat(num).toFixed(2);
+    return num;
   },
   handleInput(e) {
     let value = e.detail.value || '';
