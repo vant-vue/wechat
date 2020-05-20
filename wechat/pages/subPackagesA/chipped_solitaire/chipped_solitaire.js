@@ -179,6 +179,15 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
+    if (!valid.check_mobile(this.data.params.callPhone)) {
+      str = "请输入正确的电话"
+    }
+    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
+      str = "请输入大于0的库存"
+    }
+    if (!valid.check_required(this.data.params.logisticsType)) {
+      str = "请选择物流"
+    }
     this.data.goodsList.map(item => {
       if (!valid.check_positive(item.price)) {
         str = "请填写单份金额"
@@ -195,15 +204,6 @@ Page({
       item.price = item.price * 100;
       item.togoMoney = item.togoMoney * 100;
     });
-    if (!valid.check_mobile(this.data.params.callPhone)) {
-      str = "请输入正确的电话"
-    }
-    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
-      str = "请输入大于0的库存"
-    }
-    if (!valid.check_required(this.data.params.logisticsType)) {
-      str = "请选择物流"
-    }
     if (str) {
       wx.showToast({
         title: str,
@@ -422,6 +422,15 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
+    if (!valid.check_mobile(this.data.params.callPhone)) {
+      str = "请输入正确的电话"
+    }
+    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
+      str = "请输入大于0的库存"
+    }
+    if (!valid.check_required(this.data.params.logisticsType)) {
+      str = "请选择物流"
+    }
     this.data.goodsList.map(item => {
       if (!valid.check_positive(item.price)) {
         str = "请填写单份金额"
@@ -438,15 +447,6 @@ Page({
       item.price = item.price * 100;
       item.togoMoney = item.togoMoney * 100;
     });
-    if (!valid.check_mobile(this.data.params.callPhone)) {
-      str = "请输入正确的电话"
-    }
-    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
-      str = "请输入大于0的库存"
-    }
-    if (!valid.check_required(this.data.params.logisticsType)) {
-      str = "请选择物流"
-    }
     if (str) {
       wx.showToast({
         title: str,

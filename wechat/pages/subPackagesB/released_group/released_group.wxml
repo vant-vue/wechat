@@ -229,7 +229,7 @@
       <view class="item">
         <view class="flex mb_20">
           <view class="item tit1">{{item.isAnonymous==0?item.nickName:'匿名用户'}}</view>
-          <view class="item tr tit2">{{item.orderTime}}</view>
+          <view class="tr tit2" style="width:260rpx;">{{item.orderTime}}</view>
         </view>
         <view class="flex mb_20" wx:for="{{item.orderGoods}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
           <view class="omit1 tit2" style="width:200rpx;">{{item2.goodsName}} +{{item2.buyCount}}</view>
@@ -281,7 +281,7 @@
     </view>
   </view>
   <!-- 转发成功弹出层 -->
-  <transmit show_popup="{{show_popup}}" bind:close="popup_close">
+  <transmit show_popup="{{true}}" bind:close="popup_close">
     <view slot="after">
       <view class="p_content1">发布成功</view>
       <view class="p_content2" style="padding:20rpx 0;">快发给群友开始接龙吧~</view>

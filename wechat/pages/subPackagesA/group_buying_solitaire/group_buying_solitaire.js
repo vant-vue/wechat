@@ -183,6 +183,13 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
+    if (!valid.check_mobile(this.data.params.callPhone)) {
+      str = "请输入正确的电话"
+    }
+
+    if (!valid.check_required(this.data.params.logisticsType)) {
+      str = "请选择物流"
+    }
     this.data.goodsList.map(item => {
       if (!valid.check_required(item.goodsName)) {
         str = "请填写商品名称"
@@ -201,13 +208,6 @@ Page({
       }
       item.price = item.price * 100;
     });
-    if (!valid.check_mobile(this.data.params.callPhone)) {
-      str = "请输入正确的电话"
-    }
-
-    if (!valid.check_required(this.data.params.logisticsType)) {
-      str = "请选择物流"
-    }
     if (str) {
       wx.showToast({
         title: str,
@@ -356,8 +356,8 @@ Page({
       let goodsList = res.args.goodsList;
       goodsList.forEach(item => {
         item.price = item.price / 100;
-        if (this.data.is_edit == 0){
-          item.stock=null;
+        if (this.data.is_edit == 0) {
+          item.stock = null;
         }
       })
       let logisticsMode = res.args.logisticsMode ? res.args.logisticsMode : '';
@@ -372,7 +372,7 @@ Page({
       if (this.data.is_edit == 0) { //复制
         this.setData({
           goodsList: goodsList,
-          imgList: solitaire.img ? solitaire.img.split(";") : [],
+          imgList: solitaire && solitaire.img ? solitaire.img.split(";") : [],
           params: {
             "title": solitaire.title,
             "summary": solitaire.summary, //限制字数在1000字以内 接龙介绍
@@ -424,6 +424,15 @@ Page({
     if (!valid.check_required(this.data.params.title)) {
       str = "请填写标题"
     }
+    if (!valid.check_mobile(this.data.params.callPhone)) {
+      str = "请输入正确的电话"
+    }
+    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
+      str = "请输入大于0的库存"
+    }
+    if (!valid.check_required(this.data.params.logisticsType)) {
+      str = "请选择物流"
+    }
     this.data.goodsList.map(item => {
       if (!valid.check_required(item.goodsName)) {
         str = "请填写商品名称"
@@ -442,15 +451,6 @@ Page({
       }
       item.price = item.price * 100;
     });
-    if (!valid.check_mobile(this.data.params.callPhone)) {
-      str = "请输入正确的电话"
-    }
-    if (this.data.params.stock && !valid.check_positive(this.data.params.stock)) {
-      str = "请输入大于0的库存"
-    }
-    if (!valid.check_required(this.data.params.logisticsType)) {
-      str = "请选择物流"
-    }
     if (str) {
       wx.showToast({
         title: str,
