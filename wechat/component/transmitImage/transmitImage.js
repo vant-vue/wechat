@@ -50,9 +50,9 @@ Component({
         }
       }
       app.$API.getSolitaireShareInfo(params).then(res => {
-        if (!res.flag){
+        if (!res.flag) {
           that.triggerEvent('imagePathFun', ['', '']);
-        }else{
+        } else {
           this.setData({
             imgList: res.args.img ? res.args.img.split(';') : [],
             nickName: res.args.nickName ? res.args.nickName : '',
@@ -193,8 +193,7 @@ Component({
         context.setTextAlign('center');
         var title = `参与接龙`
         context.fillText(title, 185, 228);
-        context.draw();
-        setTimeout(() => {
+        context.draw(true, () => {
           wx.canvasToTempFilePath({
             x: 0,
             y: 0,
@@ -206,13 +205,32 @@ Component({
             canvasId: 'mycanvas',
             success: function(res) {
               that.data.imagePath = res.tempFilePath;
-              that.triggerEvent('imagePathFun', [that.data.imagePath, that.data.nickName]); 
+              that.triggerEvent('imagePathFun', [that.data.imagePath, that.data.nickName]);
             },
             fail: function(res) {
               console.log(res);
             }
           }, this);
-        }, 200)
+        });
+        // setTimeout(() => {
+        //   wx.canvasToTempFilePath({
+        //     x: 0,
+        //     y: 0,
+        //     width: 375 * 4,
+        //     height: 300 * 4,
+        //     destWidth: 375 * 4,
+
+        //     destHeight: 300 * 4,
+        //     canvasId: 'mycanvas',
+        //     success: function(res) {
+        //       that.data.imagePath = res.tempFilePath;
+        //       that.triggerEvent('imagePathFun', [that.data.imagePath, that.data.nickName]); 
+        //     },
+        //     fail: function(res) {
+        //       console.log(res);
+        //     }
+        //   }, this);
+        // }, 200)
       })
 
     },

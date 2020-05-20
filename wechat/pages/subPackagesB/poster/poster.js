@@ -205,12 +205,12 @@ Page({
       var summary = `${this.data.summary ? this.data.summary:''}`;
       summary = summary.replace(/[\r\n]/g, "");
       var tempTitle = summary;
-     
+
       tempTitle = tempTitle.replace(/\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]|[\uD800-\uDBFF]|[\uDC00-\uDFFF]|[^\u0020-\u007E\u00A0-\u00BE\u2E80-\uA4CF\uF900-\uFAFF\uFE30-\uFE4F\uFF00-\uFFEF\u0080-\u009F\u2000-\u201f\u2026\u2022\u20ac\r\n]/g, '*');
       var c = tempTitle.length > 45 ? tempTitle.substr(0, 45) + "..." : tempTitle;
       var clen = (c.split('*')).length - 1;
-      summary = summary.substr(0, c.length+clen);
-      if(c.indexOf("...")!=-1){
+      summary = summary.substr(0, c.length + clen);
+      if (c.indexOf("...") != -1) {
         summary += "...";
       }
       if (tempTitle.length > 28) {
@@ -253,8 +253,7 @@ Page({
       context.clip();
       // 绘制图片
       context.drawImage(path1, avatarurl_x, avatarurl_y, avatarurl_width, avatarurl_heigth);
-      context.draw();
-      setTimeout(() => {
+      context.draw(true, () => {
         wx.canvasToTempFilePath({
           x: 0,
           y: 0,
@@ -273,7 +272,27 @@ Page({
             console.log(res);
           }
         });
-      }, 200)
+      });
+      // setTimeout(() => {
+      //   wx.canvasToTempFilePath({
+      //     x: 0,
+      //     y: 0,
+      //     width: 375 * 4,
+      //     height: 667 * 4,
+      //     destWidth: 375 * 4,
+      //     destHeight: 667 * 4,
+      //     canvasId: 'mycanvas',
+      //     success: function(res) {
+      //       that.setData({
+      //         imagePath: res.tempFilePath
+      //       });
+      //       that.baocun();
+      //     },
+      //     fail: function(res) {
+      //       console.log(res);
+      //     }
+      //   });
+      // }, 200)
     })
   },
   openSetting() {
