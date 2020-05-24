@@ -1,6 +1,6 @@
 <!--component/service/service.wxml-->
 <view class="service_box flex">
-  <button open-type="contact" bindcontact="handleContact" session-from="callUs" style="background:transparent;">
+  <button open-type="contact" send-message-title="联系人工客服" send-message-img="https://image.lycf555.club/uploadfiles/messageImg/callUs.png" show-message-card="true"  bindcontact="handleContact" session-from="callUs" style="background:transparent;">
     <image class="img_c" src="/images/home/service.png"></image>
     <text class="title">联系客服</text>
   </button>

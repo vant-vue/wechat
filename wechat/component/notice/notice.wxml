@@ -9,7 +9,7 @@
         <view>进入客服会话，点击右上角小程序卡片</view>
         <view>获取公众号二维码关注</view>
       </view>
-      <button open-type="contact" bindcontact="handleContact" session-from="attentionPublic" style="width:100%;">去关注</button>
+      <button open-type="contact" send-message-title="关注百万接龙公众号" send-message-img="https://image.lycf555.club/uploadfiles/messageImg/attention.png"  bindcontact="handleContact" session-from="attentionPublic" style="width:100%;" show-message-card="true">去关注</button>
     </view>
     <view class='close'>
       <image class="close" bindtap="close" src="/images/home/close.png"></image>

@@ -7,6 +7,12 @@
 button.button-hover {
   background-color: #3e5cf2;
 }
+.close_btn.button-hover{
+  background-color: #ccc !important;
+}
+.active_btn.button-hover{
+  background-color: #3e5cf2 !important;
+}
 
 .main_box {
   padding-bottom: 200rpx;
