@@ -21,6 +21,7 @@ Page({
     show_popup: false,
     popup_order_list: {},
     is_success: false,
+    out_trade_no:"",
     goods: {}
   },
 
@@ -174,6 +175,9 @@ Page({
     this.data.is_request = true;
     app.$API.wxPay(params).then(res => {
       console.log(res);
+      if (res.args.out_trade_no){
+        this.data.out_trade_no = res.args.out_trade_no;
+      }
       wx.hideLoading();
       if (res.code == 200) {
         wx.requestPayment({
@@ -206,7 +210,8 @@ Page({
             let paramsGood = {
               param: {
                 "solitaireId": _this.data.solitaireId,
-                "goodsList": _this.data.list
+                "goodsList": _this.data.list,
+                "out_trade_no":_this.data.out_trade_no
               }
             }
             app.$API.updateOrderGood(paramsGood).then(res => {
