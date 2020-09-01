@@ -7,13 +7,13 @@
   </view>
   <view class="tit3 mb20 mt20">￥{{filter.money(cashAmount)}}</view>
   <view class="flex tc">
+      <view class="item">
+      <view class="tit4">免服务费额度</view>
+      <view class="tit5">{{filter.money(freeCommion)}}</view>
+    </view>
     <view class="item">
       <view class="tit4">可提现</view>
       <view class="tit5">{{filter.money(cashAmount)}}</view>
-    </view>
-    <view class="item">
-      <view class="tit4">待结算</view>
-      <view class="tit5">{{filter.money(waitMoney)}}</view>
     </view>
     <view class="item">
       <view class="tit4">提现中</view>

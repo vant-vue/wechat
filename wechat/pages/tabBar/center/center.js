@@ -44,6 +44,9 @@ Page({
       case 'order_bought':
         url = '/pages/subPackagesC/order_bought/order_bought';
         break;
+      case 'server_txt':
+        url = '/pages/subPackagesC/server_txt/server_txt';
+        break;
     }
     if (url.match('tabBar')) {
       wx.switchTab({

@@ -15,6 +15,7 @@ Page({
     imgList: [],
     uploadList: [],
     pictureList: [],
+    rate:'0.9',
     goodsList: [ //团购商品  团购接龙才有
       {
         "sortId": 1, //排序
@@ -337,6 +338,16 @@ Page({
         is_edit: options.is_edit
       })
     }
+    this.getRate();
+  },
+  getRate() {
+    app.$API.getRate({}).then(res => {
+      if (res.code == 200) {
+        this.setData({
+          rate: res.args.rate ? parseFloat(res.args.rate * 100).toFixed(1):'0.9'
+        })
+      }
+    })
   },
   // 查询接龙-用于复制接龙或者编辑接龙  （selectSolitaire）
   selectSolitaire() {

@@ -27,6 +27,13 @@
   </view>
 </view>
 <view class="list_box">
+  <view class="flex" bindtap="jump" data-page="server_txt">
+    <view class="item title">服务协议</view>
+    <view class="val"></view>
+    <view>
+      <text class='icon_right'></text>
+    </view>
+  </view>
   <view class="flex" bindtap="wait">
     <view class="item title">常见问题</view>
     <view class="val"></view>

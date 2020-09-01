@@ -68,6 +68,10 @@
     </view>
   </view>
 </view>
+<view class="tips">公安部风险提示：近期又不发分子利用接龙、团购进行诈骗，建议您先确认对方身份，谨慎支付！
+</view>
+<!-- 匿名参与 -->
+<!-- 匿名参与 -->
 <view class="footer">
   <view class="btn" bindtap="wxPay">支付</view>
 </view>

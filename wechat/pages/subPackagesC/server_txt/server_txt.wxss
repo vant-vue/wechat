@@ -1,0 +1,59 @@
+/* pages/subPackagesC/withdraw_deposit/withdraw_deposit.wxss */
+
+.f06 {
+  color: #06f;
+}
+
+.f00 {
+  color: #f00;
+}
+
+.top_box {
+  margin: 20rpx 0;
+}
+
+.top_box .it {
+  width: 150rpx;
+}
+
+.top_box .flex {
+  padding: 20rpx;
+  align-items: center;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.b_box {
+  padding: 20rpx;
+}
+
+.b_box view {
+  margin-bottom: 20rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding-bottom: 40rpx;
+}
+
+.btn_box {
+  padding: 20rpx;
+}
+
+.btn_box button {
+  border-radius: 60rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  color: #fff;
+}
+.btn_box .btn1{
+  background: #3E5CF2;
+}
+.btn_box .btn2{
+  background: #CCCCCC;
+}
+.p_h3 {
+  font-weight: 600;
+}

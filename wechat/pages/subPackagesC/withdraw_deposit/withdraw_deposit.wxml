@@ -2,6 +2,17 @@
 <view class="top_box bg_fff">
   <view class="flex">
     <view class="it">
+      <text>提现金额</text>
+      <text class="f00">*</text>
+    </view>
+    <view class="item">
+      <input type="digit" bindinput="listenerInput" data-row="cashAmount" value="{{cashAmount}}" placeholder="0"></input>
+    </view>
+    <view class="f06" bindtap="allMony">全部提现</view>
+  </view>
+  <view class="tx_tips">收款人信息</view>
+  <view class="flex">
+    <view class="it">
       <text>收款人</text>
       <text class="f00">*</text>
     </view>
@@ -11,14 +22,25 @@
   </view>
   <view class="flex">
     <view class="it">
-      <text>提现金额</text>
+      <text>手机号</text>
       <text class="f00">*</text>
     </view>
     <view class="item">
-      <input type="digit" bindinput="listenerInput" data-row="cashAmount" value="{{cashAmount}}" placeholder="0"></input>
+      <input type="text" disabled="{{isPhone}}" bindinput="listenerInputSimpleIdPhone"  data-row="userInfo.rzPhone" value="{{userInfo.rzPhone}}" placeholder="请输入绑定微信支付的身份证号码"></input>
     </view>
-    <view class="f06" bindtap="allMony">全部提现</view>
   </view>
+  <view class="flex">
+    <view class="it">
+      <text>身份证号</text>
+      <text class="f00">*</text>
+    </view>
+    <view class="item">
+      <input type="text" disabled="{{isIdNum}}" bindinput="listenerInputSimpleIdNum"  data-row="userInfo.Number" value="{{userInfo.Number}}" placeholder="请输入绑定微信支付的身份证号码"></input>
+    </view>
+  </view>
+  
+  
+   
 </view>
 <view class="btn_box">
   <button class="btn1" style="width: 90%;" bindtap="wxOutMoney">提现</button>

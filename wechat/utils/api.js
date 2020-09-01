@@ -138,6 +138,10 @@ const getUserOtherInfo = (params) => postAction("/solitaire/solitaire/api", para
 const updateOrderGood = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "updateOrderGood"
 });
+// 获取用户服务费比例
+const getRate = (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "getRate"
+});
 
 export default {
   getSessionKey,
@@ -175,5 +179,6 @@ export default {
   getSolitaireShareInfo,
   getWxAppCode,
   getUserOtherInfo,
-  updateOrderGood
+  updateOrderGood,
+  getRate
 }

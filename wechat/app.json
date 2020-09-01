@@ -74,7 +74,8 @@
         "income_detail/income_detail",
         "withdraw_deposit/withdraw_deposit",
         "order_details/order_details",
-        "order_bought/order_bought"
+        "order_bought/order_bought",
+        "server_txt/server_txt"
       ]
     }
   ],

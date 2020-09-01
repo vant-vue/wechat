@@ -54,3 +54,8 @@
 .btn_box .btn2{
   background: #CCCCCC;
 }
+
+.top_box .tx_tips{
+  background: #eee;
+  padding: 8px;
+}

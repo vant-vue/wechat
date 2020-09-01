@@ -24,6 +24,7 @@ Page({
           outMoney: res.args.outMoney,
           waitMoney: res.args.waitMoney,
           cashAmount: res.args.cashAmount,
+          freeCommion: res.args.freeCommion
         })
       }
     })

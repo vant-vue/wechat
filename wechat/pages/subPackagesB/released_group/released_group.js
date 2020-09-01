@@ -688,6 +688,7 @@ Page({
     } else if (options.scene) {
       this.data.solitaireId = options.scene;
     }
+   // this.data.solitaireId = 577;
     if (options.released_id) {
       this.data.solitaireId = options.released_id;
       this.setData({

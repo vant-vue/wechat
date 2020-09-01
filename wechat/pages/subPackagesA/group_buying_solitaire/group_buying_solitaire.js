@@ -41,7 +41,8 @@ Page({
       "isCopy": true, //是否允许复制  0表示不可复制  1表示可复制
       'mode': "" //物流非必填字段 发布人自定义字段 逗号隔开  可空
     },
-    is_request: false
+    is_request: false,
+    rate:'0.9'
   },
   // 上传图片组件返回的数据
   get_img_list(e) {
@@ -339,6 +340,15 @@ Page({
         is_edit: options.is_edit
       })
     }
+    this.getRate();
+  }, getRate() {
+    app.$API.getRate({}).then(res => {
+      if (res.code == 200) {
+        this.setData({
+          rate: res.args.rate ? parseFloat(res.args.rate * 100).toFixed(1) : '0.9'
+        })
+      }
+    })
   },
   // 查询接龙-用于复制接龙或者编辑接龙  （selectSolitaire）
   selectSolitaire() {

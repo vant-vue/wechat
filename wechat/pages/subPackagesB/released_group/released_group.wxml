@@ -90,7 +90,7 @@
                   <text class="txt5" wx:else>不限</text>
                 </view>
                 <view class="">
-                  <text wx:if="{{item.stock==0}}" class="txt5">已结束</text>
+                  <text wx:if="{{item.stock==0}}" class="txt5">已抢光</text>
                   <shop-num wx:else code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock?item.stock:99}}"></shop-num>
                 </view>
               </view>
@@ -106,7 +106,7 @@
     <view class="btn_box">
       <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择商品</button>
       <button wx:elif="{{solitaire.status==-1}}" class="close_btn" type="primary" style="width:100%">接龙未开始</button>
-      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
+      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已结束</button>
       <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
       <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与接龙</button>
     </view>
@@ -182,7 +182,7 @@
                   <text class="txt5" wx:else>不限</text>
                 </view>
                 <view class="">
-                  <text wx:if="{{item.stock==0}}" class="txt5">已结束</text>
+                  <text wx:if="{{item.stock==0}}" class="txt5">已抢光</text>
                   <shop-num wx:else code="{{item.id}}" bind:callChangeCount="callChangeCount" max="{{item.stock?item.stock:99}}"></shop-num>
                 </view>
               </view>
@@ -198,7 +198,7 @@
     <view class="btn_box">
       <button wx:if="{{solitaire.status==0&&shop_num==0}}" class="close_btn" type="primary" style="width:100%">请选择份数</button>
       <button wx:elif="{{solitaire.status==-1}}" class="close_btn" type="primary" style="width:100%">接龙未开始</button>
-      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已完成</button>
+      <button wx:elif="{{solitaire.status==1}}" class="close_btn" type="primary" style="width:100%">接龙已结束</button>
       <button wx:elif="{{solitaire.status==2}}" class="close_btn" type="primary" style="width:100%">接龙已暂停</button>
       <button wx:elif="{{solitaire.status==0&&shop_num>0}}" bindtap="jump" data-page="participation_solitaire" data-list="{{goodsList}}" class="active_btn" type="primary" style="width:100%">参与合买</button>
     </view>
