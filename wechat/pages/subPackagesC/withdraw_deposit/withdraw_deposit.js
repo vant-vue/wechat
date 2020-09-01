@@ -135,7 +135,6 @@ Page({
           userInfo: res.args,
           isPayee: res.args.payee ? true : false,
           isIdNum:res.args.idNumber ? true:false,
-          isPhone:res.args.rzPhone ? true:false,
           cashAmount: ''
         });
       }
@@ -210,6 +209,30 @@ Page({
         "idNumBack":this.data.userInfo.idNumBack //身份证反面照片
       }
     }
+    wx.showLoading({
+      title: '提交中 ',
+      mask: true
+    })
+    app.$API.wxRz(params).then(res => {
+      if (res.code == 200) {
+        wx.showToast({
+          title: '提交成功',
+          duration: config.timeoutSecond
+        });
+        this.userInfo();
+      } else {
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          mask: true,
+          duration: config.timeoutSecond
+        })
+        this.userInfo();
+      }
+      this.data.is_request = false;
+    }).catch(() => {
+      wx.hideLoading();
+    })
   },
   // 提现
   wxOutMoney() {
