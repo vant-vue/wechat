@@ -97,6 +97,30 @@ Page({
       'cashAmount': this.data.userInfo.cashAmount / 100
     })
   },
+  getPhoneNumber(e){
+    wx.checkSession({
+      success () {
+        let params = {
+          param: {
+            "iv":e.detail.iv,
+            "encryptedData":e.detail.encryptedData
+          }
+        };
+        app.$API.getWxRzPhone(params).then(res => {
+          if (res.code == 200) {
+            this.userInfo.rzPhone = res.args.phoneNumber;
+          }
+        })
+      },
+      fail () {
+        // session_key 已经失效，需要重新执行登录流程
+        wx.navigateTo({
+          url: 'pages/tabBar/login/login'
+        })
+      }
+    })
+      
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -116,9 +140,8 @@ Page({
         });
       }
     })
-  },
-  // 提现
-  wxOutMoney() {
+  },//微信认证信息提交
+  wxRz(){
     if (this.data.is_request) {
       return;
     }
@@ -133,7 +156,16 @@ Page({
       this.data.is_request = false;
       return;
     }
-    if(!this.data.userInfo.Number){
+    if (!this.data.userInfo.rzPhone) {
+      wx.showToast({
+        title: '请授权手机号',
+        icon: 'none',
+        duration: config.timeoutSecond
+      })
+      this.data.is_request = false;
+      return;
+    }
+    if(!this.data.userInfo.idNumber){
       wx.showToast({
         title: '请输入收款人身份证号码',
         icon: 'none',
@@ -142,7 +174,7 @@ Page({
       this.data.is_request = false;
       return;
     }
-    if(!this.idNumCheck(this.data.userInfo.Number)){
+    if(!this.idNumCheck(this.data.userInfo.idNumber)){
       wx.showToast({
         title: '收款人身份证号码错误',
         icon: 'none',
@@ -151,6 +183,41 @@ Page({
       this.data.is_request = false;
       return;
     }
+    if(!this.data.userInfo.idNumFront){
+      wx.showToast({
+        title: '请上传微信正面图片',
+        icon: 'none',
+        duration: config.timeoutSecond
+      })
+      this.data.is_request = false;
+      return;
+    }
+    if(!this.data.userInfo.idNumBack){
+      wx.showToast({
+        title: '请上传微信反面图片',
+        icon: 'none',
+        duration: config.timeoutSecond
+      })
+      this.data.is_request = false;
+      return;
+    }
+    let params = {
+      param: {
+        "idNumber": this.data.idNumber, //身份证号码
+        "name": this.data.userInfo.payee, //实名  可空已经实名过一次的 可以为空
+        "rzPhone":this.data.userInfo.rzPhone,//微信授权手机号认证
+        "idNumFront":this.data.userInfo.idNumFront,//身份证正面照片
+        "idNumBack":this.data.userInfo.idNumBack //身份证反面照片
+      }
+    }
+  },
+  // 提现
+  wxOutMoney() {
+    if (this.data.is_request) {
+      return;
+    }
+    this.data.is_request = true;
+    let str = '';
     if (this.data.cashAmount == '') {
       wx.showToast({
         title: '请输入提现金额',
@@ -171,8 +238,7 @@ Page({
     }
     let params = {
       param: {
-        "outMoney": this.data.cashAmount * 100, //提现金额
-        "name": this.data.userInfo.payee //实名  可空已经实名过一次的 可以为空
+        "outMoney": this.data.cashAmount * 100 //提现金额
       }
     }
     wx.showLoading({

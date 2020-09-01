@@ -143,6 +143,16 @@ const getRate = (params) => postAction("/solitaire/solitaire/api", params, {
   method: "getRate"
 });
 
+// 微信获取用户授权手机号解密
+const getWxRzPhone= (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "getWxRzPhone"
+});
+
+// 认证信息提交接口
+const wxRz= (params) => postAction("/solitaire/solitaire/api", params, {
+  method: "wxRz"
+});
+
 export default {
   getSessionKey,
   wxLogin,
@@ -180,5 +190,7 @@ export default {
   getWxAppCode,
   getUserOtherInfo,
   updateOrderGood,
-  getRate
+  getRate,
+  getWxRzPhone,
+  wxRz
 }
