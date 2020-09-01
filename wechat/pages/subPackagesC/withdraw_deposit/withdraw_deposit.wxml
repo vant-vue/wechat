@@ -26,8 +26,8 @@
       <text class="f00">*</text>
     </view>
     <view class="item">
-    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
-      <input type="text" disabled="{{isPhone}}" bindinput="listenerInputSimpleIdPhone"  data-row="userInfo.rzPhone" value="{{userInfo.rzPhone}}" placeholder="请输入绑定微信支付的身份证号码"></input>
+       <button class="rz_phone_btn" wx:if="{{userInfo.rzPhone==null}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">点击授权手机号</button>
+      <input type="text" wx:if="{{userInfo.rzPhone!=null}}" bindinput="listenerInputSimpleIdPhone"  data-row="userInfo.rzPhone" value="{{userInfo.rzPhone}}" placeholder="请输入绑定微信支付的身份证号码"></input>
     </view>
   </view>
   <view class="flex">

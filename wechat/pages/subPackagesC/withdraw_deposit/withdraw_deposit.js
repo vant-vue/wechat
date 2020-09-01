@@ -98,6 +98,7 @@ Page({
     })
   },
   getPhoneNumber(e){
+    var that = this;
     wx.checkSession({
       success () {
         let params = {
@@ -108,7 +109,11 @@ Page({
         };
         app.$API.getWxRzPhone(params).then(res => {
           if (res.code == 200) {
-            this.userInfo.rzPhone = res.args.phoneNumber;
+            var userInfo = that.data.userInfo;
+            userInfo.rzPhone = res.args.phoneNumber;
+            that.setData({
+              userInfo: userInfo
+            })
           }
         })
       },
