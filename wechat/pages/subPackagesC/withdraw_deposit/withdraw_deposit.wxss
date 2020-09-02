@@ -59,6 +59,10 @@
   background: #eee;
   padding: 8px;
 }
+.top_box .tx_tips2{
+  background: #fff;
+  padding: 8px;
+}
 
 .top_box .rz_phone_btn{
   width: 100%;
@@ -67,4 +71,14 @@
   padding: 2.5px 0;
   text-align: left;
   font-weight: 100;
+}
+.idCardBox .item{
+  text-align: center;
+}
+.idCardBox image{
+  width: 300rpx;
+  margin-top: 20rpx;
+}
+.idCardBox .up_b  image {
+  height: 194rpx;
 }
